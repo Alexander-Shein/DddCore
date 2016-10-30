@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Contracts.Services.Infrastructure.Files.Services;
 
 namespace Contracts.Services.Infrastructure.Files.Models.Input
 {
@@ -6,11 +7,7 @@ namespace Contracts.Services.Infrastructure.Files.Models.Input
     {
         public Stream File { get; set; }
         public string OriginalFileName { get; set; }
-        public string LocationType { get; set; }
-
-        public string GetExtension()
-        {
-            return Path.GetExtension(OriginalFileName);
-        }
+        public string Location { get; set; }
+        public StorageType StorageType { get; set; }
     }
 }

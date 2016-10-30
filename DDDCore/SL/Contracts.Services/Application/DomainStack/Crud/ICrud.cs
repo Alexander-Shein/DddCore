@@ -1,4 +1,4 @@
-﻿namespace Contracts.Services.Application.DomainStack
+﻿namespace Contracts.Services.Application.DomainStack.Crud
 {
     public interface ICrud<TVm, in TKey, in TIm> :
         ICreate<TVm, TIm>,

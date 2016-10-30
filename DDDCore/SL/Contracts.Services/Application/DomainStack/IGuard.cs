@@ -1,12 +1,11 @@
 ﻿using System.Threading.Tasks;
-using Contracts.Domain.Entities.Validation;
+using Contracts.Domain.Entities.BusinessRules;
 
 namespace Contracts.Services.Application.DomainStack
 {
     public interface IGuard
     {
-        void NotNull(object obj);
-        void DomainIsValid(params IValidation[] domains);
-        Task DomainIsValidAsync(params IValidation[] domains);
+        void NotNull(object obj, string message = "");
+        Task DomainIsValidAsync(params IValidatable[] domains);
     }
 }

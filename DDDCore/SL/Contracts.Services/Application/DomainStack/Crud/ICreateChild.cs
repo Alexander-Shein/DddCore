@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace Contracts.Services.Application.DomainStack
+namespace Contracts.Services.Application.DomainStack.Crud
 {
     public interface ICreateChild<TVm, in TParrentKey, in TIm>
     {

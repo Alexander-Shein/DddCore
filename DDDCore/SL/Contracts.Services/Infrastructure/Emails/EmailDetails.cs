@@ -7,8 +7,8 @@ namespace Contracts.Services.Infrastructure.Emails
     {
         public string MailTo { get; set; }
         public string MailFrom { get; set; }
-        public string TmplName { get; set; }
-        public IDictionary<string, string> Parameters { get; set; }
+        public string Title { get; set; }
+        public string Body { get; set; }
         public FileSummary[] Attachments { get; set; }
     }
 }

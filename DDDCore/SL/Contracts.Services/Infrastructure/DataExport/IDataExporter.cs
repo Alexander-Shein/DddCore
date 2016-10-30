@@ -1,11 +1,8 @@
-﻿using System.Data;
-
-namespace Contracts.Services.Infrastructure.DataExport
+﻿namespace Contracts.Services.Infrastructure.DataExport
 {
     public interface IDataExporter
     {
-        ExportSummary Export(IDataReader dataReader);
-
-        string ContentType { get; }
+        //ExportResult Export(IDataReader dataReader);
+        ExportSummary Export(object[] objects);
     }
 }

@@ -45,30 +45,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application\DomainStack\IEntityService.cs" />
-    <Compile Include="Application\DomainStack\ICreate.cs" />
-    <Compile Include="Application\DomainStack\ICreateChild.cs" />
-    <Compile Include="Application\DomainStack\ICrud.cs" />
-    <Compile Include="Application\DomainStack\IDelete.cs" />
-    <Compile Include="Application\DomainStack\IDeleteChild.cs" />
+    <Compile Include="Application\DomainStack\Crud\ICreate.cs" />
+    <Compile Include="Application\DomainStack\Crud\ICreateChild.cs" />
+    <Compile Include="Application\DomainStack\Crud\ICrud.cs" />
+    <Compile Include="Application\DomainStack\Crud\IDelete.cs" />
+    <Compile Include="Application\DomainStack\Crud\IDeleteChild.cs" />
     <Compile Include="Application\DomainStack\IGuard.cs" />
-    <Compile Include="Application\DomainStack\IRead.cs" />
-    <Compile Include="Application\DomainStack\IUpdate.cs" />
+    <Compile Include="Application\DomainStack\Crud\IRead.cs" />
+    <Compile Include="Application\DomainStack\Crud\IUpdate.cs" />
     <Compile Include="Application\QueryStack\Pagging\Services\IPaggingService.cs" />
-    <Compile Include="Application\UserContext\IUserContext.cs" />
     <Compile Include="Application\QueryStack\Pagging\Models\PaggedResult.cs" />
-    <Compile Include="Infrastructure\DataExport\ExportResult.cs" />
+    <Compile Include="Infrastructure\DataExport\Attributes\ExportPropertyAttribute.cs" />
+    <Compile Include="Infrastructure\DataExport\ExportSummary.cs" />
+    <Compile Include="Infrastructure\DataExport\ExportType.cs" />
     <Compile Include="Infrastructure\DataExport\IDataExporter.cs" />
+    <Compile Include="Infrastructure\DataExport\IDataExporterFactory.cs" />
     <Compile Include="Infrastructure\Emails\EmailDetails.cs" />
-    <Compile Include="Infrastructure\Emails\IEmailService.cs" />
+    <Compile Include="Infrastructure\Emails\ISendEmailStrategy.cs" />
     <Compile Include="Infrastructure\Files\Models\Input\FileDetails.cs" />
     <Compile Include="Infrastructure\Files\Models\View\FileSummary.cs" />
     <Compile Include="Infrastructure\Files\Services\IFileService.cs" />
-    <Compile Include="Infrastructure\Files\Services\IFileUploadService.cs" />
+    <Compile Include="Infrastructure\Files\Services\StorageType.cs" />
     <Compile Include="Infrastructure\Files\Services\Validation\IFileValidator.cs" />
     <Compile Include="Infrastructure\Files\Services\Validation\Restrictions.cs" />
-    <Compile Include="Infrastructure\Preview\Models\PreviewSummaries.cs" />
     <Compile Include="Infrastructure\Preview\Models\PreviewSummary.cs" />
-    <Compile Include="Infrastructure\Preview\Models\PreviewType.cs" />
     <Compile Include="Infrastructure\Preview\Services\IPreviewService.cs" />
     <Compile Include="Infrastructure\ServiceBus\IApplicationMessage.cs" />
     <Compile Include="Infrastructure\ServiceBus\IServiceBus.cs" />
@@ -80,11 +80,6 @@
       <Project>{81A15C00-E8BC-49B8-9B3A-3694370FF9F2}</Project>
       <Name>Contracts.Domain</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

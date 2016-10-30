@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Contracts.Services.Application.DomainStack
+namespace Contracts.Services.Application.DomainStack.Crud
 {
     public interface ICreate<TVm, in TIm>
     {

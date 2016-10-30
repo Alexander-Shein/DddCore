@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
 using Contracts.Services.Infrastructure.DataExport;
+using Crosscutting.Infrastructure;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
@@ -13,9 +13,11 @@ using Services.Infrastructure.DataExport.Properties;
 
 namespace Services.Infrastructure.DataExport.Excel
 {
-    public class ExcelDataExporter : IDataExporter
+    public class ExcelDataExporter : DataExporterBase
     {
-        public ExportSummary Export(IDataReader dataReader)
+        #region Public Methods
+
+        public override ExportSummary Export(object[] objects)
         {
             var tempFile = Path.GetTempFileName();
             File.WriteAllBytes(tempFile, Resources.template);
@@ -35,7 +37,7 @@ namespace Services.Infrastructure.DataExport.Excel
                 spreadsheetDocument.WorkbookPart.Workbook.AppendChild(new Sheets() { });
 
                 var sheetData = AddSheet(spreadsheetDocument, "Screams");
-                sheetData.Append(CreateRows(dataReader));
+                sheetData.Append(CreateRows(objects));
 
                 IEnumerable<ValidationErrorInfo> errors;
                 if (!IsDocumentValid(spreadsheetDocument, out errors))
@@ -54,11 +56,11 @@ namespace Services.Infrastructure.DataExport.Excel
             return new ExportSummary
             {
                 File = File.OpenRead(tempFile),
-                ContentType = ContentType
+                ContentType = ExportType.Excel.GetDescription()
             }; 
         }
 
-        public string ContentType => "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+        #endregion
 
         #region Private Methods
 
@@ -69,32 +71,13 @@ namespace Services.Infrastructure.DataExport.Excel
             return (!errors.Any());
         }
 
-        IEnumerable<Row> CreateRows(IDataReader dr)
+        IEnumerable<Row> CreateRows(object[] objects)
         {
-            var columns = new List<string>();
+            var columns = GetHeaders(objects.First());
 
-            for (int k = 0; k < dr.FieldCount; k++)
+            for (int i = 1; i <= objects.Length; i++)
             {
-                columns.Add(dr.GetName(k));
-            }
-
-            yield return CreateRow(columns, 1);
-
-            var totalColumns = dr.FieldCount;
-
-            var i = 2;
-            while (dr.Read())
-            {
-                var values = new string[totalColumns];
-
-                for (int j = 0; j < totalColumns; j++)
-                {
-                    var value = dr.GetValue(j);
-
-                    values[j] = value == null ? String.Empty : value.ToString();
-                }
-
-                yield return CreateRow(values, i++);
+                yield return CreateRow(columns, i);
             }
         }
 

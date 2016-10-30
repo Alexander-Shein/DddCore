@@ -6,11 +6,10 @@ using Contracts.Services.Infrastructure.Files.Services.Validation;
 
 namespace Contracts.Services.Infrastructure.Files.Services
 {
-    public interface IFileService : IFileUploadService<FileSummary>
+    public interface IFileService
     {
-        string StorageType { get; }
-
         FileSummary Upload(FileDetails fileDetails, Restrictions restrictions);
+        FileSummary Upload(FileDetails fileDetails);
 
         Uri GetUri(FileSummary fileSummary);
         Stream Read(FileSummary fileSummary);

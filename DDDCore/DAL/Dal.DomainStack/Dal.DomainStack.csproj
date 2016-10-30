@@ -60,12 +60,21 @@
     <Compile Include="Ef\Mapping\EntityBaseMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ef\RepositoryBase.cs" />
+    <Compile Include="Z.Dapper.Plus\BulkRepositoryBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Crosscutting\Contracts.Crosscutting\Contracts.Crosscutting.csproj">
+      <Project>{0E09DA52-A209-4F40-9F37-9356BE826E36}</Project>
+      <Name>Contracts.Crosscutting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Crosscutting\Crosscutting.Infrastructure\Crosscutting.Infrastructure.csproj">
+      <Project>{EDCC02EF-2B70-4832-B4BC-A37CE18FCDC6}</Project>
+      <Name>Crosscutting.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Contracts.Dal\Contracts.Dal.csproj">
       <Project>{2542CADE-D294-413F-AF64-3DDB6BCA86B8}</Project>
       <Name>Contracts.Dal</Name>
@@ -73,10 +82,6 @@
     <ProjectReference Include="..\..\BLL\Contracts.Domain\Contracts.Domain.csproj">
       <Project>{81A15C00-E8BC-49B8-9B3A-3694370FF9F2}</Project>
       <Name>Contracts.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Crosscutting\Crosscutting.Infrastructure\Crosscutting.Infrastructure.csproj">
-      <Project>{edcc02ef-2b70-4832-b4bc-a37ce18fcdc6}</Project>
-      <Name>Crosscutting.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

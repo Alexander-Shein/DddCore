@@ -46,8 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\AggregateRootEntityBase.cs" />
-    <Compile Include="Entities\Validation\AbstractEntityValidator.cs" />
-    <Compile Include="Entities\Validation\EntityValidatorFactory.cs" />
+    <Compile Include="Entities\BusinessRules\BusinessRulesValidatorBase.cs" />
+    <Compile Include="Entities\BusinessRules\BusinessRulesValidatorFactory.cs" />
     <Compile Include="ValueObjects\DateTimeRanges\DateTimeRange.cs" />
     <Compile Include="Entities\EntityBase.cs" />
     <Compile Include="Entities\GuidEntities\GuidAggregateRootEntityBase.cs" />
@@ -64,11 +64,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Crosscutting\Contracts.Crosscutting\Contracts.Crosscutting.csproj">
-      <Project>{0e09da52-a209-4f40-9f37-9356be826e36}</Project>
+      <Project>{0E09DA52-A209-4F40-9F37-9356BE826E36}</Project>
       <Name>Contracts.Crosscutting</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Crosscutting\Crosscutting.IoC\Crosscutting.IoC.csproj">
-      <Project>{d26bbaab-a0dc-47b3-a262-7a1a5f94e5c4}</Project>
+      <Project>{D26BBAAB-A0DC-47B3-A262-7A1A5F94E5C4}</Project>
       <Name>Crosscutting.IoC</Name>
     </ProjectReference>
     <ProjectReference Include="..\Contracts.Domain\Contracts.Domain.csproj">
