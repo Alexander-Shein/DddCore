@@ -2,15 +2,14 @@ using System;
 using System.Net;
 using System.Net.Mail;
 using System.Net.Mime;
+using System.Threading.Tasks;
+using System.Web;
 using Contracts.Crosscutting.Configuration;
-using Contracts.Crosscutting.Logging;
-using Contracts.Domain.Events;
-using Contracts.Services.Infrastructure.Files.Models.View;
-using Contracts.Services.Infrastructure.Files.Services;
+using Contracts.Services.Infrastructure.Emails;
 
 namespace Services.Infrastructure.Emails
 {
-    public class SendEmailMessageHandler : IHandle<SendEmailMessage>
+    public class SmtpSendEmailStrategy : ISendEmailStrategy
     {
         private static class Consts
         {
@@ -25,47 +24,43 @@ namespace Services.Infrastructure.Emails
             }
         }
 
-        public IConfig Config { get; set; }
-        public IFileService FileService { get; set; }
-        public ILoggerFactory LoggerFactory { get; set; }
+        #region Private Members
 
-        public void Handle(SendEmailMessage email)
+        readonly IConfig config;
+
+        #endregion
+
+        public SmtpSendEmailStrategy(IConfig config)
+        {
+            this.config = config;
+        }
+
+        public Task SendAsync(EmailDetails email)
         {
             var client = CreateSmtpClient();
-            var mail = CreateMailMessage(Config.Get<string>(Consts.Smtp.MailTo), email.MailFrom, email.Subject, email.Body);
+            var mail = CreateMailMessage(email.MailTo, email.MailFrom, email.Subject, email.Body);
 
             Attach(mail, email.Attachments);
 
-            try
-            {
-                client.Send(mail);
-            }
-            catch (Exception e)
-            {
-                var logger = LoggerFactory.GetLogger("SendEmailMessageHandler");
-                logger.LogError("SendEmail", e);
-
-                throw;
-            }
+            client.SendAsync(mail, null);
+            return Task.CompletedTask;
         }
 
         #region Private Methods
 
-        void Attach(MailMessage mail, FileSummary[] attachments)
+        void Attach(MailMessage mail, EmailAttachmentDetails[] attachments)
         {
             if (attachments == null) return;
 
-            foreach (var fileSummary in attachments)
+            foreach (var file in attachments)
             {
-                var stream = FileService.Read(fileSummary);
-
-                Attachment attachment = new Attachment(stream, MediaTypeNames.Application.Pdf);
+                Attachment attachment = new Attachment(file.File, MimeMapping.GetMimeMapping(file.FileName));
                 ContentDisposition disposition = attachment.ContentDisposition;
                 disposition.CreationDate = DateTime.UtcNow;
                 disposition.ModificationDate = DateTime.UtcNow;
                 disposition.ReadDate = DateTime.UtcNow;
-                disposition.FileName = fileSummary.FileName;
-                disposition.Size = stream.Length;
+                disposition.FileName = file.FileName;
+                disposition.Size = file.File.Length;
                 disposition.DispositionType = DispositionTypeNames.Attachment;
                 mail.Attachments.Add(attachment);
             }
@@ -73,10 +68,10 @@ namespace Services.Infrastructure.Emails
 
         SmtpClient CreateSmtpClient()
         {
-            var port = Config.Get<int>(Consts.Smtp.Port);
-            var host = Config.Get<string>(Consts.Smtp.Host);
-            var username = Config.Get<string>(Consts.Smtp.Username);
-            var password = Config.Get<string>(Consts.Smtp.Password);
+            var port = config.Get<int>(Consts.Smtp.Port);
+            var host = config.Get<string>(Consts.Smtp.Host);
+            var username = config.Get<string>(Consts.Smtp.Username);
+            var password = config.Get<string>(Consts.Smtp.Password);
 
             SmtpClient client = new SmtpClient
             {
@@ -93,8 +88,8 @@ namespace Services.Infrastructure.Emails
 
         MailMessage CreateMailMessage(string mailTo, string mailFrom, string subject, string body)
         {
-            mailFrom = mailFrom ?? Config.Get<string>(Consts.Smtp.MailFrom);
-            mailTo = mailTo ?? Config.Get<string>(Consts.Smtp.MailTo);
+            mailFrom = mailFrom ?? config.Get<string>(Consts.Smtp.MailFrom);
+            mailTo = mailTo ?? config.Get<string>(Consts.Smtp.MailTo);
 
             MailMessage mail = new MailMessage(mailFrom, mailTo)
             {

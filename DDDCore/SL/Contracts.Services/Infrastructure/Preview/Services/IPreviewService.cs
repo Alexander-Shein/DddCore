@@ -7,6 +7,5 @@ namespace Contracts.Services.Infrastructure.Preview.Services
     public interface IPreviewService
     {
         PreviewSummary GeneratePreview(Stream file, int maxWidth, int maxHeight);
-        IEnumerable<PreviewSummary> GeneratePreviews(Stream file, int maxWidth, int maxHeight);
     }
 }
