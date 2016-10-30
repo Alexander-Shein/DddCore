@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BLL", "BLL", "{B6830019-EFA2-4D13-85EA-A473C6F06757}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts.Domain", "DDDCore\BLL\Contracts.Domain\Contracts.Domain.csproj", "{81A15C00-E8BC-49B8-9B3A-3694370FF9F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "DDDCore\BLL\Domain\Domain.csproj", "{2271180A-0AC7-48D8-8EAD-3228EDEFA440}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SL", "SL", "{E387C56F-CB48-4609-A9F1-96DE6C063EDE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PL", "PL", "{E05902C3-7FFB-40CB-9E0F-2463D246AC5B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Crosscutting", "Crosscutting", "{4D9192C3-595B-4EE6-90FD-660036FEC5C4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{81A15C00-E8BC-49B8-9B3A-3694370FF9F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81A15C00-E8BC-49B8-9B3A-3694370FF9F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81A15C00-E8BC-49B8-9B3A-3694370FF9F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81A15C00-E8BC-49B8-9B3A-3694370FF9F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2271180A-0AC7-48D8-8EAD-3228EDEFA440}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2271180A-0AC7-48D8-8EAD-3228EDEFA440}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2271180A-0AC7-48D8-8EAD-3228EDEFA440}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2271180A-0AC7-48D8-8EAD-3228EDEFA440}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{81A15C00-E8BC-49B8-9B3A-3694370FF9F2} = {B6830019-EFA2-4D13-85EA-A473C6F06757}
+		{2271180A-0AC7-48D8-8EAD-3228EDEFA440} = {B6830019-EFA2-4D13-85EA-A473C6F06757}
+	EndGlobalSection
+EndGlobal
