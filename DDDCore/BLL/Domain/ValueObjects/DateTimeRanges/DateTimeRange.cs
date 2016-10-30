@@ -4,9 +4,6 @@ namespace Domain.ValueObjects.DateTimeRanges
 {
     public class DateTimeRange : ValueObject<DateTimeRange>
     {
-        public DateTime Start { get; protected set; }
-        public DateTime End { get; protected set; }
-
         public DateTimeRange(DateTime start, DateTime end)
         {
             if (start > end)
@@ -15,6 +12,9 @@ namespace Domain.ValueObjects.DateTimeRanges
             Start = start;
             End = end;
         }
+
+        public DateTime Start { get; protected set; }
+        public DateTime End { get; protected set; }
 
         public bool IsInDateRange(DateTime date)
         {

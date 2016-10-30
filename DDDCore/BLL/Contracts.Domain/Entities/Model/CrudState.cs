@@ -14,6 +14,9 @@ namespace Contracts.Domain.Entities.Model
         Modified,
 
         [Description("Deleted")]
-        Deleted
+        Deleted,
+
+        [Description("Merged")]
+        AddedOrModified
     }
 }

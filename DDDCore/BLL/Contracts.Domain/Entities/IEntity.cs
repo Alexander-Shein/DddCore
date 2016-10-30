@@ -2,7 +2,7 @@
 
 namespace Contracts.Domain.Entities
 {
-    public interface IEntity<TKey> : ICrudState, IId<TKey>
+    public interface IEntity<TKey> : ICrudState, IKey<TKey>
     {
     }
 }

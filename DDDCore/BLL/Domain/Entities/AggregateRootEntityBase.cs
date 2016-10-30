@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Threading.Tasks;
 using Contracts.Domain.Entities;
-using Contracts.Domain.Entities.Validation;
+using Contracts.Domain.Entities.BusinessRules;
 using Contracts.Domain.Events;
 using Crosscutting.IoC;
 
@@ -12,7 +12,7 @@ namespace Domain.Entities
     {
         #region Private Members
 
-        EntityValidationResult entityValidationResult;
+        BusinessRulesValidationResult entityValidationResult;
 
         #endregion
 
@@ -24,14 +24,14 @@ namespace Domain.Entities
 
         public byte[] Ts { get; set; }
 
-        public async Task<EntityValidationResult> ValidateAsync()
+        public async Task<BusinessRulesValidationResult> ValidateAsync()
         {
             if (entityValidationResult == null)
             {
                 var validator = GetEntityValidator();
-                MethodInfo method = typeof(IEntityValidator<>).GetMethod("ValidateAsync");
+                MethodInfo method = typeof(IBusinessRulesValidator<>).GetMethod("ValidateAsync");
 
-                entityValidationResult = await (Task<EntityValidationResult>)method.Invoke(validator, new object[] { this });
+                entityValidationResult = await (Task<BusinessRulesValidationResult>)method.Invoke(validator, new object[] { this });
             }
 
             return entityValidationResult;
@@ -43,9 +43,9 @@ namespace Domain.Entities
 
         protected virtual object GetEntityValidator()
         {
-            var factory = ContainerHolder.Container.Resolve<IEntityValidatorFactory>();
+            var factory = ContainerHolder.Container.Resolve<IBusinessRulesValidatorFactory>();
 
-            MethodInfo method = typeof(IEntityValidatorFactory).GetMethod("GetEntityValidator");
+            MethodInfo method = typeof(IBusinessRulesValidatorFactory).GetMethod("GetValidator");
             
             var type = GetType();
             
