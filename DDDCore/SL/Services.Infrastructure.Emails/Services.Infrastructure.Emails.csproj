@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,12 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EmailService.cs" />
-    <Compile Include="ITemplateReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SendEmailMessage.cs" />
-    <Compile Include="SendEmailMessageHandler.cs" />
-    <Compile Include="Template.cs" />
+    <Compile Include="SmtpSendEmailStrategy.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\BLL\Contracts.Domain\Contracts.Domain.csproj">

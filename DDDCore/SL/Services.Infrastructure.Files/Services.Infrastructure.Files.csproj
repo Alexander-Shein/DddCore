@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FileServiceBase.cs" />
-    <Compile Include="LocalStorageFileService.cs" />
+    <Compile Include="FileSystemFileService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\IsImageValidator.cs" />
     <Compile Include="Validation\IsLessThan50MbValidator.cs" />

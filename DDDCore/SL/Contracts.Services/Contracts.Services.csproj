@@ -60,6 +60,7 @@
     <Compile Include="Infrastructure\DataExport\ExportType.cs" />
     <Compile Include="Infrastructure\DataExport\IDataExporter.cs" />
     <Compile Include="Infrastructure\DataExport\IDataExporterFactory.cs" />
+    <Compile Include="Infrastructure\Emails\EmailAttachmentDetails.cs" />
     <Compile Include="Infrastructure\Emails\EmailDetails.cs" />
     <Compile Include="Infrastructure\Emails\ISendEmailStrategy.cs" />
     <Compile Include="Infrastructure\Files\Models\Input\FileDetails.cs" />
