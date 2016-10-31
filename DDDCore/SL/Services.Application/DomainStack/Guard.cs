@@ -1,39 +1,34 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Contracts.Domain.Entities.Validation;
+using Contracts.Domain.Entities.BusinessRules;
 using Contracts.Services.Application.DomainStack;
 
 namespace Services.Application.DomainStack
 {
     public class Guard : IGuard
     {
-        public void NotNull(object obj)
+        #region Public Methods
+
+        public void NotNull(object obj, string message = "")
         {
             if (obj == null)
-                throw new ArgumentNullException();
+                throw new ArgumentNullException(message);
         }
 
-        public void DomainIsValid(params IValidation[] domains)
+        public async Task DomainIsValidAsync(params IValidatable[] domains)
         {
             foreach (var domain in domains)
             {
-                if (domain.IsNotValid)
+                var validationResult = await domain.ValidateAsync();
+
+                if (validationResult.IsNotValid)
                 {
-                    throw new ArgumentException(String.Join(Environment.NewLine, domain.ValidationErrors.Select(x => x.Message)));
+                    throw validationResult.Errors.First();
                 }
             }
         }
 
-        public async Task DomainIsValidAsync(params IValidation[] domains)
-        {
-            foreach (var domain in domains)
-            {
-                if (await domain.IsNotValidAsync())
-                {
-                    throw new ArgumentException(String.Join(Environment.NewLine, domain.ValidationErrors.Select(x => x.Message)));
-                }
-            }
-        }
+        #endregion
     }
 }

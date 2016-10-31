@@ -5,6 +5,7 @@ using Contracts.Dal.DomainStack;
 using Contracts.Domain.Entities;
 using Contracts.Services.Application;
 using Contracts.Services.Application.DomainStack;
+using Contracts.Services.Application.DomainStack.Crud;
 
 namespace Services.Application
 {
@@ -13,7 +14,7 @@ namespace Services.Application
         IDelete<Guid>,
         IRead<TVm, Guid>,
         IUpdate<Guid, TVm, TUpdateIm>
-        where TDomain : class, IAggregateRootEntityBase<Guid>
+        where TDomain : class, IAggregateRootEntity<Guid>
     {
         readonly IRepository<TDomain, Guid> repository;
         readonly IGuard guard;
@@ -34,7 +35,7 @@ namespace Services.Application
 
             var domain = mapper.Map<TDomain>(im);
 
-            guard.DomainIsValid(domain);
+            //guard.DomainIsValid(domain);
 
             repository.PersistEntityGraph(domain);
 
@@ -57,7 +58,7 @@ namespace Services.Application
 
             mapper.Map(im, domain);
 
-            guard.DomainIsValid(domain);
+            //guard.DomainIsValid(domain);
 
             repository.PersistEntityGraph(domain);
 
@@ -90,6 +91,11 @@ namespace Services.Application
         }
 
         public Task<Guid> Update(TVm key, TUpdateIm model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Guid> UpdateAsync(TVm key, TUpdateIm model)
         {
             throw new NotImplementedException();
         }
