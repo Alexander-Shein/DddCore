@@ -65,6 +65,14 @@
       <Project>{81A15C00-E8BC-49B8-9B3A-3694370FF9F2}</Project>
       <Name>Contracts.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\BLL\Domain\Domain.csproj">
+      <Project>{2271180A-0AC7-48D8-8EAD-3228EDEFA440}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Crosscutting\Contracts.Crosscutting\Contracts.Crosscutting.csproj">
+      <Project>{0e09da52-a209-4f40-9f37-9356be826e36}</Project>
+      <Name>Contracts.Crosscutting</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\DAL\Contracts.Dal\Contracts.Dal.csproj">
       <Project>{2542CADE-D294-413F-AF64-3DDB6BCA86B8}</Project>
       <Name>Contracts.Dal</Name>

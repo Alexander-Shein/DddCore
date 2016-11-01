@@ -67,9 +67,9 @@
       <Project>{0E09DA52-A209-4F40-9F37-9356BE826E36}</Project>
       <Name>Contracts.Crosscutting</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Crosscutting\Crosscutting.IoC\Crosscutting.IoC.csproj">
+    <ProjectReference Include="..\..\Crosscutting\Crosscutting.IoC\Crosscutting.Ioc.csproj">
       <Project>{D26BBAAB-A0DC-47B3-A262-7A1A5F94E5C4}</Project>
-      <Name>Crosscutting.IoC</Name>
+      <Name>Crosscutting.Ioc</Name>
     </ProjectReference>
     <ProjectReference Include="..\Contracts.Domain\Contracts.Domain.csproj">
       <Project>{81a15c00-e8bc-49b8-9b3a-3694370ff9f2}</Project>

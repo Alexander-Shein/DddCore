@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Contracts.Domain.Events;
-using Crosscutting.IoC;
+using Crosscutting.Ioc;
 
 namespace Domain.Events
 {

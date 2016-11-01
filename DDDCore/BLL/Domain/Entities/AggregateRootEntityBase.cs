@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Contracts.Domain.Entities;
 using Contracts.Domain.Entities.BusinessRules;
 using Contracts.Domain.Events;
-using Crosscutting.IoC;
+using Crosscutting.Ioc;
 
 namespace Domain.Entities
 {

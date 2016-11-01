@@ -2,9 +2,8 @@
 using Contracts.Crosscutting.IoC;
 using Contracts.Dal.DomainStack;
 using Contracts.Domain.Entities;
-using Contracts.Domain.Events;
-using Contracts.Services.Application;
 using Contracts.Services.Application.DomainStack;
+using Domain.Events;
 
 namespace Services.Application.DomainStack
 {
@@ -14,7 +13,6 @@ namespace Services.Application.DomainStack
 
         readonly IRepository<T, TKey> repository;
         readonly IGuard guard;
-        readonly IContainer container;
 
         #endregion
 
@@ -24,7 +22,6 @@ namespace Services.Application.DomainStack
         {
             this.repository = repository;
             this.guard = guard;
-            this.container = container;
         }
 
         #endregion
@@ -38,9 +35,7 @@ namespace Services.Application.DomainStack
 
             foreach (var domainEvent in entity.Events)
             {
-                //var handlers = container.ResolveAll<IHandle<domainEvent>>();
-                //
-                //for
+                DomainEvents.Raise(domainEvent);
             }
 
             repository.PersistEntityGraph(entity);

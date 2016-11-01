@@ -1,6 +1,6 @@
 ﻿using Contracts.Crosscutting.IoC;
 
-namespace Crosscutting.IoC
+namespace Crosscutting.Ioc
 {
     public static class ContainerHolder
     {

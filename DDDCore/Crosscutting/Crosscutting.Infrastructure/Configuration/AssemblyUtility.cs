@@ -11,7 +11,7 @@ namespace Crosscutting.Infrastructure.Configuration
             var assignType = typeof(T);
 
             return AppDomain.CurrentDomain.GetAssemblies()
-                .Where(x => x.FullName.StartsWith("Dal"))
+                //.Where(x => x.FullName.StartsWith("Dal"))
                 .SelectMany(y => y.GetTypes()
                     .Where(x => assignType.IsAssignableFrom(x) && x != assignType))
                     .Select(type => (T)Activator.CreateInstance(type));

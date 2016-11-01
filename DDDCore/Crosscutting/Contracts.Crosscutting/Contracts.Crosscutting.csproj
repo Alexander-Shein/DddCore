@@ -42,7 +42,13 @@
   <ItemGroup>
     <Compile Include="Caching\ICacheKeyGenerator.cs" />
     <Compile Include="Configuration\IConfig.cs" />
+    <Compile Include="IoC\IComponent.cs" />
     <Compile Include="IoC\IContainer.cs" />
+    <Compile Include="IoC\IContainerBootstrapper.cs" />
+    <Compile Include="IoC\IIocModule.cs" />
+    <Compile Include="IoC\ILifeStyle.cs" />
+    <Compile Include="IoC\ContainerType.cs" />
+    <Compile Include="IoC\IRegistrationContainer.cs" />
     <Compile Include="IShallowCloneable.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\ILoggerFactory.cs" />

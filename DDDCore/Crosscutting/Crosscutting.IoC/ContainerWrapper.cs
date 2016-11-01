@@ -1,10 +1,12 @@
 ﻿using System;
 using Contracts.Crosscutting.IoC;
 
-namespace Crosscutting.IoC
+namespace Crosscutting.Ioc
 {
     public class ContainerWrapper : IContainer
     {
+        #region Public Methods
+
         public T Resolve<T>() where T : class 
         {
             return ContainerHolder.Container.Resolve<T>();
@@ -13,6 +15,11 @@ namespace Crosscutting.IoC
         public T Resolve<T>(string name) where T : class
         {
             return ContainerHolder.Container.Resolve<T>(name);
+        }
+
+        public object Resolve(Type type)
+        {
+            return ContainerHolder.Container.Resolve(type);
         }
 
         public T[] ResolveAll<T>() where T : class
@@ -26,5 +33,7 @@ namespace Crosscutting.IoC
                 return new T[0];
             }
         }
+
+        #endregion
     }
 }
