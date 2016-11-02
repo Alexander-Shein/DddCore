@@ -1,6 +1,6 @@
 using System;
 
-namespace Contracts.Services.Infrastructure.Files.Services.Validation
+namespace Contracts.Services.Infrastructure.Files.Validation
 {
     [Flags]
     public enum Restrictions

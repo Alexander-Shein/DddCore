@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Contracts.Crosscutting.IoC;
+using Contracts.Crosscutting.IoC.Base;
 using Crosscutting.Infrastructure.Configuration;
 
 namespace Crosscutting.Ioc
@@ -8,22 +9,22 @@ namespace Crosscutting.Ioc
     {
         #region Public Methods
 
-        public void Bootstrap(ContainerType containerType)
+        public IContainer Bootstrap(ContainerType containerType)
         {
             var modules =
                 AssemblyUtility
                     .GetInstances<IIocModule>()
                     .ToArray();
 
-            Bootstrap(containerType, modules);
+            return Bootstrap(containerType, modules);
         }
 
-        public void Bootstrap(ContainerType containerType, params IIocModule[] iocModules)
+        public IContainer Bootstrap(ContainerType containerType, params IIocModule[] iocModules)
         {
-            IRegistrationContainer container =
+            IContainerConfig container =
                 ContainerHolder.Container == null
-                ? new ContainerFactory().Create(containerType)
-                : (IRegistrationContainer) ContainerHolder.Container;
+                ? new RegistrationContainerFactory().Create(containerType)
+                : (IContainerConfig) ContainerHolder.Container;
 
             if (iocModules != null)
             {
@@ -34,6 +35,7 @@ namespace Crosscutting.Ioc
             }
 
             ContainerHolder.Container = container;
+            return container;
         }
 
         #endregion

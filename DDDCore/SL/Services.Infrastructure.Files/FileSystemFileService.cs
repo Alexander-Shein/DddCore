@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using Contracts.Crosscutting.Configuration;
+using Contracts.Services.Infrastructure.Files;
 using Contracts.Services.Infrastructure.Files.Models.Input;
 using Contracts.Services.Infrastructure.Files.Models.View;
-using Contracts.Services.Infrastructure.Files.Services;
-using Contracts.Services.Infrastructure.Files.Services.Validation;
+using Contracts.Services.Infrastructure.Files.Validation;
 
 namespace Services.Infrastructure.Files
 {

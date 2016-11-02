@@ -1,4 +1,4 @@
-﻿namespace Contracts.Crosscutting.IoC
+﻿namespace Contracts.Crosscutting.IoC.Base
 {
     public enum ContainerType
     {

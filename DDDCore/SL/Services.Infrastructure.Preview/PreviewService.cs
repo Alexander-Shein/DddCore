@@ -1,10 +1,10 @@
 ﻿using System;
 using System.IO;
+using Contracts.Services.Infrastructure.Preview;
 using Contracts.Services.Infrastructure.Preview.Models;
-using Contracts.Services.Infrastructure.Preview.Services;
 using ImageMagick;
 
-namespace Services.Infrastructure.Preview.Services
+namespace Services.Infrastructure.Preview
 {
     public class PreviewService : IPreviewService
     {

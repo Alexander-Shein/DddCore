@@ -1,4 +1,4 @@
-namespace Contracts.Services.Infrastructure.Files.Services
+namespace Contracts.Services.Infrastructure.Files
 {
     public enum StorageType
     {

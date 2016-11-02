@@ -53,6 +53,7 @@
     <Compile Include="Application\DomainStack\IGuard.cs" />
     <Compile Include="Application\DomainStack\Crud\IRead.cs" />
     <Compile Include="Application\DomainStack\Crud\IUpdate.cs" />
+    <Compile Include="Application\IWorkflowService.cs" />
     <Compile Include="Application\QueryStack\Pagging\Services\IPaggingService.cs" />
     <Compile Include="Application\QueryStack\Pagging\Models\PaggedResult.cs" />
     <Compile Include="Infrastructure\DataExport\Attributes\ExportPropertyAttribute.cs" />
@@ -65,12 +66,13 @@
     <Compile Include="Infrastructure\Emails\ISendEmailStrategy.cs" />
     <Compile Include="Infrastructure\Files\Models\Input\FileDetails.cs" />
     <Compile Include="Infrastructure\Files\Models\View\FileSummary.cs" />
-    <Compile Include="Infrastructure\Files\Services\IFileService.cs" />
-    <Compile Include="Infrastructure\Files\Services\StorageType.cs" />
-    <Compile Include="Infrastructure\Files\Services\Validation\IFileValidator.cs" />
-    <Compile Include="Infrastructure\Files\Services\Validation\Restrictions.cs" />
+    <Compile Include="Infrastructure\Files\IFileService.cs" />
+    <Compile Include="Infrastructure\Files\StorageType.cs" />
+    <Compile Include="Infrastructure\Files\Validation\IFileValidator.cs" />
+    <Compile Include="Infrastructure\Files\Validation\Restrictions.cs" />
+    <Compile Include="Infrastructure\IInfrastructureService.cs" />
     <Compile Include="Infrastructure\Preview\Models\PreviewSummary.cs" />
-    <Compile Include="Infrastructure\Preview\Services\IPreviewService.cs" />
+    <Compile Include="Infrastructure\Preview\IPreviewService.cs" />
     <Compile Include="Infrastructure\ServiceBus\IApplicationMessage.cs" />
     <Compile Include="Infrastructure\ServiceBus\IServiceBus.cs" />
     <Compile Include="Infrastructure\SocialNetworks\SocialNetwork.cs" />

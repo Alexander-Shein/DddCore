@@ -1,6 +1,4 @@
-﻿using Contracts.Services.Infrastructure.Files.Services;
-
-namespace Contracts.Services.Infrastructure.Files.Models.View
+﻿namespace Contracts.Services.Infrastructure.Files.Models.View
 {
     public class FileSummary
     {

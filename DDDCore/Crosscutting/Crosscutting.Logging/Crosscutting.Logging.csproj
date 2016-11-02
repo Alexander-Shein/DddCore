@@ -48,6 +48,7 @@
     <Compile Include="Log4Net\Log4NetLogger.cs" />
     <Compile Include="Log4Net\Log4NetLoggerFactory.cs" />
     <Compile Include="LoggerFactoryBase.cs" />
+    <Compile Include="LoggerFactoryFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

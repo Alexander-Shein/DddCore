@@ -2,7 +2,6 @@
 {
     public interface IDataExporter
     {
-        //ExportResult Export(IDataReader dataReader);
         ExportSummary Export(object[] objects);
     }
 }

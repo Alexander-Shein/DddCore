@@ -4,7 +4,7 @@ using Contracts.Crosscutting.IoC;
 
 namespace Crosscutting.Ioc.CastleWindsor
 {
-    public class WindsorContainerWrapper : WindsorContainer, IRegistrationContainer
+    public class WindsorContainerWrapper : WindsorContainer, IContainerConfig
     {
         public new T Resolve<T>() where T : class
         {

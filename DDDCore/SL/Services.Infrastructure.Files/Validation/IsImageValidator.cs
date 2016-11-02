@@ -3,7 +3,7 @@ using System.Drawing;
 using System.IO;
 using System.Text.RegularExpressions;
 using Contracts.Services.Infrastructure.Files.Models.Input;
-using Contracts.Services.Infrastructure.Files.Services.Validation;
+using Contracts.Services.Infrastructure.Files.Validation;
 
 namespace Services.Infrastructure.Files.Validation
 {

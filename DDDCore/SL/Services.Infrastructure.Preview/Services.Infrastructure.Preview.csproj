@@ -47,7 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\PreviewService.cs" />
+    <Compile Include="PreviewService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Crosscutting\Contracts.Crosscutting\Contracts.Crosscutting.csproj">

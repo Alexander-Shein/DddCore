@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using Contracts.Services.Infrastructure.Files.Services;
 
 namespace Contracts.Services.Infrastructure.Files.Models.Input
 {

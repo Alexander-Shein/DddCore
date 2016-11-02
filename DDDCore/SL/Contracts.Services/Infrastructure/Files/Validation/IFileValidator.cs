@@ -1,6 +1,6 @@
 using Contracts.Services.Infrastructure.Files.Models.Input;
 
-namespace Contracts.Services.Infrastructure.Files.Services.Validation
+namespace Contracts.Services.Infrastructure.Files.Validation
 {
     public interface IFileValidator
     {

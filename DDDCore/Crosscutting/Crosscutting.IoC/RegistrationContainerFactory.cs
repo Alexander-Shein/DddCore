@@ -1,12 +1,13 @@
 using System;
 using Contracts.Crosscutting.IoC;
+using Contracts.Crosscutting.IoC.Base;
 using Crosscutting.Ioc.CastleWindsor;
 
 namespace Crosscutting.Ioc
 {
-    public class ContainerFactory
+    public class RegistrationContainerFactory : IContainerConfigFactory
     {
-        public IRegistrationContainer Create(ContainerType containerType)
+        public IContainerConfig Create(ContainerType containerType)
         {
             switch (containerType)
             {
