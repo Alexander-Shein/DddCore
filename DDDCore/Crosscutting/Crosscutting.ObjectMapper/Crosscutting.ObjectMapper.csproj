@@ -62,11 +62,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DDDCore\Crosscutting\Contracts.Crosscutting\Contracts.Crosscutting.csproj">
+    <ProjectReference Include="..\Contracts.Crosscutting\Contracts.Crosscutting.csproj">
       <Project>{0E09DA52-A209-4F40-9F37-9356BE826E36}</Project>
       <Name>Contracts.Crosscutting</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DDDCore\Crosscutting\Crosscutting.Infrastructure\Crosscutting.Infrastructure.csproj">
+    <ProjectReference Include="..\Crosscutting.Infrastructure\Crosscutting.Infrastructure.csproj">
       <Project>{EDCC02EF-2B70-4832-B4BC-A37CE18FCDC6}</Project>
       <Name>Crosscutting.Infrastructure</Name>
     </ProjectReference>
