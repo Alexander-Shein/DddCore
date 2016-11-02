@@ -1,19 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{081529C5-B55C-427D-8F3B-F801AB7944A5}</ProjectGuid>
+    <ProjectGuid>{DF494C33-8AE0-4239-AFF0-60CFDB70B084}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Contracts.Presentation</RootNamespace>
-    <AssemblyName>Contracts.Presentation</AssemblyName>
+    <RootNamespace>Presentation.WebApi</RootNamespace>
+    <AssemblyName>Presentation.WebApi</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,7 +36,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
@@ -52,11 +48,37 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommaDelimitedCollectionModelBinder.cs" />
+    <Compile Include="Filters\ExceptionHandlingAttribute.cs" />
+    <Compile Include="Filters\ExportDataFilter.cs" />
+    <Compile Include="HttpContextExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Rest\CommaDelimitedCollectionModelBinder.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Crosscutting\Contracts.Crosscutting\Contracts.Crosscutting.csproj">
+      <Project>{0E09DA52-A209-4F40-9F37-9356BE826E36}</Project>
+      <Name>Contracts.Crosscutting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Crosscutting\Crosscutting.Infrastructure\Crosscutting.Infrastructure.csproj">
+      <Project>{EDCC02EF-2B70-4832-B4BC-A37CE18FCDC6}</Project>
+      <Name>Crosscutting.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Crosscutting\Crosscutting.IoC\Crosscutting.Ioc.csproj">
+      <Project>{D26BBAAB-A0DC-47B3-A262-7A1A5F94E5C4}</Project>
+      <Name>Crosscutting.Ioc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SL\Contracts.Services\Contracts.Services.csproj">
+      <Project>{17239995-FB91-446B-BC65-25CFF24B7A80}</Project>
+      <Name>Contracts.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SL\Services.Infrastructure.DataExport\Services.Infrastructure.DataExport.csproj">
+      <Project>{E80A9194-3371-402A-B22D-AF4CCBF03F82}</Project>
+      <Name>Services.Infrastructure.DataExport</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

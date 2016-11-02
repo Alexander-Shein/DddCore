@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Web.Http.Controllers;
 using System.Web.Http.ModelBinding;
 
-namespace Contracts.Presentation.Rest
+namespace Presentation.WebApi
 {
     public class CommaDelimitedCollectionModelBinder : IModelBinder
     {

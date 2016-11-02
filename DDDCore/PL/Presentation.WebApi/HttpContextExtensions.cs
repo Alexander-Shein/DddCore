@@ -1,12 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Contracts.Services.Infrastructure.Files.Models.Input;
-using System.Collections.Generic;
 
-namespace Presentation.Files.WebApi
+namespace Presentation.WebApi
 {
     public static class HttpContextExtensions
     {
