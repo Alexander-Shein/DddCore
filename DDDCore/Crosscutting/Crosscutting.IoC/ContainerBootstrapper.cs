@@ -1,6 +1,6 @@
 ﻿using System.Linq;
-using Contracts.Crosscutting.IoC;
-using Contracts.Crosscutting.IoC.Base;
+using Contracts.Crosscutting.Ioc;
+using Contracts.Crosscutting.Ioc.Base;
 using Crosscutting.Infrastructure.Configuration;
 
 namespace Crosscutting.Ioc

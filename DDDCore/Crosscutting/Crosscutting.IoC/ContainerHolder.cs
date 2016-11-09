@@ -1,4 +1,4 @@
-﻿using Contracts.Crosscutting.IoC;
+﻿using Contracts.Crosscutting.Ioc;
 
 namespace Crosscutting.Ioc
 {

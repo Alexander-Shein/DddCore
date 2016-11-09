@@ -1,29 +1,41 @@
-using Contracts.Crosscutting.IoC;
+using Castle.MicroKernel.Registration;
+using Castle.Windsor;
+using Contracts.Crosscutting.Ioc;
 
 namespace Crosscutting.Ioc.CastleWindsor
 {
     public class WindsorLifeStyle<TContract> : ILifeStyle where TContract : class
     {
-        readonly WindsorComponent<TContract> windsorComponent;
+        #region Private Members
 
-        public WindsorLifeStyle(WindsorComponent<TContract> windsorComponent)
+        readonly ComponentRegistration<TContract> component;
+        readonly IWindsorContainer windsorContainer;
+
+        #endregion
+
+        public WindsorLifeStyle(ComponentRegistration<TContract> component, IWindsorContainer windsorContainer)
         {
-            this.windsorComponent = windsorComponent;
+            this.component = component;
+            this.windsorContainer = windsorContainer;
         }
+
+        #region Public Methods
 
         public void Transient()
         {
-            var component = windsorComponent.ComponentRegistration.LifeStyle.Transient;
+            windsorContainer.Register(component.LifeStyle.Transient);
         }
 
         public void PerWebRequest()
         {
-            var component = windsorComponent.ComponentRegistration.LifeStyle.PerWebRequest;
+            windsorContainer.Register(component.LifeStyle.PerWebRequest);
         }
 
         public void Singleton()
         {
-            var component = windsorComponent.ComponentRegistration.LifeStyle.Singleton;
+            windsorContainer.Register(component.LifeStyle.Singleton);
         }
+
+        #endregion
     }
 }

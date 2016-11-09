@@ -50,6 +50,10 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="Z.EntityFramework.Extensions, Version=3.10.20.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Z.EntityFramework.Extensions.3.10.20\lib\net45\Z.EntityFramework.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ef\Context\CrudStateHelper.cs" />
@@ -58,9 +62,9 @@
     <Compile Include="Ef\Mapping\IMappingModule.cs" />
     <Compile Include="Ef\Mapping\AggregateRootEntityBaseMap.cs" />
     <Compile Include="Ef\Mapping\EntityBaseMap.cs" />
+    <Compile Include="Ef\QueryableExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ef\RepositoryBase.cs" />
-    <Compile Include="Z.Dapper.Plus\BulkRepositoryBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

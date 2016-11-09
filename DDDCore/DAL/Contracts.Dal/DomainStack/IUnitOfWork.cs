@@ -4,6 +4,6 @@ namespace Contracts.Dal.DomainStack
 {
     public interface IUnitOfWork
     {
-        Task<int> SaveAsync();
+        Task SaveAsync();
     }
 }

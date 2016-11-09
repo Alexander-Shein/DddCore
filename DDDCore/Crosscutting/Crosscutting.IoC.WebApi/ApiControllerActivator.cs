@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Dispatcher;
-using Contracts.Crosscutting.IoC;
+using Contracts.Crosscutting.Ioc;
 
 namespace Crosscutting.IoC.WebApi
 {

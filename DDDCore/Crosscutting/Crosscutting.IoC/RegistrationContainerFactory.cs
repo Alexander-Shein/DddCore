@@ -1,6 +1,6 @@
 using System;
-using Contracts.Crosscutting.IoC;
-using Contracts.Crosscutting.IoC.Base;
+using Contracts.Crosscutting.Ioc;
+using Contracts.Crosscutting.Ioc.Base;
 using Crosscutting.Ioc.CastleWindsor;
 
 namespace Crosscutting.Ioc

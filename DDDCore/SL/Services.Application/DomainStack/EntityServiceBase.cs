@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Contracts.Crosscutting.IoC;
+using Contracts.Crosscutting.Ioc;
 using Contracts.Dal.DomainStack;
 using Contracts.Domain.Entities;
 using Contracts.Services.Application.DomainStack;

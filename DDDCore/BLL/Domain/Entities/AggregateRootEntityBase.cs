@@ -20,7 +20,7 @@ namespace Domain.Entities
 
         public string PublicKey { get; set; }
 
-        public ICollection<IDomainEvent> Events { get; protected set; }
+        public ICollection<IDomainEvent> Events { get; protected set; } = new List<IDomainEvent>();
 
         public byte[] Ts { get; set; }
 
@@ -29,7 +29,9 @@ namespace Domain.Entities
             if (entityValidationResult == null)
             {
                 var validator = GetEntityValidator();
-                MethodInfo method = typeof(IBusinessRulesValidator<>).GetMethod("ValidateAsync");
+                var type = typeof (IBusinessRulesValidator<>).MakeGenericType(GetType());
+
+                MethodInfo method = type.GetMethod("ValidateAsync");
 
                 entityValidationResult = await (Task<BusinessRulesValidationResult>)method.Invoke(validator, new object[] { this });
             }

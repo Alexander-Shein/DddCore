@@ -30,6 +30,11 @@ namespace Dal.DomainStack.Ef.Context
             Entry(entity).State = CrudStateHelper.ConvertState(entity.CrudState);
         }
 
+        public DbSet<TEntity> Set<TEntity>() where TEntity : class
+        {
+            return base.Set<TEntity>();
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
@@ -56,9 +61,9 @@ namespace Dal.DomainStack.Ef.Context
             SaveChanges();
         }
 
-        public Task<int> SaveAsync()
+        public Task SaveAsync()
         {
-            return SaveChangesAsync();
+            return this.BulkSaveChangesAsync();
         }
     }
 }

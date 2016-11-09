@@ -13,23 +13,12 @@ using Dal.DomainStack.Ef.Context;
 
 namespace Dal.DomainStack.Ef
 {
-    public static class QueryableExtensions
-    {
-        public static IQueryable<T> IncludeRange<T, TProperty>(this IQueryable<T> source, params Expression<Func<T, TProperty>>[] paths)
-        {
-            if (paths == null)
-                throw new NullReferenceException();
-
-            return paths.Aggregate(source, (current, path) => current.Include(path));
-        }
-    }
-
-    public class RepositoryBase<T, TKey> : IRepository<T, TKey> where T : class, IAggregateRootEntity<TKey>
+    public abstract class RepositoryBase<T, TKey> : IRepository<T, TKey> where T : class, IAggregateRootEntity<TKey>
     {
         protected readonly IDataContext dataContext;
         readonly IUserContext<TKey> userContext;
 
-        public RepositoryBase(IDataContext dataContext, IUserContext<TKey> userContext)
+        protected RepositoryBase(IDataContext dataContext, IUserContext<TKey> userContext)
         {
             this.dataContext = dataContext;
             this.userContext = userContext;

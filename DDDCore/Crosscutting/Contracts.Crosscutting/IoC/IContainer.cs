@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Contracts.Crosscutting.IoC
+namespace Contracts.Crosscutting.Ioc
 {
     public interface IContainer
     {

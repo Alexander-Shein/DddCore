@@ -1,4 +1,4 @@
-using Contracts.Crosscutting.IoC;
+using Contracts.Crosscutting.Ioc;
 using Contracts.Domain.Entities.BusinessRules;
 using Contracts.Domain.Entities.Model;
 
