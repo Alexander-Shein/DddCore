@@ -15,12 +15,18 @@ namespace Dal.DomainStack.Ef
 {
     public abstract class RepositoryBase<T, TKey> : IRepository<T, TKey> where T : class, IAggregateRootEntity<TKey>
     {
-        protected readonly IDataContext dataContext;
+        #region Private Members
+
         readonly IUserContext<TKey> userContext;
+        DateTime now;
+
+        #endregion
+
+        protected readonly IDataContext DataContext;
 
         protected RepositoryBase(IDataContext dataContext, IUserContext<TKey> userContext)
         {
-            this.dataContext = dataContext;
+            DataContext = dataContext;
             this.userContext = userContext;
         }
 
@@ -28,6 +34,7 @@ namespace Dal.DomainStack.Ef
 
         public void PersistEntityGraph(T entity)
         {
+            now = DateTime.UtcNow;
             SyncObjectGraph(entity);
         }
 
@@ -44,7 +51,7 @@ namespace Dal.DomainStack.Ef
 
         protected DbSet<T> GetDbSet()
         {
-            var set = dataContext.Set<T>();
+            var set = DataContext.Set<T>();
             return set;
         }
 
@@ -94,7 +101,7 @@ namespace Dal.DomainStack.Ef
 
             if (model != null)
             {
-                model.ModifiedAt = DateTime.UtcNow;
+                model.ModifiedAt = now;
             }
         }
 
@@ -104,7 +111,7 @@ namespace Dal.DomainStack.Ef
 
             if (model != null)
             {
-                model.CreatedAt = DateTime.UtcNow;
+                model.CreatedAt = now;
             }
         }
 
@@ -148,7 +155,7 @@ namespace Dal.DomainStack.Ef
                 }
             }
 
-            dataContext.SyncEntityState(entity);
+            DataContext.SyncEntityState(entity);
         }
 
         #endregion

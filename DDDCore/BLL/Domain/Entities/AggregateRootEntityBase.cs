@@ -28,7 +28,7 @@ namespace Domain.Entities
         {
             if (entityValidationResult == null)
             {
-                var validator = GetEntityValidator();
+                var validator = GetBusinessRules();
                 var type = typeof (IBusinessRulesValidator<>).MakeGenericType(GetType());
 
                 MethodInfo method = type.GetMethod("ValidateAsync");
@@ -43,9 +43,12 @@ namespace Domain.Entities
 
         #region Protected Methods
 
-        protected virtual object GetEntityValidator()
+        protected virtual object GetBusinessRules()
         {
-            var factory = ContainerHolder.Container.Resolve<IBusinessRulesValidatorFactory>();
+            var factory =
+                ContainerHolder
+                    .Container
+                    .Resolve<IBusinessRulesValidatorFactory>();
 
             MethodInfo method = typeof(IBusinessRulesValidatorFactory).GetMethod("GetValidator");
             

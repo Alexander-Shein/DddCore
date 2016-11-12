@@ -1,9 +1,8 @@
-﻿using System.Data.Entity;
+﻿using Contracts.Crosscutting.Base;
 
 namespace Dal.DomainStack.Ef.Mapping
 {
-    public interface IMappingModule
+    public interface IMappingModule : IModule<IMappingBuilder>
     {
-        void Map(DbModelBuilder modelBuilder);
     }
 }

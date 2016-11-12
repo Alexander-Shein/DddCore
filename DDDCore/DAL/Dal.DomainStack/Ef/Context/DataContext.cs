@@ -45,7 +45,7 @@ namespace Dal.DomainStack.Ef.Context
 
             foreach (var module in modules)
             {
-                module.Map(modelBuilder);
+                module.Install(new MappingBuilder(modelBuilder));
             }
         }
 
@@ -58,12 +58,12 @@ namespace Dal.DomainStack.Ef.Context
 
         public void Save()
         {
-            SaveChanges();
+            this.BulkSaveChanges();
         }
 
-        public Task SaveAsync()
+        public async Task SaveAsync()
         {
-            return this.BulkSaveChangesAsync();
+            await this.BulkSaveChangesAsync();
         }
     }
 }

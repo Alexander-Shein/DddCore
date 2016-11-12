@@ -59,9 +59,11 @@
     <Compile Include="Ef\Context\CrudStateHelper.cs" />
     <Compile Include="Ef\Context\DataContext.cs" />
     <Compile Include="Ef\Context\IDataContext.cs" />
+    <Compile Include="Ef\Mapping\IMappingBuilder.cs" />
     <Compile Include="Ef\Mapping\IMappingModule.cs" />
     <Compile Include="Ef\Mapping\AggregateRootEntityBaseMap.cs" />
     <Compile Include="Ef\Mapping\EntityBaseMap.cs" />
+    <Compile Include="Ef\Mapping\MappingBuilder.cs" />
     <Compile Include="Ef\QueryableExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ef\RepositoryBase.cs" />
