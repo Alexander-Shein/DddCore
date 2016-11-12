@@ -58,7 +58,7 @@ namespace Dal.DomainStack.Ef.Context
 
         public void Save()
         {
-            this.BulkSaveChanges();
+            this.SaveChanges();
         }
 
         public async Task SaveAsync()

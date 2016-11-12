@@ -39,6 +39,21 @@ namespace Domain.Entities
             return entityValidationResult;
         }
 
+        public BusinessRulesValidationResult Validate()
+        {
+            if (entityValidationResult == null)
+            {
+                var validator = GetBusinessRules();
+                var type = typeof(IBusinessRulesValidator<>).MakeGenericType(GetType());
+
+                MethodInfo method = type.GetMethod("Validate");
+
+                entityValidationResult = (BusinessRulesValidationResult)method.Invoke(validator, new object[] { this });
+            }
+
+            return entityValidationResult;
+        }
+
         #endregion
 
         #region Protected Methods

@@ -8,5 +8,6 @@ namespace Dal.DomainStack.Ef.Mapping
         void Add<T, TKey>(AggregateRootEntityBaseMap<T, TKey> aggregateRootEntityBaseMap) where TKey : struct where T : class, IAggregateRootEntity<TKey>;
         void Add<T, TKey>(EntityBaseMap<T, TKey> entityBaseMap) where TKey : struct where T : class, IEntity<TKey>;
         void Add<T>(EntityTypeConfiguration<T> configuration) where T : class;
+        void Add<T>(ComplexTypeConfiguration<T> configuration) where T : class;
     }
 }

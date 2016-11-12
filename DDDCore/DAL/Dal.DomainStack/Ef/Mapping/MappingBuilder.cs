@@ -34,6 +34,11 @@ namespace Dal.DomainStack.Ef.Mapping
             dbModelBuilder.Configurations.Add(configuration);
         }
 
+        public void Add<T>(ComplexTypeConfiguration<T> configuration) where T : class
+        {
+            dbModelBuilder.Configurations.Add(configuration);
+        }
+
         #endregion
     }
 }

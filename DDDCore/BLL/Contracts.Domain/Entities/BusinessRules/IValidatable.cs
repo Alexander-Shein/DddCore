@@ -5,5 +5,6 @@ namespace Contracts.Domain.Entities.BusinessRules
     public interface IValidatable
     {
         Task<BusinessRulesValidationResult> ValidateAsync();
+        BusinessRulesValidationResult Validate();
     }
 }
