@@ -20,6 +20,8 @@ namespace Dal.DomainStack.Ef.Context
             DbContextInitializer();
         }
 
+        #region Public Methods
+
         public void SetLazyLoading(bool onOff)
         {
             Configuration.LazyLoadingEnabled = onOff;
@@ -27,13 +29,28 @@ namespace Dal.DomainStack.Ef.Context
 
         public void SyncEntityState<T>(T entity) where T : class, ICrudState
         {
-            Entry(entity).State = CrudStateHelper.ConvertState(entity.CrudState);
+            if (!IsAttached(entity))
+            {
+                Entry(entity).State = CrudStateHelper.ConvertState(entity.CrudState);
+            }
         }
 
         public DbSet<TEntity> Set<TEntity>() where TEntity : class
         {
             return base.Set<TEntity>();
         }
+
+        public void Save()
+        {
+            this.SaveChanges();
+        }
+
+        public async Task SaveAsync()
+        {
+            await this.BulkSaveChangesAsync();
+        }
+
+        #endregion
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -49,6 +66,8 @@ namespace Dal.DomainStack.Ef.Context
             }
         }
 
+        #region Private Methods
+
         void DbContextInitializer()
         {
             Database.Initialize(false);
@@ -56,14 +75,11 @@ namespace Dal.DomainStack.Ef.Context
             Configuration.ValidateOnSaveEnabled = false;
         }
 
-        public void Save()
+        bool IsAttached<T>(T entity) where T : class, ICrudState
         {
-            this.SaveChanges();
+            return Entry(entity).State != EntityState.Detached;
         }
 
-        public async Task SaveAsync()
-        {
-            await this.BulkSaveChangesAsync();
-        }
+        #endregion
     }
 }

@@ -97,21 +97,21 @@ namespace Dal.DomainStack.Ef
 
         void AddCreatedAt(object entity)
         {
-            var model = entity as IModifiedAt;
-
-            if (model != null)
-            {
-                model.ModifiedAt = now;
-            }
-        }
-
-        void AddModifiedAt(object entity)
-        {
             var model = entity as ICreatedAt;
 
             if (model != null)
             {
                 model.CreatedAt = now;
+            }
+        }
+
+        void AddModifiedAt(object entity)
+        {
+            var model = entity as IModifiedAt;
+
+            if (model != null)
+            {
+                model.ModifiedAt = now;
             }
         }
 
@@ -156,6 +156,7 @@ namespace Dal.DomainStack.Ef
             }
 
             DataContext.SyncEntityState(entity);
+            entity.CrudState = CrudState.Unchanged;
         }
 
         #endregion

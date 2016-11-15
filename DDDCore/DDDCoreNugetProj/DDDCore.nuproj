@@ -19,7 +19,7 @@
   <Import Project="$(NuProjPath)\NuProj.props" Condition="Exists('$(NuProjPath)\NuProj.props')" />
   <PropertyGroup Label="Configuration">
     <Id>DDDCore</Id>
-    <Version>1.0.17</Version>
+    <Version>1.0.20</Version>
     <Title>DDDCore</Title>
     <Authors>Alexander Shein</Authors>
     <Owners>Alexander Shein</Owners>
