@@ -5,6 +5,7 @@ namespace Contracts.Domain.Entities
 {
     public interface IAggregateRootEntity<TKey> :
         IEntity<TKey>,
+        IEntityGraph,
         IVersion,
         IValidatable,
         IEvents,

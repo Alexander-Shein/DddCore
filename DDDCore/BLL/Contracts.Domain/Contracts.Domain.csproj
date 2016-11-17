@@ -54,6 +54,7 @@
     <Compile Include="Entities\IEntity.cs" />
     <Compile Include="Entities\Audit\IModifiedAt.cs" />
     <Compile Include="Entities\Model\ICrudState.cs" />
+    <Compile Include="Entities\Model\IEntityGraph.cs" />
     <Compile Include="Entities\Model\IKey.cs" />
     <Compile Include="Entities\Model\IPublicKey.cs" />
     <Compile Include="Entities\BusinessRules\BusinessRulesValidationResult.cs" />

@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Contracts.Domain.Entities;
 using Contracts.Domain.Entities.BusinessRules;
+using Contracts.Domain.Entities.Model;
 using Contracts.Domain.Events;
 using Crosscutting.Ioc;
 
@@ -54,6 +57,16 @@ namespace Domain.Entities
             return entityValidationResult;
         }
 
+        public void WalkEntireGraph(Action<ICrudState> action)
+        {
+            WalkObjectGraph(this, action);
+        }
+
+        public void WalkAggregateRootGraph(Action<ICrudState> action)
+        {
+            WalkObjectGraph(this, action, null, true);
+        }
+
         #endregion
 
         #region Protected Methods
@@ -72,6 +85,59 @@ namespace Domain.Entities
             MethodInfo genericMethod = method.MakeGenericMethod(type);
             var validator = genericMethod.Invoke(factory, null);
             return validator;
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        void WalkObjectGraph<TEntity>(TEntity entity, Action<ICrudState> action, HashSet<object> hashSet = null, bool currentAggregateRootOnly = false) where TEntity : class, ICrudState
+        {
+            if (hashSet == null)
+            {
+                hashSet = new HashSet<object>();
+            }
+            else if (currentAggregateRootOnly)
+            {
+                if (entity is IAggregateRootEntity<TKey>)
+                {
+                    hashSet.Add(entity);
+                    return;
+                }
+            }
+
+            if (!hashSet.Add(entity)) return;
+
+            var type = entity.GetType();
+
+            // Set tracking state for child collections
+            foreach (
+                var prop in
+                    type.GetProperties()
+                        .Where(p => !typeof(MulticastDelegate).IsAssignableFrom(p.PropertyType.BaseType))) //TODO use caching
+            {
+                var propValue = prop.GetValue(entity, null);
+
+                // Apply changes to 1-1 and M-1 properties
+                var trackableRef = propValue as ICrudState;//TODO :use propertyfactory
+
+                if (trackableRef != null)
+                {
+                    WalkObjectGraph(trackableRef, action, hashSet);
+                    continue;
+                }
+
+                // Apply changes to 1-M properties
+                var items = propValue as IEnumerable<ICrudState>;//TODO :use propertyfactory
+                if (items == null) continue;
+
+                foreach (var item in items.ToList())
+                {
+                    WalkObjectGraph(item, action, hashSet); //TODO set depth level
+                }
+            }
+
+            action(entity);
         }
 
         #endregion

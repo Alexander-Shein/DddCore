@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Contracts.Crosscutting.UserContext;
@@ -35,7 +33,13 @@ namespace Dal.DomainStack.Ef
         public void PersistEntityGraph(T entity)
         {
             now = DateTime.UtcNow;
-            SyncObjectGraph(entity);
+
+            entity.WalkEntireGraph(node =>
+            {
+                UpdateAuditableInfo(node);
+                DataContext.SyncEntityState(node);
+                node.CrudState = CrudState.Unchanged;
+            });
         }
 
         public virtual async Task<T> ReadAsync(TKey id, params Expression<Func<T, object>>[] includes)
@@ -115,49 +119,49 @@ namespace Dal.DomainStack.Ef
             }
         }
 
-        void SyncObjectGraph<TEntity>(TEntity entity, HashSet<object> hashSet = null) where TEntity : class, ICrudState
-        {
-            if (hashSet == null)
-            {
-                hashSet = new HashSet<object>();
-            }
-
-            if (!hashSet.Add(entity)) return;
-
-            var type = entity.GetType();
-
-            UpdateAuditableInfo(entity);
-
-            // Set tracking state for child collections
-            foreach (
-                var prop in
-                    type.GetProperties()
-                        .Where(p => !typeof(MulticastDelegate).IsAssignableFrom(p.PropertyType.BaseType))) //TODO use caching
-            {
-                var propValue = prop.GetValue(entity, null);
-
-                // Apply changes to 1-1 and M-1 properties
-                var trackableRef = propValue as ICrudState;//TODO :use propertyfactory
-
-                if (trackableRef != null)
-                {
-                    SyncObjectGraph(trackableRef, hashSet);
-                    continue;
-                }
-
-                // Apply changes to 1-M properties
-                var items = propValue as IEnumerable<ICrudState>;//TODO :use propertyfactory
-                if (items == null) continue;
-
-                foreach (var item in items.ToList())
-                {
-                    SyncObjectGraph(item, hashSet); //TODO set depth level
-                }
-            }
-
-            DataContext.SyncEntityState(entity);
-            entity.CrudState = CrudState.Unchanged;
-        }
+        //void SyncObjectGraph<TEntity>(TEntity entity, HashSet<object> hashSet = null) where TEntity : class, ICrudState
+        //{
+        //    if (hashSet == null)
+        //    {
+        //        hashSet = new HashSet<object>();
+        //    }
+        //
+        //    if (!hashSet.Add(entity)) return;
+        //
+        //    var type = entity.GetType();
+        //
+        //    UpdateAuditableInfo(entity);
+        //
+        //    // Set tracking state for child collections
+        //    foreach (
+        //        var prop in
+        //            type.GetProperties()
+        //                .Where(p => !typeof(MulticastDelegate).IsAssignableFrom(p.PropertyType.BaseType))) //TODO use caching
+        //    {
+        //        var propValue = prop.GetValue(entity, null);
+        //
+        //        // Apply changes to 1-1 and M-1 properties
+        //        var trackableRef = propValue as ICrudState;//TODO :use propertyfactory
+        //
+        //        if (trackableRef != null)
+        //        {
+        //            SyncObjectGraph(trackableRef, hashSet);
+        //            continue;
+        //        }
+        //
+        //        // Apply changes to 1-M properties
+        //        var items = propValue as IEnumerable<ICrudState>;//TODO :use propertyfactory
+        //        if (items == null) continue;
+        //
+        //        foreach (var item in items.ToList())
+        //        {
+        //            SyncObjectGraph(item, hashSet); //TODO set depth level
+        //        }
+        //    }
+        //
+        //    DataContext.SyncEntityState(entity);
+        //    entity.CrudState = CrudState.Unchanged;
+        //}
 
         #endregion
     }
