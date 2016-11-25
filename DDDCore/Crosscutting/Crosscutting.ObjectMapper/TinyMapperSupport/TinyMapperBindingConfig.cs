@@ -1,21 +1,35 @@
 using System;
 using System.Linq.Expressions;
 using Contracts.Crosscutting.ObjectMapper;
+using Nelibur.ObjectMapper.Bindings;
 
 namespace Crosscutting.ObjectMapper.TinyMapperSupport
 {
-    public class TinyMapperBindingConfig<TFrom, TTo> : IBindingConfig<TFrom, TTo>
+    public class TinyMapperObjectMapperBindingConfig<TFrom, TTo> : IObjectMapperBindingConfig<TFrom, TTo>
     {
-        #region Public Methods
+        #region Private Members
 
-        public IBindingConfig<TFrom, TTo> Bind(Expression<Func<TFrom, object>> source, Expression<Func<TTo, object>> target)
+        readonly IBindingConfig<TFrom, TTo> tinyMapperBindingConfig;
+
+        #endregion
+
+        public TinyMapperObjectMapperBindingConfig(IBindingConfig<TFrom, TTo> tinyMapperBindingConfig)
         {
-            throw new NotImplementedException();
+            this.tinyMapperBindingConfig = tinyMapperBindingConfig;
         }
 
-        public IBindingConfig<TFrom, TTo> Ignore(Expression<Func<TTo, object>> expression)
+        #region Public Methods
+
+        public IObjectMapperBindingConfig<TFrom, TTo> Bind(Expression<Func<TFrom, object>> source, Expression<Func<TTo, object>> target)
         {
-            throw new NotImplementedException();
+            tinyMapperBindingConfig.Bind(source, target);
+            return this;
+        }
+
+        public IObjectMapperBindingConfig<TFrom, TTo> Ignore(Expression<Func<TFrom, object>> expression)
+        {
+            tinyMapperBindingConfig.Ignore(expression);
+            return this;
         }
 
         #endregion

@@ -20,10 +20,10 @@ namespace Crosscutting.ObjectMapper.AutoMapperSupport
             return Mapper.Map<T>(@from);
         }
 
-        public void Bind<TFrom, TTo>(Action<IBindingConfig<TFrom, TTo>> config)
+        public void Bind<TFrom, TTo>(Action<IObjectMapperBindingConfig<TFrom, TTo>> config)
         {
             var mappingExpression = configuration.CreateMap<TFrom, TTo>();
-            var bindingConfig = new AutoMapperBindingConfig<TFrom, TTo>(mappingExpression);
+            var bindingConfig = new AutoMapperObjectMapperBindingConfig<TFrom, TTo>(mappingExpression);
 
             config(bindingConfig);
             Mapper.Initialize(configuration);

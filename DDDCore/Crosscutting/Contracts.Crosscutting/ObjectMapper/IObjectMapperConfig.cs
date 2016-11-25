@@ -4,6 +4,6 @@ namespace Contracts.Crosscutting.ObjectMapper
 {
     public interface IObjectMapperConfig : IObjectMapper
     {
-        void Bind<TFrom, TTo>(Action<IBindingConfig<TFrom, TTo>> config);
+        void Bind<TFrom, TTo>(Action<IObjectMapperBindingConfig<TFrom, TTo>> config);
     }
 }

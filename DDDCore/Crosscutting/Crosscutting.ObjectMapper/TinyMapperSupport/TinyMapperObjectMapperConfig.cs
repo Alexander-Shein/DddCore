@@ -13,8 +13,12 @@ namespace Crosscutting.ObjectMapper.TinyMapperSupport
             return TinyMapper.Map<T>(@from);
         }
 
-        public void Bind<TFrom, TTo>(Action<IBindingConfig<TFrom, TTo>> config)
+        public void Bind<TFrom, TTo>(Action<IObjectMapperBindingConfig<TFrom, TTo>> config)
         {
+            TinyMapper.Bind<TFrom, TTo>(c =>
+            {
+                config(new TinyMapperObjectMapperBindingConfig<TFrom, TTo>(c));
+            });
         }
 
         #endregion
