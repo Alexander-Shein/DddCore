@@ -1,4 +1,4 @@
-﻿namespace Contracts.Crosscutting.ObjectMapper.Base
+﻿namespace Contracts.Crosscutting.ObjectMapper
 {
     public enum ObjectMapperType
     {
