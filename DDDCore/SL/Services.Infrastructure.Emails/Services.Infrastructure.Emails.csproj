@@ -45,10 +45,6 @@
     <Compile Include="SmtpSendEmailStrategy.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\BLL\Contracts.Domain\Contracts.Domain.csproj">
-      <Project>{81A15C00-E8BC-49B8-9B3A-3694370FF9F2}</Project>
-      <Name>Contracts.Domain</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Crosscutting\Contracts.Crosscutting\Contracts.Crosscutting.csproj">
       <Project>{0E09DA52-A209-4F40-9F37-9356BE826E36}</Project>
       <Name>Contracts.Crosscutting</Name>

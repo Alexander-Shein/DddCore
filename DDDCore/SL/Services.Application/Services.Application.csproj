@@ -57,7 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\BLL\Contracts.Domain\Contracts.Domain.csproj">
-      <Project>{81A15C00-E8BC-49B8-9B3A-3694370FF9F2}</Project>
+      <Project>{81a15c00-e8bc-49b8-9b3a-3694370ff9f2}</Project>
       <Name>Contracts.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\BLL\Domain\Domain.csproj">
