@@ -44,12 +44,12 @@
     <Compile Include="Configuration\IConfig.cs" />
     <Compile Include="Base\IFactory.cs" />
     <Compile Include="Base\IBootstrapper.cs" />
+    <Compile Include="Ioc\ContainerType.cs" />
     <Compile Include="Ioc\IComponent.cs" />
     <Compile Include="Ioc\IContainer.cs" />
     <Compile Include="Ioc\Base\IContainerBootstrapper.cs" />
     <Compile Include="Ioc\Base\IIocModule.cs" />
     <Compile Include="Ioc\ILifeStyle.cs" />
-    <Compile Include="Ioc\Base\ContainerType.cs" />
     <Compile Include="Ioc\IContainerConfig.cs" />
     <Compile Include="Ioc\Base\IContainerConfigFactory.cs" />
     <Compile Include="Base\IModule.cs" />
