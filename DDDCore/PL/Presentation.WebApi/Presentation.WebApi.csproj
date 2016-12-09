@@ -75,17 +75,9 @@
       <Project>{EDCC02EF-2B70-4832-B4BC-A37CE18FCDC6}</Project>
       <Name>Crosscutting.Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Crosscutting\Crosscutting.IoC.WebApi\Crosscutting.Ioc.WebApi.csproj">
-      <Project>{05d3d3ab-9d0e-4073-b329-4d29862cc71c}</Project>
-      <Name>Crosscutting.Ioc.WebApi</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Crosscutting\Crosscutting.IoC\Crosscutting.Ioc.csproj">
       <Project>{D26BBAAB-A0DC-47B3-A262-7A1A5F94E5C4}</Project>
       <Name>Crosscutting.Ioc</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Crosscutting\Crosscutting.Logging\Crosscutting.Logging.csproj">
-      <Project>{7b81f415-5a7d-412f-ad2e-a3b7ec4e0ee2}</Project>
-      <Name>Crosscutting.Logging</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Crosscutting\Crosscutting.ObjectMapper\Crosscutting.ObjectMapper.csproj">
       <Project>{51600eb2-f6bd-40c3-a13c-84afb3c6ccaa}</Project>

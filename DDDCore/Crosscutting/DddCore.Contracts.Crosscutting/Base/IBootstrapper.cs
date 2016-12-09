@@ -1,8 +1,9 @@
 ﻿namespace DddCore.Contracts.Crosscutting.Base
 {
-    public interface IBootstrapper<out T, in TType, in TModule>
+    public interface IBootstrapper<out T, in TConfig, in TModule> where TModule : IModule<TConfig>
     {
-        T Bootstrap(TType type);
-        T Bootstrap(TType type, params TModule[] modules);
+        IBootstrapper<T, TConfig, TModule> AddConfig(TConfig config);
+        T Bootstrap();
+        T Bootstrap(params TModule[] modules);
     }
 }

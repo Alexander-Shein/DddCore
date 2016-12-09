@@ -43,9 +43,7 @@
     <ProjectReference Include="..\BLL\Domain\Domain.csproj" />
     <ProjectReference Include="..\Crosscutting\Contracts.Crosscutting\Contracts.Crosscutting.csproj" />
     <ProjectReference Include="..\Crosscutting\Crosscutting.Infrastructure\Crosscutting.Infrastructure.csproj" />
-    <ProjectReference Include="..\Crosscutting\Crosscutting.IoC.WebApi\Crosscutting.Ioc.WebApi.csproj" />
     <ProjectReference Include="..\Crosscutting\Crosscutting.IoC\Crosscutting.Ioc.csproj" />
-    <ProjectReference Include="..\Crosscutting\Crosscutting.Logging\Crosscutting.Logging.csproj" />
     <ProjectReference Include="..\Crosscutting\Crosscutting.ObjectMapper\Crosscutting.ObjectMapper.csproj" />
     <ProjectReference Include="..\DAL\Contracts.Dal\Contracts.Dal.csproj" />
     <ProjectReference Include="..\DAL\Dal.DomainStack\Dal.DomainStack.csproj" />
