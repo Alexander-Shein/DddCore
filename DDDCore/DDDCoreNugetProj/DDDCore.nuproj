@@ -19,12 +19,12 @@
   <Import Project="$(NuProjPath)\NuProj.props" Condition="Exists('$(NuProjPath)\NuProj.props')" />
   <PropertyGroup Label="Configuration">
     <Id>DddCore</Id>
-    <Version>1.0.22</Version>
+    <Version>1.1.0</Version>
     <Title>DddCore</Title>
     <Authors>Alexander Shein</Authors>
     <Owners>Alexander Shein</Owners>
-    <Summary>DDDCore</Summary>
-    <Description>DDDCore</Description>
+    <Summary>DddCore</Summary>
+    <Description>DddCore</Description>
     <ReleaseNotes>
     </ReleaseNotes>
     <ProjectUrl>
@@ -33,10 +33,19 @@
     </LicenseUrl>
     <Copyright>
     </Copyright>
-    <Tags>DDDCore</Tags>
+    <Tags>DddCore</Tags>
   </PropertyGroup>
   <ItemGroup>
     <Content Include="Readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\DddCore.Contracts.Domain\DddCore.Contracts.Domain.xproj" />
+    <ProjectReference Include="..\BLL\DddCore.Domain\DddCore.Domain.xproj" />
+    <ProjectReference Include="..\Crosscutting\DddCore.Contracts.Crosscutting\DddCore.Contracts.Crosscutting.xproj" />
+    <ProjectReference Include="..\Crosscutting\DddCore.Crosscutting\DddCore.Crosscutting.xproj" />
+    <ProjectReference Include="..\DAL\DddCore.Contracts.Dal\DddCore.Contracts.Dal.xproj" />
+    <ProjectReference Include="..\SL\DddCore.Contracts.Services\DddCore.Contracts.Services.xproj" />
+    <ProjectReference Include="..\SL\DddCore.Services.Application\DddCore.Services.Application.xproj" />
   </ItemGroup>
   <Import Project="$(NuProjPath)\NuProj.targets" />
 </Project>
