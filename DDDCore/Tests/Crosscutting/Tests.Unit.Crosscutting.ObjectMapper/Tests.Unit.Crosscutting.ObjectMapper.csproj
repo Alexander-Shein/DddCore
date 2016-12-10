@@ -50,16 +50,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Crosscutting\Contracts.Crosscutting\Contracts.Crosscutting.csproj">
-      <Project>{0e09da52-a209-4f40-9f37-9356be826e36}</Project>
-      <Name>Contracts.Crosscutting</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Crosscutting\Crosscutting.ObjectMapper\Crosscutting.ObjectMapper.csproj">
-      <Project>{51600eb2-f6bd-40c3-a13c-84afb3c6ccaa}</Project>
-      <Name>Crosscutting.ObjectMapper</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

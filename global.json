@@ -1,0 +1,3 @@
+{
+  "projects": [ "DDDCore/Crosscutting", "DDDCore/BLL", "DDDCore/DAL" ]
+}

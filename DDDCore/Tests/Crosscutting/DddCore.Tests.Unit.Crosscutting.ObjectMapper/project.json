@@ -1,0 +1,17 @@
+﻿{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "DddCore.Contracts.Crosscutting": "1.0.0-*",
+    "DddCore.Crosscutting": "1.0.0-*",
+    "DddCore.Crosscutting.ObjectMapper.AutoMapper": "1.0.0-*",
+    "NETStandard.Library": "1.6.0",
+    "NUnit": "3.5.0"
+  },
+
+  "frameworks": {
+    "netstandard1.6": {
+      "imports": "dnxcore50"
+    }
+  }
+}

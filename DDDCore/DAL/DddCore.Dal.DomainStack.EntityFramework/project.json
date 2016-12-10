@@ -1,0 +1,18 @@
+﻿{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "DddCore.Contracts.Crosscutting": "1.0.0-*",
+    "DddCore.Contracts.Dal": "1.0.0-*",
+    "DddCore.Contracts.Domain": "1.0.0-*",
+    "DddCore.Crosscutting": "1.0.0-*",
+    "Microsoft.EntityFrameworkCore.SqlServer": "1.1.0",
+    "NETStandard.Library": "1.6.1"
+  },
+
+  "frameworks": {
+    "netstandard1.6": {
+      "imports": "dnxcore50"
+    }
+  }
+}

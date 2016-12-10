@@ -50,10 +50,6 @@
     <Compile Include="PreviewService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Crosscutting\Contracts.Crosscutting\Contracts.Crosscutting.csproj">
-      <Project>{0E09DA52-A209-4F40-9F37-9356BE826E36}</Project>
-      <Name>Contracts.Crosscutting</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Contracts.Services\Contracts.Services.csproj">
       <Project>{17239995-FB91-446B-BC65-25CFF24B7A80}</Project>
       <Name>Contracts.Services</Name>

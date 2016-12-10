@@ -67,10 +67,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Crosscutting\Crosscutting.Infrastructure\Crosscutting.Infrastructure.csproj">
-      <Project>{EDCC02EF-2B70-4832-B4BC-A37CE18FCDC6}</Project>
-      <Name>Crosscutting.Infrastructure</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Contracts.Services\Contracts.Services.csproj">
       <Project>{17239995-FB91-446B-BC65-25CFF24B7A80}</Project>
       <Name>Contracts.Services</Name>

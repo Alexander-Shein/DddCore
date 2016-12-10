@@ -78,12 +78,6 @@
     <Compile Include="Infrastructure\SocialNetworks\SocialNetwork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\BLL\Contracts.Domain\Contracts.Domain.csproj">
-      <Project>{81a15c00-e8bc-49b8-9b3a-3694370ff9f2}</Project>
-      <Name>Contracts.Domain</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

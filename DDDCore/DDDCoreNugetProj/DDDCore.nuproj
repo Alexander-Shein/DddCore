@@ -18,9 +18,9 @@
   </PropertyGroup>
   <Import Project="$(NuProjPath)\NuProj.props" Condition="Exists('$(NuProjPath)\NuProj.props')" />
   <PropertyGroup Label="Configuration">
-    <Id>DDDCore</Id>
+    <Id>DddCore</Id>
     <Version>1.0.22</Version>
-    <Title>DDDCore</Title>
+    <Title>DddCore</Title>
     <Authors>Alexander Shein</Authors>
     <Owners>Alexander Shein</Owners>
     <Summary>DDDCore</Summary>
@@ -37,25 +37,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="Readme.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BLL\Contracts.Domain\Contracts.Domain.csproj" />
-    <ProjectReference Include="..\BLL\Domain\Domain.csproj" />
-    <ProjectReference Include="..\Crosscutting\Contracts.Crosscutting\Contracts.Crosscutting.csproj" />
-    <ProjectReference Include="..\Crosscutting\Crosscutting.Infrastructure\Crosscutting.Infrastructure.csproj" />
-    <ProjectReference Include="..\Crosscutting\Crosscutting.IoC\Crosscutting.Ioc.csproj" />
-    <ProjectReference Include="..\Crosscutting\Crosscutting.ObjectMapper\Crosscutting.ObjectMapper.csproj" />
-    <ProjectReference Include="..\DAL\Contracts.Dal\Contracts.Dal.csproj" />
-    <ProjectReference Include="..\DAL\Dal.DomainStack\Dal.DomainStack.csproj" />
-    <ProjectReference Include="..\DAL\Dal.QueryStack\Dal.QueryStack.csproj" />
-    <ProjectReference Include="..\PL\Presentation.WebApi\Presentation.WebApi.csproj" />
-    <ProjectReference Include="..\SL\Contracts.Services\Contracts.Services.csproj" />
-    <ProjectReference Include="..\SL\Services.Application\Services.Application.csproj" />
-    <ProjectReference Include="..\SL\Services.Infrastructure.DataExport\Services.Infrastructure.DataExport.csproj" />
-    <ProjectReference Include="..\SL\Services.Infrastructure.Emails\Services.Infrastructure.Emails.csproj" />
-    <ProjectReference Include="..\SL\Services.Infrastructure.Files\Services.Infrastructure.Files.csproj" />
-    <ProjectReference Include="..\SL\Services.Infrastructure.Preview\Services.Infrastructure.Preview.csproj" />
-    <ProjectReference Include="..\SL\Services.Infrastructure.ServiceBus\Services.Infrastructure.ServiceBus.csproj" />
   </ItemGroup>
   <Import Project="$(NuProjPath)\NuProj.targets" />
 </Project>

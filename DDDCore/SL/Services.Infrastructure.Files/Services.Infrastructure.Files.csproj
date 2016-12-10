@@ -49,10 +49,6 @@
     <Compile Include="Validation\IsPdfValidator.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Crosscutting\Contracts.Crosscutting\Contracts.Crosscutting.csproj">
-      <Project>{0e09da52-a209-4f40-9f37-9356be826e36}</Project>
-      <Name>Contracts.Crosscutting</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Contracts.Services\Contracts.Services.csproj">
       <Project>{17239995-fb91-446b-bc65-25cff24b7a80}</Project>
       <Name>Contracts.Services</Name>
