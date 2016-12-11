@@ -29,13 +29,13 @@ namespace DddCore.Domain.Entities
 
         #region Private Methods
 
-        void WalkObjectGraph<TEntity>(TEntity entity, Action<ICrudState> action, HashSet<object> hashSet = null, bool currentAggregateRootOnly = false) where TEntity : class, ICrudState
+        void WalkObjectGraph<TEntity>(TEntity entity, Action<ICrudState> action, HashSet<object> hashSet = null, bool aggregateRootOnly = false) where TEntity : class, ICrudState
         {
             if (hashSet == null)
             {
                 hashSet = new HashSet<object>();
             }
-            else if (currentAggregateRootOnly)
+            else if (aggregateRootOnly)
             {
                 if (entity is IAggregateRootEntity<TKey>)
                 {

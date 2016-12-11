@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using DddCore.Contracts.Crosscutting.Ioc;
 using DddCore.Contracts.Domain.Events;
 
 namespace DddCore.Domain.Events
@@ -9,14 +8,14 @@ namespace DddCore.Domain.Events
     {
         #region Private Members
 
-        readonly IContainer container;
+        readonly IDomainEventHandlerFactory handlerFactory;
         ICollection<Delegate> actions;
 
         #endregion
 
-        public DomainEventDispatcher(IContainer container)
+        public DomainEventDispatcher(IDomainEventHandlerFactory handlerFactory)
         {
-            this.container = container;
+            this.handlerFactory = handlerFactory;
         }
 
         #region Public Methods
@@ -32,7 +31,7 @@ namespace DddCore.Domain.Events
 
         public void Raise<T>(T args) where T : IDomainEvent
         {
-            foreach (var handler in container.ResolveAll<IHandle<T>>())
+            foreach (var handler in handlerFactory.GetHandlers<T>())
             {
                 handler.Handle(args);
             }

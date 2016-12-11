@@ -1,3 +1,19 @@
-#:C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\DAL\DddCore.Dal.QueryStack.Dapper\DddCore.Dal.QueryStack.Dapper.xproj
-C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\DAL\DddCore.Dal.QueryStack.Dapper\DddCore.Dal.QueryStack.Dapper.xproj|C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\DAL\DddCore.Contracts.Dal\DddCore.Contracts.Dal.xproj
+#:C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\BLL\DddCore.Domain\DddCore.Domain.xproj
+C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\BLL\DddCore.Domain\DddCore.Domain.xproj|C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\BLL\DddCore.Contracts.Domain\DddCore.Contracts.Domain.xproj
+C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\BLL\DddCore.Domain\DddCore.Domain.xproj|C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\Crosscutting\DddCore.Contracts.Crosscutting\DddCore.Contracts.Crosscutting.xproj
+#:C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\DDDCoreNugetProj\DddCore.nuproj
+C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\DDDCoreNugetProj\DddCore.nuproj|C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\Crosscutting\DddCore.Contracts.Crosscutting\DddCore.Contracts.Crosscutting.xproj
+C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\DDDCoreNugetProj\DddCore.nuproj|C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\SL\DddCore.Services.Application\DddCore.Services.Application.xproj
+C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\DDDCoreNugetProj\DddCore.nuproj|C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\BLL\DddCore.Domain\DddCore.Domain.xproj
+C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\DDDCoreNugetProj\DddCore.nuproj|C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\Crosscutting\DddCore.Crosscutting\DddCore.Crosscutting.xproj
+C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\DDDCoreNugetProj\DddCore.nuproj|C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\SL\DddCore.Contracts.Services\DddCore.Contracts.Services.xproj
+C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\DDDCoreNugetProj\DddCore.nuproj|C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\DAL\DddCore.Contracts.Dal\DddCore.Contracts.Dal.xproj
+C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\DDDCoreNugetProj\DddCore.nuproj|C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\BLL\DddCore.Contracts.Domain\DddCore.Contracts.Domain.xproj
+C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\SL\DddCore.Services.Application\DddCore.Services.Application.xproj|C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\DAL\DddCore.Contracts.Dal\DddCore.Contracts.Dal.xproj
+C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\SL\DddCore.Services.Application\DddCore.Services.Application.xproj|C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\BLL\DddCore.Contracts.Domain\DddCore.Contracts.Domain.xproj
+C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\SL\DddCore.Services.Application\DddCore.Services.Application.xproj|C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\SL\DddCore.Contracts.Services\DddCore.Contracts.Services.xproj
 C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\DAL\DddCore.Contracts.Dal\DddCore.Contracts.Dal.xproj|C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\BLL\DddCore.Contracts.Domain\DddCore.Contracts.Domain.xproj
+C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\SL\DddCore.Contracts.Services\DddCore.Contracts.Services.xproj|C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\BLL\DddCore.Contracts.Domain\DddCore.Contracts.Domain.xproj
+C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\BLL\DddCore.Domain\DddCore.Domain.xproj|C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\BLL\DddCore.Contracts.Domain\DddCore.Contracts.Domain.xproj
+C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\BLL\DddCore.Domain\DddCore.Domain.xproj|C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\Crosscutting\DddCore.Contracts.Crosscutting\DddCore.Contracts.Crosscutting.xproj
+C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\Crosscutting\DddCore.Crosscutting\DddCore.Crosscutting.xproj|C:\Users\Dell XPS 15\Documents\GitHub\DDD-Core\DDDCore\Crosscutting\DddCore.Contracts.Crosscutting\DddCore.Contracts.Crosscutting.xproj

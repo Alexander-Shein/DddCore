@@ -1,6 +1,6 @@
 namespace DddCore.Contracts.Domain.Events
 {
-    public interface IHandle<in T> where T : IDomainEvent
+    public interface IDomainEventHandler<in T> where T : IDomainEvent
     {
         void Handle(T args);
     }
