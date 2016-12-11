@@ -1902,7 +1902,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v1.6",
         "dependencies": {
-          "NETStandard.Library": "1.6.0"
+          "NETStandard.Library": "1.6.1"
         },
         "compile": {
           "netstandard1.6/DddCore.Contracts.Crosscutting.dll": {}
@@ -1916,7 +1916,7 @@
         "framework": ".NETStandard,Version=v1.6",
         "dependencies": {
           "DddCore.Contracts.Domain": "1.0.0",
-          "NETStandard.Library": "1.6.0"
+          "NETStandard.Library": "1.6.1"
         },
         "compile": {
           "netstandard1.6/DddCore.Contracts.Dal.dll": {}
@@ -1929,7 +1929,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v1.6",
         "dependencies": {
-          "NETStandard.Library": "1.6.0"
+          "NETStandard.Library": "1.6.1"
         },
         "compile": {
           "netstandard1.6/DddCore.Contracts.Domain.dll": {}
@@ -1943,7 +1943,7 @@
         "framework": ".NETStandard,Version=v1.6",
         "dependencies": {
           "DddCore.Contracts.Crosscutting": "1.0.0",
-          "NETStandard.Library": "1.6.0"
+          "NETStandard.Library": "1.6.1"
         },
         "compile": {
           "netstandard1.6/DddCore.Crosscutting.dll": {}

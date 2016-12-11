@@ -1,4 +1,3 @@
-using DddCore.Contracts.Domain.Entities.BusinessRules;
 using DddCore.Contracts.Domain.Entities.Model;
 
 namespace DddCore.Contracts.Domain.Entities
@@ -7,7 +6,6 @@ namespace DddCore.Contracts.Domain.Entities
         IEntity<TKey>,
         IEntityGraph,
         IVersion,
-        IValidatable,
         IPublicKey
     {
     }

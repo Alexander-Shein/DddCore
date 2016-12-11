@@ -16,6 +16,12 @@ namespace DddCore.Domain.Entities.BusinessRules
             return Map(validationResult);
         }
 
+        public new BusinessRulesValidationResult Validate(T instance)
+        {
+            var validationResult = base.Validate(instance);
+            return Map(validationResult);
+        }
+
         #endregion
 
         #region Private Methods

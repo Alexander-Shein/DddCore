@@ -29,17 +29,17 @@ namespace DddCore.Services.Application.DomainStack
 
         #region Public Methods
 
-        public async Task PersistAggregateRootAsync(T entity)
+        public async Task PersistAggregateRootAsync(T aggregateRoot)
         {
-            guard.NotNull(entity);
-            await guard.DomainIsValidAsync(entity);
+            guard.NotNull(aggregateRoot);
+            await guard.AggregateRootIsValidAsync<T, TKey>(aggregateRoot);
 
-            foreach (var domainEvent in entity.Events)
+            foreach (var domainEvent in aggregateRoot.Events)
             {
                 domainEventDispatcher.Raise(domainEvent);
             }
 
-            repository.PersistAggregateRoot(entity);
+            repository.PersistAggregateRoot(aggregateRoot);
         }
 
         #endregion

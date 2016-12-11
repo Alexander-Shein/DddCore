@@ -5,6 +5,6 @@ namespace DddCore.Contracts.Services.Application.DomainStack
 {
     public interface IEntityService<in T, in TKey> where T : class, IAggregateRootEntity<TKey>
     {
-        Task PersistAggregateRootAsync(T entity);
+        Task PersistAggregateRootAsync(T aggregateRoot);
     }
 }
