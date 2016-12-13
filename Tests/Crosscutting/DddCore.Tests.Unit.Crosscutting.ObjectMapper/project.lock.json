@@ -4994,18 +4994,18 @@
     },
     "DddCore.Contracts.Crosscutting/1.0.0": {
       "type": "project",
-      "path": "../../../Crosscutting/DddCore.Contracts.Crosscutting/project.json",
-      "msbuildProject": "../../../Crosscutting/DddCore.Contracts.Crosscutting/DddCore.Contracts.Crosscutting.xproj"
+      "path": "../../../Src/Crosscutting/DddCore.Contracts.Crosscutting/project.json",
+      "msbuildProject": "../../../Src/Crosscutting/DddCore.Contracts.Crosscutting/DddCore.Contracts.Crosscutting.xproj"
     },
     "DddCore.Crosscutting/1.0.0": {
       "type": "project",
-      "path": "../../../Crosscutting/DddCore.Crosscutting/project.json",
-      "msbuildProject": "../../../Crosscutting/DddCore.Crosscutting/DddCore.Crosscutting.xproj"
+      "path": "../../../Src/Crosscutting/DddCore.Crosscutting/project.json",
+      "msbuildProject": "../../../Src/Crosscutting/DddCore.Crosscutting/DddCore.Crosscutting.xproj"
     },
     "DddCore.Crosscutting.ObjectMapper.AutoMapper/1.0.0": {
       "type": "project",
-      "path": "../../../Crosscutting/DddCore.Crosscutting.ObjectMapper.AutoMapper/project.json",
-      "msbuildProject": "../../../Crosscutting/DddCore.Crosscutting.ObjectMapper.AutoMapper/DddCore.Crosscutting.ObjectMapper.AutoMapper.xproj"
+      "path": "../../../Src/Crosscutting/DddCore.Crosscutting.ObjectMapper.AutoMapper/project.json",
+      "msbuildProject": "../../../Src/Crosscutting/DddCore.Crosscutting.ObjectMapper.AutoMapper/DddCore.Crosscutting.ObjectMapper.AutoMapper.xproj"
     }
   },
   "projectFileDependencyGroups": {
