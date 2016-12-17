@@ -2,9 +2,9 @@
 
 namespace DddCore.Contracts.Domain.Entities.Model
 {
-    public interface IEntityGraph
+    public interface IEntityGraph<TKey>
     {
-        void WalkEntireGraph(Action<ICrudState> action);
-        void WalkAggregateRootGraph(Action<ICrudState> action);
+        void WalkEntireGraph(Action<IEntity<TKey>> action);
+        void WalkAggregateRootGraph(Action<IEntity<TKey>> action);
     }
 }

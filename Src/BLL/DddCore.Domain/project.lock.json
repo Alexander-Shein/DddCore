@@ -2902,6 +2902,20 @@
         "runtime": {
           "netstandard1.6/DddCore.Contracts.Domain.dll": {}
         }
+      },
+      "DddCore.Crosscutting/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v1.6",
+        "dependencies": {
+          "DddCore.Contracts.Crosscutting": "1.0.0",
+          "NETStandard.Library": "1.6.1"
+        },
+        "compile": {
+          "netstandard1.6/DddCore.Crosscutting.dll": {}
+        },
+        "runtime": {
+          "netstandard1.6/DddCore.Crosscutting.dll": {}
+        }
       }
     }
   },
@@ -8098,12 +8112,18 @@
       "type": "project",
       "path": "../DddCore.Contracts.Domain/project.json",
       "msbuildProject": "../DddCore.Contracts.Domain/DddCore.Contracts.Domain.xproj"
+    },
+    "DddCore.Crosscutting/1.0.0": {
+      "type": "project",
+      "path": "../../Crosscutting/DddCore.Crosscutting/project.json",
+      "msbuildProject": "../../Crosscutting/DddCore.Crosscutting/DddCore.Crosscutting.xproj"
     }
   },
   "projectFileDependencyGroups": {
     "": [
       "DddCore.Contracts.Crosscutting >= 1.0.0-*",
       "DddCore.Contracts.Domain >= 1.0.0-*",
+      "DddCore.Crosscutting >= 1.0.0-*",
       "FluentValidation.AspNetCore >= 6.4.0-beta9",
       "NETStandard.Library >= 1.6.1"
     ],

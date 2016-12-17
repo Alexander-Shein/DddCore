@@ -1,4 +1,4 @@
-﻿using DddCore.Contracts.Domain.Entities.Audit;
+﻿using DddCore.Contracts.Domain.Entities.Audit.At;
 
 namespace DddCore.Contracts.Domain.Events
 {

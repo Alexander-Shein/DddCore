@@ -1,4 +1,4 @@
-﻿namespace DddCore.Contracts.Domain.Entities.Audit
+﻿namespace DddCore.Contracts.Domain.Entities.Audit.By
 {
     public interface ICreatedBy<TKey>
     {

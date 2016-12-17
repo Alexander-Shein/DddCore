@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DddCore.Contracts.Domain.Entities.Audit
+namespace DddCore.Contracts.Domain.Entities.Audit.At
 {
     public interface IModifiedAt
     {

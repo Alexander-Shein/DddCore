@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using DddCore.Contracts.Domain.Entities;
-using DddCore.Contracts.Domain.Entities.Model;
+using DddCore.Crosscutting;
 
 namespace DddCore.Domain.Entities
 {
@@ -15,66 +15,64 @@ namespace DddCore.Domain.Entities
 
         public byte[] Ts { get; set; }
 
-        public void WalkEntireGraph(Action<ICrudState> action)
+        public void WalkEntireGraph(Action<IEntity<TKey>> action)
         {
-            WalkObjectGraph(this, action);
+            foreach (var entity in Traverse(this))
+            {
+                action(entity);
+            }
         }
 
-        public void WalkAggregateRootGraph(Action<ICrudState> action)
+        public void WalkAggregateRootGraph(Action<IEntity<TKey>> action)
         {
-            WalkObjectGraph(this, action, null, true);
+            foreach (var entity in Traverse(this, true))
+            {
+                action(entity);
+            }
         }
 
         #endregion
 
         #region Private Methods
 
-        void WalkObjectGraph<TEntity>(TEntity entity, Action<ICrudState> action, HashSet<object> hashSet = null, bool aggregateRootOnly = false) where TEntity : class, ICrudState
+        IEnumerable<TEntity> Traverse<TEntity>(TEntity entity, bool aggregateRootOnly = false) where TEntity : class, IEntity<TKey>
         {
-            if (hashSet == null)
+            var stack = new Stack<TEntity>();
+            stack.Push(entity);
+            while (stack.Count != 0)
             {
-                hashSet = new HashSet<object>();
-            }
-            else if (aggregateRootOnly)
-            {
-                if (entity is IAggregateRootEntity<TKey>)
+                TEntity item = stack.Pop();
+                yield return item;
+
+                var type = item.GetType().GetTypeInfo();
+
+                foreach (var prop in type.GetProperties())
                 {
-                    hashSet.Add(entity);
-                    return;
+                    var propValue = prop.GetValue(entity, null);
+
+                    var trackableRef = propValue as TEntity;
+
+                    if (trackableRef != null && !SkipAggregateRoot(aggregateRootOnly, trackableRef))
+                    {
+                        stack.Push(trackableRef);
+                        continue;
+                    }
+
+                    var entities = propValue as IEnumerable<TEntity>;
+                    if (entities.IsNullOrEmpty() || SkipAggregateRoot(aggregateRootOnly, entities.First())) continue;
+
+                    foreach (var element in entities.ToList())
+                    {
+                        stack.Push(element);
+                    }
                 }
             }
+        }
 
-            if (!hashSet.Add(entity)) return;
-
-            var type = entity.GetType();
-
-            // Set tracking state for child collections
-            foreach (
-                var prop in
-                    type.GetRuntimeProperties()) //TODO use caching
-            {
-                var propValue = prop.GetValue(entity, null);
-
-                // Apply changes to 1-1 and M-1 properties
-                var trackableRef = propValue as ICrudState;//TODO :use propertyfactory
-
-                if (trackableRef != null)
-                {
-                    WalkObjectGraph(trackableRef, action, hashSet);
-                    continue;
-                }
-
-                // Apply changes to 1-M properties
-                var items = propValue as IEnumerable<ICrudState>;//TODO :use propertyfactory
-                if (items == null) continue;
-
-                foreach (var item in items.ToList())
-                {
-                    WalkObjectGraph(item, action, hashSet); //TODO set depth level
-                }
-            }
-
-            action(entity);
+        bool SkipAggregateRoot(bool aggregateRootOnly, IEntity<TKey> entity)
+        {
+            if (aggregateRootOnly && entity is IAggregateRootEntity<TKey>) return true;
+            return false;
         }
 
         #endregion
