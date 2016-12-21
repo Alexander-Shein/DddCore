@@ -74,9 +74,7 @@ namespace DddCore.Dal.DomainStack.EntityFramework
 
         void AddModifiedBy(object entity)
         {
-            var model = entity as IModifiedBy<TKey>;
-
-            if (model != null)
+            if (entity is IModifiedBy<TKey> model)
             {
                 model.ModifiedBy = userContext.Id;
             }
@@ -84,9 +82,7 @@ namespace DddCore.Dal.DomainStack.EntityFramework
 
         void AddCreatedBy(object entity)
         {
-            var model = entity as ICreatedBy<TKey>;
-
-            if (model != null)
+            if (entity is ICreatedBy<TKey> model)
             {
                 model.CreatedBy = userContext.Id;
             }
@@ -94,9 +90,7 @@ namespace DddCore.Dal.DomainStack.EntityFramework
 
         void AddCreatedAt(object entity)
         {
-            var model = entity as ICreatedAt;
-
-            if (model != null)
+            if (entity is ICreatedAt model)
             {
                 model.CreatedAt = now;
             }
@@ -104,9 +98,7 @@ namespace DddCore.Dal.DomainStack.EntityFramework
 
         void AddModifiedAt(object entity)
         {
-            var model = entity as IModifiedAt;
-
-            if (model != null)
+            if (entity is IModifiedAt model)
             {
                 model.ModifiedAt = now;
             }

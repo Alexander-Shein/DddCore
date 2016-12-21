@@ -56,7 +56,7 @@ namespace DddCore.Dal.QueryStack.Dapper
             }
         }
 
-        protected async Task<Tuple<IEnumerable<T1>, IEnumerable<T2>>> GetMultipleResult<T1, T2>(string sql, object parameters = null)
+        protected async Task<Tuple<IEnumerable<T1>, IEnumerable<T2>>> GetMultipleResultAsync<T1, T2>(string sql, object parameters = null)
         {
             using (var dbCon = GetDbConnection())
             {
@@ -73,7 +73,7 @@ namespace DddCore.Dal.QueryStack.Dapper
             }
         }
 
-        protected async Task<Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>>> GetMultipleResult<T1, T2, T3>(string sql, object parameters = null)
+        protected async Task<Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>>> GetMultipleResultAsync<T1, T2, T3>(string sql, object parameters = null)
         {
             using (var dbCon = GetDbConnection())
             {

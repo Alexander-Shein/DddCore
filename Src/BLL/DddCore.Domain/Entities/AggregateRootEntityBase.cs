@@ -50,9 +50,7 @@ namespace DddCore.Domain.Entities
                 {
                     var propValue = prop.GetValue(entity, null);
 
-                    var trackableRef = propValue as TEntity;
-
-                    if (trackableRef != null && !SkipAggregateRoot(aggregateRootOnly, trackableRef))
+                    if (propValue is TEntity trackableRef && !SkipAggregateRoot(aggregateRootOnly, trackableRef))
                     {
                         stack.Push(trackableRef);
                         continue;

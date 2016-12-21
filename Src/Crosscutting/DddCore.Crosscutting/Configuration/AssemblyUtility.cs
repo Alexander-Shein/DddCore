@@ -1,4 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Reflection;
+using Microsoft.Extensions.DependencyModel;
+using System.Linq;
+using System;
 
 namespace DddCore.Crosscutting.Configuration
 {
@@ -6,15 +10,17 @@ namespace DddCore.Crosscutting.Configuration
     {
         public static IEnumerable<T> GetInstances<T>()
         {
-            return null;
+            var assignType = typeof(T);
 
-            //var assignType = typeof(T);
-            //
-            //return AppDomain.CurrentDomain.GetAssemblies()
-            //    //.Where(x => x.FullName.StartsWith("Dal"))
-            //    .SelectMany(y => y.GetTypes()
-            //        .Where(x => assignType.IsAssignableFrom(x) && x != assignType))
-            //        .Select(type => (T)Activator.CreateInstance(type));
+            return
+                DependencyContext
+                    .Default
+                    .CompileLibraries
+                    .Where(x => String.IsNullOrEmpty(x.Path))
+                    .Select(x => Assembly.Load(new AssemblyName(x.Name)))
+                    .SelectMany(x => x.GetTypes())
+                    .Where(x => assignType.IsAssignableFrom(x) && x != assignType)
+                    .Select(type => (T)Activator.CreateInstance(type));
         }
     }
 }
