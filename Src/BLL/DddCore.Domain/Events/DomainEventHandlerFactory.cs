@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
-using DddCore.Contracts.Crosscutting.Ioc;
+﻿using System;
+using System.Collections.Generic;
+using DddCore.Crosscutting.Ioc;
 using DddCore.Contracts.Domain.Events;
 
 namespace DddCore.Domain.Events
@@ -8,20 +9,20 @@ namespace DddCore.Domain.Events
     {
         #region Private Members
 
-        readonly IContainer container;
+        readonly IServiceProvider serviceProvider;
 
         #endregion
 
-        public DomainEventHandlerFactory(IContainer container)
+        public DomainEventHandlerFactory(IServiceProvider serviceProvider)
         {
-            this.container = container;
+            this.serviceProvider = serviceProvider;
         }
 
         #region Public Methods
 
         public IEnumerable<IDomainEventHandler<T>> GetHandlers<T>() where T : IDomainEvent
         {
-            return container.ResolveAll<IDomainEventHandler<T>>();
+            return serviceProvider.GetService<IEnumerable<IDomainEventHandler<T>>>();
         }
 
         #endregion

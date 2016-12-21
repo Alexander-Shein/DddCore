@@ -50,6 +50,10 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DddCore.Tests.Unit.Crosscut
 EndProject
 Project("{FF286327-C783-4F7A-AB73-9BCBAD0D4460}") = "DddCore", "Nuget\DddCore\DddCore.nuproj", "{51C68016-E51E-48FE-BE7F-86E3AAA5C85F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{E2E03284-EF83-4A4B-9EF6-93813D9DF612}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DddCore.Crosscutting.Ioc.MicrosoftDependencyInjection", "Src\Crosscutting\DddCore.Crosscutting.Ioc.MicrosoftDependencyInjection\DddCore.Crosscutting.Ioc.MicrosoftDependencyInjection.xproj", "{9992E3E9-1160-4900-9D2E-C43884B1E5B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -104,6 +108,10 @@ Global
 		{51C68016-E51E-48FE-BE7F-86E3AAA5C85F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51C68016-E51E-48FE-BE7F-86E3AAA5C85F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51C68016-E51E-48FE-BE7F-86E3AAA5C85F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9992E3E9-1160-4900-9D2E-C43884B1E5B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9992E3E9-1160-4900-9D2E-C43884B1E5B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9992E3E9-1160-4900-9D2E-C43884B1E5B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9992E3E9-1160-4900-9D2E-C43884B1E5B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -127,5 +135,6 @@ Global
 		{E601A31E-5C6C-49CD-B510-C71B0BD65B80} = {E387C56F-CB48-4609-A9F1-96DE6C063EDE}
 		{1E9914A0-AA0F-43A4-9AAC-B109F403616B} = {E0EBB9FB-48F2-4B04-BD53-7AE5F66C90D1}
 		{51C68016-E51E-48FE-BE7F-86E3AAA5C85F} = {BBB3158D-246B-451C-82B8-2A781E7B5331}
+		{9992E3E9-1160-4900-9D2E-C43884B1E5B3} = {4D9192C3-595B-4EE6-90FD-660036FEC5C4}
 	EndGlobalSection
 EndGlobal

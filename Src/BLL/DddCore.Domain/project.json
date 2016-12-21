@@ -6,6 +6,7 @@
     "DddCore.Contracts.Domain": "1.0.0-*",
     "DddCore.Crosscutting": "1.0.0-*",
     "FluentValidation.AspNetCore": "6.4.0-beta9",
+    "System.ComponentModel": "4.3.0",
     "NETStandard.Library": "1.6.1"
   },
 

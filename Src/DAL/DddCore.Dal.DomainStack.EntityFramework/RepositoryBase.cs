@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using DddCore.Contracts.Crosscutting.UserContext;
 using DddCore.Contracts.Dal.DomainStack;
 using DddCore.Contracts.Domain.Entities;
-using DddCore.Contracts.Domain.Entities.Audit;
 using DddCore.Contracts.Domain.Entities.Audit.At;
 using DddCore.Contracts.Domain.Entities.Audit.By;
 using DddCore.Contracts.Domain.Entities.Model;

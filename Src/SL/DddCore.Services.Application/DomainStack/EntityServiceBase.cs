@@ -34,10 +34,13 @@ namespace DddCore.Services.Application.DomainStack
             guard.NotNull(aggregateRoot);
             await guard.AggregateRootIsValidAsync<T, TKey>(aggregateRoot);
 
-            foreach (var domainEvent in aggregateRoot.Events)
+            aggregateRoot.WalkAggregateRootGraph(entity =>
             {
-                domainEventDispatcher.Raise(domainEvent);
-            }
+                foreach (var domainEvent in entity.Events)
+                {
+                    domainEventDispatcher.Raise(domainEvent);
+                }
+            });
 
             repository.PersistAggregateRoot(aggregateRoot);
         }

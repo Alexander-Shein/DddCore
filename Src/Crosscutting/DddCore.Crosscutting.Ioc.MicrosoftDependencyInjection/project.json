@@ -1,7 +1,10 @@
-{
+﻿{
   "version": "1.0.0-*",
 
   "dependencies": {
+    "DddCore.Contracts.Crosscutting": "1.0.0-*",
+    "DddCore.Crosscutting": "1.0.0-*",
+    "Microsoft.Extensions.DependencyInjection": "1.1.0",
     "NETStandard.Library": "1.6.1"
   },
 

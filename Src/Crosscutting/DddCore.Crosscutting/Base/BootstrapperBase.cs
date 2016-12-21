@@ -5,7 +5,7 @@ using DddCore.Crosscutting.Configuration;
 
 namespace DddCore.Crosscutting.Base
 {
-    public abstract class BootstrapperBase<T, TConfig, TModule> : IBootstrapper<T, TConfig, TModule> where TModule : IModule<TConfig> where TConfig : T
+    public abstract class BootstrapperBase<T, TConfig, TModule> : IBootstrapper<T, TConfig, TModule> where TModule : IModule<TConfig>
     {
         #region Private Members
 
@@ -43,10 +43,12 @@ namespace DddCore.Crosscutting.Base
                 }
             }
 
-            return config;
+            return GetInstance(config);
         }
 
         #endregion
+
+        protected abstract T GetInstance(TConfig config);
 
         #region Private Methods
 

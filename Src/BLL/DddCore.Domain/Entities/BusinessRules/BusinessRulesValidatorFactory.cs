@@ -1,6 +1,7 @@
-using DddCore.Contracts.Crosscutting.Ioc;
+using System;
 using DddCore.Contracts.Domain.Entities.BusinessRules;
 using DddCore.Contracts.Domain.Entities.Model;
+using DddCore.Crosscutting.Ioc;
 
 namespace DddCore.Domain.Entities.BusinessRules
 {
@@ -8,20 +9,20 @@ namespace DddCore.Domain.Entities.BusinessRules
     {
         #region Private Members
 
-        readonly IContainer container;
+        readonly IServiceProvider serviceProvider;
 
         #endregion
 
-        public BusinessRulesValidatorFactory(IContainer container)
+        public BusinessRulesValidatorFactory(IServiceProvider serviceProvider)
         {
-            this.container = container;
+            this.serviceProvider = serviceProvider;
         }
 
         #region Public Methods
 
         public IBusinessRulesValidator<T> GetBusinessRulesValidator<T>() where T : ICrudState
         {
-            return container.Resolve<IBusinessRulesValidator<T>>();
+            return serviceProvider.GetService<IBusinessRulesValidator<T>>();
         }
 
         #endregion
