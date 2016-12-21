@@ -12,6 +12,11 @@ namespace DddCore.Crosscutting.Ioc.MicrosoftDependencyInjection
 
         #endregion
 
+        public ContainerConfig(IServiceCollection serviceCollection)
+        {
+            this.serviceCollection = serviceCollection;
+        }
+
         #region Public Methods
 
         public IComponent Register<TContract, TImplementation>() where TContract : class where TImplementation : class, TContract
@@ -31,7 +36,7 @@ namespace DddCore.Crosscutting.Ioc.MicrosoftDependencyInjection
 
         public IServiceProvider BuildContainer()
         {
-            return null;
+            return serviceCollection.BuildServiceProvider();
         }
 
         #endregion
