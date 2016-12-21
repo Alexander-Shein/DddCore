@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DddCore.Crosscutting.Ioc
+namespace DddCore.Crosscutting.DependencyInjection
 {
     public static class ServiceProviderExtensions
     {

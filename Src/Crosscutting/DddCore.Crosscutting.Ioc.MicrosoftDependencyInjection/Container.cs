@@ -1,5 +1,5 @@
 ﻿using System;
-using DddCore.Contracts.Crosscutting.Ioc;
+using DddCore.Contracts.Crosscutting.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DddCore.Crosscutting.Ioc.MicrosoftDependencyInjection

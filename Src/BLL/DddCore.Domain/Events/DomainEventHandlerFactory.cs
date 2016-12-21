@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using DddCore.Crosscutting.Ioc;
 using DddCore.Contracts.Domain.Events;
+using DddCore.Crosscutting.DependencyInjection;
 
 namespace DddCore.Domain.Events
 {

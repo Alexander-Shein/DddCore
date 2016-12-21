@@ -1,4 +1,4 @@
-﻿namespace DddCore.Contracts.Crosscutting.Ioc
+﻿namespace DddCore.Contracts.Crosscutting.DependencyInjection
 {
     public interface IComponent
     {
