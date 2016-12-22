@@ -5,10 +5,11 @@ using DddCore.Crosscutting;
 using DddCore.Dal.DomainStack.EntityFramework.Mapping;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using DddCore.Contracts.Dal.DomainStack;
 
 namespace DddCore.Dal.DomainStack.EntityFramework.Context
 {
-    public class DataContext : DbContext, IDataContext
+    public class DataContext : DbContext, IDataContext, IUnitOfWork
     {
         #region Private Members
 

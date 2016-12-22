@@ -18,7 +18,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Src\Crosscutting\DddCore.Contracts.Crosscutting\DddCore.Contracts.Crosscutting.csproj" />
-    <ProjectReference Include="..\..\..\Src\Crosscutting\DddCore.Crosscutting.Ioc.MicrosoftDependencyInjection\DddCore.Crosscutting.Ioc.MicrosoftDependencyInjection.csproj" />
+    <ProjectReference Include="..\..\..\Src\Crosscutting\DddCore.Crosscutting.DependencyInjection.MicrosoftDependencyInjection\DddCore.Crosscutting.DependencyInjection.Microsoft.csproj" />
     <ProjectReference Include="..\..\..\Src\Crosscutting\DddCore.Crosscutting\DddCore.Crosscutting.csproj" />
   </ItemGroup>
 </Project>

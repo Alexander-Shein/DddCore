@@ -30,10 +30,8 @@ namespace DddCore.Crosscutting
             {
                 throw new ArgumentNullException(nameof(action));
             }
-
             // perf optimization. try to not use enumerator if possible
-            var list = source as IList<T>;
-            if (list != null)
+            if (source is IList<T> list)
             {
                 for (int i = 0, count = list.Count; i < count; i++)
                 {
