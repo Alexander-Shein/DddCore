@@ -56,6 +56,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Samples\Api\Api.cspr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DddCore.Tests.Unit.Crosscutting.DependencyInjection", "Tests\Crosscutting\DddCore.Tests.Unit.Crosscutting.DependencyInjection\DddCore.Tests.Unit.Crosscutting.DependencyInjection.csproj", "{EDF682EA-8B78-4786-A8BF-EBD85B797AD3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DddCore.Tests.Unit.Crosscutting", "Tests\Crosscutting\DddCore.Tests.Unit.Crosscutting\DddCore.Tests.Unit.Crosscutting.csproj", "{84D65F8E-67D3-4AF6-B77A-C863FE6A6C88}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -234,6 +236,18 @@ Global
 		{EDF682EA-8B78-4786-A8BF-EBD85B797AD3}.Release|x64.Build.0 = Release|x64
 		{EDF682EA-8B78-4786-A8BF-EBD85B797AD3}.Release|x86.ActiveCfg = Release|x86
 		{EDF682EA-8B78-4786-A8BF-EBD85B797AD3}.Release|x86.Build.0 = Release|x86
+		{84D65F8E-67D3-4AF6-B77A-C863FE6A6C88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84D65F8E-67D3-4AF6-B77A-C863FE6A6C88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84D65F8E-67D3-4AF6-B77A-C863FE6A6C88}.Debug|x64.ActiveCfg = Debug|x64
+		{84D65F8E-67D3-4AF6-B77A-C863FE6A6C88}.Debug|x64.Build.0 = Debug|x64
+		{84D65F8E-67D3-4AF6-B77A-C863FE6A6C88}.Debug|x86.ActiveCfg = Debug|x86
+		{84D65F8E-67D3-4AF6-B77A-C863FE6A6C88}.Debug|x86.Build.0 = Debug|x86
+		{84D65F8E-67D3-4AF6-B77A-C863FE6A6C88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84D65F8E-67D3-4AF6-B77A-C863FE6A6C88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84D65F8E-67D3-4AF6-B77A-C863FE6A6C88}.Release|x64.ActiveCfg = Release|x64
+		{84D65F8E-67D3-4AF6-B77A-C863FE6A6C88}.Release|x64.Build.0 = Release|x64
+		{84D65F8E-67D3-4AF6-B77A-C863FE6A6C88}.Release|x86.ActiveCfg = Release|x86
+		{84D65F8E-67D3-4AF6-B77A-C863FE6A6C88}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -259,5 +273,6 @@ Global
 		{5A93FAFF-623A-4DC8-A16C-645A3D5EF36D} = {E387C56F-CB48-4609-A9F1-96DE6C063EDE}
 		{EBFB090A-2623-4EB9-84F8-E6D96666787F} = {E2E03284-EF83-4A4B-9EF6-93813D9DF612}
 		{EDF682EA-8B78-4786-A8BF-EBD85B797AD3} = {E0EBB9FB-48F2-4B04-BD53-7AE5F66C90D1}
+		{84D65F8E-67D3-4AF6-B77A-C863FE6A6C88} = {E0EBB9FB-48F2-4B04-BD53-7AE5F66C90D1}
 	EndGlobalSection
 EndGlobal

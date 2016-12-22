@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using DddCore.Contracts.Crosscutting.Base;
-using DddCore.Crosscutting.Configuration;
 
 namespace DddCore.Crosscutting.Base
 {

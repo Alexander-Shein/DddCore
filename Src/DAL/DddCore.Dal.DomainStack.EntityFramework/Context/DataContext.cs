@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using DddCore.Contracts.Dal;
 using DddCore.Contracts.Domain.Entities.Model;
-using DddCore.Crosscutting.Configuration;
+using DddCore.Crosscutting;
 using DddCore.Dal.DomainStack.EntityFramework.Mapping;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;

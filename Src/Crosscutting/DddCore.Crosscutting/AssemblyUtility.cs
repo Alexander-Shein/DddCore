@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyModel;
 using System.Linq;
 using System;
 
-namespace DddCore.Crosscutting.Configuration
+namespace DddCore.Crosscutting
 {
     public static class AssemblyUtility
     {
