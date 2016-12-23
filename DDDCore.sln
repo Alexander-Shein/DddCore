@@ -56,6 +56,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DddCore.Tests.Unit.Crosscut
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DddCore.Crosscutting.DependencyInjection.Microsoft", "Src\Crosscutting\DddCore.Crosscutting.DependencyInjection.MicrosoftDependencyInjection\DddCore.Crosscutting.DependencyInjection.Microsoft.csproj", "{9DAA82E9-4036-40BE-BF68-1BAAD29BFB84}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DddCore.Configuraion", "Src\SL\DddCore.Configuraion\DddCore.Configuraion.csproj", "{E6F5C720-8641-4923-A2DA-2C6654002104}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -234,6 +236,18 @@ Global
 		{9DAA82E9-4036-40BE-BF68-1BAAD29BFB84}.Release|x64.Build.0 = Release|x64
 		{9DAA82E9-4036-40BE-BF68-1BAAD29BFB84}.Release|x86.ActiveCfg = Release|x86
 		{9DAA82E9-4036-40BE-BF68-1BAAD29BFB84}.Release|x86.Build.0 = Release|x86
+		{E6F5C720-8641-4923-A2DA-2C6654002104}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6F5C720-8641-4923-A2DA-2C6654002104}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6F5C720-8641-4923-A2DA-2C6654002104}.Debug|x64.ActiveCfg = Debug|x64
+		{E6F5C720-8641-4923-A2DA-2C6654002104}.Debug|x64.Build.0 = Debug|x64
+		{E6F5C720-8641-4923-A2DA-2C6654002104}.Debug|x86.ActiveCfg = Debug|x86
+		{E6F5C720-8641-4923-A2DA-2C6654002104}.Debug|x86.Build.0 = Debug|x86
+		{E6F5C720-8641-4923-A2DA-2C6654002104}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6F5C720-8641-4923-A2DA-2C6654002104}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6F5C720-8641-4923-A2DA-2C6654002104}.Release|x64.ActiveCfg = Release|x64
+		{E6F5C720-8641-4923-A2DA-2C6654002104}.Release|x64.Build.0 = Release|x64
+		{E6F5C720-8641-4923-A2DA-2C6654002104}.Release|x86.ActiveCfg = Release|x86
+		{E6F5C720-8641-4923-A2DA-2C6654002104}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -259,5 +273,6 @@ Global
 		{EDF682EA-8B78-4786-A8BF-EBD85B797AD3} = {E0EBB9FB-48F2-4B04-BD53-7AE5F66C90D1}
 		{84D65F8E-67D3-4AF6-B77A-C863FE6A6C88} = {E0EBB9FB-48F2-4B04-BD53-7AE5F66C90D1}
 		{9DAA82E9-4036-40BE-BF68-1BAAD29BFB84} = {4D9192C3-595B-4EE6-90FD-660036FEC5C4}
+		{E6F5C720-8641-4923-A2DA-2C6654002104} = {E387C56F-CB48-4609-A9F1-96DE6C063EDE}
 	EndGlobalSection
 EndGlobal

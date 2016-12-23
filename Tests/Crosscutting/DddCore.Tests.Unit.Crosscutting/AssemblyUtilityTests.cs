@@ -33,6 +33,51 @@ namespace DddCore.Tests.Unit.Crosscutting
             actual.Should().NotBeNull();
             actual.Count().Should().Be(2);
         }
+
+        [Fact]
+        public void GetInterfaceAndInstanceTypes_Generic_ClosedGenericArgument()
+        {
+            var actual = AssemblyUtility.GetInterfaceAndInstanceTypes<IGenericInterface<Instance1>>();
+
+            actual.Should().NotBeNull();
+            actual.Count().Should().Be(1);
+        }
+
+        [Fact]
+        public void GetInterfaceAndInstanceTypes_Generic()
+        {
+            var actual = AssemblyUtility.GetInterfaceAndInstanceTypes<IHasMultipleImplementations>();
+
+            actual.Should().NotBeNull();
+            actual.Count().Should().Be(2);
+        }
+
+        [Fact]
+        public void GetInterfaceAndInstanceTypes_OpenedGenericArgument()
+        {
+            var actual = AssemblyUtility.GetInterfaceAndInstanceTypes(typeof(IGenericInterface<>));
+
+            actual.Should().NotBeNull();
+            actual.Count().Should().Be(2);
+        }
+
+        [Fact]
+        public void GetInterfaceAndInstanceTypes_ClosedGenericArgument()
+        {
+            var actual = AssemblyUtility.GetInterfaceAndInstanceTypes(typeof(IGenericInterface<Instance1>));
+
+            actual.Should().NotBeNull();
+            actual.Count().Should().Be(1);
+        }
+
+        [Fact]
+        public void GetInterfaceAndInstanceTypes()
+        {
+            var actual = AssemblyUtility.GetInterfaceAndInstanceTypes(typeof(IHasMultipleImplementations));
+
+            actual.Should().NotBeNull();
+            actual.Count().Should().Be(2);
+        }
     }
 
     public interface IHasNoImplementations { }
@@ -43,4 +88,9 @@ namespace DddCore.Tests.Unit.Crosscutting
     public interface IHasMultipleImplementations { }
     public class Instance1 : IHasMultipleImplementations { }
     public class Instance2 : IHasMultipleImplementations { }
+
+    public interface IGenericInterface<T> { }
+
+    public class GenericInstance1 : IGenericInterface<Instance1> { }
+    public class GenericInstance2 : IGenericInterface<Instance2> { }
 }
