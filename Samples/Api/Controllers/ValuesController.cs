@@ -7,13 +7,6 @@ namespace Api.Controllers
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
-        readonly IMyAggregateRootWorkflowService myAggregateRootWorkflowService;
-
-        public ValuesController(IMyAggregateRootWorkflowService myAggregateRootWorkflowService)
-        {
-            this.myAggregateRootWorkflowService = myAggregateRootWorkflowService;
-        }
-
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()

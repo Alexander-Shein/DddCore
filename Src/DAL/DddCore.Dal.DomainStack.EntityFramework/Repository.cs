@@ -8,10 +8,11 @@ using DddCore.Contracts.Domain.Entities.Audit.By;
 using DddCore.Contracts.Domain.Entities.Model;
 using DddCore.Dal.DomainStack.EntityFramework.Context;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace DddCore.Dal.DomainStack.EntityFramework
 {
-    public abstract class RepositoryBase<T, TKey> : IRepository<T, TKey> where T : class, IAggregateRootEntity<TKey>
+    public class Repository<T, TKey> : IRepository<T, TKey> where T : class, IAggregateRootEntity<TKey>
     {
         #region Private Members
 
@@ -22,7 +23,7 @@ namespace DddCore.Dal.DomainStack.EntityFramework
 
         protected readonly IDataContext DataContext;
 
-        protected RepositoryBase(IDataContext dataContext, IUserContext<TKey> userContext)
+        protected Repository(IDataContext dataContext, IUserContext<TKey> userContext)
         {
             DataContext = dataContext;
             this.userContext = userContext;
@@ -42,7 +43,17 @@ namespace DddCore.Dal.DomainStack.EntityFramework
             });
         }
 
-        public abstract Task<T> ReadAggregateRootAsync(TKey key);
+        public virtual async Task<T> ReadAggregateRootAsync(TKey key)
+        {
+            var query = GetDbSet().AsQueryable();
+
+            foreach (var expr in GetPropertySelectors())
+            {
+                query = query.Include(expr);
+            }
+
+            return await query.FirstOrDefaultAsync(x => x.Id.Equals(key));
+        }
 
         #endregion
 
@@ -53,6 +64,12 @@ namespace DddCore.Dal.DomainStack.EntityFramework
         }
 
         #region Private Methods
+
+        string[] GetPropertySelectors()
+        {
+            //TODO: implement
+            return new string[0];
+        }
 
         void UpdateAuditableInfo(ICrudState entity)
         {
