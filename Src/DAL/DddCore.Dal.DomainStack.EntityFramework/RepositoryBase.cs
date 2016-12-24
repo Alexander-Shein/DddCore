@@ -30,7 +30,7 @@ namespace DddCore.Dal.DomainStack.EntityFramework
 
         #region Public Methods
 
-        public void PersistAggregateRoot(T entity)
+        public virtual void PersistAggregateRoot(T entity)
         {
             now = DateTime.UtcNow;
 

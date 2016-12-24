@@ -1,6 +1,8 @@
-﻿namespace DddCore.Contracts.Services.Application.QueryStack.Pagging.Services
+﻿using DddCore.Contracts.Services.Infrastructure;
+
+namespace DddCore.Contracts.Services.Application.QueryStack.Pagging.Services
 {
-    public interface IPaggingService
+    public interface IPaggingService : IInfrastructureService
     {
         int MormalizePage(int page);
         int NormalizePageSize(int pageSize);

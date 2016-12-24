@@ -6,7 +6,7 @@ using DddCore.Contracts.Services.Application.DomainStack;
 
 namespace DddCore.Services.Application.DomainStack
 {
-    public abstract class EntityServiceBase<T, TKey> : IEntityService<T, TKey> where T : class, IAggregateRootEntity<TKey>
+    public class EntityService<T, TKey> : IEntityService<T, TKey> where T : class, IAggregateRootEntity<TKey>
     {
         #region Private Members
 
@@ -18,7 +18,7 @@ namespace DddCore.Services.Application.DomainStack
 
         #region ctor
 
-        protected EntityServiceBase(IRepository<T, TKey> repository, IGuard guard, IDomainEventDispatcher domainEventDispatcher)
+        public EntityService(IRepository<T, TKey> repository, IGuard guard, IDomainEventDispatcher domainEventDispatcher)
         {
             this.repository = repository;
             this.guard = guard;

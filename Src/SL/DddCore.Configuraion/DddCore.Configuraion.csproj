@@ -17,5 +17,8 @@
     <ProjectReference Include="..\..\BLL\DddCore.Domain\DddCore.Domain.csproj" />
     <ProjectReference Include="..\..\Crosscutting\DddCore.Contracts.Crosscutting\DddCore.Contracts.Crosscutting.csproj" />
     <ProjectReference Include="..\..\Crosscutting\DddCore.Crosscutting\DddCore.Crosscutting.csproj" />
+    <ProjectReference Include="..\..\DAL\DddCore.Contracts.Dal\DddCore.Contracts.Dal.csproj" />
+    <ProjectReference Include="..\..\DAL\DddCore.Dal.DomainStack.EntityFramework\DddCore.Dal.DomainStack.EntityFramework.csproj" />
+    <ProjectReference Include="..\DddCore.Contracts.Services\DddCore.Contracts.Services.csproj" />
   </ItemGroup>
 </Project>

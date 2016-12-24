@@ -34,6 +34,12 @@ namespace DddCore.Crosscutting.Ioc.MicrosoftDependencyInjection
             return serviceCollection.BuildServiceProvider();
         }
 
+        public IComponent Register(Type contract, Type implementation)
+        {
+            var genericType = typeof(Component<,>).MakeGenericType(contract, implementation);
+            return (IComponent)Activator.CreateInstance(genericType);
+        }
+
         #endregion
     }
 
