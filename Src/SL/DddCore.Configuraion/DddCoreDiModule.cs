@@ -17,6 +17,8 @@ using System;
 using DddCore.Contracts.Services.Application.DomainStack;
 using DddCore.Services.Application.DomainStack;
 using DddCore.Dal.DomainStack.EntityFramework;
+using DddCore.Contracts.Crosscutting.UserContext;
+using DddCore.Crosscutting.UserContext;
 
 namespace DddCore.Configuraion
 {
@@ -57,15 +59,35 @@ namespace DddCore.Configuraion
                 .LifeStyle
                 .PerWebRequest();
 
-            //config
-            //    .Register<IUserContext<Guid>, NullUserContext>()
-            //    .LifeStyle
-            //    .PerWebRequest();
+            config
+                .Register<IUserContext<Guid>, IdentityUserContext>()
+                .LifeStyle
+                .PerWebRequest();
         }
+
+        #region Private Members
 
         void SetupDomainEventHandlers(IContainerConfig config)
         {
-            var typesToRegister = AssemblyUtility.GetTypes(typeof(IDomainEventHandler<>));
+            var allMessageTypes = AssemblyUtility.GetTypes<IDomainEvent>();
+            var openedHandlerContract = typeof(IDomainEventHandler<>);
+
+            foreach (var messageType in allMessageTypes)
+            {
+                var closedHandlerContract = openedHandlerContract.MakeGenericType(messageType);
+
+                var handlers = AssemblyUtility.GetTypes(closedHandlerContract);
+
+                if (!handlers.Any()) continue;
+
+                foreach (var t in handlers)
+                {
+                    config
+                        .Register(t, closedHandlerContract)
+                        .LifeStyle
+                        .PerWebRequest();
+                }
+            }
         }
 
         void SetupInfrastructureServices(IContainerConfig config)
@@ -159,5 +181,7 @@ namespace DddCore.Configuraion
                 }
             }
         }
+
+        #endregion
     }
 }
