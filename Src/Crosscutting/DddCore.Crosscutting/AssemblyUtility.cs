@@ -13,47 +13,42 @@ namespace DddCore.Crosscutting
             var assignType = typeof(T);
 
             return
-                DependencyContext
-                    .Default
-                    .CompileLibraries
-                    .Where(x => String.IsNullOrEmpty(x.Path))
-                    .Select(x => Assembly.Load(new AssemblyName(x.Name)))
-                    .SelectMany(x => x.GetTypes())
-                    .Where(x => assignType.IsAssignableFrom(x) && x != assignType)
+                GetTypes<T>()
                     .Select(type => (T)Activator.CreateInstance(type));
         }
 
-        public static IEnumerable<Tuple<Type, Type>> GetInterfaceAndInstanceTypes<T>()
+        public static IEnumerable<Type> GetTypes<T>()
         {
             var assignType = typeof(T);
 
             return
-                DependencyContext
-                    .Default
-                    .CompileLibraries
-                    .Where(x => String.IsNullOrEmpty(x.Path))
-                    .Select(x => Assembly.Load(new AssemblyName(x.Name)))
-                    .SelectMany(x => x.GetTypes())
-                    .Where(x => assignType.IsAssignableFrom(x) && x != assignType)
-                    .Select(type => Tuple.Create(assignType, type));
+                GetAllTypes()
+                    .Where(x => !x.GetTypeInfo().IsInterface && x != assignType && assignType.IsAssignableFrom(x));
         }
 
-        public static IEnumerable<Tuple<Type, Type>> GetInterfaceAndInstanceTypes(Type assignType)
+        public static IEnumerable<Type> GetTypes(Type assignType)
         {
             var isGeneric = assignType.GetTypeInfo().IsGenericType;
 
             return
+                GetAllTypes()
+                    .Where(x => !x.GetTypeInfo().IsInterface && x != assignType && (IsAssignableToGenericType(x, assignType) || assignType.IsAssignableFrom(x)));
+        }
+
+        #region Private Members
+
+        static IEnumerable<Type> GetAllTypes()
+        {
+            var types =
                 DependencyContext
                     .Default
                     .CompileLibraries
                     .Where(x => String.IsNullOrEmpty(x.Path))
                     .Select(x => Assembly.Load(new AssemblyName(x.Name)))
-                    .SelectMany(x => x.GetTypes())
-                    .Where(x => (IsAssignableToGenericType(x, assignType) || assignType.IsAssignableFrom(x)) && x != assignType)
-                    .Select(type => Tuple.Create(isGeneric ? type.GetTypeInfo().GetInterfaces().FirstOrDefault(i => i.GetGenericTypeDefinition() == assignType) ?? assignType : assignType, type));
-        }
+                    .SelectMany(x => x.GetTypes());
 
-        #region Private Members
+            return types;
+        }
 
         static bool IsAssignableToGenericType(Type givenType, Type genericType)
         {

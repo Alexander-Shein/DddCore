@@ -20,5 +20,6 @@
     <ProjectReference Include="..\..\DAL\DddCore.Contracts.Dal\DddCore.Contracts.Dal.csproj" />
     <ProjectReference Include="..\..\DAL\DddCore.Dal.DomainStack.EntityFramework\DddCore.Dal.DomainStack.EntityFramework.csproj" />
     <ProjectReference Include="..\DddCore.Contracts.Services\DddCore.Contracts.Services.csproj" />
+    <ProjectReference Include="..\DddCore.Services.Application\DddCore.Services.Application.csproj" />
   </ItemGroup>
 </Project>

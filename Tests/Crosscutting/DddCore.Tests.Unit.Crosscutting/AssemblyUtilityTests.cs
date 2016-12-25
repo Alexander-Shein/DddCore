@@ -35,45 +35,45 @@ namespace DddCore.Tests.Unit.Crosscutting
         }
 
         [Fact]
-        public void GetInterfaceAndInstanceTypes_Generic_ClosedGenericArgument()
+        public void GetTypes_Generic_ClosedGenericArgument()
         {
-            var actual = AssemblyUtility.GetInterfaceAndInstanceTypes<IGenericInterface<Instance1>>();
+            var actual = AssemblyUtility.GetTypes<IGenericInterface<Instance1>>();
 
             actual.Should().NotBeNull();
             actual.Count().Should().Be(1);
         }
 
         [Fact]
-        public void GetInterfaceAndInstanceTypes_Generic()
+        public void GetTypes_Generic()
         {
-            var actual = AssemblyUtility.GetInterfaceAndInstanceTypes<IHasMultipleImplementations>();
+            var actual = AssemblyUtility.GetTypes<IHasMultipleImplementations>();
 
             actual.Should().NotBeNull();
             actual.Count().Should().Be(2);
         }
 
         [Fact]
-        public void GetInterfaceAndInstanceTypes_OpenedGenericArgument()
+        public void GetTypes_OpenedGenericArgument()
         {
-            var actual = AssemblyUtility.GetInterfaceAndInstanceTypes(typeof(IGenericInterface<>));
+            var actual = AssemblyUtility.GetTypes(typeof(IGenericInterface<>));
 
             actual.Should().NotBeNull();
             actual.Count().Should().Be(2);
         }
 
         [Fact]
-        public void GetInterfaceAndInstanceTypes_ClosedGenericArgument()
+        public void GetTypes_ClosedGenericArgument()
         {
-            var actual = AssemblyUtility.GetInterfaceAndInstanceTypes(typeof(IGenericInterface<Instance1>));
+            var actual = AssemblyUtility.GetTypes(typeof(IGenericInterface<Instance1>));
 
             actual.Should().NotBeNull();
             actual.Count().Should().Be(1);
         }
 
         [Fact]
-        public void GetInterfaceAndInstanceTypes()
+        public void GetTypes()
         {
-            var actual = AssemblyUtility.GetInterfaceAndInstanceTypes(typeof(IHasMultipleImplementations));
+            var actual = AssemblyUtility.GetTypes(typeof(IHasMultipleImplementations));
 
             actual.Should().NotBeNull();
             actual.Count().Should().Be(2);
