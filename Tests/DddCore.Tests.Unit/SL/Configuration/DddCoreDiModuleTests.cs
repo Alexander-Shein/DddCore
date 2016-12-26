@@ -18,6 +18,8 @@ using Microsoft.Extensions.Options;
 using DddCore.Contracts.Dal;
 using Microsoft.AspNetCore.Http;
 using DddCore.Contracts.Crosscutting.DependencyInjection;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace DddCore.Tests.Unit.SL.Configuration
 {
@@ -33,7 +35,7 @@ namespace DddCore.Tests.Unit.SL.Configuration
 
             module.Install(containerConfig);
 
-            serviceCollection.Count.Should().Be(16);
+            serviceCollection.Count.Should().Be(18);
         }
 
         [Fact]
@@ -74,6 +76,19 @@ namespace DddCore.Tests.Unit.SL.Configuration
 
             // Assert
             CheckInContainer<IAggregateRootTwoQueryRepository>(container, typeof(AggregateRootTwoQueryRepository));
+        }
+
+        [Fact]
+        public void RegisterDomainEventHandlers()
+        {
+            // Act
+            var containerConfig = SetupContainerConfig();
+            InstallDddCoreDiModule(containerConfig);
+            var container = containerConfig.BuildContainer();
+
+            // Assert
+            var handlers = container.GetService<IEnumerable<IDomainEventHandler<TestDomainEvent>>>();
+            handlers.Count().Should().Be(2);
         }
 
         #region Private Methods
@@ -160,5 +175,20 @@ namespace DddCore.Tests.Unit.SL.Configuration
 
     public class OneInfrustructureService : IOneInfrustructureService
     {
+    }
+
+    public class TestDomainEvent : IDomainEvent
+    {
+        public DateTime CreatedAt { get; set; }
+    }
+
+    public class TestHandlerOne : IDomainEventHandler<TestDomainEvent>
+    {
+        public void Handle(TestDomainEvent args) {}
+    }
+
+    public class TestHandlerTwo : IDomainEventHandler<TestDomainEvent>
+    {
+        public void Handle(TestDomainEvent args) { }
     }
 }
