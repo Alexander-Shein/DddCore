@@ -20,22 +20,30 @@ namespace DddCore.Crosscutting
         public static IEnumerable<Type> GetTypes<T>()
         {
             var assignType = typeof(T);
-
-            return
-                GetAllTypes()
-                    .Where(x => !x.GetTypeInfo().IsInterface && x != assignType && assignType.IsAssignableFrom(x));
+            return GetTypes(assignType);
         }
 
         public static IEnumerable<Type> GetTypes(Type assignType)
         {
-            var isGeneric = assignType.GetTypeInfo().IsGenericType;
-
             return
                 GetAllTypes()
-                    .Where(x => !x.GetTypeInfo().IsInterface && x != assignType && (IsAssignableToGenericType(x, assignType) || assignType.IsAssignableFrom(x)));
+                    .Where(x => IsAssignableFrom(x, assignType));
         }
 
         #region Private Members
+
+        static bool IsAssignableFrom(Type type, Type contract)
+        {
+            if (contract == type) return false;
+
+            var typeInfo = type.GetTypeInfo();
+
+            bool isInterfaceOrAbstract = type.GetTypeInfo().IsInterface || type.GetTypeInfo().IsAbstract;
+
+            if (isInterfaceOrAbstract) return false;
+
+            return IsAssignableToGenericType(type, contract) || contract.IsAssignableFrom(type);
+        }
 
         static IEnumerable<Type> GetAllTypes()
         {

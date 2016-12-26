@@ -70,6 +70,8 @@ namespace DddCore.Configuraion
         void SetupDomainEventHandlers(IContainerConfig config)
         {
             var allMessageTypes = AssemblyUtility.GetTypes<IDomainEvent>();
+            if (!allMessageTypes.Any()) return;
+
             var openedHandlerContract = typeof(IDomainEventHandler<>);
 
             foreach (var messageType in allMessageTypes)
@@ -83,7 +85,7 @@ namespace DddCore.Configuraion
                 foreach (var t in handlers)
                 {
                     config
-                        .Register(t, closedHandlerContract)
+                        .Register(closedHandlerContract, t)
                         .LifeStyle
                         .PerWebRequest();
                 }
@@ -122,7 +124,7 @@ namespace DddCore.Configuraion
                         .FirstOrDefault(x => x.GetGenericTypeDefinition() == type);
 
                 config
-                    .Register(t, contractType)
+                    .Register(contractType, t)
                     .LifeStyle
                     .PerWebRequest();
             }
@@ -140,31 +142,49 @@ namespace DddCore.Configuraion
                     .GetTypes(typeof(IAggregateRootEntity<>))
                     .ToList();
 
-            foreach (var t in AssemblyUtility.GetTypes(contractType))
-            {
-                foreach (var contactType in t.GetInterfaces())
-                {
-                    config
-                        .Register(t, contactType)
-                        .LifeStyle
-                        .PerWebRequest();
-                }
+            if (!allAggregateRoots.Any()) return;
 
-                var tt = allAggregateRoots.First(x => x == t);
-                allAggregateRoots.Remove(tt);
-            }
+            var aggregateRootType = typeof(IAggregateRootEntity<>);
 
             foreach (var d in allAggregateRoots)
             {
-                var keyType = d.GetGenericArguments().First();
+                var keyType =
+                    d
+                        .GetInterfaces()
+                        .First(x => x.GetTypeInfo().IsGenericType && x.GetGenericTypeDefinition() == aggregateRootType)
+                        .GetGenericArguments()
+                        .First();
 
-                var t = serviceType.MakeGenericType(d, keyType);
-                var ct = contractType.MakeGenericType(d, keyType);
+                var closedContractType = contractType.MakeGenericType(d, keyType);
 
-                config
-                    .Register(t, ct)
-                    .LifeStyle
-                    .PerWebRequest();
+                var specificType = AssemblyUtility.GetTypes(closedContractType).FirstOrDefault();
+
+                if (specificType == null)
+                {
+                    var genericType = serviceType.MakeGenericType(closedContractType.GetGenericArguments());
+
+                    config
+                        .Register(closedContractType, genericType)
+                        .LifeStyle
+                        .PerWebRequest();
+
+                    continue;
+                }
+                else
+                {
+                    config
+                        .Register(closedContractType, specificType)
+                        .LifeStyle
+                        .PerWebRequest();
+
+                    foreach (var specificContractType in specificType.GetInterfaces().Where(x => x != closedContractType))
+                    {
+                        config
+                            .Register(specificContractType, specificType)
+                            .LifeStyle
+                            .PerWebRequest();
+                    }
+                }
             }
         }
 
@@ -175,7 +195,7 @@ namespace DddCore.Configuraion
                 foreach (var ct in t.GetInterfaces().Where(c => c != contractType))
                 {
                     config
-                        .Register(t, ct)
+                        .Register(ct, t)
                         .LifeStyle
                         .PerWebRequest();
                 }

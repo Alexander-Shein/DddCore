@@ -23,7 +23,7 @@ namespace DddCore.Dal.DomainStack.EntityFramework
 
         protected readonly IDataContext DataContext;
 
-        protected Repository(IDataContext dataContext, IUserContext<TKey> userContext)
+        public Repository(IDataContext dataContext, IUserContext<TKey> userContext)
         {
             DataContext = dataContext;
             this.userContext = userContext;
