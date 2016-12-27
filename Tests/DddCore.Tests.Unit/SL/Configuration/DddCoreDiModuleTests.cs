@@ -25,12 +25,11 @@ namespace DddCore.Tests.Unit.SL.Configuration
 {
     public class DddCoreDiModuleTests
     {
-        [Fact] 
+        [Fact]
         public void RegisterDddCoreComponents()
         {
             var serviceCollection = new ServiceCollection();
             var containerConfig = new ContainerConfig(serviceCollection);
-
             var module = new DddCoreDiModule();
 
             module.Install(containerConfig);

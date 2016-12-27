@@ -8,14 +8,14 @@ namespace DddCore.Domain.Events
     {
         #region Private Members
 
-        readonly IDomainEventHandlerFactory handlerFactory;
+        readonly IDomainEventHandlerFactory domainEventHandlerFactory;
         ICollection<Delegate> actions;
 
         #endregion
 
-        public DomainEventDispatcher(IDomainEventHandlerFactory handlerFactory)
+        public DomainEventDispatcher(IDomainEventHandlerFactory domainEventHandlerFactory)
         {
-            this.handlerFactory = handlerFactory;
+            this.domainEventHandlerFactory = domainEventHandlerFactory;
         }
 
         #region Public Methods
@@ -31,7 +31,7 @@ namespace DddCore.Domain.Events
 
         public void Raise<T>(T args) where T : IDomainEvent
         {
-            foreach (var handler in handlerFactory.GetHandlers<T>())
+            foreach (var handler in domainEventHandlerFactory.GetHandlers<T>())
             {
                 handler.Handle(args);
             }
