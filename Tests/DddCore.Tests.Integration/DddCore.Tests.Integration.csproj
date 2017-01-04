@@ -28,4 +28,7 @@
     <ProjectReference Include="..\..\Src\SL\DddCore.Contracts.Services\DddCore.Contracts.Services.csproj" />
     <ProjectReference Include="..\..\Src\SL\DddCore.Services.Application\DddCore.Services.Application.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DAL\QueryStack\" />
+  </ItemGroup>
 </Project>

@@ -10,7 +10,9 @@ namespace DddCore.Tests.Integration.Cars.DAL
         {
             modelBuilder
                 .Entity<Wheel>()
-                .Ignore(x => x.CrudState);
+                .Ignore(x => x.CrudState)
+                .HasKey(x => x.Id)
+                .ForSqlServerIsClustered(); ;
 
             var carEntityBuilder = modelBuilder.Entity<Car>();
 
@@ -23,6 +25,10 @@ namespace DddCore.Tests.Integration.Cars.DAL
                 .Ignore(x => x.CrudState)
                 .Property(x => x.Ts)
                 .IsRowVersion();
+
+            carEntityBuilder
+                .HasKey(x => x.Id)
+                .ForSqlServerIsClustered();
         }
     }
 }

@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Reflection;
 using System.Collections.Generic;
+using System.Collections;
 
 namespace DddCore.Dal.DomainStack.EntityFramework
 {
@@ -49,7 +50,7 @@ namespace DddCore.Dal.DomainStack.EntityFramework
         {
             var query = GetDbSet().AsQueryable();
 
-            foreach (var expr in GetEntitySelectors())
+            foreach (var expr in GetEntityPropertyNames(typeof(T)))
             {
                 query = query.Include(expr);
             }
@@ -67,32 +68,34 @@ namespace DddCore.Dal.DomainStack.EntityFramework
 
         #region Private Methods
 
-        string[] GetEntitySelectors()
-        {
-            return GetPropertiesWithEntities(typeof(T));
-        }
-
-        string[] GetPropertiesWithEntities(Type entity)
+        string[] GetEntityPropertyNames(Type type)
         {
             var result = new List<string>();
-
-            var type = typeof(T);
             var entityType = typeof(IEntity<TKey>);
             var aggregateRootType = typeof(IAggregateRootEntity<TKey>);
-            var enumerableType = typeof(IEnumerable<>);
 
             foreach (var p in type.GetProperties())
             {
                 var propertyType = p.PropertyType;
 
-                if (enumerableType.IsAssignableFrom(propertyType))
+                var enumerableType = GetEnumerableType(propertyType);
+
+                if (enumerableType != null)
                 {
-                    propertyType = propertyType.GetGenericArguments().First();
+                    propertyType = enumerableType;
                 }
 
-                if ((propertyType == entityType) && propertyType != aggregateRootType)
+                if (entityType.IsAssignableFrom(propertyType) && !aggregateRootType.IsAssignableFrom(propertyType))
                 {
-                    foreach (var propertyName in GetPropertiesWithEntities(propertyType))
+                    var childPropertyNames = GetEntityPropertyNames(propertyType);
+
+                    if (!childPropertyNames.Any())
+                    {
+                        result.Add(p.Name);
+                        continue;
+                    }
+
+                    foreach (var propertyName in childPropertyNames)
                     {
                         result.Add($"{p.Name}.{propertyName}");
                     }
@@ -100,6 +103,21 @@ namespace DddCore.Dal.DomainStack.EntityFramework
             }
 
             return result.ToArray();
+        }
+
+        Type GetEnumerableType(Type type)
+        {
+            var enumerableType = typeof(IEnumerable<>);
+
+            foreach (Type intType in type.GetInterfaces())
+            {
+                if (intType.GetTypeInfo().IsGenericType
+                    && intType.GetGenericTypeDefinition() == enumerableType)
+                {
+                    return intType.GetGenericArguments()[0];
+                }
+            }
+            return null;
         }
 
         void UpdateAuditableInfo(ICrudState entity)
