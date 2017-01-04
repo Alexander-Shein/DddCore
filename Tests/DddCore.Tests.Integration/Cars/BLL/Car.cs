@@ -9,9 +9,4 @@ namespace DddCore.Tests.Integration.Cars.BLL
         public string Color { get; set; }
         public ICollection<Wheel> Wheels { get; set; } = new List<Wheel>();
     }
-
-    public class Wheel : GuidEntityBase
-    {
-        public Guid CarId { get; set; }
-    }
 }

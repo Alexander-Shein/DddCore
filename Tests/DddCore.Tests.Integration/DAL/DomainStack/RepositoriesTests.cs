@@ -62,9 +62,7 @@ namespace DddCore.Tests.Integration.DAL.DomainStack
             var dataContext = new DataContext(optionsMock.Object);
             var repository = new Repository<Car, Guid>(dataContext, userContextMock.Object);
 
-            var id = new Guid("40D718F0-F7CA-48F7-A683-FDBE90D124FB");
-
-            var car = await repository.ReadAggregateRootAsync(new Guid("40D718F0-F7CA-48F7-A683-FDBE90D124FB"));
+            var car = await repository.ReadAggregateRootAsync(new Guid("17FAF315-7BB4-401C-8683-1616AA08DE67"));
         }
     }
 }
