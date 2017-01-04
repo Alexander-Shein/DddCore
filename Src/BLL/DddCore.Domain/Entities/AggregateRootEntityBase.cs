@@ -35,31 +35,31 @@ namespace DddCore.Domain.Entities
 
         #region Private Methods
 
-        IEnumerable<TEntity> Traverse<TEntity>(TEntity entity, bool aggregateRootOnly = false) where TEntity : class, IEntity<TKey>
+        IEnumerable<IEntity<TKey>> Traverse(IEntity<TKey> entity, bool aggregateRootOnly = false)
         {
-            var stack = new Stack<TEntity>();
+            var stack = new Stack<IEntity<TKey>>();
             stack.Push(entity);
             while (stack.Count != 0)
             {
-                TEntity item = stack.Pop();
+                IEntity<TKey> item = stack.Pop();
                 yield return item;
 
-                var type = item.GetType().GetTypeInfo();
+                var type = item.GetType();
 
                 foreach (var prop in type.GetProperties())
                 {
-                    var propValue = prop.GetValue(entity, null);
+                    var propValue = prop.GetValue(item, null);
 
-                    if (propValue is TEntity trackableRef && !SkipAggregateRoot(aggregateRootOnly, trackableRef))
+                    if (propValue is IEntity<TKey> trackableRef && !SkipAggregateRoot(aggregateRootOnly, trackableRef))
                     {
                         stack.Push(trackableRef);
                         continue;
                     }
 
-                    var entities = propValue as IEnumerable<TEntity>;
+                    var entities = propValue as IEnumerable<IEntity<TKey>>;
                     if (entities.IsNullOrEmpty() || SkipAggregateRoot(aggregateRootOnly, entities.First())) continue;
 
-                    foreach (var element in entities.ToList())
+                    foreach (var element in entities)
                     {
                         stack.Push(element);
                     }

@@ -53,6 +53,7 @@ build/
 *.pidb
 *.log
 *.scc
+*.jfm
 
 # Visual C++ cache files
 ipch/
