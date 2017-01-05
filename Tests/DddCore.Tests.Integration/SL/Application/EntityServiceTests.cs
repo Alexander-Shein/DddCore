@@ -1,15 +1,17 @@
 ﻿using DddCore.Contracts.Crosscutting.UserContext;
 using DddCore.Contracts.Dal;
+using DddCore.Contracts.Domain.Entities.BusinessRules;
 using DddCore.Contracts.Domain.Entities.Model;
+using DddCore.Contracts.Domain.Events;
 using DddCore.Dal.DomainStack.EntityFramework;
 using DddCore.Dal.DomainStack.EntityFramework.Context;
+using DddCore.Domain.Events;
 using DddCore.Services.Application.DomainStack;
 using DddCore.Tests.Integration.Cars.BLL;
 using Microsoft.Extensions.Options;
 using Moq;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace DddCore.Tests.Integration.SL.Application
@@ -17,7 +19,7 @@ namespace DddCore.Tests.Integration.SL.Application
     public class EntityServiceTests
     {
         [Fact]
-        public void Persist()
+        public async void Persist()
         {
             var connectonStrings = new ConnectionStrings
             {
@@ -31,8 +33,20 @@ namespace DddCore.Tests.Integration.SL.Application
             var userContextMock = new Mock<IUserContext<Guid>>();
             var dataContext = new DataContext(optionsMock.Object);
             var repository = new Repository<Car, Guid>(dataContext, userContextMock.Object);
-            var guard = new Guard(null);
-            var entityService = new EntityService<Car, Guid>(repository, guard, null);
+            var businessRulesValidatorFactoryMock = new Mock<IBusinessRulesValidatorFactory>();
+            businessRulesValidatorFactoryMock.Setup(x => x.GetBusinessRulesValidator<Car>()).Returns(new CarBusinessRulesValidator());
+
+            var domainEventHandlerFactoryMock = new Mock<IDomainEventHandlerFactory>();
+            domainEventHandlerFactoryMock.Setup(x => x.GetHandlers<ColorChangedDomainEvent>()).Returns(new List<IDomainEventHandler<ColorChangedDomainEvent>> {
+                new UpdateColorHandler()
+            });
+
+            var domainEventDispather = new DomainEventDispatcher(domainEventHandlerFactoryMock.Object);
+
+            var handlers = domainEventHandlerFactoryMock.Object.GetHandlers<ColorChangedDomainEvent>();
+
+            var guard = new Guard(businessRulesValidatorFactoryMock.Object);
+            var entityService = new EntityService<Car, Guid>(repository, guard, domainEventDispather);
 
             var car = new Car
             {
@@ -45,6 +59,10 @@ namespace DddCore.Tests.Integration.SL.Application
                 CarId = car.Id,
                 CrudState = CrudState.Added
             });
+
+            await entityService.PersistAggregateRootAsync(car);
+
+            dataContext.Save();
         }
     }
 }

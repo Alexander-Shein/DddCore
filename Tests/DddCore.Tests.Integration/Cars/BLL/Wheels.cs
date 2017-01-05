@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using DddCore.Domain.Entities.GuidEntities;
 
 namespace DddCore.Tests.Integration.Cars.BLL
 {

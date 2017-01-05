@@ -31,7 +31,9 @@ namespace DddCore.Domain.Events
 
         public void Raise<T>(T args) where T : IDomainEvent
         {
-            foreach (var handler in domainEventHandlerFactory.GetHandlers<T>())
+            var handlers = domainEventHandlerFactory.GetHandlers<T>();
+
+            foreach (var handler in handlers)
             {
                 handler.Handle(args);
             }

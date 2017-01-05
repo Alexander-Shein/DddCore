@@ -1,10 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using DddCore.Domain.Entities.BusinessRules;
+using FluentValidation;
 
 namespace DddCore.Tests.Integration.Cars.BLL
 {
     public class CarBusinessRulesValidator : BusinessRulesValidatorBase<Car>
     {
+        public CarBusinessRulesValidator()
+        {
+            RuleFor(x => x.Color)
+                .Length(0, 50);
+        }
     }
 }
