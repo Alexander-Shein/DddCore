@@ -1,21 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp1.0</TargetFramework>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <PackageId>DddCore</PackageId>
+    <PackageVersion>1.2.0</PackageVersion>
+    <Authors>Alexander Shein</Authors>
+    <Description>DDD arhitecture implementation for .net</Description>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageReleaseNotes>First release</PackageReleaseNotes>
+    <Copyright>Copyright 2017 (c)</Copyright>
+    <PackageTags>ddd domain driven design arhitecture</PackageTags>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="**\*.cs" />
     <EmbeddedResource Include="**\*.resx" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.NETCore.App" Version="1.1.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0-preview-20161123-03" />
-    <PackageReference Include="Moq" Version="4.6.38-alpha" />
-    <PackageReference Include="xunit" Version="2.2.0-beta4-build3444" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0-beta4-build1194" />
+    <PackageReference Include="NETStandard.Library" Version="1.6.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Samples\Api\Api.csproj" />
     <ProjectReference Include="..\..\Src\BLL\DddCore.Contracts.Domain\DddCore.Contracts.Domain.csproj" />
     <ProjectReference Include="..\..\Src\BLL\DddCore.Domain\DddCore.Domain.csproj" />
     <ProjectReference Include="..\..\Src\Crosscutting\DddCore.Contracts.Crosscutting\DddCore.Contracts.Crosscutting.csproj" />

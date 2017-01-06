@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Api.Cars.DAL.QueryStack.Dtos;
 using DddCore.Contracts.Dal;
 using DddCore.Dal.QueryStack.Dapper;
@@ -18,30 +17,8 @@ namespace Api.Cars.DAL.QueryStack
         {
             var sql = "SELECT * FROM [dbo].[Car];";
 
-            //var dtos = await GetFilteredListAsync<CarVmDto>(sql);
-
-            //return dtos;
-            
-            return new List<CarVmDto>
-            {
-                new CarVmDto
-                {
-                    Color = "Red",
-                    PublicKey = "PublicKey",
-                    Wheels = new List<WheelVmDto>
-                    {
-                        new WheelVmDto
-                        {
-                            Id = Guid.NewGuid()
-                        },
-
-                        new WheelVmDto
-                        {
-                            Id = Guid.NewGuid()
-                        }
-                    }
-                }
-            };
+            var dtos = await GetFilteredListAsync<CarVmDto>(sql);
+            return dtos;
         }
     }
 }

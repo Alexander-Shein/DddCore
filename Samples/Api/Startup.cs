@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -38,9 +34,11 @@ namespace Api
                 .AddMicrosoftDependencyInjection(services)
                 .Bootstrap();
 
-            new ObjectMapperBootstrapper()
+            var objectMapper = new ObjectMapperBootstrapper()
                 .AddAutoMapperConfig()
                 .Bootstrap();
+
+            services.AddSingleton(objectMapper);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +46,11 @@ namespace Api
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            if (env.IsDevelopment())
+            {
+                //app.UseDeveloperExceptionPage();
+            }
 
             app.UseMvc();
         }

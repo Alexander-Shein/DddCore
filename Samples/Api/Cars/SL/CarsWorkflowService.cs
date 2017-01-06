@@ -22,7 +22,7 @@ namespace Api.Cars.SL
             {
                 Color = x.Color,
                 PublicKey = x.PublicKey,
-                Wheels = x.Wheels.Select(c => new WheelVM
+                Wheels = x.Wheels?.Select(c => new WheelVM
                 {
                     Id = c.Id
                 })

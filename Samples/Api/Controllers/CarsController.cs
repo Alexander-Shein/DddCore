@@ -16,10 +16,10 @@ namespace Api.Controllers
         }
 
         // GET api/cars
-        [HttpGet]
-        public IEnumerable<CarVM> Get()
+        [HttpGet("")]
+        public async Task<IEnumerable<CarVM>> GetAsync()
         {
-            return carsWorkflowService.GetAllCarsAsync().Result;
+            return await carsWorkflowService.GetAllCarsAsync();
         }
 
         // GET api/values/5
