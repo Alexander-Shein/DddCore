@@ -20,7 +20,7 @@ Setup:
 
 ### Crosscutting
 
-- Dependency injection [README][1]
+- [Dependency injection][1]
 - Object mapper
 
 ### BLL
