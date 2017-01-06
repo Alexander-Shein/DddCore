@@ -6,15 +6,31 @@ Setup:
 
 2) Install DddCore packages npm install DddCore
 
-3) 
-
-
 ## Layred arhitecture:
 
-1) Business Logic Layer
+- Crosscutting
 
-2) Data Access Layer
+- Business Logic Layer (BLL)
 
-3) Services Layer
+- Data Access Layer (DAL)
 
-4) Presentation Layer
+- Services Layer (SL)
+
+- Presentation Layer (PL)
+
+## Features:
+
+### Crosscutting
+
+### BLL
+
+- Entity
+
+- Aggregate root entity
+
+- Business rules
+
+- Domain events
+
+
+
