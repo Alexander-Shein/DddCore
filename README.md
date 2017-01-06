@@ -2,9 +2,7 @@
 
 Setup:
 
-1) Install asp.net core app
 
-2) Install DddCore packages npm install DddCore
 
 ## Layred arhitecture:
 
@@ -22,8 +20,7 @@ Setup:
 
 ### Crosscutting
 
-- Dependency injection
-
+- Dependency injection [README][1]
 - Object mapper
 
 ### BLL
@@ -53,3 +50,5 @@ Setup:
 - Infrastructure services
 
 ### PL
+
+[1]: https://github.com/angular/material2/blob/master/src/lib/button/README.md
