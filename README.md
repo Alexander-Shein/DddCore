@@ -51,4 +51,4 @@ Setup:
 
 ### PL
 
-[1]: https://github.com/angular/material2/blob/master/src/lib/button/README.md
+[1]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/Crosscutting/DddCore.Contracts.Crosscutting/DependencyInjection/README.md
