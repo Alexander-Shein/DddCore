@@ -22,6 +22,10 @@ Setup:
 
 ### Crosscutting
 
+- Dependency injection
+
+- Object mapper
+
 ### BLL
 
 - Entity
@@ -32,5 +36,20 @@ Setup:
 
 - Domain events
 
+### DAL
 
+- Repository
 
+- Query repository
+
+- Unit of Work
+
+### SL
+
+- Entity services
+
+- Workflow services
+
+- Infrastructure services
+
+### PL
