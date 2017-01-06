@@ -1,19 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Api.Cars.SL;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Api.Controllers
 {
     [Route("api/[controller]")]
-    public class ValuesController : Controller
+    public class CarsController : Controller
     {
-        // GET api/values
-        [HttpGet]
-        public IEnumerable<string> Get()
+        readonly ICarsWorkflowService carsWorkflowService;
+
+        public CarsController(ICarsWorkflowService carsWorkflowService)
         {
-            return new string[] { "value1", "value2" };
+            this.carsWorkflowService = carsWorkflowService;
+        }
+
+        // GET api/cars
+        [HttpGet]
+        public IEnumerable<CarVM> Get()
+        {
+            return carsWorkflowService.GetAllCarsAsync().Result;
         }
 
         // GET api/values/5

@@ -121,7 +121,7 @@ namespace DddCore.Configuraion
                 var contractType =
                     t
                         .GetInterfaces()
-                        .FirstOrDefault(x => x.GetGenericTypeDefinition() == type);
+                        .FirstOrDefault(x => x.GetTypeInfo().IsGenericType && x.GetGenericTypeDefinition() == type);
 
                 config
                     .Register(contractType, t)
