@@ -2,20 +2,6 @@
 
 Setup:
 
-
-
-## Layred arhitecture:
-
-- Crosscutting
-
-- Business Logic Layer (BLL)
-
-- Data Access Layer (DAL)
-
-- Services Layer (SL)
-
-- Presentation Layer (PL)
-
 ## Features:
 
 ### Crosscutting
@@ -23,7 +9,7 @@ Setup:
 - [Dependency injection][1]
 - Object mapper
 
-### BLL
+### Business Logic Layer (BLL)
 
 - Entity
 
@@ -33,7 +19,7 @@ Setup:
 
 - Domain events
 
-### DAL
+### Data Access Layer (DAL)
 
 - Repository
 
@@ -41,7 +27,7 @@ Setup:
 
 - Unit of Work
 
-### SL
+### Services Layer (SL)
 
 - Entity services
 
