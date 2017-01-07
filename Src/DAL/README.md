@@ -3,6 +3,13 @@
 Generic repository:
 
 ```csharp
+
+public interface IRepository<T, in TKey> where T : class, IAggregateRootEntity<TKey>
+{
+    void PersistAggregateRoot(T entity);
+    Task<T> ReadAggregateRootAsync(TKey key);
+}
+
 public class Repository<T, TKey> : IRepository<T, TKey> where T : class, IAggregateRootEntity<TKey>
 {
     public virtual void PersistAggregateRoot(T entity) { ... }
