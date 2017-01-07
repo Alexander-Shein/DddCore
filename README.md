@@ -42,5 +42,5 @@ Setup:
 [1]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/Crosscutting/DddCore.Contracts.Crosscutting/DependencyInjection/README.md
 [2]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/Crosscutting/DddCore.Contracts.Crosscutting/ObjectMapper/README.md
 [3]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/DAL/DddCore.Contracts.Dal/DomainStack/README.md
-[4]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/BLL/DddCore.Contracts.Domain/Entities/README.md
+[4]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/BLL/DddCore.Contracts.Domain/Entities/README.md#Aggregate%20root%20entities
 [5]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/BLL/DddCore.Contracts.Domain/Entities/BusinessRules/README.md
