@@ -17,7 +17,7 @@ Setup:
 
 - Business rules
 
-- Domain events
+- Domain events and handlers
 
 ### Data Access Layer (DAL)
 
