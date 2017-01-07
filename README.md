@@ -1,4 +1,4 @@
-# Domain Driven Design implementation for .net core 
+# Domain Driven Design arhitecture implementation for .net core 
 
 Setup:
 
