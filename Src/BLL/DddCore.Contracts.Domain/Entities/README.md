@@ -1,4 +1,4 @@
-# Entities and Aggregate root entities
+# Entities
 
 Base class for entities:
 
@@ -18,6 +18,8 @@ Example:
 ```csharp
 public class Wheel : EntityBase<Guid>{...}
 ```
+
+# Aggregate root entities
 
 Base class for aggregate root entities:
 
