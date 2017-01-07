@@ -11,23 +11,23 @@ Setup:
 
 ### Business Logic Layer (BLL)
 
-- [Entity][4]
+- [Entity][3]
 
-- [Aggregate root entity][5]
+- [Aggregate root entity][4]
 
-- [Business rules][6]
+- [Business rules][5]
 
-- [Domain events and handlers][7]
+- [Domain events and handlers][6]
 
 ### Data Access Layer (DAL)
 
-- [Repository][3]
+- [Repository][7]
 
-- [Unit of Work][3]
+- [Unit of Work][8]
 
-- Query repository
+- [Query repository][9]
 
-- Entity mapping
+- [Entity mapping][10]
 
 ### Services Layer (SL)
 
@@ -41,9 +41,13 @@ Setup:
 
 [1]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/Crosscutting/DddCore.Contracts.Crosscutting/DependencyInjection/README.md
 [2]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/Crosscutting/DddCore.Contracts.Crosscutting/ObjectMapper/README.md
-[3]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/DAL/DddCore.Contracts.Dal/DomainStack/README.md
 
-[4]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/BLL/README.md
-[5]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/BLL/README.md#aggregate-root-entity
-[6]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/BLL/README.md#business-rules
-[7]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/BLL/README.md#domain-events-and-handlers
+[3]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/BLL/README.md
+[4]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/BLL/README.md#aggregate-root-entity
+[5]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/BLL/README.md#business-rules
+[6]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/BLL/README.md#domain-events-and-handlers
+
+[7]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/DAL/README.md#repository
+[8]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/DAL/README.md#unit-of-work
+[9]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/DAL/README.md#queryrepository
+[10]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/DAL/README.md#entity-mapping
