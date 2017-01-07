@@ -2,28 +2,14 @@
 
 Setup:
 
-
-
-## Layred arhitecture:
-
-- Crosscutting
-
-- Business Logic Layer (BLL)
-
-- Data Access Layer (DAL)
-
-- Services Layer (SL)
-
-- Presentation Layer (PL)
-
 ## Features:
 
 ### Crosscutting
 
 - [Dependency injection][1]
-- Object mapper
+- [Object mapper][2]
 
-### BLL
+### Business Logic Layer (BLL)
 
 - Entity
 
@@ -33,7 +19,7 @@ Setup:
 
 - Domain events
 
-### DAL
+### Data Access Layer (DAL)
 
 - Repository
 
@@ -41,7 +27,7 @@ Setup:
 
 - Unit of Work
 
-### SL
+### Services Layer (SL)
 
 - Entity services
 
@@ -52,3 +38,4 @@ Setup:
 ### PL
 
 [1]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/Crosscutting/DddCore.Contracts.Crosscutting/DependencyInjection/README.md
+[2]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/Crosscutting/DddCore.Contracts.Crosscutting/ObjectMapper/README.md
