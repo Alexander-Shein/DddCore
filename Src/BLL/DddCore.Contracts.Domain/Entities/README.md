@@ -14,6 +14,10 @@ public abstract class EntityBase<TKey> : IEntity<TKey>
 * CrudState - Unchanged/Added/Modified/Deleted state will be used in repository to sync entity with database 
 * Events - events that will be automaticaly handled by domain event handlers
 
+```csharp
+public class Wheel : EntityBase<Guid>{...}
+```
+
 Base class for aggregate root entities:
 
 ```csharp
@@ -31,6 +35,10 @@ public abstract class AggregateRootEntityBase<TKey> : EntityBase<TKey>, IAggrega
 * Ts - row version for optimistic concurrency
 * WalkEntireGraph - walk throw all entities in the graph
 * WalkAggregateRootGraph - walk throw all entities in current aggregate root
+
+```csharp
+public class Car : AggregateRootEntityBase<Guid>{...}
+```
 
 [Return][1]
 
