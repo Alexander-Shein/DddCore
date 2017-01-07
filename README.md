@@ -27,6 +27,8 @@ Setup:
 
 - Query repository
 
+- Entity mapping
+
 ### Services Layer (SL)
 
 - Entity services
