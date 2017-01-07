@@ -21,11 +21,11 @@ Setup:
 
 ### Data Access Layer (DAL)
 
-- Repository
+- [Repository][3]
+
+- [Unit of Work][3]
 
 - Query repository
-
-- Unit of Work
 
 ### Services Layer (SL)
 
@@ -39,3 +39,4 @@ Setup:
 
 [1]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/Crosscutting/DddCore.Contracts.Crosscutting/DependencyInjection/README.md
 [2]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/Crosscutting/DddCore.Contracts.Crosscutting/ObjectMapper/README.md
+[3]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/DAL/DddCore.Contracts.Dal/DomainStack/README.md
