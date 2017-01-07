@@ -31,3 +31,7 @@ public abstract class AggregateRootEntityBase<TKey> : EntityBase<TKey>, IAggrega
 * Ts - row version for optimistic concurrency
 * WalkEntireGraph - walk throw all entities in the graph
 * WalkAggregateRootGraph - walk throw all entities in current aggregate root
+
+[Return][1]
+
+[1]: https://github.com/Alexander-Shein/DddCore/blob/net-core/README.md
