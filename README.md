@@ -15,7 +15,7 @@ Setup:
 
 - [Aggregate root entity][4]
 
-- Business rules
+- [Business rules][5]
 
 - Domain events and handlers
 
@@ -43,3 +43,4 @@ Setup:
 [2]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/Crosscutting/DddCore.Contracts.Crosscutting/ObjectMapper/README.md
 [3]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/DAL/DddCore.Contracts.Dal/DomainStack/README.md
 [4]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/BLL/DddCore.Contracts.Domain/Entities/README.md
+[5]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/BLL/DddCore.Contracts.Domain/Entities/BusinessRules/README.md
