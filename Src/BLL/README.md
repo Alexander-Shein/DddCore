@@ -70,8 +70,49 @@ public class CarBusinessRulesValidator : BusinessRulesValidatorBase<Car>
 }
 ```
 
+# Domain events and handlers
+
+Domain event example:
+```csharp
+public class ColorChangedDomainEvent : IDomainEvent
+{
+    public ColorChangedDomainEvent(Car car)
+    {
+        Car = car;
+    }
+
+    public Car Car { get; }
+
+    public DateTime CreatedAt { get; set; }
+}
+```
+
+Domain event handler example:
+```csharp
+public class UpdateColorHandler : IDomainEventHandler<ColorChangedDomainEvent>
+{
+    public void Handle(ColorChangedDomainEvent args)
+    {
+        args.Car.Color += "-Updated";
+    }
+}
+```
+
+Adding domain event example:
+```csharp
+public class Car : AggregateRootEntityBase<Guid>
+{
+    public string Color { get; set; }
+
+    public void UpdateColor(string color)
+    {
+        Events.Add(new ColorChangedDomainEvent(this));
+        Color = color;
+    }
+}
+```
+
+[Return][2]
+
 [1]: https://github.com/JeremySkinner/FluentValidation
-
-[Return][1]
-
-[1]: https://github.com/Alexander-Shein/DddCore/blob/net-core/README.md
+[2]: https://github.com/Alexander-Shein/DddCore/blob/net-core/README.md
