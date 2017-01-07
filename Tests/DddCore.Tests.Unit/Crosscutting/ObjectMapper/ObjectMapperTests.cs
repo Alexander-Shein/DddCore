@@ -2,16 +2,15 @@
 using DddCore.Contracts.Crosscutting.ObjectMapper.Base;
 using DddCore.Crosscutting.ObjectMapper;
 using DddCore.Crosscutting.ObjectMapper.AutoMapper;
-using NUnit.Framework;
+using Xunit;
 
 namespace DddCore.Tests.Unit.Crosscutting.ObjectMapper
 {
-    [TestFixture]
     public class ObjectMapperTests
     {
         private IObjectMapper objectMapper;
 
-        [SetUp]
+        [Fact]
         public void SetUp()
         {
             objectMapper =
@@ -20,7 +19,7 @@ namespace DddCore.Tests.Unit.Crosscutting.ObjectMapper
                     .Bootstrap(new ObjectMapperModule());
         }
 
-        [Test]
+        [Fact]
         public void Test()
         {
             var from = new ObjectFrom
