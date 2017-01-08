@@ -71,6 +71,7 @@ public class CarBusinessRulesValidator : BusinessRulesValidatorBase<Car>
 ```
 
 Note: For more validation examples see [FluentValidation][1]
+
 Note: When aggregate root is persisted via IEntityService.PersistEntityGraph the related BusinessRulesValidator is invoked against aggregate root entity.
 
 # Domain events and handlers
