@@ -2,6 +2,19 @@
 
 # Workflow Service
 
+## Dependency injection:
+Services marked as IWorkflowService are auto registered with PerWebRequest lifestyle.
+
+## Overview
+The responsibily of those services is a workflow and transaction control. Those services contain NOT reusable logic because each workflow should have only one enter point. IUnitOfWork should be injected only into workflow service.
+
+Note: Not reusable logic
+
+Note: Transactions control
+
+Note: Workflow control
+
+
 # Infrastructure Service
 
 ## Dependency injection:
