@@ -72,7 +72,11 @@ public class CarBusinessRulesValidator : BusinessRulesValidatorBase<Car>
 
 # Domain events and handlers
 
-Domain event example:
+## Dependency injection
+Handlers marked with IDomainEventHandler<> interface are auto registered with PerWebRequest lifestyle.
+
+## Overview
+All domain events should implement IDomainEvent interface:
 ```csharp
 public class ColorChangedDomainEvent : IDomainEvent
 {
@@ -87,18 +91,7 @@ public class ColorChangedDomainEvent : IDomainEvent
 }
 ```
 
-Domain event handler example:
-```csharp
-public class UpdateColorHandler : IDomainEventHandler<ColorChangedDomainEvent>
-{
-    public void Handle(ColorChangedDomainEvent args)
-    {
-        args.Car.Color += "-Updated";
-    }
-}
-```
-
-Adding domain event example:
+Each entity contains property Events collection. In order to raise an event you just need to add your domain event to this property:
 ```csharp
 public class Car : AggregateRootEntityBase<Guid>
 {
@@ -110,7 +103,19 @@ public class Car : AggregateRootEntityBase<Guid>
         Color = color;
     }
 }
+
+Domain event handler example:
+```csharp
+public class UpdateColorHandler : IDomainEventHandler<ColorChangedDomainEvent>
+{
+    public void Handle(ColorChangedDomainEvent args)
+    {
+        args.Car.Color += "-Updated";
+    }
+}
 ```
+
+Note: When aggregate root is persisted via IEntityService.PersistEntityGraph the events are raised and passed to related event handlers.
 
 [Return][2]
 
