@@ -12,7 +12,7 @@ Example:
 ```csharp
 public interface ICarsWorkflowService : IWorkflowService
 {
-    Task<CarVm> CreateCarAsync(CarIm);
+    Task<CarVm> CreateCarAsync(CarIm im);
 }
 
 public class CarsWorkflowService : ICarsWorkflowService
@@ -24,9 +24,10 @@ public class CarsWorkflowService : ICarsWorkflowService
         this.unitOfWork = unitOfWork;
     }
 
-    public Task<CarVm> CreateCarAsync(CarIm)
+    public Task<CarVm> CreateCarAsync(CarIm im)
     {
-        ...
+        // Insert new car
+        
         unitOfWork.Save();
         
         return carVm;
