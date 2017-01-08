@@ -1,5 +1,9 @@
 # Repository
 
+## Dependency injection
+For each Aggregate Root the generic implementation of IRepository<> is auto registered and can be injected. When custom repository for aggregate root is created then generic repository is overritten. Lifestyle is PerWebRequest.
+
+## Overview
 Generic repository:
 
 ```csharp
@@ -9,7 +13,8 @@ public interface IRepository<T, in TKey> where T : class, IAggregateRootEntity<T
     void PersistAggregateRoot(T entity);
     Task<T> ReadAggregateRootAsync(TKey key);
 }
-
+```
+```csharp
 public class Repository<T, TKey> : IRepository<T, TKey> where T : class, IAggregateRootEntity<TKey>
 {
     public virtual void PersistAggregateRoot(T entity) { ... }
@@ -29,14 +34,15 @@ public class CarsEntityService : ICarsEntityService
 }
 ```
 
-Create custom repository:
+Custom repository:
 
 ```csharp
 public interface ICarsRepository : IRepository<Car, Guid>
 {
   IEnumerable<Car> GetCarsWithColor(string color);
 }
-
+```
+```csharp
 public class CarsRepository : Repository<Car, Guid>, ICarsRepository
 {
   IEnumerable<Car> GetCarsWithColor(string color) { ... }
@@ -54,6 +60,11 @@ public class CarsEntityService : ICarsEntityService
 Note: protected DbSet<T> GetDbSet() can be used in custom repository to interact with EF collection
 
 # Unit of Work
+
+## Dependency injection
+It's auto registered and can be injected via IUnitOfWork interface.
+
+## Overview
 
 Api:
 
@@ -89,12 +100,14 @@ public class CarVmDto
     public string PublicKey { get; set; }
     public string Color { get; set; }
 }
-
+```
+```csharp
 public interface ICarsQueryRepository : IQueryRepository
 {
     Task<IEnumerable<CarVmDto>> GetAllCarsAsync();
 }
-
+```
+```csharp
 public class CarsQueryRepository : QueryRepositoryBase, ICarsQueryRepository
 {
     public CarsQueryRepository(IOptions<ConnectionStrings> connectionStrings) : base(connectionStrings)
