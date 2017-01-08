@@ -1,5 +1,5 @@
-# Domain Driven Design arhitecture implementation for .net core
-DddCore framework implements common ddd patterns like repository, unit of work, aggregate roots, domain events, query repositories, entity services and others. The goal of this framework is do not implement ddd patterns for every project from scratch and have well documented, fully tested components that you need for your new projects.
+# Domain Driven Design (DDD) arhitecture implementation for .net core
+DddCore framework implements common ddd patterns like repository, unit of work, aggregate roots, domain events, query repositories, entity services and others. The goal of this framework is do not implement ddd patterns for every project from scratch and have well documented, fully tested components that you need for your new projects. DddCore uses layered arhitecture. Below you can find all DddCore features and samples:
 
 [Sample][0]
 
