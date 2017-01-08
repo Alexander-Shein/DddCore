@@ -109,6 +109,7 @@ public class CarsQueryRepository : QueryRepositoryBase, ICarsQueryRepository
 
 # Entity Mapping
 
+[EntityFramework fluent api][3] is used for mapping.
 Framework automatically loads all intances of IMappingModule interface and passes EntityFramework ModelBuilder. Example:
 
 ```csharp
@@ -145,5 +146,6 @@ public class CarsMappingModule : IMappingModule
 
 [1]: https://github.com/StackExchange/dapper-dot-net
 [2]: https://github.com/Alexander-Shein/DddCore/blob/net-core/README.md
+[3]: https://msdn.microsoft.com/en-us/library/jj591617(v=vs.113).aspx
 
 
