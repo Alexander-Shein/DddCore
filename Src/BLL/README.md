@@ -72,7 +72,7 @@ public class CarBusinessRulesValidator : BusinessRulesValidatorBase<Car>
 
 Note: For more validation examples see [FluentValidation][1]
 
-Note: When aggregate root is persisted via IEntityService.PersistEntityGraph the related BusinessRulesValidator is invoked against aggregate root entity.
+Note: When aggregate root is persisted via IEntityService.PersistEntityGraph the related BusinessRulesValidator is invoked against aggregate root entity and validation is performed.
 
 # Domain events and handlers
 
@@ -120,7 +120,7 @@ public class UpdateColorHandler : IDomainEventHandler<ColorChangedDomainEvent>
 }
 ```
 
-Note: When aggregate root is persisted via IEntityService.PersistEntityGraph the events are raised and passed to related event handlers.
+Note: When aggregate root is persisted via IEntityService.PersistEntityGraph the events from all aggregate root graph entities are raised and passed to related event handlers.
 
 [Return][2]
 
