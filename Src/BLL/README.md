@@ -122,7 +122,12 @@ public class UpdateColorHandler : IDomainEventHandler<ColorChangedDomainEvent>
 
 Note: When aggregate root is persisted via IEntityService.PersistEntityGraph the events from all aggregate root graph entities are raised and passed to related event handlers.
 
+# Value Object
+
+For the details check this [link][3]
+
 [Return][2]
 
 [1]: https://github.com/JeremySkinner/FluentValidation
 [2]: https://github.com/Alexander-Shein/DddCore/blob/net-core/README.md
+[3]: http://grabbagoft.blogspot.com/2007/06/generic-value-object-equality.html
