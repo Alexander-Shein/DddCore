@@ -39,8 +39,8 @@ Setup:
 
 - [Infrastructure Service][14]
 
-[1]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/Crosscutting/DddCore.Contracts.Crosscutting/DependencyInjection/README.md
-[2]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/Crosscutting/DddCore.Contracts.Crosscutting/ObjectMapper/README.md
+[1]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/Crosscutting/README.md#dependency-injection
+[2]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/Crosscutting/README.md#object-mapper
 
 [3]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/BLL/README.md
 [4]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/BLL/README.md#aggregate-root-entity
