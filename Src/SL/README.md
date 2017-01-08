@@ -8,6 +8,32 @@ Services marked as IWorkflowService are auto registered with PerWebRequest lifes
 ## Overview
 The responsibily of those services is a workflow and transaction control. Those services contain NOT reusable logic because each workflow should have only one enter point. IUnitOfWork should be injected only into workflow service.
 
+Example:
+```csharp
+public interface ICarsWorkflowService : IWorkflowService
+{
+    Task<CarVm> CreateCarAsync(CarIm);
+}
+
+public class CarsWorkflowService : ICarsWorkflowService
+{
+    readonly IUnitOfWork unitOfWork;
+    
+    public CarsWorkflowService(IUnitOfWork unitOfWork)
+    {
+        this.unitOfWork = unitOfWork;
+    }
+
+    public Task<CarVm> CreateCarAsync(CarIm)
+    {
+        ...
+        unitOfWork.Save();
+        
+        return carVm;
+    }
+}
+```
+
 Note: Not reusable logic
 
 Note: Transactions control
