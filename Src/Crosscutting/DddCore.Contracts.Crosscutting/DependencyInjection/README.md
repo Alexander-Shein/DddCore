@@ -9,6 +9,7 @@ new DiBootstrapper()
 ```
 
 ## Modules
+Bootstrap method scans all assemblies for IDiModule implementation and passes IContainerConfig to Install method. If you need to register something to container just create a module and it be installed:
 ```csharp
 public class DddCoreDiModule : IDiModule
 {
@@ -33,19 +34,18 @@ public class DddCoreDiModule : IDiModule
 ```
 
 ## Inject container
+If you want a container instance you can use IServiceProvider interface to inject it:
 ```csharp
 public class BusinessRulesValidatorFactory : IBusinessRulesValidatorFactory
 {
-    readonly IServiceProvider serviceProvider;
-
     public BusinessRulesValidatorFactory(IServiceProvider serviceProvider)
     {
-        this.serviceProvider = serviceProvider;
     }
 }
 ```
 
 ## Auto registration
+Next components from framework have auto registration. You don't need to register it mannualy.
 
 - BusinessRulesValidator
 
@@ -60,7 +60,7 @@ public class CarBusinessRulesValidator : BusinessRulesValidatorBase<Car>
 }
 ```
 
-- Repository
+-  Custom and generic repository
 
 ```csharp
 public interface ICarsRepository : IRepository<Car, Guid>
@@ -79,7 +79,7 @@ public interface ICarsQueryRepository : IQueryRepository
 public class CarsQueryRepository : ICarsQueryRepository // It's automatically registered for ICarsQueryRepository
 ```
 
-- Entity services
+- Custom and generic Entity services
 
 - Infrastructure services
 
