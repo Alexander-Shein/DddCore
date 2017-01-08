@@ -1,6 +1,5 @@
 # Domain Driven Design arhitecture implementation for .net core 
-
-Setup:
+[Sample][0]
 
 ## Features:
 
@@ -39,6 +38,7 @@ Setup:
 
 - [Infrastructure Service][14]
 
+[0]: https://github.com/Alexander-Shein/DddCore/tree/net-core/Samples/Api
 [1]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/Crosscutting/README.md#dependency-injection
 [2]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/Crosscutting/README.md#object-mapper
 
