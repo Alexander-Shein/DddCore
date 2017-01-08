@@ -74,8 +74,12 @@ public class CarsWorkflowService : ICarsWorkflowService
 }
 ```
 
-# QueryRepository
+# Query Repository
 
+## Dependency injection
+Services marked as IQueryRepository are auto registered with PerWebRequest lifestyle.
+
+## Overview
 [Dapper][1] is used for query repository
 
 Query repository example:
