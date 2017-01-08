@@ -50,6 +50,8 @@ public class BusinessRulesValidatorFactory : IBusinessRulesValidatorFactory
 
 ## Bootstrap
 
+Bootstrap methos scans all assemblies for IObjectMapperModule and executes Install method. If you need to add mappings use IObjectMapperModule. Bootstrap method:
+
 ```csharp
 var objectMapper = new ObjectMapperBootstrapper()
     .AddAutoMapperConfig()
