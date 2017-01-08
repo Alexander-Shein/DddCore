@@ -4,7 +4,7 @@
 For each Aggregate Root the generic implementation IEntityService<> is auto registered and can be injected. When custom entity service for aggregate root is created then generic entity service is overritten. Lifestyle is PerWebRequest.
 
 ## Overview
-When business logic requires interaction with diffrent layers we implement it in entity services. For example if we need to interact with a repository this implementation goes to entity services.
+We can't inject services to entities. When business logic requires interaction with diffrent layers or it needs to use services that we can't inject to entity this logic goes to entity services. For example if we need to interact with a repository this implementation goes to entity services.
 
 Generic Entity Service:
 ```csharp
