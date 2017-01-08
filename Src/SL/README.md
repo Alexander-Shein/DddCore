@@ -1,7 +1,7 @@
 # Entity Service
 
 ## Dependency injection
-For each Aggregate Root generic IEntityService<> is auto registered. When custom entity service for aggregate root is created then generic entity service is overritten. Lifestyle is PerWebRequest.
+For each Aggregate Root generic implementation IEntityService<> is auto registered and can be injected. When custom entity service for aggregate root is created then generic entity service is overritten. Lifestyle is PerWebRequest.
 
 ## Overview
 When business logic requires interaction with diffrent layers we implement it in entity services. For example if we need to interact with a repository this implementation goes to entity services.
