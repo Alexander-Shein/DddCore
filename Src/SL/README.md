@@ -24,7 +24,7 @@ public interface ICarsEntityService : IEntityService<Car, Guid>
 ```csharp
 public class CarsEntityService : EntityService<Car, Guid>, ICarsEntityService
 {
-public CarsEntityService(IRepository<T, TKey> repository, IGuard guard, IDomainEventDispatcher domainEventDispatcher) : base(repository, guard, domainEventDispatcher)
+    public CarsEntityService(IRepository<T, TKey> repository, IGuard guard, IDomainEventDispatcher domainEventDispatcher) : base(repository, guard, domainEventDispatcher)
 {
 }
 
