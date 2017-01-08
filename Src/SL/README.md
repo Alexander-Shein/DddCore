@@ -1,5 +1,19 @@
 # Entity Service
 
+## Dependency injection
+For each Aggregate Root generic IEntityService<> is auto registered. When custom entity service for aggregate root is created then generic entity service is overritten. Lifestyle is PerWebRequest.
+
+## Overview
+When business logic requires interaction with diffrent layers we implement it in entity services. For example if we need to interact with a repository this implementation goes to entity services.
+
+Generic Entity Service:
+```csharp
+public interface IEntityService<in T, in TKey> where T : class, IAggregateRootEntity<TKey>
+{
+    Task PersistAggregateRootAsync(T aggregateRoot);
+}
+```
+
 # Workflow Service
 
 ## Dependency injection:
