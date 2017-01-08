@@ -103,6 +103,7 @@ public class Car : AggregateRootEntityBase<Guid>
         Color = color;
     }
 }
+```
 
 Domain event handler example:
 ```csharp
