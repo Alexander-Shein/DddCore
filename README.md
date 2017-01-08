@@ -19,6 +19,8 @@ Setup:
 
 - [Domain events and handlers][6]
 
+- Value object
+
 ### Data Access Layer (DAL)
 
 - [Repository][7]
