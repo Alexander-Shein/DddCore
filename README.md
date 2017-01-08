@@ -33,7 +33,7 @@ Setup:
 
 ### Services Layer (SL)
 
-- Entity Service
+- [Entity Service][11]
 
 - [Workflow Service][12]
 
@@ -52,6 +52,6 @@ Setup:
 [9]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/DAL/README.md#queryrepository
 [10]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/DAL/README.md#entity-mapping
 
-[11]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/SL/README.md
+[11]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/SL/README.md#entity-service
 [12]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/SL/README.md#workflow-service
 [13]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/SL/README.md#infrastructure-service
