@@ -6,7 +6,7 @@ namespace DddCore.Crosscutting
 {
     public static class TypeExtensions
     {
-        public static bool IsAssignableFromGenericType(this Type givenType, Type genericType)
+        public static bool IsAssignableFromGenericType(this Type genericType, Type givenType)
         {
             while (true)
             {

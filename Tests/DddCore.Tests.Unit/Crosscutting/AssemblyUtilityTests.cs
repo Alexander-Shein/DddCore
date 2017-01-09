@@ -10,7 +10,7 @@ namespace DddCore.Tests.Unit.Crosscutting
         [Fact]
         public void GetInstances_NoImplementations()
         {
-            var actual = AssemblyUtility.GetInstances<IHasNoImplementations>();
+            var actual = AssemblyUtility.GetInstancesOf<IHasNoImplementations>();
 
             actual.Should().NotBeNull();
             actual.Should().BeEmpty();
@@ -19,7 +19,7 @@ namespace DddCore.Tests.Unit.Crosscutting
         [Fact]
         public void GetInstances_SingleInstance()
         {
-            var actual = AssemblyUtility.GetInstances<IHasSingleImplementation>();
+            var actual = AssemblyUtility.GetInstancesOf<IHasSingleImplementation>();
 
             actual.Should().NotBeNull();
             actual.Should().ContainSingle();
@@ -28,7 +28,7 @@ namespace DddCore.Tests.Unit.Crosscutting
         [Fact]
         public void GetInstances_MultipleInstances()
         {
-            var actual = AssemblyUtility.GetInstances<IHasMultipleImplementations>();
+            var actual = AssemblyUtility.GetInstancesOf<IHasMultipleImplementations>();
 
             actual.Should().NotBeNull();
             actual.Count().Should().Be(2);

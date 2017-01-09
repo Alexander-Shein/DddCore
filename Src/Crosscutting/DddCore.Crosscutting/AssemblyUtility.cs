@@ -8,10 +8,8 @@ namespace DddCore.Crosscutting
 {
     public static class AssemblyUtility
     {
-        public static IEnumerable<T> GetInstances<T>()
+        public static IEnumerable<T> GetInstancesOf<T>()
         {
-            var assignType = typeof(T);
-
             return
                 GetTypes<T>()
                     .Select(type => (T)Activator.CreateInstance(type));
@@ -23,11 +21,12 @@ namespace DddCore.Crosscutting
             return GetTypes(assignType);
         }
 
-        public static IEnumerable<Type> GetTypes(Type assignType)
+        public static IEnumerable<Type> GetTypes(Type contractType)
         {
             return
                 GetAllTypes()
-                    .Where(x => IsNotInterfaceOrAbstract(x, assignType) && IsAssignableFrom(x, assignType));
+                    .Where(x => IsNotInterfaceOrAbstract(x, contractType))
+                    .Where(x => contractType.IsAssignableFromGenericType(x) || contractType.IsAssignableFrom(x));
         }
 
         #region Private Members
@@ -41,11 +40,6 @@ namespace DddCore.Crosscutting
             if (typeInfo.IsInterface || typeInfo.IsAbstract) return false;
 
             return true;
-        }
-
-        static bool IsAssignableFrom(Type type, Type contract)
-        {
-            return type.IsAssignableFromGenericType(contract) || contract.IsAssignableFrom(type);
         }
 
         static IEnumerable<Type> GetAllTypes()

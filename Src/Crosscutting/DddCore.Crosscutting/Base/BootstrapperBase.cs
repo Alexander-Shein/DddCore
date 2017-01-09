@@ -24,7 +24,7 @@ namespace DddCore.Crosscutting.Base
         {
             var modules =
                 AssemblyUtility
-                    .GetInstances<TModule>()
+                    .GetInstancesOf<TModule>()
                     .ToArray();
 
             return Bootstrap(modules);
