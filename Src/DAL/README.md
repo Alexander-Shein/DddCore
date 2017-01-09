@@ -68,7 +68,7 @@ public class CarsRepository : Repository<Car, Guid>, ICarsRepository
 }
 ```
 
-And now CarsRepository implementation can be injected via ICarsRepository and IRepository<Car, Guid> contracts:
+And now CarsRepository implementation can be injected via ICarsRepository and IRepository<<Car, Guid>> contracts:
 
 ```csharp
 public class CarsEntityService : ICarsEntityService
@@ -77,7 +77,6 @@ public class CarsEntityService : ICarsEntityService
 }
 ```
 
-Note: protected DbSet<T> GetDbSet() can be used in custom repository to interact with EF collection
 Note: Protected members and methods (DataContext, GetDbSet) in the generic implementation can be used in the custom implementations. 
 
 # Unit of Work
