@@ -70,9 +70,17 @@ public class CarBusinessRulesValidator : BusinessRulesValidatorBase<Car>
 }
 ```
 
+Note: For more validation examples see [FluentValidation][1]
+
+Note: When aggregate root is persisted via IEntityService.PersistEntityGraph the related BusinessRulesValidator is invoked against aggregate root entity and validation is performed.
+
 # Domain events and handlers
 
-Domain event example:
+## Dependency injection
+Handlers marked with IDomainEventHandler<> interface are auto registered with PerWebRequest lifestyle.
+
+## Overview
+All domain events should implement IDomainEvent interface:
 ```csharp
 public class ColorChangedDomainEvent : IDomainEvent
 {
@@ -87,18 +95,7 @@ public class ColorChangedDomainEvent : IDomainEvent
 }
 ```
 
-Domain event handler example:
-```csharp
-public class UpdateColorHandler : IDomainEventHandler<ColorChangedDomainEvent>
-{
-    public void Handle(ColorChangedDomainEvent args)
-    {
-        args.Car.Color += "-Updated";
-    }
-}
-```
-
-Adding domain event example:
+Each entity contains property Events collection. In order to raise an event you just need to add your domain event to this property:
 ```csharp
 public class Car : AggregateRootEntityBase<Guid>
 {
@@ -112,7 +109,25 @@ public class Car : AggregateRootEntityBase<Guid>
 }
 ```
 
+Domain event handler example:
+```csharp
+public class UpdateColorHandler : IDomainEventHandler<ColorChangedDomainEvent>
+{
+    public void Handle(ColorChangedDomainEvent args)
+    {
+        args.Car.Color += "-Updated";
+    }
+}
+```
+
+Note: When aggregate root is persisted via IEntityService.PersistEntityGraph the events from all aggregate root graph entities are raised and passed to related event handlers.
+
+# Value Object
+
+For the details check this [link][3]
+
 [Return][2]
 
 [1]: https://github.com/JeremySkinner/FluentValidation
 [2]: https://github.com/Alexander-Shein/DddCore/blob/net-core/README.md
+[3]: http://grabbagoft.blogspot.com/2007/06/generic-value-object-equality.html
