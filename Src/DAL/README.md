@@ -160,16 +160,19 @@ public class CarsQueryRepository : QueryRepositoryBase, ICarsQueryRepository
 [EntityFramework fluent api][3] is used for mapping.
 Framework automatically loads all intances of IMappingModule interface and passes EntityFramework ModelBuilder. Example:
 
+Automaticcaly registered entity properties:
+* Id - registered as .HasKey(x => x.Id)
+* CrudState - ignored as .Ignore(x => x.CrudState)
+* Ts - If entity is marked as IVersion the Ts field is regitered as .Property(x => x.Ts).IsRowVersion();
+
+Id property is auto registered as 
+
 ```csharp
 public class CarsMappingModule : IMappingModule
 {
-    public void Install(ModelBuilder modelBuilder)
+    public void Install(IModelBuilder modelBuilder)
     {
-        modelBuilder
-            .Entity<Wheel>()
-            .Ignore(x => x.CrudState)
-            .HasKey(x => x.Id)
-            .ForSqlServerIsClustered(); ;
+        modelBuilder.Entity<Wheel>();
 
         var carEntityBuilder = modelBuilder.Entity<Car>();
 
@@ -177,15 +180,6 @@ public class CarsMappingModule : IMappingModule
             .HasMany(x => x.Wheels)
             .WithOne()
             .HasForeignKey(x => x.CarId);
-
-        carEntityBuilder
-            .Ignore(x => x.CrudState)
-            .Property(x => x.Ts)
-            .IsRowVersion();
-
-        carEntityBuilder
-            .HasKey(x => x.Id)
-            .ForSqlServerIsClustered();
     }
 }
 ```
