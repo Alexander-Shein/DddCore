@@ -1,6 +1,6 @@
 # Entity
 
-Base class for entities:
+Each entity should be derived from EntityBase<> base class:
 
 ```csharp
 public abstract class EntityBase<TKey> : IEntity<TKey>
@@ -10,10 +10,10 @@ public abstract class EntityBase<TKey> : IEntity<TKey>
     public ICollection<IDomainEvent> Events { get; } = new List<IDomainEvent>();
 }
 ```
-* Id - unique entity identifier
-* CrudState - Unchanged/Added/Modified/Deleted state will be used in repository to sync entity with database 
-* Events - events that will be automaticaly handled by domain event handlers
-
+* Id - int/Guid/long unique entity identifier (primary key) 
+* CrudState - Unchanged/Added/Modified/Deleted state will be used in repository to sync entity with database. For example if you want to update the entity in the DataBase just set CrudState to Modified
+* Events - events that will be automaticaly handled by domain event handlers. Just insert a domain event to this collection and the event will be raised when you persist entity
+ 
 Example:
 ```csharp
 public class Wheel : EntityBase<Guid>{...}
