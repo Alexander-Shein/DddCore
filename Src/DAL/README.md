@@ -190,6 +190,38 @@ public class CarsMappingModule : IMappingModule
 }
 ```
 
+# Connection Strings
+To add connection strings just put next section to appsetting.json file:
+
+```javascript
+"ConnectionStrings": {
+"Oltp": "Data Source=(local); Initial Catalog=DddCore.Tests.Integration.Database; Integrated Security=SSPI;",
+"ReadOnly": "Data Source=(local); Initial Catalog=DddCore.Tests.Integration.Database; Integrated Security=SSPI;"
+}
+```
+ConnectionStrings class will be injected to repository constructor via IOptions<>:
+
+```csharp
+public class ConnectionStrings
+{
+    /// <summary>
+    /// Connection string to DataBase for write operations
+    /// </summary>
+    public string Oltp { get; set; }
+
+    /// <summary>
+    /// Connection string to readonly DataBase
+    /// </summary>
+    public string ReadOnly { get; set; }
+}
+```
+```csharp
+public DataContext(IOptions<ConnectionStrings> connectionStrings)
+{
+    this.connectionStrings = connectionStrings.Value;
+}
+```
+
 [Return][2]
 
 [0]: https://docs.microsoft.com/en-us/ef/core/
