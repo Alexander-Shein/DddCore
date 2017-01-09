@@ -1,5 +1,5 @@
 # Repository
-## Tehnologies/Dependencies
+## Technologies/Dependencies
 [EntityFramework][0]
 
 ## Dependency injection
