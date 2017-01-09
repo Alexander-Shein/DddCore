@@ -7,10 +7,19 @@ For each Aggregate Root the generic implementation of IRepository<> is auto regi
 Generic repository:
 
 ```csharp
-
 public interface IRepository<T, in TKey> where T : class, IAggregateRootEntity<TKey>
 {
-    void PersistAggregateRoot(T entity);
+    /// <summary>
+    /// Sync CrudState in aggregate root and in the related entities. If graph contains links to other aggregate roots they will be skipped.
+    /// </summary>
+    /// <param name="aggregateRoot"></param>
+    void PersistAggregateRoot(T aggregateRoot);
+
+    /// <summary>
+    /// Read aggregate root with all related entities but not other aggregate roots.
+    /// </summary>
+    /// <param name="key"></param>
+    /// <returns></returns>
     Task<T> ReadAggregateRootAsync(TKey key);
 }
 ```
