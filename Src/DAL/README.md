@@ -195,8 +195,8 @@ To add connection strings just put next section to appsetting.json file:
 
 ```javascript
 "ConnectionStrings": {
-"Oltp": "Data Source=(local); Initial Catalog=DddCore.Tests.Integration.Database; Integrated Security=SSPI;",
-"ReadOnly": "Data Source=(local); Initial Catalog=DddCore.Tests.Integration.Database; Integrated Security=SSPI;"
+    "Oltp": "Data Source=(local); Initial Catalog=DddCore.Tests.Integration.Database; Integrated Security=SSPI;",
+    "ReadOnly": "Data Source=(local); Initial Catalog=DddCore.Tests.Integration.Database; Integrated Security=SSPI;"
 }
 ```
 ConnectionStrings class will be injected to repository constructor via IOptions<>:
