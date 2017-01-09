@@ -93,7 +93,16 @@ Api:
 ```csharp
 public interface IUnitOfWork
 {
+    /// <summary>
+    /// Save changes to DataBase in single transaction async
+    /// </summary>
+    /// <returns></returns>
     Task SaveAsync();
+
+    /// <summary>
+    /// Save changes to DataBase in single transaction
+    /// </summary>
+    /// <returns></returns>
     void Save();
 }
 ```
@@ -151,16 +160,19 @@ public class CarsQueryRepository : QueryRepositoryBase, ICarsQueryRepository
 [EntityFramework fluent api][3] is used for mapping.
 Framework automatically loads all intances of IMappingModule interface and passes EntityFramework ModelBuilder. Example:
 
+Automaticcaly registered entity properties:
+* Id - registered as .HasKey(x => x.Id)
+* CrudState - ignored as .Ignore(x => x.CrudState)
+* Ts - If entity is marked as IVersion the Ts field is regitered as .Property(x => x.Ts).IsRowVersion();
+
+Id property is auto registered as 
+
 ```csharp
 public class CarsMappingModule : IMappingModule
 {
-    public void Install(ModelBuilder modelBuilder)
+    public void Install(IModelBuilder modelBuilder)
     {
-        modelBuilder
-            .Entity<Wheel>()
-            .Ignore(x => x.CrudState)
-            .HasKey(x => x.Id)
-            .ForSqlServerIsClustered(); ;
+        modelBuilder.Entity<Wheel>();
 
         var carEntityBuilder = modelBuilder.Entity<Car>();
 
@@ -168,16 +180,39 @@ public class CarsMappingModule : IMappingModule
             .HasMany(x => x.Wheels)
             .WithOne()
             .HasForeignKey(x => x.CarId);
-
-        carEntityBuilder
-            .Ignore(x => x.CrudState)
-            .Property(x => x.Ts)
-            .IsRowVersion();
-
-        carEntityBuilder
-            .HasKey(x => x.Id)
-            .ForSqlServerIsClustered();
     }
+}
+```
+
+# Connection Strings
+To add connection strings just put next section to appsetting.json file:
+
+```javascript
+"ConnectionStrings": {
+    "Oltp": "Data Source=(local); Initial Catalog=DddCore.Tests.Integration.Database; Integrated Security=SSPI;",
+    "ReadOnly": "Data Source=(local); Initial Catalog=DddCore.Tests.Integration.Database; Integrated Security=SSPI;"
+}
+```
+ConnectionStrings class will be injected to repository constructor via IOptions<>:
+
+```csharp
+public class ConnectionStrings
+{
+    /// <summary>
+    /// Connection string to DataBase for write operations
+    /// </summary>
+    public string Oltp { get; set; }
+
+    /// <summary>
+    /// Connection string to readonly DataBase
+    /// </summary>
+    public string ReadOnly { get; set; }
+}
+```
+```csharp
+public DataContext(IOptions<ConnectionStrings> connectionStrings)
+{
+    this.connectionStrings = connectionStrings.Value;
 }
 ```
 

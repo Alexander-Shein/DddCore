@@ -32,13 +32,15 @@ DddCore framework implements common ddd patterns like repository, unit of work, 
 
 - [Entity Mapping][11]
 
+- [Connection Strings][12]
+
 ### Services Layer (SL)
 
-- [Entity Service][12]
+- [Entity Service][13]
 
-- [Workflow Service][13]
+- [Workflow Service][14]
 
-- [Infrastructure Service][14]
+- [Infrastructure Service][15]
 
 [0]: https://github.com/Alexander-Shein/DddCore/tree/net-core/Samples/Api
 [1]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/Crosscutting/README.md#dependency-injection
@@ -54,7 +56,8 @@ DddCore framework implements common ddd patterns like repository, unit of work, 
 [9]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/DAL/README.md#unit-of-work
 [10]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/DAL/README.md#queryrepository
 [11]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/DAL/README.md#entity-mapping
+[12]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/DAL/README.md#connection-strings
 
-[12]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/SL/README.md#entity-service
-[13]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/SL/README.md#workflow-service
-[14]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/SL/README.md#infrastructure-service
+[13]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/SL/README.md#entity-service
+[14]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/SL/README.md#workflow-service
+[15]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/SL/README.md#infrastructure-service
