@@ -1,8 +1,7 @@
 namespace DddCore.Crosscutting
 {
-    public static class FileNameUtilities
+    public static class FileNameExtensions
     {
-        private const string DirectorySeparatorStr = "\\";
         internal const char DirectorySeparatorChar = '\\';
         internal const char AltDirectorySeparatorChar = '/';
         internal const char VolumeSeparatorChar = ':';
