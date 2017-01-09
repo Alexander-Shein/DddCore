@@ -1,5 +1,6 @@
 ﻿using System;
 using DddCore.Contracts.Crosscutting.RetryInvocation;
+using DddCore.Contracts.Services.Infrastructure.RetryInvocation;
 
 namespace DddCore.Crosscutting.RetryInvocation
 {
