@@ -1,11 +1,12 @@
 # Repository
 
 ## Dependency injection
-For each Aggregate Root the generic implementation of IRepository<> is auto registered and can be injected. When custom repository for aggregate root is created then generic repository is overritten. Lifestyle is PerWebRequest.
+For each custom aggregate root the generic implementation of IRepository<> is auto registered and can be injected. When custom repository for aggregate root is created then generic implementation of repository is overritten. Lifestyle is PerWebRequest.
 
 ## Overview
-Generic repository:
+### Generic repository
 
+Contract:
 ```csharp
 public interface IRepository<T, in TKey> where T : class, IAggregateRootEntity<TKey>
 {
@@ -16,32 +17,33 @@ public interface IRepository<T, in TKey> where T : class, IAggregateRootEntity<T
     void PersistAggregateRoot(T aggregateRoot);
 
     /// <summary>
-    /// Read aggregate root with all related entities but don't load other aggregate roots.
+    /// Read aggregate root with all related entities but w/o other aggregate roots.
     /// </summary>
-    /// <param name="key"></param>
-    /// <returns></returns>
-    Task<T> ReadAggregateRootAsync(TKey key);
+    /// <param name="aggregateRootKey"></param>
+    /// <returns>Aggregate root graph</returns>
+    Task<T> ReadAggregateRootAsync(TKey aggregateRootKey);
 
     /// <summary>
-    /// Read aggregate root with all related entities but don't load other aggregate roots.
+    /// Read aggregate root with all related entities but w/o other aggregate roots.
     /// </summary>
-    /// <param name="key"></param>
-    /// <returns></returns>
-    T ReadAggregateRoot(TKey key);
+    /// <param name="aggregateRootKey"></param>
+    /// <returns>Aggregate root graph</returns>
+    T ReadAggregateRoot(TKey aggregateRootKey);
 }
 ```
 ```csharp
 public class Repository<T, TKey> : IRepository<T, TKey> where T : class, IAggregateRootEntity<TKey>
-{
+{    
     public virtual void PersistAggregateRoot(T entity) { ... }
-
     public virtual async Task<T> ReadAggregateRootAsync(TKey key) { ... }
-
+    public virtual T ReadAggregateRoot(TKey key) { ... }
+    
+    protected readonly IDataContext DataContext;
     protected DbSet<T> GetDbSet() { ... }
 }
 ```
 
-For each aggregate root a generic repository can be injected. Example:
+To inject a generic repository use generic interface:
 
 ```csharp
 public class CarsEntityService : ICarsEntityService
@@ -50,8 +52,9 @@ public class CarsEntityService : ICarsEntityService
 }
 ```
 
-Custom repository:
+### Custom repository
 
+Example:
 ```csharp
 public interface ICarsRepository : IRepository<Car, Guid>
 {
@@ -65,7 +68,8 @@ public class CarsRepository : Repository<Car, Guid>, ICarsRepository
 }
 ```
 
-Inject custom repository:
+And now CarsRepository implementation can be injected via ICarsRepository and IRepository<Car, Guid> contracts:
+
 ```csharp
 public class CarsEntityService : ICarsEntityService
 {
@@ -74,6 +78,7 @@ public class CarsEntityService : ICarsEntityService
 ```
 
 Note: protected DbSet<T> GetDbSet() can be used in custom repository to interact with EF collection
+Note: Protected members and methods (DataContext, GetDbSet) in the generic implementation can be used in the custom implementations. 
 
 # Unit of Work
 
