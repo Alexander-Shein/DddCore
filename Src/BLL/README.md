@@ -26,16 +26,11 @@ Base class for aggregate root entities:
 ```csharp
 public abstract class AggregateRootEntityBase<TKey> : EntityBase<TKey>, IAggregateRootEntity<TKey>
 {
-    public string PublicKey { get; set; }
-    public byte[] Ts { get; set; }
-
     public void WalkEntireGraph(Action<IEntity<TKey>> action) { ... }
     public void WalkAggregateRootGraph(Action<IEntity<TKey>> action) { ... }
 }
 ```
 
-* PublicKey - user readable public key for urls
-* Ts - row version for optimistic concurrency
 * WalkEntireGraph - walk throw all entities in the graph
 * WalkAggregateRootGraph - walk throw all entities in current aggregate root
 
