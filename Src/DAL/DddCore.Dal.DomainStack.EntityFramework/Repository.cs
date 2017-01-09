@@ -11,7 +11,6 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Reflection;
 using System.Collections.Generic;
-using System.Collections;
 
 namespace DddCore.Dal.DomainStack.EntityFramework
 {
@@ -56,6 +55,18 @@ namespace DddCore.Dal.DomainStack.EntityFramework
             }
 
             return await query.FirstOrDefaultAsync(x => x.Id.Equals(key));
+        }
+
+        public virtual T ReadAggregateRoot(TKey key)
+        {
+            var query = GetDbSet().AsQueryable();
+
+            foreach (var expr in GetEntityPropertyNames(typeof(T)))
+            {
+                query = query.Include(expr);
+            }
+
+            return query.FirstOrDefault(x => x.Id.Equals(key));
         }
 
         #endregion

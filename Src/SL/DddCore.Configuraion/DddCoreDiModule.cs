@@ -126,7 +126,7 @@ namespace DddCore.Configuraion
                 config
                     .Register(contractType, t)
                     .LifeStyle
-                    .PerWebRequest();
+                    .Singleton(); // https://github.com/JeremySkinner/FluentValidation/wiki/b.-Creating-a-Validator#a-note-on-performance
             }
         }
 
