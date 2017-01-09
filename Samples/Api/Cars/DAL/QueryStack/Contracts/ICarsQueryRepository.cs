@@ -1,9 +1,9 @@
-﻿using Api.Cars.DAL.QueryStack.Dtos;
-using DddCore.Contracts.Dal.QueryStack;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Api.Cars.DAL.QueryStack.Contracts.Dtos;
+using DddCore.Contracts.Dal.QueryStack;
 
-namespace Api.Cars.DAL.QueryStack
+namespace Api.Cars.DAL.QueryStack.Contracts
 {
     public interface ICarsQueryRepository : IQueryRepository
     {

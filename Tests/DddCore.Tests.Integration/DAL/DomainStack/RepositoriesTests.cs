@@ -1,7 +1,7 @@
 ﻿using DddCore.Dal.DomainStack.EntityFramework;
 using DddCore.Dal.DomainStack.EntityFramework.Context;
-using DddCore.Tests.Integration.Cars.BLL;
 using System;
+using Api.Cars.BLL;
 using Xunit;
 using Moq;
 using Microsoft.Extensions.Options;

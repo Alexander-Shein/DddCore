@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Api.Cars.DAL.QueryStack.Dtos
+namespace Api.Cars.DAL.QueryStack.Contracts.Dtos
 {
     public class CarVmDto
     {

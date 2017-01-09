@@ -3,7 +3,6 @@ using DddCore.Contracts.Crosscutting.DependencyInjection.Base;
 using DddCore.Contracts.Crosscutting.DependencyInjection;
 //using Moq;
 using DddCore.Crosscutting.DependencyInjection;
-using DddCore.Crosscutting.Ioc.MicrosoftDependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 using FluentAssertions;
 

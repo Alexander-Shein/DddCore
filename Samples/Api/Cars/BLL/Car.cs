@@ -1,7 +1,7 @@
-﻿using DddCore.Domain.Entities.GuidEntities;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using DddCore.Domain.Entities.GuidEntities;
 
-namespace DddCore.Tests.Integration.Cars.BLL
+namespace Api.Cars.BLL
 {
     public class Car : GuidAggregateRootEntityBase
     {

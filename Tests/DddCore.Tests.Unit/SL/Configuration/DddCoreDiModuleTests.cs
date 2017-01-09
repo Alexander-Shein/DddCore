@@ -1,25 +1,25 @@
-﻿using DddCore.Configuraion;
-using DddCore.Contracts.Dal.DomainStack;
-using DddCore.Crosscutting.Ioc.MicrosoftDependencyInjection;
-using DddCore.Dal.DomainStack.EntityFramework;
-using DddCore.Domain.Entities;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using Xunit;
-using DddCore.Contracts.Crosscutting.UserContext;
-using DddCore.Dal.DomainStack.EntityFramework.Context;
-using DddCore.Contracts.Services.Application.DomainStack;
-using DddCore.Services.Application.DomainStack;
-using DddCore.Contracts.Domain.Events;
-using DddCore.Contracts.Dal.QueryStack;
-using DddCore.Contracts.Services.Infrastructure;
-using FluentAssertions;
-using Microsoft.Extensions.Options;
-using DddCore.Contracts.Dal;
-using Microsoft.AspNetCore.Http;
-using DddCore.Contracts.Crosscutting.DependencyInjection;
-using System.Linq;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using DddCore.Configuraion;
+using DddCore.Contracts.Crosscutting.DependencyInjection;
+using DddCore.Contracts.Crosscutting.UserContext;
+using DddCore.Contracts.Dal;
+using DddCore.Contracts.Dal.DomainStack;
+using DddCore.Contracts.Dal.QueryStack;
+using DddCore.Contracts.Domain.Events;
+using DddCore.Contracts.Services.Application.DomainStack;
+using DddCore.Contracts.Services.Infrastructure;
+using DddCore.Crosscutting.DependencyInjection.Microsoft;
+using DddCore.Dal.DomainStack.EntityFramework;
+using DddCore.Dal.DomainStack.EntityFramework.Context;
+using DddCore.Domain.Entities;
+using DddCore.Services.Application.DomainStack;
+using FluentAssertions;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using Xunit;
 
 namespace DddCore.Tests.Unit.SL.Configuration
 {
@@ -122,7 +122,7 @@ namespace DddCore.Tests.Unit.SL.Configuration
 
     public class HttpContextAccessor : IHttpContextAccessor
     {
-        public HttpContext HttpContext { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public HttpContext HttpContext { get; set; }
     }
 
     public class ConnectionStringOptions : IOptions<ConnectionStrings>

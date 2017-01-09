@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Api.Cars.DAL.QueryStack.Contracts;
+using Api.Cars.SL.Contracts;
+using Api.Cars.SL.Contracts.Models;
 
 namespace Api.Cars.SL
 {

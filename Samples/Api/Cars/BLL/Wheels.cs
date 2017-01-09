@@ -1,7 +1,7 @@
 ﻿using System;
 using DddCore.Domain.Entities.GuidEntities;
 
-namespace DddCore.Tests.Integration.Cars.BLL
+namespace Api.Cars.BLL
 {
     public class Wheel : GuidEntityBase
     {

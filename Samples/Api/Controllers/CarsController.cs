@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Api.Cars.SL.Contracts;
+using Api.Cars.SL.Contracts.Models;
 
 namespace Api.Controllers
 {

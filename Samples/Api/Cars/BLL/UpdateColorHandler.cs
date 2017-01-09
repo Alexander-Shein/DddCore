@@ -1,6 +1,6 @@
 ﻿using DddCore.Contracts.Domain.Events;
 
-namespace DddCore.Tests.Integration.Cars.BLL
+namespace Api.Cars.BLL
 {
     public class UpdateColorHandler : IDomainEventHandler<ColorChangedDomainEvent>
     {

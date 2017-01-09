@@ -7,11 +7,11 @@ using DddCore.Dal.DomainStack.EntityFramework;
 using DddCore.Dal.DomainStack.EntityFramework.Context;
 using DddCore.Domain.Events;
 using DddCore.Services.Application.DomainStack;
-using DddCore.Tests.Integration.Cars.BLL;
 using Microsoft.Extensions.Options;
 using Moq;
 using System;
 using System.Collections.Generic;
+using Api.Cars.BLL;
 using Xunit;
 
 namespace DddCore.Tests.Integration.SL.Application

@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using DddCore.Crosscutting.DependencyInjection;
-using DddCore.Crosscutting.Ioc.MicrosoftDependencyInjection;
+using DddCore.Crosscutting.DependencyInjection.Microsoft;
 using DddCore.Crosscutting.ObjectMapper;
 using DddCore.Crosscutting.ObjectMapper.AutoMapper;
 

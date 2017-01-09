@@ -1,7 +1,7 @@
 ﻿using DddCore.Domain.Entities.BusinessRules;
 using FluentValidation;
 
-namespace DddCore.Tests.Integration.Cars.BLL
+namespace Api.Cars.BLL
 {
     public class CarBusinessRulesValidator : BusinessRulesValidatorBase<Car>
     {

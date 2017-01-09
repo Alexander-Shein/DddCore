@@ -1,5 +1,5 @@
-﻿using DddCore.Dal.DomainStack.EntityFramework.Mapping;
-using DddCore.Tests.Integration.Cars.BLL;
+﻿using Api.Cars.BLL;
+using DddCore.Dal.DomainStack.EntityFramework.Mapping;
 
 namespace Api.Cars.DAL
 {

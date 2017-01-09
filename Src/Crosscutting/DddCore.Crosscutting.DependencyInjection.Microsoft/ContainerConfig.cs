@@ -2,7 +2,7 @@
 using DddCore.Contracts.Crosscutting.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace DddCore.Crosscutting.Ioc.MicrosoftDependencyInjection
+namespace DddCore.Crosscutting.DependencyInjection.Microsoft
 {
     public class ContainerConfig : IContainerConfig
     {

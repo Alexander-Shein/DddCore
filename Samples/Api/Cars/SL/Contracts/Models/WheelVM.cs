@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Api.Cars.SL
+namespace Api.Cars.SL.Contracts.Models
 {
     public class WheelVM
     {

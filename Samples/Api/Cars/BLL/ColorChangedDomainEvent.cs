@@ -1,7 +1,7 @@
-﻿using DddCore.Contracts.Domain.Events;
-using System;
+﻿using System;
+using DddCore.Contracts.Domain.Events;
 
-namespace DddCore.Tests.Integration.Cars.BLL
+namespace Api.Cars.BLL
 {
     public class ColorChangedDomainEvent : IDomainEvent
     {

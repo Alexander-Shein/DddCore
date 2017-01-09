@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Api.Cars.SL
+namespace Api.Cars.SL.Contracts.Models
 {
     public class CarVM
     {
