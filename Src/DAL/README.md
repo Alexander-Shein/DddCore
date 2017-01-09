@@ -16,11 +16,18 @@ public interface IRepository<T, in TKey> where T : class, IAggregateRootEntity<T
     void PersistAggregateRoot(T aggregateRoot);
 
     /// <summary>
-    /// Read aggregate root with all related entities but not other aggregate roots.
+    /// Read aggregate root with all related entities but don't load other aggregate roots.
     /// </summary>
     /// <param name="key"></param>
     /// <returns></returns>
     Task<T> ReadAggregateRootAsync(TKey key);
+
+    /// <summary>
+    /// Read aggregate root with all related entities but don't load other aggregate roots.
+    /// </summary>
+    /// <param name="key"></param>
+    /// <returns></returns>
+    T ReadAggregateRoot(TKey key);
 }
 ```
 ```csharp
