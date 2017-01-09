@@ -2,7 +2,7 @@
 using DddCore.Contracts.Domain.Entities.Model;
 using Microsoft.EntityFrameworkCore;
 
-namespace DddCore.Dal.DomainStack.EntityFramework.Context
+namespace DddCore.Dal.DomainStack.EntityFramework
 {
     public class CrudStateHelper
     {

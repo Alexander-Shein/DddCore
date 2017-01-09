@@ -4,9 +4,7 @@ namespace DddCore.Contracts.Domain.Entities
 {
     public interface IAggregateRootEntity<TKey> :
         IEntity<TKey>,
-        IEntityGraph<TKey>,
-        IVersion,
-        IPublicKey
+        IEntityGraph<TKey>
     {
     }
 }

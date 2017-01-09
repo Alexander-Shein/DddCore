@@ -1,18 +1,15 @@
 ﻿using DddCore.Dal.DomainStack.EntityFramework.Mapping;
-using Microsoft.EntityFrameworkCore;
 using DddCore.Tests.Integration.Cars.BLL;
 
-namespace DddCore.Tests.Integration.Cars.DAL
+namespace Api.Cars.DAL
 {
     public class CarsMappingModule : IMappingModule
     {
-        public void Install(ModelBuilder modelBuilder)
+
+        public void Install(IModelBuilder modelBuilder)
         {
             modelBuilder
-                .Entity<Wheel>()
-                .Ignore(x => x.CrudState)
-                .HasKey(x => x.Id)
-                .ForSqlServerIsClustered(); ;
+                .Entity<Wheel>();
 
             var carEntityBuilder = modelBuilder.Entity<Car>();
 
@@ -20,15 +17,6 @@ namespace DddCore.Tests.Integration.Cars.DAL
                 .HasMany(x => x.Wheels)
                 .WithOne()
                 .HasForeignKey(x => x.CarId);
-
-            carEntityBuilder
-                .Ignore(x => x.CrudState)
-                .Property(x => x.Ts)
-                .IsRowVersion();
-
-            carEntityBuilder
-                .HasKey(x => x.Id)
-                .ForSqlServerIsClustered();
         }
     }
 }

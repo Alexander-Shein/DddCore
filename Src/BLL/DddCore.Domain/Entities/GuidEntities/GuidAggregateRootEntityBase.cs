@@ -7,7 +7,6 @@ namespace DddCore.Domain.Entities.GuidEntities
         protected GuidAggregateRootEntityBase()
         {
             Id = Guid.NewGuid();
-            PublicKey = Id.ToString();
         }
     }
 }

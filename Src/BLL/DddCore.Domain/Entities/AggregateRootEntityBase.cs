@@ -11,24 +11,14 @@ namespace DddCore.Domain.Entities
     {
         #region Public Methods
 
-        public string PublicKey { get; set; }
-
-        public byte[] Ts { get; set; }
-
         public void WalkEntireGraph(Action<IEntity<TKey>> action)
         {
-            foreach (var entity in Traverse(this))
-            {
-                action(entity);
-            }
+            Traverse(this).Do(action);
         }
 
         public void WalkAggregateRootGraph(Action<IEntity<TKey>> action)
         {
-            foreach (var entity in Traverse(this, true))
-            {
-                action(entity);
-            }
+            Traverse(this, true).Do(action);
         }
 
         #endregion

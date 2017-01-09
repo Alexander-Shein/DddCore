@@ -6,6 +6,7 @@ using DddCore.Dal.DomainStack.EntityFramework.Mapping;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using DddCore.Contracts.Dal.DomainStack;
+using System.Linq;
 
 namespace DddCore.Dal.DomainStack.EntityFramework.Context
 {
@@ -53,10 +54,10 @@ namespace DddCore.Dal.DomainStack.EntityFramework.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             var modules = AssemblyUtility.GetInstances<IMappingModule>();
-
-            foreach (var module in modules)
+            if (modules.Any())
             {
-                module.Install(modelBuilder);
+                var builder = new DddCoreModelBuilder(modelBuilder);
+                modules.Do(x => x.Install(builder));
             }
         }
 

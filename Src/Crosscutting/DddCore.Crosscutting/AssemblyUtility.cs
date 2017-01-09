@@ -27,22 +27,25 @@ namespace DddCore.Crosscutting
         {
             return
                 GetAllTypes()
-                    .Where(x => IsAssignableFrom(x, assignType));
+                    .Where(x => IsNotInterfaceOrAbstract(x, assignType) && IsAssignableFrom(x, assignType));
         }
 
         #region Private Members
 
-        static bool IsAssignableFrom(Type type, Type contract)
+        static bool IsNotInterfaceOrAbstract(Type type, Type contract)
         {
             if (contract == type) return false;
 
             var typeInfo = type.GetTypeInfo();
 
-            bool isInterfaceOrAbstract = type.GetTypeInfo().IsInterface || type.GetTypeInfo().IsAbstract;
+            if (typeInfo.IsInterface || typeInfo.IsAbstract) return false;
 
-            if (isInterfaceOrAbstract) return false;
+            return true;
+        }
 
-            return IsAssignableToGenericType(type, contract) || contract.IsAssignableFrom(type);
+        static bool IsAssignableFrom(Type type, Type contract)
+        {
+            return type.IsAssignableFromGenericType(contract) || contract.IsAssignableFrom(type);
         }
 
         static IEnumerable<Type> GetAllTypes()
@@ -56,25 +59,6 @@ namespace DddCore.Crosscutting
                     .SelectMany(x => x.GetTypes());
 
             return types;
-        }
-
-        static bool IsAssignableToGenericType(Type givenType, Type genericType)
-        {
-            var interfaceTypes = givenType.GetInterfaces();
-
-            foreach (var it in interfaceTypes)
-            {
-                if (it.GetTypeInfo().IsGenericType && it.GetGenericTypeDefinition() == genericType)
-                    return true;
-            }
-
-            if (givenType.GetTypeInfo().IsGenericType && givenType.GetGenericTypeDefinition() == genericType)
-                return true;
-
-            Type baseType = givenType.GetTypeInfo().BaseType;
-            if (baseType == null) return false;
-
-            return IsAssignableToGenericType(baseType, genericType);
         }
 
         #endregion

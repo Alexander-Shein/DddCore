@@ -1,7 +1,5 @@
 ﻿using Api.Cars.DAL.QueryStack;
 using DddCore.Contracts.Dal;
-using DddCore.Contracts.Domain.Entities.Model;
-using DddCore.Tests.Integration.Cars.BLL;
 using Microsoft.Extensions.Options;
 using Moq;
 using Xunit;
