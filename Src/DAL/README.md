@@ -1,7 +1,9 @@
 # Repository
+## Tehnologies/Dependencies
+[EntityFramework][0]
 
 ## Dependency injection
-For each custom aggregate root the generic implementation of IRepository<> is auto registered and can be injected. When custom repository for aggregate root is created then generic implementation of repository is overritten. Lifestyle is PerWebRequest.
+For each custom aggregate root the generic implementation of IRepository<> is auto registered and can be injected via IRepository<> contract. When custom repository for aggregate root is created then generic implementation of repository is overritten. Lifestyle is PerWebRequest.
 
 ## Overview
 ### Generic repository
@@ -77,7 +79,7 @@ public class CarsEntityService : ICarsEntityService
 }
 ```
 
-Note: Protected members and methods (DataContext, GetDbSet) in the generic implementation can be used in the custom implementations. 
+Note: Protected members and methods (DataContext, GetDbSet) in the generic implementation can be used in the custom implementations.
 
 # Unit of Work
 
@@ -181,6 +183,7 @@ public class CarsMappingModule : IMappingModule
 
 [Return][2]
 
+[0]: https://docs.microsoft.com/en-us/ef/core/
 [1]: https://github.com/StackExchange/dapper-dot-net
 [2]: https://github.com/Alexander-Shein/DddCore/blob/net-core/README.md
 [3]: https://msdn.microsoft.com/en-us/library/jj591617(v=vs.113).aspx
