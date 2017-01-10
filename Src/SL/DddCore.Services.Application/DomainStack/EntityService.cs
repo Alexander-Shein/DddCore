@@ -3,6 +3,7 @@ using DddCore.Contracts.Dal.DomainStack;
 using DddCore.Contracts.Domain.Entities;
 using DddCore.Contracts.Domain.Events;
 using DddCore.Contracts.Services.Application.DomainStack;
+using DddCore.Crosscutting;
 
 namespace DddCore.Services.Application.DomainStack
 {
@@ -32,17 +33,32 @@ namespace DddCore.Services.Application.DomainStack
         public async Task PersistAggregateRootAsync(T aggregateRoot)
         {
             guard.NotNull(aggregateRoot);
-            await guard.AggregateRootIsValidAsync<T, TKey>(aggregateRoot);
+            await guard.ValidateAggregateRootAndThrowAsync<T, TKey>(aggregateRoot);
 
+            RaiseEvents(aggregateRoot);
+            repository.PersistAggregateRoot(aggregateRoot);
+        }
+
+        public void PersistAggregateRoot(T aggregateRoot)
+        {
+            guard.NotNull(aggregateRoot);
+            guard.ValidateAggregateRootAndThrow<T, TKey>(aggregateRoot);
+
+            RaiseEvents(aggregateRoot);
+            repository.PersistAggregateRoot(aggregateRoot);
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        void RaiseEvents(T aggregateRoot)
+        {
             aggregateRoot.WalkAggregateRootGraph(entity =>
             {
-                foreach (var domainEvent in entity.Events)
-                {
-                    domainEventDispatcher.Raise(domainEvent);
-                }
+                entity.Events.Do(domainEvent => domainEventDispatcher.Raise(domainEvent));
+                entity.Events.Clear();
             });
-
-            repository.PersistAggregateRoot(aggregateRoot);
         }
 
         #endregion

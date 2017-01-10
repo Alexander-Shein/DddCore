@@ -1,10 +1,12 @@
-﻿using System;
-
-namespace DddCore.Contracts.Domain.Events
+﻿namespace DddCore.Contracts.Domain.Events
 {
     public interface IDomainEventDispatcher
     {
-        void Register<T>(Action<T> callback) where T : IDomainEvent;
-        void Raise<T>(T args) where T : IDomainEvent;
+        /// <summary>
+        /// Pass domain event to related handlers
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="domainEvent"></param>
+        void Raise<T>(T domainEvent) where T : IDomainEvent;
     }
 }

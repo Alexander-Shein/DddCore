@@ -11,5 +11,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\BLL\DddCore.Contracts.Domain\DddCore.Contracts.Domain.csproj" />
+    <ProjectReference Include="..\..\Crosscutting\DddCore.Crosscutting\DddCore.Crosscutting.csproj" />
   </ItemGroup>
 </Project>

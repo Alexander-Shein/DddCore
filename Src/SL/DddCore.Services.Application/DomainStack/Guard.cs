@@ -28,7 +28,23 @@ namespace DddCore.Services.Application.DomainStack
                 throw new ArgumentNullException(message);
         }
 
-        public async Task AggregateRootIsValidAsync<T, TKey>(T aggregateRoot) where T : IAggregateRootEntity<TKey>
+        public async Task<BusinessRulesValidationResult> ValidateAggregateRootAsync<T, TKey>(T aggregateRoot) where T : IAggregateRootEntity<TKey>
+        {
+            var businessRulesValidator = businessRulesValidatorFactory.GetBusinessRulesValidator<T>();
+            var validationResult = await businessRulesValidator.ValidateAsync(aggregateRoot);
+
+            return validationResult;
+        }
+
+        public BusinessRulesValidationResult ValidateAggregateRoot<T, TKey>(T aggregateRoot) where T : IAggregateRootEntity<TKey>
+        {
+            var businessRulesValidator = businessRulesValidatorFactory.GetBusinessRulesValidator<T>();
+            var validationResult = businessRulesValidator.Validate(aggregateRoot);
+
+            return validationResult;
+        }
+
+        public async Task ValidateAggregateRootAndThrowAsync<T, TKey>(T aggregateRoot) where T : IAggregateRootEntity<TKey>
         {
             var businessRulesValidator = businessRulesValidatorFactory.GetBusinessRulesValidator<T>();
             var validationResult = await businessRulesValidator.ValidateAsync(aggregateRoot);
@@ -39,7 +55,7 @@ namespace DddCore.Services.Application.DomainStack
             }
         }
 
-        public void AggregateRootIsValid<T, TKey>(T aggregateRoot) where T : IAggregateRootEntity<TKey>
+        public void ValidateAggregateRootAndThrow<T, TKey>(T aggregateRoot) where T : IAggregateRootEntity<TKey>
         {
             var businessRulesValidator = businessRulesValidatorFactory.GetBusinessRulesValidator<T>();
             var validationResult = businessRulesValidator.Validate(aggregateRoot);

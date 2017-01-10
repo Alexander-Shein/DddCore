@@ -14,6 +14,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\BLL\DddCore.Contracts.Domain\DddCore.Contracts.Domain.csproj" />
+    <ProjectReference Include="..\..\Crosscutting\DddCore.Crosscutting\DddCore.Crosscutting.csproj" />
     <ProjectReference Include="..\..\DAL\DddCore.Contracts.Dal\DddCore.Contracts.Dal.csproj" />
     <ProjectReference Include="..\DddCore.Contracts.Services\DddCore.Contracts.Services.csproj" />
   </ItemGroup>
