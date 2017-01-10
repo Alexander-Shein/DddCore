@@ -14,29 +14,19 @@ public void ConfigureServices(IServiceCollection services)
 ```
 
 ## Modules
-Bootstrap method scans all assemblies for IDiModule implementation and passes IContainerConfig to Install method. If you need to register something to container just create a module and it be installed:
+Bootstrap method scans all assemblies for IDiModule implementation and passes IServiceCollection to Install method. If you need to register something to container just create a module and it be installed:
 ```csharp
 public class DddCoreDiModule : IDiModule
 {
-    public void Install(IContainerConfig config)
+    public void Install(IServiceCollection serviceCollection)
     {
-        config
-            .Register<IUnitOfWork, DataContext>()
-            .LifeStyle
-            .PerWebRequest();
-
-        config
-            .Register<IDataContext, DataContext>()
-            .LifeStyle
-            .PerWebRequest();
-
-        config
-            .Register<IDomainEventDispatcher, DomainEventDispatcher>()
-            .LifeStyle
-            .PerWebRequest();
+            serviceCollection.AddScoped<IUnitOfWork, DataContext>();
+            serviceCollection.AddScoped<IDataContext, DataContext>();
+            serviceCollection.AddScoped<IDomainEventDispatcher, DomainEventDispatcher>();
     }
 }
 ```
+Or use ConfigureServices(IServiceCollection services) method
 
 ## Inject container
 If you want a container instance you can use IServiceProvider interface to inject it:
