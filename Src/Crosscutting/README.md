@@ -104,6 +104,8 @@ IHttpContextAccessor
     .Identity
 ```
 
+And can be injected via IUserContext<> interface.
+
 # Extension Methods and Helpers
 
 ## Type
