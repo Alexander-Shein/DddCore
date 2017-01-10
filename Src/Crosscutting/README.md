@@ -2,38 +2,31 @@
 
 ## Bootstrap
 
-Bootstrap method automatically register all framework components and custom components that are implements framework interfaces or inherited from framework base classes. In theory you don't need to register anything mannualy to the container. But if you need see the Modules section. Bootstrap example:
+To register all framework components and custom components that are implements framework interfaces or inherited from framework base classes use .AddDddCore() method;
 
   ```csharp
-new DiBootstrapper()
-    .AddMicrosoftDependencyInjection(services)    
-    .Bootstrap();
+public void ConfigureServices(IServiceCollection services)
+{
+    // Add framework services.
+    services.AddMvc();
+    services.AddDddCore();
+}
 ```
 
 ## Modules
-Bootstrap method scans all assemblies for IDiModule implementation and passes IContainerConfig to Install method. If you need to register something to container just create a module and it be installed:
+Bootstrap method scans all assemblies for IDiModule implementation and passes IServiceCollection to Install method. If you need to register something to container just create a module and it be installed:
 ```csharp
 public class DddCoreDiModule : IDiModule
 {
-    public void Install(IContainerConfig config)
+    public void Install(IServiceCollection serviceCollection)
     {
-        config
-            .Register<IUnitOfWork, DataContext>()
-            .LifeStyle
-            .PerWebRequest();
-
-        config
-            .Register<IDataContext, DataContext>()
-            .LifeStyle
-            .PerWebRequest();
-
-        config
-            .Register<IDomainEventDispatcher, DomainEventDispatcher>()
-            .LifeStyle
-            .PerWebRequest();
+            serviceCollection.AddScoped<IUnitOfWork, DataContext>();
+            serviceCollection.AddScoped<IDataContext, DataContext>();
+            serviceCollection.AddScoped<IDomainEventDispatcher, DomainEventDispatcher>();
     }
 }
 ```
+Or use ConfigureServices(IServiceCollection services) method
 
 ## Inject container
 If you want a container instance you can use IServiceProvider interface to inject it:

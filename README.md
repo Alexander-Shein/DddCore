@@ -1,14 +1,23 @@
 # Domain Driven Design (DDD) arhitecture implementation for .net core
 DddCore framework implements common ddd patterns like repository, unit of work, aggregate roots, domain events, query repositories, entity services and others. The goal of this framework is do not implement ddd patterns for every project from scratch and have well documented, fully tested components that you need for your new projects. The framework is easy to use with less code. DddCore uses layered arhitecture. Below you can find all DddCore features and samples:
 
+DddCore framework uses next libraries:
+* [FluentAssertion][-4]
+* [EntityFramework][-3]
+* [Dapper][-5]
+* [Microsoft Dependency Injection][-2] - to use diffrent containers see microsoft di documentation
+* [AutoMapper][-1] - can be switched
+
 [Sample][0]
 
 ## Features:
 
 ### Crosscutting
 
-- [Dependency injection][1]
-- [Object mapper][2]
+- [Dependency Injection][1]
+- [Object Mapper][2]
+- User Context
+- Extensions
 
 ### Business Logic Layer (BLL)
 
@@ -41,6 +50,16 @@ DddCore framework implements common ddd patterns like repository, unit of work, 
 - [Workflow Service][14]
 
 - [Infrastructure Service][15]
+
+- Helper Infrastructure Services
+
+- Crud Interfaces
+
+[-4]: https://github.com/JeremySkinner/FluentValidation
+[-3]: https://github.com/aspnet/EntityFramework
+[-2]: https://github.com/aspnet/DependencyInjection
+[-1]: https://github.com/AutoMapper/AutoMapper
+[-5]: https://github.com/StackExchange/dapper-dot-net
 
 [0]: https://github.com/Alexander-Shein/DddCore/tree/net-core/Samples/Api
 [1]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/Crosscutting/README.md#dependency-injection
