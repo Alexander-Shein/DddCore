@@ -13,8 +13,9 @@ DddCore framework uses next libraries:
 
 ### Crosscutting
 
-- [Dependency injection][1]
-- [Object mapper][2]
+- [Dependency Injection][1]
+- [Object Mapper][2]
+- Extensions
 
 ### Business Logic Layer (BLL)
 
