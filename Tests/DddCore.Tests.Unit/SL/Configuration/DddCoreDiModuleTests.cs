@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using DddCore.Configuraion;
-using DddCore.Contracts.Crosscutting.DependencyInjection;
 using DddCore.Contracts.Crosscutting.UserContext;
 using DddCore.Contracts.Dal;
 using DddCore.Contracts.Dal.DomainStack;
@@ -10,7 +9,6 @@ using DddCore.Contracts.Dal.QueryStack;
 using DddCore.Contracts.Domain.Events;
 using DddCore.Contracts.Services.Application.DomainStack;
 using DddCore.Contracts.Services.Infrastructure;
-using DddCore.Crosscutting.DependencyInjection.Microsoft;
 using DddCore.Dal.DomainStack.EntityFramework;
 using DddCore.Dal.DomainStack.EntityFramework.Context;
 using DddCore.Domain.Entities;
@@ -29,10 +27,9 @@ namespace DddCore.Tests.Unit.SL.Configuration
         public void RegisterDddCoreComponents()
         {
             var serviceCollection = new ServiceCollection();
-            var containerConfig = new ContainerConfig(serviceCollection);
             var module = new DddCoreDiModule();
 
-            module.Install(containerConfig);
+            module.Install(serviceCollection);
 
             serviceCollection.Count.Should().Be(18);
         }
@@ -43,7 +40,7 @@ namespace DddCore.Tests.Unit.SL.Configuration
             // Act
             var containerConfig = SetupContainerConfig();
             InstallDddCoreDiModule(containerConfig);
-            var container = containerConfig.BuildContainer();
+            var container = containerConfig.BuildServiceProvider(true);
 
             // Assert
             CheckInContainer<IRepository<AggregateRootOne, Guid>>(container, typeof(AggregateRootOneRepository));
@@ -57,7 +54,7 @@ namespace DddCore.Tests.Unit.SL.Configuration
             // Act
             var containerConfig = SetupContainerConfig();
             InstallDddCoreDiModule(containerConfig);
-            var container = containerConfig.BuildContainer();
+            var container = containerConfig.BuildServiceProvider(true);
 
             // Assert
             CheckInContainer<IEntityService<AggregateRootTwo, Guid>>(container, typeof(AggregateRootTwoEntityService));
@@ -71,7 +68,7 @@ namespace DddCore.Tests.Unit.SL.Configuration
             // Act
             var containerConfig = SetupContainerConfig();
             InstallDddCoreDiModule(containerConfig);
-            var container = containerConfig.BuildContainer();
+            var container = containerConfig.BuildServiceProvider(true);
 
             // Assert
             CheckInContainer<IAggregateRootTwoQueryRepository>(container, typeof(AggregateRootTwoQueryRepository));
@@ -83,7 +80,7 @@ namespace DddCore.Tests.Unit.SL.Configuration
             // Act
             var containerConfig = SetupContainerConfig();
             InstallDddCoreDiModule(containerConfig);
-            var container = containerConfig.BuildContainer();
+            var container = containerConfig.BuildServiceProvider(true);
 
             // Assert
             var handlers = container.GetService<IEnumerable<IDomainEventHandler<TestDomainEvent>>>();
@@ -100,21 +97,20 @@ namespace DddCore.Tests.Unit.SL.Configuration
             aggregateRootOneRepository.Should().AllBeOfType(expectedType);
         }
 
-        void InstallDddCoreDiModule(IContainerConfig containerConfig)
+        void InstallDddCoreDiModule(IServiceCollection serviceCollection)
         {
             var module = new DddCoreDiModule();
-            module.Install(containerConfig);
+            module.Install(serviceCollection);
         }
 
-        IContainerConfig SetupContainerConfig()
+        IServiceCollection SetupContainerConfig()
         {
             var serviceCollection = new ServiceCollection();
-            var containerConfig = new ContainerConfig(serviceCollection);
 
-            containerConfig.Register<IOptions<ConnectionStrings>, ConnectionStringOptions>().LifeStyle.PerWebRequest();
-            containerConfig.Register<IHttpContextAccessor, HttpContextAccessor>().LifeStyle.PerWebRequest();
+            serviceCollection.AddScoped<IOptions<ConnectionStrings>, ConnectionStringOptions>();
+            serviceCollection.AddScoped<IHttpContextAccessor, HttpContextAccessor>();
 
-            return containerConfig;
+            return serviceCollection;
         }
 
         #endregion

@@ -4,7 +4,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using DddCore.Crosscutting.DependencyInjection;
-using DddCore.Crosscutting.DependencyInjection.Microsoft;
 using DddCore.Crosscutting.ObjectMapper;
 using DddCore.Crosscutting.ObjectMapper.AutoMapper;
 
@@ -29,10 +28,7 @@ namespace Api
         {
             // Add framework services.
             services.AddMvc();
-
-            new DiBootstrapper()
-                .AddMicrosoftDependencyInjection(services)
-                .Bootstrap();
+            services.AddDddCore();
 
             var objectMapper = new ObjectMapperBootstrapper()
                 .AddAutoMapperConfig()

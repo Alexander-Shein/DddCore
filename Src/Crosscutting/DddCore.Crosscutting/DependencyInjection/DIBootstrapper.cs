@@ -1,15 +1,15 @@
 using System;
-using DddCore.Contracts.Crosscutting.DependencyInjection;
 using DddCore.Contracts.Crosscutting.DependencyInjection.Base;
 using DddCore.Crosscutting.Base;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace DddCore.Crosscutting.DependencyInjection
 {
-    public class DiBootstrapper : BootstrapperBase<IServiceProvider, IContainerConfig, IDiModule>, IDiBootstrapper
+    public class DiBootstrapper : BootstrapperBase<IServiceProvider, IServiceCollection, IDiModule>, IDiBootstrapper
     {
-        protected override IServiceProvider GetInstance(IContainerConfig config)
+        protected override IServiceProvider GetInstance(IServiceCollection serviceCollection)
         {
-            return config.BuildContainer();
+            return serviceCollection.BuildServiceProvider(true);
         }
     }
 }

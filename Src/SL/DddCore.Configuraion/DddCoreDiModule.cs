@@ -19,55 +19,33 @@ using DddCore.Services.Application.DomainStack;
 using DddCore.Dal.DomainStack.EntityFramework;
 using DddCore.Contracts.Crosscutting.UserContext;
 using DddCore.Crosscutting.UserContext;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace DddCore.Configuraion
 {
     public class DddCoreDiModule : IDiModule
     {
-        public void Install(IContainerConfig config)
+        public void Install(IServiceCollection serviceCollection)
         {
-            SetupBusinessRulesValidators(config);
-            SetupRepositories(config);
-            SetupQueryRepositories(config);
-            SetupEntityServices(config);
-            SetupWorkflowServices(config);
-            SetupInfrastructureServices(config);
-            SetupDomainEventHandlers(config);
+            SetupBusinessRulesValidators(serviceCollection);
+            SetupRepositories(serviceCollection);
+            SetupQueryRepositories(serviceCollection);
+            SetupEntityServices(serviceCollection);
+            SetupWorkflowServices(serviceCollection);
+            SetupInfrastructureServices(serviceCollection);
+            SetupDomainEventHandlers(serviceCollection);
 
-            config
-                .Register<IUnitOfWork, DataContext>()
-                .LifeStyle
-                .PerWebRequest();
-
-            config
-                .Register<IDataContext, DataContext>()
-                .LifeStyle
-                .PerWebRequest();
-
-            config
-                .Register<IDomainEventDispatcher, DomainEventDispatcher>()
-                .LifeStyle
-                .PerWebRequest();
-
-            config
-                .Register<IDomainEventHandlerFactory, DomainEventHandlerFactory>()
-                .LifeStyle
-                .PerWebRequest();
-
-            config
-                .Register<IBusinessRulesValidatorFactory, BusinessRulesValidatorFactory>()
-                .LifeStyle
-                .PerWebRequest();
-
-            config
-                .Register<IUserContext<Guid>, IdentityUserContext>()
-                .LifeStyle
-                .PerWebRequest();
+            serviceCollection.AddScoped<IUnitOfWork, DataContext>();
+            serviceCollection.AddScoped<IDataContext, DataContext>();
+            serviceCollection.AddScoped<IDomainEventDispatcher, DomainEventDispatcher>();
+            serviceCollection.AddScoped<IDomainEventHandlerFactory, DomainEventHandlerFactory>();
+            serviceCollection.AddScoped<IBusinessRulesValidatorFactory, BusinessRulesValidatorFactory>();
+            serviceCollection.AddScoped<IUserContext<Guid>, IdentityUserContext>();
         }
 
         #region Private Members
 
-        void SetupDomainEventHandlers(IContainerConfig config)
+        void SetupDomainEventHandlers(IServiceCollection serviceCollection)
         {
             var allMessageTypes = AssemblyUtility.GetTypes<IDomainEvent>();
             if (!allMessageTypes.Any()) return;
@@ -84,35 +62,32 @@ namespace DddCore.Configuraion
 
                 foreach (var t in handlers)
                 {
-                    config
-                        .Register(closedHandlerContract, t)
-                        .LifeStyle
-                        .PerWebRequest();
+                    serviceCollection.AddScoped(closedHandlerContract, t);
                 }
             }
         }
 
-        void SetupInfrastructureServices(IContainerConfig config)
+        void SetupInfrastructureServices(IServiceCollection serviceCollection)
         {
-            SetupForContract(config, typeof(IInfrastructureService));
+            SetupForContract(serviceCollection, typeof(IInfrastructureService));
         }
 
-        void SetupWorkflowServices(IContainerConfig config)
+        void SetupWorkflowServices(IServiceCollection serviceCollection)
         {
-            SetupForContract(config, typeof(IWorkflowService));
+            SetupForContract(serviceCollection, typeof(IWorkflowService));
         }
 
-        void SetupEntityServices(IContainerConfig config)
+        void SetupEntityServices(IServiceCollection serviceCollection)
         {
-            SetupForEachAggregateRoot(config, typeof(IEntityService<,>), typeof(EntityService<,>));
+            SetupForEachAggregateRoot(serviceCollection, typeof(IEntityService<,>), typeof(EntityService<,>));
         }
 
-        void SetupQueryRepositories(IContainerConfig config)
+        void SetupQueryRepositories(IServiceCollection serviceCollection)
         {
-            SetupForContract(config, typeof(IQueryRepository));
+            SetupForContract(serviceCollection, typeof(IQueryRepository));
         }
 
-        void SetupBusinessRulesValidators(IContainerConfig config)
+        void SetupBusinessRulesValidators(IServiceCollection serviceCollection)
         {
             var type = typeof(IBusinessRulesValidator<>);
 
@@ -123,19 +98,16 @@ namespace DddCore.Configuraion
                         .GetInterfaces()
                         .FirstOrDefault(x => x.GetTypeInfo().IsGenericType && x.GetGenericTypeDefinition() == type);
 
-                config
-                    .Register(contractType, t)
-                    .LifeStyle
-                    .Singleton(); // https://github.com/JeremySkinner/FluentValidation/wiki/b.-Creating-a-Validator#a-note-on-performance
+                serviceCollection.AddSingleton(contractType, t); // https://github.com/JeremySkinner/FluentValidation/wiki/b.-Creating-a-Validator#a-note-on-performance
             }
         }
 
-        void SetupRepositories(IContainerConfig config)
+        void SetupRepositories(IServiceCollection serviceCollection)
         {
-            SetupForEachAggregateRoot(config, typeof(IRepository<,>), typeof(Repository<,>));
+            SetupForEachAggregateRoot(serviceCollection, typeof(IRepository<,>), typeof(Repository<,>));
         }
 
-        void SetupForEachAggregateRoot(IContainerConfig config, Type contractType, Type serviceType)
+        void SetupForEachAggregateRoot(IServiceCollection serviceCollection, Type contractType, Type serviceType)
         {
             var allAggregateRoots =
                 AssemblyUtility
@@ -163,41 +135,29 @@ namespace DddCore.Configuraion
                 {
                     var genericType = serviceType.MakeGenericType(closedContractType.GetGenericArguments());
 
-                    config
-                        .Register(closedContractType, genericType)
-                        .LifeStyle
-                        .PerWebRequest();
+                    serviceCollection.AddScoped(closedContractType, genericType);
 
                     continue;
                 }
                 else
                 {
-                    config
-                        .Register(closedContractType, specificType)
-                        .LifeStyle
-                        .PerWebRequest();
+                    serviceCollection.AddScoped(closedContractType, specificType);
 
                     foreach (var specificContractType in specificType.GetInterfaces().Where(x => x != closedContractType))
                     {
-                        config
-                            .Register(specificContractType, specificType)
-                            .LifeStyle
-                            .PerWebRequest();
+                        serviceCollection.AddScoped(specificContractType, specificType);
                     }
                 }
             }
         }
 
-        void SetupForContract(IContainerConfig config, Type contractType)
+        void SetupForContract(IServiceCollection serviceCollection, Type contractType)
         {
             foreach (var t in AssemblyUtility.GetTypes(contractType))
             {
                 foreach (var ct in t.GetInterfaces().Where(c => c != contractType))
                 {
-                    config
-                        .Register(ct, t)
-                        .LifeStyle
-                        .PerWebRequest();
+                    serviceCollection.AddScoped(ct, t);
                 }
             }
         }

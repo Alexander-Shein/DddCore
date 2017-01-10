@@ -30,12 +30,9 @@ namespace DddCore.Tests.Unit.Crosscutting.DependencyInjection
 
     public class DiModule : IDiModule
     {
-        public void Install(IContainerConfig config)
+        public void Install(IServiceCollection serviceCollection)
         {
-            config
-                .Register<IDiModule, DiModule>()
-                .LifeStyle
-                .Transient();
+            serviceCollection.AddTransient<IDiModule, DiModule>();
         }
     }
 

@@ -2,6 +2,9 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputType>library</OutputType>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="**\*.cs" />
     <EmbeddedResource Include="**\*.resx" />
@@ -11,6 +14,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\BLL\DddCore.Contracts.Domain\DddCore.Contracts.Domain.csproj" />
+    <ProjectReference Include="..\..\Crosscutting\DddCore.Contracts.Crosscutting\DddCore.Contracts.Crosscutting.csproj" />
     <ProjectReference Include="..\..\Crosscutting\DddCore.Crosscutting\DddCore.Crosscutting.csproj" />
   </ItemGroup>
 </Project>

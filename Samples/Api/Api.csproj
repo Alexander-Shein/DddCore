@@ -25,7 +25,6 @@
     <ProjectReference Include="..\..\Src\BLL\DddCore.Contracts.Domain\DddCore.Contracts.Domain.csproj" />
     <ProjectReference Include="..\..\Src\BLL\DddCore.Domain\DddCore.Domain.csproj" />
     <ProjectReference Include="..\..\Src\Crosscutting\DddCore.Contracts.Crosscutting\DddCore.Contracts.Crosscutting.csproj" />
-    <ProjectReference Include="..\..\Src\Crosscutting\DddCore.Crosscutting.DependencyInjection.Microsoft\DddCore.Crosscutting.DependencyInjection.Microsoft.csproj" />
     <ProjectReference Include="..\..\Src\Crosscutting\DddCore.Crosscutting.ObjectMapper.AutoMapper\DddCore.Crosscutting.ObjectMapper.AutoMapper.csproj" />
     <ProjectReference Include="..\..\Src\Crosscutting\DddCore.Crosscutting\DddCore.Crosscutting.csproj" />
     <ProjectReference Include="..\..\Src\DAL\DddCore.Contracts.Dal\DddCore.Contracts.Dal.csproj" />
