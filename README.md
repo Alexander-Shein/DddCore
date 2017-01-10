@@ -16,43 +16,31 @@ DddCore framework uses next libraries:
 
 - [Dependency Injection][1]
 - [Object Mapper][2]
-- User Context
-- Extensions
+- [User Context][-7]
+- [Extension Methods and Helpers][-6]
 
 ### Business Logic Layer (BLL)
 
 - [Entity][3]
-
 - [Aggregate Root Entity][4]
-
 - [Business Rules][5]
-
 - [Domain events and handlers][6]
-
 - [Value Object][7]
 
 ### Data Access Layer (DAL)
 
 - [Repository][8]
-
 - [Unit of Work][9]
-
 - [Query Repository][10]
-
 - [Entity Mapping][11]
-
 - [Connection Strings][12]
 
 ### Services Layer (SL)
 
 - [Entity Service][13]
-
 - [Workflow Service][14]
-
 - [Infrastructure Service][15]
-
 - Helper Infrastructure Services
-
 - Crud Interfaces
 
 [-4]: https://github.com/JeremySkinner/FluentValidation
@@ -64,6 +52,8 @@ DddCore framework uses next libraries:
 [0]: https://github.com/Alexander-Shein/DddCore/tree/net-core/Samples/Api
 [1]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/Crosscutting/README.md#dependency-injection
 [2]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/Crosscutting/README.md#object-mapper
+[-7]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/Crosscutting/README.md#user-context
+[-6]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/Crosscutting/README.md#object-mapper#extension-methods-and-helpers
 
 [3]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/BLL/README.md
 [4]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/BLL/README.md#aggregate-root-entity

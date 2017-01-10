@@ -71,3 +71,98 @@ public class ObjectMapperModule : IObjectMapperModule
     #endregion
 }
 ```
+# User Context
+
+DddCore has a wrapper for current IIdentity:
+
+```csharp
+public interface IUserContext<out TKey>
+{
+    /// <summary>
+    /// ClaimTypes.NameIdentifier from current Identity
+    /// </summary>
+    TKey Id { get; }
+
+    /// <summary>
+    /// Identity.Name
+    /// </summary>
+    string UserName { get; }
+
+    /// <summary>
+    /// Identity.IsAuthenticated
+    /// </summary>
+    bool IsAuthenticated { get; }
+}
+```
+
+The IIdentity is given from IHttpContextAccessor:
+
+```csharp
+IHttpContextAccessor
+    .HttpContext
+    .User
+    .Identity
+```
+
+And can be injected via IUserContext<> interface.
+
+# Extension Methods and Helpers
+
+## Type
+```csharp
+/// <summary>
+/// Type.IsAssignableFrom equivalent for opened generic types
+/// </summary>
+/// <param name="genericType"></param>
+/// <param name="givenType"></param>
+/// <returns></returns>
+public static bool IsAssignableFromGenericType(this Type genericType, Type givenType) { ... }
+```
+
+## String
+```csharp
+/// <summary>
+/// String.Contains equivalent with <paramref name="comp"/>
+/// </summary>
+/// <param name="source"></param>
+/// <param name="toCheck"></param>
+/// <param name="comp"></param>
+/// <returns></returns>
+public static bool Contains(this string source, string toCheck, StringComparison comp) { ... }
+```
+
+## IEnumerable
+
+```csharp
+/// <summary>
+/// Devide IEnumerable to chunks
+/// </summary>
+/// <typeparam name="TValue"></typeparam>
+/// <param name="values"></param>
+/// <param name="chunkSize"></param>
+/// <returns></returns>
+public static IEnumerable<IEnumerable<TValue>> Chunk<TValue>(this IEnumerable<TValue> values, int chunkSize) { ... }
+```
+
+```csharp
+/// <summary>
+/// Check if collection is null or empty
+/// </summary>
+/// <typeparam name="T"></typeparam>
+/// <param name="enumerable"></param>
+/// <returns></returns>
+public static bool IsNullOrEmpty<T>(this IEnumerable<T> enumerable) { ... }
+```
+
+```csharp
+/// <summary>
+/// Perform action on every element in collection
+/// </summary>
+/// <typeparam name="T"></typeparam>
+/// <param name="source"></param>
+/// <param name="action"></param>
+/// <returns></returns>
+public static IEnumerable<T> Do<T>(this IEnumerable<T> source, Action<T> action) { ... }
+```
+
+
