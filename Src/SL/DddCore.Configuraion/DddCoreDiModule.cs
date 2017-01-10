@@ -1,5 +1,4 @@
 ﻿using DddCore.Contracts.Crosscutting.DependencyInjection.Base;
-using DddCore.Contracts.Crosscutting.DependencyInjection;
 using DddCore.Crosscutting;
 using DddCore.Contracts.Domain.Entities.BusinessRules;
 using DddCore.Contracts.Dal.DomainStack;
