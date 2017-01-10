@@ -37,6 +37,8 @@ namespace DddCore.Crosscutting.UserContext
         {
             get
             {
+                if (!IsAuthenticated) throw new ArgumentException("User is not authenticated.");
+
                 var userIdString = ((ClaimsIdentity)Identity).FindFirst(ClaimTypes.NameIdentifier).Value;
                 Guid userId;
 
