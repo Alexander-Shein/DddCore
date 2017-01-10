@@ -45,7 +45,7 @@ namespace DddCore.Crosscutting
             {
                 throw new ArgumentNullException(nameof(source));
             }
-
+            
             if (action == null)
             {
                 throw new ArgumentNullException(nameof(action));
@@ -67,25 +67,6 @@ namespace DddCore.Crosscutting
             }
 
             return source;
-        }
-
-        /// <summary>
-        /// Check is collection comtains only one element
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="list"></param>
-        /// <returns></returns>
-        public static bool IsSingle<T>(this IEnumerable<T> list)
-        {
-            if (list == null)
-            {
-                throw new ArgumentNullException(nameof(list));
-            }
-
-            using (var enumerator = list.GetEnumerator())
-            {
-                return enumerator.MoveNext() && !enumerator.MoveNext();
-            }
         }
     }
 }
