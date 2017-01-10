@@ -4,6 +4,7 @@ DddCore framework implements common ddd patterns like repository, unit of work, 
 DddCore framework uses next libraries:
 * [FluentAssertion][-4]
 * [EntityFramework][-3]
+* [Dapper][-5]
 * [Microsoft DependencyInjection][-2] - can be switched
 * [AutoMapper][-1] - can be switched
 
@@ -58,6 +59,7 @@ DddCore framework uses next libraries:
 [-3]: https://github.com/aspnet/EntityFramework
 [-2]: https://github.com/aspnet/DependencyInjection
 [-1]: https://github.com/AutoMapper/AutoMapper
+[-5]: https://github.com/StackExchange/dapper-dot-net
 
 [0]: https://github.com/Alexander-Shein/DddCore/tree/net-core/Samples/Api
 [1]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/Crosscutting/README.md#dependency-injection
