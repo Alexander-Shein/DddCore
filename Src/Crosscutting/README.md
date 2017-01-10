@@ -71,6 +71,38 @@ public class ObjectMapperModule : IObjectMapperModule
     #endregion
 }
 ```
+# User Context
+
+DddCore has a wrapper for current IIdentity:
+
+```csharp
+public interface IUserContext<out TKey>
+{
+    /// <summary>
+    /// ClaimTypes.NameIdentifier from current Identity
+    /// </summary>
+    TKey Id { get; }
+
+    /// <summary>
+    /// Identity.Name
+    /// </summary>
+    string UserName { get; }
+
+    /// <summary>
+    /// Identity.IsAuthenticated
+    /// </summary>
+    bool IsAuthenticated { get; }
+}
+```
+
+The IIdentity is given from IHttpContextAccessor:
+
+```csharp
+IHttpContextAccessor
+    .HttpContext
+    .User
+    .Identity
+```
 
 # Extension Methods and Helpers
 
