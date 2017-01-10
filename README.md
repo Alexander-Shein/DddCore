@@ -5,7 +5,7 @@ DddCore framework uses next libraries:
 * [FluentAssertion][-4]
 * [EntityFramework][-3]
 * [Dapper][-5]
-* [Microsoft DependencyInjection][-2] - can be switched
+* [Microsoft Dependency Injection][-2] - to use diffrent containers see microsoft di documentation
 * [AutoMapper][-1] - can be switched
 
 [Sample][0]
