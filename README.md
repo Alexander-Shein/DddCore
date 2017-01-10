@@ -54,7 +54,7 @@ DddCore framework implements common ddd patterns like repository, unit of work, 
 
 [8]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/DAL/README.md#repository
 [9]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/DAL/README.md#unit-of-work
-[10]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/DAL/README.md#queryrepository
+[10]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/DAL/README.md#query-repository
 [11]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/DAL/README.md#entity-mapping
 [12]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/DAL/README.md#connection-strings
 
