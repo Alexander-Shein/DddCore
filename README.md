@@ -50,6 +50,10 @@ DddCore framework uses next libraries:
 
 - [Infrastructure Service][15]
 
+- Helper Infrastructure Services
+
+- Crud Interfaces
+
 [-4]: https://github.com/JeremySkinner/FluentValidation
 [-3]: https://github.com/aspnet/EntityFramework
 [-2]: https://github.com/aspnet/DependencyInjection
