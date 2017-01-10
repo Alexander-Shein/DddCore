@@ -2,12 +2,15 @@
 
 ## Bootstrap
 
-Bootstrap method automatically register all framework components and custom components that are implements framework interfaces or inherited from framework base classes. In theory you don't need to register anything mannualy to the container. But if you need see the Modules section. Bootstrap example:
+To register all framework components and custom components that are implements framework interfaces or inherited from framework base classes use .AddDddCore() method;
 
   ```csharp
-new DiBootstrapper()
-    .AddMicrosoftDependencyInjection(services)    
-    .Bootstrap();
+public void ConfigureServices(IServiceCollection services)
+{
+    // Add framework services.
+    services.AddMvc();
+    services.AddDddCore();
+}
 ```
 
 ## Modules
