@@ -131,14 +131,4 @@ public static bool IsNullOrEmpty<T>(this IEnumerable<T> enumerable) { ... }
 public static IEnumerable<T> Do<T>(this IEnumerable<T> source, Action<T> action) { ... }
 ```
 
-```csharp
-/// <summary>
-/// Check is collection comtains only one element
-/// </summary>
-/// <typeparam name="T"></typeparam>
-/// <param name="list"></param>
-/// <returns></returns>
-public static bool IsSingle<T>(this IEnumerable<T> list) { ... }
-```
-
 
