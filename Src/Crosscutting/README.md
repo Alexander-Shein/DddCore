@@ -76,16 +76,13 @@ public class ObjectMapperModule : IObjectMapperModule
 
 ## Type
 ```csharp
-public static class TypeExtensions
-{
-    /// <summary>
-    /// Type.IsAssignableFrom equivalent for opened generic types
-    /// </summary>
-    /// <param name="genericType"></param>
-    /// <param name="givenType"></param>
-    /// <returns></returns>
-    public static bool IsAssignableFromGenericType(this Type genericType, Type givenType) { ... }
-}
+/// <summary>
+/// Type.IsAssignableFrom equivalent for opened generic types
+/// </summary>
+/// <param name="genericType"></param>
+/// <param name="givenType"></param>
+/// <returns></returns>
+public static bool IsAssignableFromGenericType(this Type genericType, Type givenType) { ... }
 ```
 
 ## String
