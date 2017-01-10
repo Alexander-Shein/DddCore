@@ -115,6 +115,21 @@ public class UpdateColorHandler : IDomainEventHandler<ColorChangedDomainEvent>
 }
 ```
 
+## Domain event dispatcher
+
+If you want to invoke handlers mannualy you can inject and use IDomainEventDispatcher.Raise:
+```csharp
+public interface IDomainEventDispatcher
+{
+    /// <summary>
+    /// Pass domain event to related handlers
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="domainEvent"></param>
+    void Raise<T>(T domainEvent) where T : IDomainEvent;
+}
+```
+
 Note: When aggregate root is persisted via IEntityService.PersistEntityGraph the events from all aggregate root graph entities are raised and passed to related event handlers.
 
 # Value Object
