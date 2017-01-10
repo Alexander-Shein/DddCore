@@ -6,6 +6,12 @@ namespace DddCore.Crosscutting
 {
     public static class TypeExtensions
     {
+        /// <summary>
+        /// Type.IsAssignableFrom equivalent for opened generic types
+        /// </summary>
+        /// <param name="genericType"></param>
+        /// <param name="givenType"></param>
+        /// <returns></returns>
         public static bool IsAssignableFromGenericType(this Type genericType, Type givenType)
         {
             while (true)
