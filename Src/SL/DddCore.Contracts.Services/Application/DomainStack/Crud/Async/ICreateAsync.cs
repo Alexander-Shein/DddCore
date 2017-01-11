@@ -2,8 +2,13 @@
 
 namespace DddCore.Contracts.Services.Application.DomainStack.Crud.Async
 {
-    public interface ICreateAsync<TVm, in TIm>
+    public interface ICreateAsync<TViewModel, in TInputModel>
     {
-        Task<TVm> CreateAsync(TIm im);
+        /// <summary>
+        /// Gets an InputModel and returns ViewModel. InputModel has no Id property, ViewModel does.
+        /// </summary>
+        /// <param name="im"></param>
+        /// <returns></returns>
+        Task<TViewModel> CreateAsync(TInputModel im);
     }
 }

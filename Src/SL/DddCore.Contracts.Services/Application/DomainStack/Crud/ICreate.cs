@@ -1,7 +1,12 @@
 ﻿namespace DddCore.Contracts.Services.Application.DomainStack.Crud
 {
-    public interface ICreate<TVm, in TIm>
+    public interface ICreate<out TViewModel, in TInputModel>
     {
-        TVm Create(TIm im);
+        /// <summary>
+        /// Gets an InputModel and returns ViewModel. InputModel has no Id property, ViewModel does.
+        /// </summary>
+        /// <param name="im"></param>
+        /// <returns></returns>
+        TViewModel Create(TInputModel im);
     }
 }

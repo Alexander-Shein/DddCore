@@ -1,6 +1,6 @@
 ﻿namespace DddCore.Contracts.Services.Application.DomainStack.Crud
 {
-    public interface ICrud<TVm, in TKey, in TIm> :
+    public interface ICrud<out TVm, in TKey, in TIm> :
         ICreate<TVm, TIm>,
         IRead<TVm, TKey>,
         IUpdate<TVm, TKey, TIm>,

@@ -2,8 +2,14 @@ using System.Threading.Tasks;
 
 namespace DddCore.Contracts.Services.Application.DomainStack.Crud.Async
 {
-    public interface IReadAsync<T, in TKey>
+    public interface IReadAsync<TViewModel, in TKey>
     {
-        Task<T> ReadAsync(TKey key, string[] includes = null);
+        /// <summary>
+        /// Read ViewModel by key. Includes can contain additional information that we need to return.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="includes"></param>
+        /// <returns></returns>
+        Task<TViewModel> ReadAsync(TKey key, string[] includes = null);
     }
 }

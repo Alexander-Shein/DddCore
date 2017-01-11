@@ -1,11 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DddCore.Contracts.Services.Application.DomainStack.Crud
+﻿namespace DddCore.Contracts.Services.Application.DomainStack.Crud
 {
-    public interface IUpdate<TVm, in TKey, in TIm>
+    public interface IUpdate<out TViewModel, in TKey, in TInputModel>
     {
-        TVm Update(TKey key, TIm model);
+        /// <summary>
+        /// Updates by key and returns ViewModel. InputModel contains no Id field, ViewMmodel does
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        TViewModel Update(TKey key, TInputModel model);
     }
 }
