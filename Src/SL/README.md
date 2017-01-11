@@ -194,4 +194,26 @@ Note: Business logic is not allowed
 
 Note: Workflow logic is not allowed
 
+# Pagged Result
+
+DddCore has a model that can be helpful for pagged result:
+```csharp
+public class PaggedResult<T>
+{
+    public PaggedResult(int page, int pageSize, IEnumerable<T> items, long total)
+    {
+        Page = page;
+        PageSize = pageSize;
+        Items = items;
+        Total = total;
+    }
+
+    public long Total { get; set; }
+    public int Page { get; set; }
+    public int PageSize { get; set; }
+
+    public IEnumerable<T> Items { get; set; }
+}
+```
+
 [1]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/BLL/README.md#entity
