@@ -7,8 +7,8 @@ namespace DddCore.Contracts.Domain.Entities.BusinessRules
     {
         public bool IsValid => !IsNotValid;
 
-        public bool IsNotValid => Errors.Any();
+        public bool IsNotValid => BrokenBusinessRules.Any();
 
-        public ICollection<BrokenBusinessRule> Errors { get; } = new List<BrokenBusinessRule>();
+        public ICollection<BrokenBusinessRule> BrokenBusinessRules { get; } = new List<BrokenBusinessRule>();
     }
 }

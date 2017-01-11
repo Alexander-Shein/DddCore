@@ -1,9 +1,11 @@
 ﻿using System.Threading.Tasks;
 using DddCore.Contracts.Dal.DomainStack;
 using DddCore.Contracts.Domain.Entities;
+using DddCore.Contracts.Domain.Entities.BusinessRules;
 using DddCore.Contracts.Domain.Events;
 using DddCore.Contracts.Services.Application.DomainStack;
 using DddCore.Crosscutting;
+using System.Linq;
 
 namespace DddCore.Services.Application.DomainStack
 {
@@ -30,22 +32,54 @@ namespace DddCore.Services.Application.DomainStack
 
         #region Public Methods
 
-        public async Task PersistAggregateRootAsync(T aggregateRoot)
+        public virtual void PersistAggregateRoot(T aggregateRoot)
         {
-            guard.NotNull(aggregateRoot);
-            await guard.ValidateAggregateRootAndThrowAsync<T, TKey>(aggregateRoot);
+            var validationResult = TryPersistAggregateRoot(aggregateRoot);
 
-            RaiseEvents(aggregateRoot);
-            repository.PersistAggregateRoot(aggregateRoot);
+            if (validationResult.IsNotValid)
+            {
+                throw validationResult.BrokenBusinessRules.First();
+            }
         }
 
-        public void PersistAggregateRoot(T aggregateRoot)
+        public virtual async Task PersistAggregateRootAsync(T aggregateRoot)
+        {
+            var validationResult = await TryPersistAggregateRootAsync(aggregateRoot);
+
+            if (validationResult.IsNotValid)
+            {
+                throw validationResult.BrokenBusinessRules.First();
+            }
+        }
+
+        public virtual BusinessRulesValidationResult TryPersistAggregateRoot(T aggregateRoot)
         {
             guard.NotNull(aggregateRoot);
-            guard.ValidateAggregateRootAndThrow<T, TKey>(aggregateRoot);
 
-            RaiseEvents(aggregateRoot);
-            repository.PersistAggregateRoot(aggregateRoot);
+            var validationResult = guard.ValidateBusinessRules<T, TKey>(aggregateRoot);
+
+            if (validationResult.IsValid)
+            {
+                RaiseEvents(aggregateRoot);
+                repository.PersistAggregateRoot(aggregateRoot);
+            }
+
+            return validationResult;
+        }
+
+        public virtual async Task<BusinessRulesValidationResult> TryPersistAggregateRootAsync(T aggregateRoot)
+        {
+            guard.NotNull(aggregateRoot);
+
+            var validationResult = await guard.ValidateBusinessRulesAsync<T, TKey>(aggregateRoot);
+
+            if (validationResult.IsValid)
+            {
+                RaiseEvents(aggregateRoot);
+                repository.PersistAggregateRoot(aggregateRoot);
+            }
+
+            return validationResult;
         }
 
         #endregion

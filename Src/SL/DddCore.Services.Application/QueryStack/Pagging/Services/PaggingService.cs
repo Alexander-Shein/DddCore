@@ -6,26 +6,26 @@ namespace DddCore.Services.Application.QueryStack.Pagging.Services
     {
         #region Public Methods
 
-        public int MormalizePage(int page)
+        public int NormalizePage(int page, int firstPageNumber = 1)
         {
-            if (page <= 0)
+            if (page < firstPageNumber)
             {
-                page = 1;
+                page = firstPageNumber;
             }
 
             return page;
         }
 
-        public int NormalizePageSize(int pageSize)
+        public int NormalizePageSize(int pageSize, int minPageSize = 10, int maxPageSize = 1000)
         {
-            if (pageSize <= 0)
+            if (pageSize < minPageSize)
             {
-                pageSize = 10;
+                pageSize = minPageSize;
             }
 
-            if (pageSize > 1000)
+            if (pageSize > maxPageSize)
             {
-                pageSize = 1000;
+                pageSize = maxPageSize;
             }
 
             return pageSize;

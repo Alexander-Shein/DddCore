@@ -32,7 +32,7 @@ namespace DddCore.Domain.Entities.BusinessRules
 
             foreach (var validationFailure in validationResult.Errors)
             {
-                result.Errors.Add(new BrokenBusinessRule(validationFailure.PropertyName, validationFailure.ErrorMessage));
+                result.BrokenBusinessRules.Add(new BrokenBusinessRule(validationFailure.PropertyName, validationFailure.ErrorMessage));
             }
 
             return result;
