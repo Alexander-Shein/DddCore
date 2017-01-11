@@ -291,5 +291,7 @@ public interface ICreateChild<out TViewModel, in TParrentKey, in TInputModel>
 ```
 And we have async equvalents for CRUD interfaces. They have a Async prefix: ICreateAsync, IReadAsync, IUpdateAsync, IDeleteAsync, ICrudAsync and ICreateChildAsync
 
+[Return][2]
 
 [1]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/BLL/README.md#entity
+[2]: https://github.com/Alexander-Shein/DddCore/blob/net-core/README.md
