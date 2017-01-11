@@ -45,7 +45,7 @@ Try a tutorial(under construction) or have a look to the [sample][0] app.
 - [Entity Service][13]
 - [Workflow Service][14]
 - [Infrastructure Service][15]
-- Helper Infrastructure Services
+- [Pagged Result][16]
 - Crud Interfaces
 
 [-4]: https://github.com/JeremySkinner/FluentValidation
@@ -75,3 +75,4 @@ Try a tutorial(under construction) or have a look to the [sample][0] app.
 [13]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/SL/README.md#entity-service
 [14]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/SL/README.md#workflow-service
 [15]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/SL/README.md#infrastructure-service
+[16]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/SL/README.md#pagged-result
