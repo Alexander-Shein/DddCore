@@ -56,6 +56,8 @@ public class CarsEntityService : EntityService<Car, Guid>, ICarsEntityService
     public CarsEntityService(IRepository<T, TKey> repository, IGuard guard, IDomainEventDispatcher domainEventDispatcher) : base(repository, guard, domainEventDispatcher) { ... }
 
     public void AddAirBag(AirBag airBag) { ... }
+    
+    public void override PersistAggregateRoot(T aggregateRoot) { ... }
 }
 ```
 If custom implementation exists then for IEntityService<> generic interface will be injected custom implementation as well as for custom interface:
