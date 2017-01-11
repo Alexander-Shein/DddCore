@@ -1,41 +1,84 @@
 # Entity Service
 
 ## Dependency injection
-For each Aggregate Root the generic implementation IEntityService<> is auto registered and can be injected. When custom entity service for aggregate root is created then generic entity service is overritten. Lifestyle is PerWebRequest.
+For each Aggregate Root the generic implementation of IEntityService<> is auto registered and can be injected via generic interface. Lifestyle is Scoped.
 
 ## Overview
-We can't inject services to entities. When business logic requires interaction with diffrent layers or it needs to use services that we can't inject to entity this logic goes to entity services. For example if we need to interact with a repository this implementation goes to entity services.
+When business logic requires interaction with diffrent layers or it needs to use services but we can't inject it to entity this logic goes to entity services. For example if we need to interact with a repository this implementation goes to entity services.
 
 Generic Entity Service:
 ```csharp
 public interface IEntityService<in T, in TKey> where T : class, IAggregateRootEntity<TKey>
 {
+    /// <summary>
+    /// Validate business rules, raise events and persist aggregate root graph.
+    /// Throws first broken business rule if any.
+    /// </summary>
+    /// <param name="aggregateRoot"></param>
+    /// <returns></returns>
+    void PersistAggregateRoot(T aggregateRoot);
+
+    /// <summary>
+    /// Async version of PersistAggregateRoot.
+    /// </summary>
+    /// <param name="aggregateRoot"></param>
+    /// <returns></returns>
     Task PersistAggregateRootAsync(T aggregateRoot);
+
+    /// <summary>
+    /// Validate business rules, raise events and persist aggregate root graph.
+    /// </summary>
+    /// <param name="aggregateRoot"></param>
+    /// <returns>if BusinessRulesValidationResult.IsValid then aggregate root is persisted. If not BusinessRulesValidationResult.BrokenBusinessRules is populated.</returns>
+    BusinessRulesValidationResult TryPersistAggregateRoot(T aggregateRoot);
+
+    /// <summary>
+    /// Async version of TryPersistAggregateRoot.
+    /// </summary>
+    /// <param name="aggregateRoot"></param>
+    /// <returns></returns>
+    Task<BusinessRulesValidationResult> TryPersistAggregateRootAsync(T aggregateRoot);
 }
 ```
 
 ## Custom implementation
+Interface for custom entity service implementation should be derived from generic IEntityService<> with related generic types:
 ```csharp
 public interface ICarsEntityService : IEntityService<Car, Guid>
 {
     void AddAirBag(AirBag airBag);
 }
 ```
+The implementation should be derived from generic implementation EntityService<>. Generic implementation has all methods marked as virtual so it could be overriten if required: 
 ```csharp
 public class CarsEntityService : EntityService<Car, Guid>, ICarsEntityService
 {
-    public CarsEntityService(IRepository<T, TKey> repository, IGuard guard, IDomainEventDispatcher domainEventDispatcher) : base(repository, guard, domainEventDispatcher)
-{
-}
+    public CarsEntityService(IRepository<T, TKey> repository, IGuard guard, IDomainEventDispatcher domainEventDispatcher) : base(repository, guard, domainEventDispatcher) { ... }
 
-public void AddAirBag(AirBag airBag) { ... }
+    public void AddAirBag(AirBag airBag) { ... }
+    
+    public void override PersistAggregateRoot(T aggregateRoot) { ... }
+}
+```
+If custom implementation exists then for IEntityService<> generic interface will be injected custom implementation as well as for custom interface:
+```csharp
+public class CarsWorkflowService : ICarsWorkflowService
+{
+    public CarsWorkflowService(IEntityService<Car, Guid> carsEntityService) { ... }
+}
+```
+Or
+```csharp
+public class CarsWorkflowService : ICarsWorkflowService
+{
+    public CarsWorkflowServiceICarsEntityService carsEntityService) { ... }
 }
 ```
 
 # Workflow Service
 
 ## Dependency injection:
-Services marked as IWorkflowService are auto registered with PerWebRequest lifestyle.
+Services marked as IWorkflowService are auto registered with scoped lifestyle.
 
 ## Overview
 The responsibily of those services is a workflow and transaction control. Those services contain NOT reusable logic because each workflow should have only one enter point. IUnitOfWork should be injected only into workflow service.
@@ -46,7 +89,8 @@ public interface ICarsWorkflowService : IWorkflowService
 {
     Task<CarVm> CreateCarAsync(CarIm im);
 }
-
+```
+```csharp
 public class CarsWorkflowService : ICarsWorkflowService
 {
     readonly IUnitOfWork unitOfWork;
@@ -77,7 +121,7 @@ Note: Workflow control
 # Infrastructure Service
 
 ## Dependency injection:
-Services marked as IInfrastructureService are auto registered with PerWebRequest lifestyle.
+Services marked as IInfrastructureService are auto registered with scoped lifestyle.
 
 ## Overview
 It's a place for reusable logic that is not part of business logic and workflow logic. Because business logic goes to [entities][1] and entity services. Workflow logic goes to workflow services. Transactions (using IUnitOfWork) is not allowed because those services contain reusable logic that can be used in many places and it's possible to have multiple transactions per one requiest. 
@@ -88,22 +132,59 @@ Usage examples:
 * Helper services
 * other logic
 
-Examples from framework:
+Examples from framework that can be used in your code:
 
 ```csharp
 public interface IGuard : IInfrastructureService
 {
+    /// <summary>
+    /// If null throws AgrumentNullException.
+    /// </summary>
+    /// <param name="obj"></param>
+    /// <param name="message"></param>
     void NotNull(object obj, string message = "");
-    Task AggregateRootIsValidAsync<T, TKey>(T aggregateRoot) where T : IAggregateRootEntity<TKey>;
-    void AggregateRootIsValid<T, TKey>(T aggregateRoot) where T : IAggregateRootEntity<TKey>;
+
+    /// <summary>
+    /// Retrives business rules validator and validates business rules for aggregateRoot.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="TKey"></typeparam>
+    /// <param name="aggregateRoot"></param>
+    /// <returns>Business rules validation result</returns>
+    BusinessRulesValidationResult ValidateBusinessRules<T, TKey>(T aggregateRoot) where T : IAggregateRootEntity<TKey>;
+
+    /// <summary>
+    /// Async version of ValidateBusinessRules
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="TKey"></typeparam>
+    /// <param name="aggregateRoot"></param>
+    /// <returns></returns>
+    Task<BusinessRulesValidationResult> ValidateBusinessRulesAsync<T, TKey>(T aggregateRoot) where T : IAggregateRootEntity<TKey>;
 }
 ```
-And
 ```csharp
 public interface IPaggingService : IInfrastructureService
 {
-    int MormalizePage(int page);
-    int NormalizePageSize(int pageSize);
+    /// <summary>
+    /// If <param name="page"></param> less than <param name="firstPageNumber"></param> returns <param name="firstPageNumber"></param>.
+    /// Else returns <param name="page"></param>
+    /// </summary>
+    /// <param name="page"></param>
+    /// <param name="firstPageNumber"></param>
+    /// <returns></returns>
+    int NormalizePage(int page, int firstPageNumber = 1);
+
+    /// <summary>
+    /// If <param name="pageSize"></param> less than <param name="minPageSize"></param> returns <param name="minPageSize"></param>.
+    /// Else if <param name="pageSize"></param> greater than <param name="maxPageSize"></param> returns <param name="maxPageSize"></param>.
+    /// Else returns <param name="pageSize"></param>.
+    /// </summary>
+    /// <param name="pageSize"></param>
+    /// <param name="minPageSize"></param>
+    /// <param name="maxPageSize"></param>
+    /// <returns></returns>
+    int NormalizePageSize(int pageSize, int minPageSize = 10, int maxPageSize = 1000);
 }
 ```
 
@@ -112,5 +193,103 @@ Note: IUnitOfWork (transactions) is not allowed
 Note: Business logic is not allowed
 
 Note: Workflow logic is not allowed
+
+# Pagged Result
+
+DddCore has a model that can be helpful for pagged result:
+```csharp
+public class PaggedResult<T>
+{
+    public PaggedResult(int page, int pageSize, IEnumerable<T> items, long total)
+    {
+        Page = page;
+        PageSize = pageSize;
+        Items = items;
+        Total = total;
+    }
+
+    public long Total { get; set; }
+    public int Page { get; set; }
+    public int PageSize { get; set; }
+
+    public IEnumerable<T> Items { get; set; }
+}
+```
+
+# Interfaces for Crud Operation
+
+DddCore has a set of predefined interfaces for crud operations. It could be helpful to build your contracts. It has a async and sync versions.
+
+Sync CRUD version:
+```csharp
+public interface ICreate<out TViewModel, in TInputModel>
+{
+    /// <summary>
+    /// Gets an InputModel and returns ViewModel. InputModel has no Id property, ViewModel does.
+    /// </summary>
+    /// <param name="im"></param>
+    /// <returns></returns>
+    TViewModel Create(TInputModel im);
+}
+```
+```csharp
+public interface IRead<out TViewModel, in TKey>
+{
+    /// <summary>
+    /// Read ViewModel by key. Includes can contain additional information that we need to return.
+    /// </summary>
+    /// <param name="key"></param>
+    /// <param name="includes"></param>
+    /// <returns></returns>
+    TViewModel Read(TKey key, string[] includes = null);
+}
+```
+```csharp
+public interface IUpdate<out TViewModel, in TKey, in TInputModel>
+{
+    /// <summary>
+    /// Updates by key and returns ViewModel. InputModel contains no Id field, ViewMmodel does
+    /// </summary>
+    /// <param name="key"></param>
+    /// <param name="model"></param>
+    /// <returns></returns>
+    TViewModel Update(TKey key, TInputModel model);
+}
+```
+```csharp
+public interface IDelete<in TKey>
+{
+    void Delete(TKey key);
+}
+```
+ICrud interface just contains all CRUD interfaces:
+```csharp
+public interface ICrud<out TVm, in TKey, in TIm> :
+    ICreate<TVm, TIm>,
+    IRead<TVm, TKey>,
+    IUpdate<TVm, TKey, TIm>,
+    IDelete<TKey>
+    where TIm : class
+    where TVm : class
+{
+}
+```
+```csharp
+public interface ICreateChild<out TViewModel, in TParrentKey, in TInputModel>
+{
+    /// <summary>
+    /// It's for creating a child item in the dependent collection.
+    /// For example: POST /cars/34/wheel. For this case we can use ICreateChild.
+    /// But we don't need UpdateChild/DeleteChild/ReadChild because we already have an id and can use next urls: GET/DELETE/PUT /wheels/55
+    /// TInputModel contains no Id field, TViewModel does
+    /// </summary>
+    /// <param name="key">This is a parrent item key</param>
+    /// <param name="im"></param>
+    /// <returns></returns>
+    TViewModel CreateChild(TParrentKey key, TInputModel im);
+}
+```
+And we have async equvalents for CRUD interfaces. They have a Async prefix: ICreateAsync, IReadAsync, IUpdateAsync, IDeleteAsync, ICrudAsync and ICreateChildAsync
+
 
 [1]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/BLL/README.md#entity

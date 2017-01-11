@@ -1,14 +1,19 @@
 # Domain Driven Design (DDD) arhitecture implementation for .net core
-DddCore framework implements common ddd patterns like repository, unit of work, aggregate roots, domain events, query repositories, entity services and others. The goal of this framework is do not implement ddd patterns for every project from scratch and have well documented, fully tested components that you need for your new projects. The framework is easy to use with less code. DddCore uses layered arhitecture. Below you can find all DddCore features and samples:
+The goal of this framework is do not implement ddd patterns for every project from scratch and have well documented, fully tested and easy to use components that you need for your new projects.
 
-DddCore framework uses next libraries:
-* [FluentAssertion][-4]
-* [EntityFramework][-3]
-* [Dapper][-5]
-* [Microsoft Dependency Injection][-2] - to use diffrent containers see microsoft di documentation
-* [AutoMapper][-1] - can be switched
+* DddCore framework implements common DDD patterns like repository and query repository, unit of work, aggregate roots, domain events, entity services and others.
 
-[Sample][0]
+* Diffrent ORMs: functional EntityFramework for CRUD operations (repository) and fast Dapper for read operations (query repository). It's in place because of perfomance and to avoid redundant entity relationships that are added in order to create a linq query to return data to UI. As a result better domain models structure.
+
+* Layed arhitecture: Crosscutting, Business Logic Layer, Data Access Layer, Services Layer and Presentation Layer.
+
+* DddCore is automatted as much as possible. All components are auto registered to dependency injection container. Generic implementations are provided for components like repository and entity services. Common entity fields are auto mapped for Entity Framework.
+
+* DddCore has async and sync imlementations for all methods.
+
+* DddCore framework uses next libraries: [FluentAssertion][-4], [EntityFramework][-3], [Dapper][-5], [Microsoft Dependency Injection][-2], [AutoMapper][-1](can be switched)
+
+Try a tutorial(under construction) or have a look to the [sample][0] app.
 
 ## Features:
 
@@ -40,8 +45,8 @@ DddCore framework uses next libraries:
 - [Entity Service][13]
 - [Workflow Service][14]
 - [Infrastructure Service][15]
-- Helper Infrastructure Services
-- Crud Interfaces
+- [Pagged Result][16]
+- Interfaces for Crud operations
 
 [-4]: https://github.com/JeremySkinner/FluentValidation
 [-3]: https://github.com/aspnet/EntityFramework
@@ -70,3 +75,4 @@ DddCore framework uses next libraries:
 [13]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/SL/README.md#entity-service
 [14]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/SL/README.md#workflow-service
 [15]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/SL/README.md#infrastructure-service
+[16]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/SL/README.md#pagged-result
