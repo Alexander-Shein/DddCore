@@ -46,7 +46,7 @@ Try a tutorial(under construction) or have a look to the [sample][0] app.
 - [Workflow Service][14]
 - [Infrastructure Service][15]
 - [Pagged Result][16]
-- Crud Interfaces
+- Interfaces for Crud operations
 
 [-4]: https://github.com/JeremySkinner/FluentValidation
 [-3]: https://github.com/aspnet/EntityFramework
