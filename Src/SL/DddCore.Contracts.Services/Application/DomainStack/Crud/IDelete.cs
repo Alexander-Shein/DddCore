@@ -1,9 +1,7 @@
-﻿using System.Threading.Tasks;
-
-namespace DddCore.Contracts.Services.Application.DomainStack.Crud
+﻿namespace DddCore.Contracts.Services.Application.DomainStack.Crud
 {
     public interface IDelete<in TKey>
     {
-        Task DeleteAsync(TKey key);
+        void Delete(TKey key);
     }
 }

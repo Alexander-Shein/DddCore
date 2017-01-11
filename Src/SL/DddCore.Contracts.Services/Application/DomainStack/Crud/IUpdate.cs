@@ -1,9 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace DddCore.Contracts.Services.Application.DomainStack.Crud
 {
     public interface IUpdate<TVm, in TKey, in TIm>
     {
-        Task<TVm> UpdateAsync(TKey key, TIm model);
+        TVm Update(TKey key, TIm model);
     }
 }
