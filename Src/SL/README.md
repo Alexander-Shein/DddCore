@@ -216,4 +216,80 @@ public class PaggedResult<T>
 }
 ```
 
+# Interfaces for Crud Operation
+
+DddCore has a set of predefined interfaces for crud operations. It could be helpful to build your contracts. It has a async and sync versions.
+
+Sync CRUD version:
+```csharp
+public interface ICreate<out TViewModel, in TInputModel>
+{
+    /// <summary>
+    /// Gets an InputModel and returns ViewModel. InputModel has no Id property, ViewModel does.
+    /// </summary>
+    /// <param name="im"></param>
+    /// <returns></returns>
+    TViewModel Create(TInputModel im);
+}
+```
+```csharp
+public interface IRead<out TViewModel, in TKey>
+{
+    /// <summary>
+    /// Read ViewModel by key. Includes can contain additional information that we need to return.
+    /// </summary>
+    /// <param name="key"></param>
+    /// <param name="includes"></param>
+    /// <returns></returns>
+    TViewModel Read(TKey key, string[] includes = null);
+}
+```
+```csharp
+public interface IUpdate<out TViewModel, in TKey, in TInputModel>
+{
+    /// <summary>
+    /// Updates by key and returns ViewModel. InputModel contains no Id field, ViewMmodel does
+    /// </summary>
+    /// <param name="key"></param>
+    /// <param name="model"></param>
+    /// <returns></returns>
+    TViewModel Update(TKey key, TInputModel model);
+}
+```
+```csharp
+public interface IDelete<in TKey>
+{
+    void Delete(TKey key);
+}
+```
+ICrud interface just contains all CRUD interfaces:
+```csharp
+public interface ICrud<out TVm, in TKey, in TIm> :
+    ICreate<TVm, TIm>,
+    IRead<TVm, TKey>,
+    IUpdate<TVm, TKey, TIm>,
+    IDelete<TKey>
+    where TIm : class
+    where TVm : class
+{
+}
+```
+```csharp
+public interface ICreateChild<out TViewModel, in TParrentKey, in TInputModel>
+{
+    /// <summary>
+    /// It's for creating a child item in the dependent collection.
+    /// For example: POST /cars/34/wheel. For this case we can use ICreateChild.
+    /// But we don't need UpdateChild/DeleteChild/ReadChild because we already have an id and can use next urls: GET/DELETE/PUT /wheels/55
+    /// TInputModel contains no Id field, TViewModel does
+    /// </summary>
+    /// <param name="key">This is a parrent item key</param>
+    /// <param name="im"></param>
+    /// <returns></returns>
+    TViewModel CreateChild(TParrentKey key, TInputModel im);
+}
+```
+And we have async equvalents for CRUD interfaces. They have a Async prefix: ICreateAsync, IReadAsync, IUpdateAsync, IDeleteAsync, ICrudAsync and ICreateChildAsync
+
+
 [1]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/BLL/README.md#entity
