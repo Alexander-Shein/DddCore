@@ -216,7 +216,7 @@ public class PaggedResult<T>
 }
 ```
 
-# Interfaces for Crud Operation
+# Interfaces for Crud Operations
 
 DddCore has a set of predefined interfaces for crud operations. It could be helpful to build your contracts. It has a async and sync versions.
 
