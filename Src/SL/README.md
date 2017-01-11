@@ -78,10 +78,10 @@ public class CarsWorkflowService : ICarsWorkflowService
 # Workflow Service
 
 ## Dependency injection:
-Services marked as IWorkflowService are auto registered with PerWebRequest lifestyle.
+Services marked as IWorkflowService are auto registered with scoped lifestyle.
 
 ## Overview
-The responsibily of those services is a workflow and transaction control. Those services contain NOT reusable logic because each workflow should have only one enter point. IUnitOfWork should be injected only into workflow service. The workflow services should be injected only to ApiControllers.
+The responsibily of those services is a workflow and transaction control. Those services contain NOT reusable logic because each workflow should have only one enter point. IUnitOfWork should be injected only into workflow service.
 
 Example:
 ```csharp
@@ -89,7 +89,8 @@ public interface ICarsWorkflowService : IWorkflowService
 {
     Task<CarVm> CreateCarAsync(CarIm im);
 }
-
+```
+```csharp
 public class CarsWorkflowService : ICarsWorkflowService
 {
     readonly IUnitOfWork unitOfWork;
@@ -120,7 +121,7 @@ Note: Workflow control
 # Infrastructure Service
 
 ## Dependency injection:
-Services marked as IInfrastructureService are auto registered with PerWebRequest lifestyle.
+Services marked as IInfrastructureService are auto registered with scoped lifestyle.
 
 ## Overview
 It's a place for reusable logic that is not part of business logic and workflow logic. Because business logic goes to [entities][1] and entity services. Workflow logic goes to workflow services. Transactions (using IUnitOfWork) is not allowed because those services contain reusable logic that can be used in many places and it's possible to have multiple transactions per one requiest. 
@@ -131,22 +132,59 @@ Usage examples:
 * Helper services
 * other logic
 
-Examples from framework:
+Examples from framework that can be used in your code:
 
 ```csharp
 public interface IGuard : IInfrastructureService
 {
+    /// <summary>
+    /// If null throws AgrumentNullException.
+    /// </summary>
+    /// <param name="obj"></param>
+    /// <param name="message"></param>
     void NotNull(object obj, string message = "");
-    Task AggregateRootIsValidAsync<T, TKey>(T aggregateRoot) where T : IAggregateRootEntity<TKey>;
-    void AggregateRootIsValid<T, TKey>(T aggregateRoot) where T : IAggregateRootEntity<TKey>;
+
+    /// <summary>
+    /// Retrives business rules validator and validates business rules for aggregateRoot.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="TKey"></typeparam>
+    /// <param name="aggregateRoot"></param>
+    /// <returns>Business rules validation result</returns>
+    BusinessRulesValidationResult ValidateBusinessRules<T, TKey>(T aggregateRoot) where T : IAggregateRootEntity<TKey>;
+
+    /// <summary>
+    /// Async version of ValidateBusinessRules
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="TKey"></typeparam>
+    /// <param name="aggregateRoot"></param>
+    /// <returns></returns>
+    Task<BusinessRulesValidationResult> ValidateBusinessRulesAsync<T, TKey>(T aggregateRoot) where T : IAggregateRootEntity<TKey>;
 }
 ```
-And
 ```csharp
 public interface IPaggingService : IInfrastructureService
 {
-    int MormalizePage(int page);
-    int NormalizePageSize(int pageSize);
+    /// <summary>
+    /// If <param name="page"></param> less than <param name="firstPageNumber"></param> returns <param name="firstPageNumber"></param>.
+    /// Else returns <param name="page"></param>
+    /// </summary>
+    /// <param name="page"></param>
+    /// <param name="firstPageNumber"></param>
+    /// <returns></returns>
+    int NormalizePage(int page, int firstPageNumber = 1);
+
+    /// <summary>
+    /// If <param name="pageSize"></param> less than <param name="minPageSize"></param> returns <param name="minPageSize"></param>.
+    /// Else if <param name="pageSize"></param> greater than <param name="maxPageSize"></param> returns <param name="maxPageSize"></param>.
+    /// Else returns <param name="pageSize"></param>.
+    /// </summary>
+    /// <param name="pageSize"></param>
+    /// <param name="minPageSize"></param>
+    /// <param name="maxPageSize"></param>
+    /// <returns></returns>
+    int NormalizePageSize(int pageSize, int minPageSize = 10, int maxPageSize = 1000);
 }
 ```
 
