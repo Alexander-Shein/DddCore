@@ -1,26 +1,55 @@
 # Entity Service
 
 ## Dependency injection
-For each Aggregate Root the generic implementation IEntityService<> is auto registered and can be injected. When custom entity service for aggregate root is created then generic entity service is overritten. Lifestyle is PerWebRequest.
+For each Aggregate Root the generic implementation of IEntityService<> is auto registered and can be injected via generic interface. Lifestyle is Scoped.
 
 ## Overview
-We can't inject services to entities. When business logic requires interaction with diffrent layers or it needs to use services that we can't inject to entity this logic goes to entity services. For example if we need to interact with a repository this implementation goes to entity services.
+When business logic requires interaction with diffrent layers or it needs to use services but we can't inject it to entity this logic goes to entity services. For example if we need to interact with a repository this implementation goes to entity services.
 
 Generic Entity Service:
 ```csharp
 public interface IEntityService<in T, in TKey> where T : class, IAggregateRootEntity<TKey>
 {
+    /// <summary>
+    /// Validate business rules, raise events and persist aggregate root graph.
+    /// Throws first broken business rule if any.
+    /// </summary>
+    /// <param name="aggregateRoot"></param>
+    /// <returns></returns>
+    void PersistAggregateRoot(T aggregateRoot);
+
+    /// <summary>
+    /// Async version of PersistAggregateRoot.
+    /// </summary>
+    /// <param name="aggregateRoot"></param>
+    /// <returns></returns>
     Task PersistAggregateRootAsync(T aggregateRoot);
+
+    /// <summary>
+    /// Validate business rules, raise events and persist aggregate root graph.
+    /// </summary>
+    /// <param name="aggregateRoot"></param>
+    /// <returns>if BusinessRulesValidationResult.IsValid then aggregate root is persisted. If not BusinessRulesValidationResult.BrokenBusinessRules is populated.</returns>
+    BusinessRulesValidationResult TryPersistAggregateRoot(T aggregateRoot);
+
+    /// <summary>
+    /// Async version of TryPersistAggregateRoot.
+    /// </summary>
+    /// <param name="aggregateRoot"></param>
+    /// <returns></returns>
+    Task<BusinessRulesValidationResult> TryPersistAggregateRootAsync(T aggregateRoot);
 }
 ```
 
 ## Custom implementation
+Interface for custom entity service implementation should be derived from generic IEntityService<> with related generic types:
 ```csharp
 public interface ICarsEntityService : IEntityService<Car, Guid>
 {
     void AddAirBag(AirBag airBag);
 }
 ```
+The implementation should be derived from generic implementation EntityService<>. Generic implementation has all methods marked as virtual so it could be overriten if required: 
 ```csharp
 public class CarsEntityService : EntityService<Car, Guid>, ICarsEntityService
 {
@@ -29,6 +58,20 @@ public class CarsEntityService : EntityService<Car, Guid>, ICarsEntityService
 }
 
 public void AddAirBag(AirBag airBag) { ... }
+}
+```
+If custom implementation exists then for IEntityService<> generic interface will be injected custom implementation as well as for custom interface:
+```csharp
+public class CarsWorkflowService : ICarsWorkflowService
+{
+    public CarsWorkflowService(IEntityService<Car, Guid> carsEntityService) { ... }
+}
+```
+Or
+```csharp
+public class CarsWorkflowService : ICarsWorkflowService
+{
+    public CarsWorkflowServiceICarsEntityService carsEntityService) { ... }
 }
 ```
 
