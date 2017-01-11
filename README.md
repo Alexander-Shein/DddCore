@@ -46,7 +46,7 @@ Try a tutorial(under construction) or have a look to the [sample][0] app.
 - [Workflow Service][14]
 - [Infrastructure Service][15]
 - [Pagged Result][16]
-- Interfaces for Crud operations
+- [Interfaces for Crud Operations][17]
 
 [-4]: https://github.com/JeremySkinner/FluentValidation
 [-3]: https://github.com/aspnet/EntityFramework
@@ -76,3 +76,4 @@ Try a tutorial(under construction) or have a look to the [sample][0] app.
 [14]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/SL/README.md#workflow-service
 [15]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/SL/README.md#infrastructure-service
 [16]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/SL/README.md#pagged-result
+[17]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/SL/README.md#interfaces-for-crud-operations
