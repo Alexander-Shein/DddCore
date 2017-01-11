@@ -81,7 +81,7 @@ public class CarsWorkflowService : ICarsWorkflowService
 Services marked as IWorkflowService are auto registered with PerWebRequest lifestyle.
 
 ## Overview
-The responsibily of those services is a workflow and transaction control. Those services contain NOT reusable logic because each workflow should have only one enter point. IUnitOfWork should be injected only into workflow service.
+The responsibily of those services is a workflow and transaction control. Those services contain NOT reusable logic because each workflow should have only one enter point. IUnitOfWork should be injected only into workflow service. The workflow services should be injected only to ApiControllers.
 
 Example:
 ```csharp
