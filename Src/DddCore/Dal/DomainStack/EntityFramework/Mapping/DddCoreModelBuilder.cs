@@ -32,11 +32,6 @@ namespace DddCore.Dal.DomainStack.EntityFramework.Mapping
                 entityTypeBuilder.HasKey("Id");
             }
 
-            if (type.IsAssignableFrom(typeof(IVersion)))
-            {
-                entityTypeBuilder.Property("Ts").IsRowVersion();
-            }
-
             if (type.IsAssignableFrom(typeof(ICrudState)))
             {
                 entityTypeBuilder.Ignore("CrudState");
