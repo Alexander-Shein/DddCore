@@ -14,11 +14,11 @@ namespace Api.Cars.DAL.QueryStack
         {
         }
 
-        public async Task<IEnumerable<CarVmDto>> GetAllCarsAsync()
+        public IEnumerable<CarVmDto> GetAllCars()
         {
             var sql = "SELECT * FROM [dbo].[Car];";
 
-            var dtos = await GetFilteredListAsync<CarVmDto>(sql);
+            var dtos = GetFilteredList<CarVmDto>(sql);
             return dtos;
         }
     }

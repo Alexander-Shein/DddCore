@@ -5,16 +5,14 @@ namespace Api.Cars.BLL
 {
     public class Car : GuidAggregateRootEntityBase
     {
-        private string color;
-        public string Color
+        public string Color { get; set; }
+
+        public void ChangeColor(string color)
         {
-            get => color;
-            set
-            {
-                Events.Add(new ColorChangedDomainEvent(this));
-                color = value;
-            }
+            Color = color;
+            Events.Add(new ColorChangedDomainEvent(this));
         }
+
         public ICollection<Wheel> Wheels { get; set; } = new List<Wheel>();
     }
 }

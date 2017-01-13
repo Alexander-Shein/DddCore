@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DddCore.Configuraion;
 using DddCore.Contracts.Crosscutting.UserContext;
 using DddCore.Contracts.Dal;
 using DddCore.Contracts.Dal.DomainStack;
@@ -12,6 +11,7 @@ using DddCore.Contracts.Services.Infrastructure;
 using DddCore.Dal.DomainStack.EntityFramework;
 using DddCore.Dal.DomainStack.EntityFramework.Context;
 using DddCore.Domain.Entities;
+using DddCore.Services;
 using DddCore.Services.Application.DomainStack;
 using FluentAssertions;
 using Microsoft.AspNetCore.Http;

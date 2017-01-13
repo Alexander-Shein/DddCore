@@ -1,4 +1,5 @@
-﻿using Api.Cars.SL;
+﻿using System;
+using Api.Cars.SL;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -19,9 +20,9 @@ namespace Api.Controllers
 
         // GET api/cars
         [HttpGet("")]
-        public async Task<IEnumerable<CarVM>> GetAsync()
+        public IEnumerable<CarVm> Get()
         {
-            return await carsWorkflowService.GetAllCarsAsync();
+            return carsWorkflowService.GetAllCars();
         }
 
         // GET api/values/5
@@ -39,8 +40,20 @@ namespace Api.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public CarVm Put(Guid id, [FromBody]CarIm value)
         {
+            try
+            {
+                var vm = carsWorkflowService.Update(id, value);
+                return vm;
+            }
+            catch (Exception e)
+            {
+                return new CarVm
+                {
+                    Color = e.Message
+                };
+            }
         }
 
         // DELETE api/values/5

@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
 using Api.Cars.SL.Contracts.Models;
 using DddCore.Contracts.Services.Application;
+using DddCore.Contracts.Services.Application.DomainStack.Crud;
 
 namespace Api.Cars.SL.Contracts
 {
-    public interface ICarsWorkflowService : IWorkflowService
+    public interface ICarsWorkflowService : IWorkflowService, IUpdate<CarVm, Guid, CarIm>
     {
-        Task<IEnumerable<CarVM>> GetAllCarsAsync();
+        IEnumerable<CarVm> GetAllCars();
     }
 }

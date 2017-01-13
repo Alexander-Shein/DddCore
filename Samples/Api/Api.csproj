@@ -22,16 +22,8 @@
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="1.1.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Src\BLL\DddCore.Contracts.Domain\DddCore.Contracts.Domain.csproj" />
-    <ProjectReference Include="..\..\Src\BLL\DddCore.Domain\DddCore.Domain.csproj" />
-    <ProjectReference Include="..\..\Src\Crosscutting\DddCore.Contracts.Crosscutting\DddCore.Contracts.Crosscutting.csproj" />
     <ProjectReference Include="..\..\Src\Crosscutting\DddCore.Crosscutting.ObjectMapper.AutoMapper\DddCore.Crosscutting.ObjectMapper.AutoMapper.csproj" />
-    <ProjectReference Include="..\..\Src\Crosscutting\DddCore.Crosscutting\DddCore.Crosscutting.csproj" />
-    <ProjectReference Include="..\..\Src\DAL\DddCore.Contracts.Dal\DddCore.Contracts.Dal.csproj" />
-    <ProjectReference Include="..\..\Src\DAL\DddCore.Dal.DomainStack.EntityFramework\DddCore.Dal.DomainStack.EntityFramework.csproj" />
-    <ProjectReference Include="..\..\Src\DAL\DddCore.Dal.QueryStack.Dapper\DddCore.Dal.QueryStack.Dapper.csproj" />
-    <ProjectReference Include="..\..\Src\SL\DddCore.Configuraion\DddCore.Configuraion.csproj" />
-    <ProjectReference Include="..\..\Src\SL\DddCore.Contracts.Services\DddCore.Contracts.Services.csproj" />
-    <ProjectReference Include="..\..\Src\SL\DddCore.Services.Application\DddCore.Services.Application.csproj" />
+    <ProjectReference Include="..\..\Src\DddCore.Contracts\DddCore.Contracts.csproj" />
+    <ProjectReference Include="..\..\Src\DddCore\DddCore.csproj" />
   </ItemGroup>
 </Project>

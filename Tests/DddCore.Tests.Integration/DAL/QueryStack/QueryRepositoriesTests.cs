@@ -21,7 +21,7 @@ namespace DddCore.Tests.Integration.DAL.QueryStack
             optionsMock.Setup(x => x.Value).Returns(connectonStrings);
             var queryRepository = new CarsQueryRepository(optionsMock.Object);
 
-            var cars = await queryRepository.GetAllCarsAsync();
+            var cars = queryRepository.GetAllCars();
 
 
             //repository.PersistAggregateRoot(car);

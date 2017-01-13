@@ -15,7 +15,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DddCore.Contracts.Crosscutting\DddCore.Contracts.Crosscutting.csproj" />
+    <ProjectReference Include="..\..\DddCore.Contracts\DddCore.Contracts.csproj" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DefineConstants>$(DefineConstants);RELEASE</DefineConstants>

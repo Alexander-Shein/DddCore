@@ -2,7 +2,7 @@
 
 namespace Api.Cars.SL.Contracts.Models
 {
-    public class WheelVM
+    public class WheelVm
     {
         public Guid Id { get; set; }
     }

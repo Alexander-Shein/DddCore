@@ -8,12 +8,10 @@ namespace Api.Cars.DAL
 
         public void Install(IModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Wheel>();
+
             modelBuilder
-                .Entity<Wheel>();
-
-            var carEntityBuilder = modelBuilder.Entity<Car>();
-
-            carEntityBuilder
+                .Entity<Car>()
                 .HasMany(x => x.Wheels)
                 .WithOne()
                 .HasForeignKey(x => x.CarId);

@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Api.Cars.SL.Contracts.Models
 {
-    public class CarVM
+    public class CarVm
     {
-        public string PublicKey { get; set; }
+        public Guid Id { get; set; }
         public string Color { get; set; }
-        public IEnumerable<WheelVM> Wheels { get; set; }
+        public IEnumerable<WheelVm> Wheels { get; set; }
     }
 }
