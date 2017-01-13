@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace DddCore.Domain.ValueObjects
 {
-    public abstract class ValueObject<T> : IEquatable<T> where T : class
+    public abstract class ValueObjectBase<T> : IEquatable<T> where T : class
     {
         #region Private Members
 
@@ -13,7 +13,7 @@ namespace DddCore.Domain.ValueObjects
 
         #endregion
 
-        public static bool operator ==(ValueObject<T> x, ValueObject<T> y)
+        public static bool operator ==(ValueObjectBase<T> x, ValueObjectBase<T> y)
         {
             if (ReferenceEquals(x, null) && ReferenceEquals(y, null))
             {
@@ -28,14 +28,14 @@ namespace DddCore.Domain.ValueObjects
             return x.Equals(y);
         }
 
-        public static bool operator !=(ValueObject<T> x, ValueObject<T> y)
+        public static bool operator !=(ValueObjectBase<T> x, ValueObjectBase<T> y)
         {
             return !(x == y);
         }
 
         public bool Equals(T other)
         {
-            var otherEquatable = other as ValueObject<T>;
+            var otherEquatable = other as ValueObjectBase<T>;
             if (otherEquatable == null)
             {
                 return false;
@@ -53,41 +53,36 @@ namespace DddCore.Domain.ValueObjects
 
             var other = obj as T;
 
-            if (ReferenceEquals(other, null))
-            {
-                return false;
-            }
-
-            return this.Equals(other);
+            return !ReferenceEquals(other, null) && Equals(other);
         }
 
         public override int GetHashCode()
         {
-            return this.GetHashCodeImpl();
+            return GetHashCodeImpl();
         }
 
         protected abstract IEnumerable<object> GetAllAttributesToBeUsedForEquality();
 
         protected virtual void ResetHashCode()
         {
-            this.hashCode = Undefined;
+            hashCode = Undefined;
         }
 
         int GetHashCodeImpl()
         {
-            if (this.hashCode == Undefined)
+            if (hashCode == Undefined)
             {
                 var code = 0;
 
-                foreach (var attribute in this.GetAllAttributesToBeUsedForEquality())
+                foreach (var attribute in GetAllAttributesToBeUsedForEquality())
                 {
                     code = (code * 397) ^ (attribute?.GetHashCode() ?? 0);
                 }
 
-                this.hashCode = code;
+                hashCode = code;
             }
 
-            return this.hashCode;
+            return hashCode;
         }
     }
 }
