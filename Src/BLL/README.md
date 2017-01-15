@@ -31,8 +31,8 @@ public abstract class AggregateRootEntityBase<TKey> : EntityBase<TKey>, IAggrega
 }
 ```
 
-* WalkEntireGraph - walk throw all entities in the graph
-* WalkAggregateRootGraph - walk throw all entities in current aggregate root
+* WalkEntireGraph - walk throught all entities in the graph
+* WalkAggregateRootGraph - walk throught all entities in current aggregate root
 
 Example:
 ```csharp
