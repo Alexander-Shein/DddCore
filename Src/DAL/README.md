@@ -163,7 +163,6 @@ Framework automatically loads all intances of IMappingModule interface and passe
 Automaticcaly registered entity properties:
 * Id - registered as .HasKey(x => x.Id)
 * CrudState - ignored as .Ignore(x => x.CrudState)
-* Ts - If entity is marked as IVersion the Ts field is regitered as .Property(x => x.Ts).IsRowVersion();
 
 Id property is auto registered as 
 
@@ -188,10 +187,14 @@ public class CarsMappingModule : IMappingModule
 To add connection strings just put next section to appsetting.json file:
 
 ```javascript
-"ConnectionStrings": {
+"connectionStrings": {
     "Oltp": "Data Source=(local); Initial Catalog=DddCore.Tests.Integration.Database; Integrated Security=SSPI;",
     "ReadOnly": "Data Source=(local); Initial Catalog=DddCore.Tests.Integration.Database; Integrated Security=SSPI;"
 }
+```
+And add configuration to container:
+```csharp
+services.Configure<ConnectionStrings>(Configuration.GetSection("connectionStrings"));
 ```
 ConnectionStrings class will be injected to repository constructor via IOptions<>:
 
