@@ -41,7 +41,7 @@ namespace DddCore.Domain.ValueObjects
                 return false;
             }
 
-            return this.GetAllAttributesToBeUsedForEquality().SequenceEqual(otherEquatable.GetAllAttributesToBeUsedForEquality());
+            return GetAllAttributesToBeUsedForEquality().SequenceEqual(otherEquatable.GetAllAttributesToBeUsedForEquality());
         }
 
         public override bool Equals(object obj)
