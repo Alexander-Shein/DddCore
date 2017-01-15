@@ -22,7 +22,6 @@ Try a tutorial(under construction) or have a look to the [sample][0] app.
 - [Dependency Injection][1]
 - [Object Mapper][2]
 - [User Context][-7]
-- [Extension Methods and Helpers][-6]
 
 ### Business Logic Layer (BLL)
 
@@ -46,7 +45,7 @@ Try a tutorial(under construction) or have a look to the [sample][0] app.
 - [Workflow Service][14]
 - [Infrastructure Service][15]
 - [Pagged Result][16]
-- Interfaces for Crud operations
+- [Interfaces for Crud Operations][17]
 
 [-4]: https://github.com/JeremySkinner/FluentValidation
 [-3]: https://github.com/aspnet/EntityFramework
@@ -58,7 +57,6 @@ Try a tutorial(under construction) or have a look to the [sample][0] app.
 [1]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/Crosscutting/README.md#dependency-injection
 [2]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/Crosscutting/README.md#object-mapper
 [-7]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/Crosscutting/README.md#user-context
-[-6]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/Crosscutting/README.md#object-mapper#extension-methods-and-helpers
 
 [3]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/BLL/README.md
 [4]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/BLL/README.md#aggregate-root-entity
@@ -76,3 +74,4 @@ Try a tutorial(under construction) or have a look to the [sample][0] app.
 [14]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/SL/README.md#workflow-service
 [15]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/SL/README.md#infrastructure-service
 [16]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/SL/README.md#pagged-result
+[17]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/SL/README.md#interfaces-for-crud-operations

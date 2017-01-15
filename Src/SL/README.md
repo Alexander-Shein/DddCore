@@ -216,7 +216,7 @@ public class PaggedResult<T>
 }
 ```
 
-# Interfaces for Crud Operation
+# Interfaces for Crud Operations
 
 DddCore has a set of predefined interfaces for crud operations. It could be helpful to build your contracts. It has a async and sync versions.
 
@@ -291,5 +291,7 @@ public interface ICreateChild<out TViewModel, in TParrentKey, in TInputModel>
 ```
 And we have async equvalents for CRUD interfaces. They have a Async prefix: ICreateAsync, IReadAsync, IUpdateAsync, IDeleteAsync, ICrudAsync and ICreateChildAsync
 
+[Return][2]
 
 [1]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/BLL/README.md#entity
+[2]: https://github.com/Alexander-Shein/DddCore/blob/net-core/README.md
