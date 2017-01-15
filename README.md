@@ -22,7 +22,6 @@ Try a tutorial(under construction) or have a look to the [sample][0] app.
 - [Dependency Injection][1]
 - [Object Mapper][2]
 - [User Context][-7]
-- [Extension Methods and Helpers][-6]
 
 ### Business Logic Layer (BLL)
 
@@ -58,7 +57,6 @@ Try a tutorial(under construction) or have a look to the [sample][0] app.
 [1]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/Crosscutting/README.md#dependency-injection
 [2]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/Crosscutting/README.md#object-mapper
 [-7]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/Crosscutting/README.md#user-context
-[-6]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/Crosscutting/README.md#object-mapper#extension-methods-and-helpers
 
 [3]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/BLL/README.md
 [4]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/BLL/README.md#aggregate-root-entity
