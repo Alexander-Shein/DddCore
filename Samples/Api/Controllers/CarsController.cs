@@ -34,8 +34,9 @@ namespace Api.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public CarVm Post([FromBody]CarIm value)
         {
+            return carsWorkflowService.Create(value);
         }
 
         // PUT api/values/5

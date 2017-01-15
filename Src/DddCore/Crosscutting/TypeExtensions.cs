@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace DddCore.Crosscutting
 {
-    public static class TypeExtensions
+    internal static class TypeExtensions
     {
         /// <summary>
         /// Type.IsAssignableFrom equivalent for opened generic types

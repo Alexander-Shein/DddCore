@@ -1,7 +1,7 @@
 using System;
 using DddCore.Contracts.Domain.Entities.BusinessRules;
 using DddCore.Contracts.Domain.Entities.Model;
-using DddCore.Crosscutting.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace DddCore.Domain.Entities.BusinessRules
 {

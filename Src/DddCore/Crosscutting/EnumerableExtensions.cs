@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace DddCore.Crosscutting
 {
-    public static class EnumerableExtensions
+    internal static class EnumerableExtensions
     {
         /// <summary>
         /// Devide IEnumerable to chunks

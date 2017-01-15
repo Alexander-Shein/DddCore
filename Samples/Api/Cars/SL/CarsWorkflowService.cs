@@ -60,5 +60,22 @@ namespace Api.Cars.SL
                 Color = car.Color
             };
         }
+
+        public CarVm Create(CarIm im)
+        {
+            var car = new Car();
+
+            car.ChangeColor(im.Color);
+            car.CrudState = CrudState.Added;
+
+            carsEntityService.PersistAggregateRoot(car);
+            unitOfWork.Save();
+
+            return new CarVm
+            {
+                Id = car.Id,
+                Color = car.Color
+            };
+        }
     }
 }

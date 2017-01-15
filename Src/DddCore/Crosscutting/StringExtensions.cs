@@ -2,7 +2,7 @@
 
 namespace DddCore.Crosscutting
 {
-    public static class StringExtensions
+    internal static class StringExtensions
     {
         /// <summary>
         /// String.Contains equivalent with <paramref name="comp"/>

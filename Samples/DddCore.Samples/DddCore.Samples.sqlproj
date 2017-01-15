@@ -64,4 +64,7 @@
     <Build Include="Cars\Car.sql" />
     <Build Include="Cars\Wheel.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="DddCore.Samples.publish.xml" />
+  </ItemGroup>
 </Project>

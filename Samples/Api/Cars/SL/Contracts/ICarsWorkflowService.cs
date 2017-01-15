@@ -6,7 +6,7 @@ using DddCore.Contracts.Services.Application.DomainStack.Crud;
 
 namespace Api.Cars.SL.Contracts
 {
-    public interface ICarsWorkflowService : IWorkflowService, IUpdate<CarVm, Guid, CarIm>
+    public interface ICarsWorkflowService : IWorkflowService, IUpdate<CarVm, Guid, CarIm>, ICreate<CarVm, CarIm>
     {
         IEnumerable<CarVm> GetAllCars();
     }

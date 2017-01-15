@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection;
 using DddCore.Contracts.Crosscutting.DependencyInjection.Base;
 using DddCore.Contracts.Crosscutting.UserContext;
+using DddCore.Contracts.Dal;
 using DddCore.Contracts.Dal.DomainStack;
 using DddCore.Contracts.Dal.QueryStack;
 using DddCore.Contracts.Domain.Entities;
@@ -18,6 +19,7 @@ using DddCore.Dal.DomainStack.EntityFramework.Context;
 using DddCore.Domain.Entities.BusinessRules;
 using DddCore.Domain.Events;
 using DddCore.Services.Application.DomainStack;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DddCore.Services
@@ -40,6 +42,7 @@ namespace DddCore.Services
             serviceCollection.AddScoped<IDomainEventHandlerFactory, DomainEventHandlerFactory>();
             serviceCollection.AddScoped<IBusinessRulesValidatorFactory, BusinessRulesValidatorFactory>();
             serviceCollection.AddScoped<IUserContext<Guid>, IdentityUserContext>();
+            serviceCollection.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
         #region Private Members
