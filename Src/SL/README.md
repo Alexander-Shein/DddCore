@@ -220,15 +220,19 @@ public class PaggedResult<T>
 
 DddCore has a set of predefined interfaces for crud operations. It could be helpful to build your contracts. It has a async and sync versions.
 
+## Note:
+Input models don't contain Id property. Because in the Create(POST) operation we don't know an id. It will be generated on the server in the call. And for the Update(PUT) operation we don't need id property because the id is provided in the URL.
+Exampe: PUT /cars/{id}. The id is provided in URL and in the body we have a InputModel without id.
+
 Sync CRUD version:
 ```csharp
 public interface ICreate<out TViewModel, in TInputModel>
 {
     /// <summary>
-    /// Gets an InputModel and returns ViewModel. InputModel has no Id property, ViewModel does.
+    /// Use for POST http operation in order to create new entities.
     /// </summary>
-    /// <param name="im"></param>
-    /// <returns></returns>
+    /// <param name="im">InputModel has no Id property because when we send request to create new object we don't know id.</param>
+    /// <returns>ViewModel contains generated Id property.</returns>
     TViewModel Create(TInputModel im);
 }
 ```
