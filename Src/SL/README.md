@@ -280,18 +280,6 @@ public interface IDelete<in TKey>
     void Delete(TKey key);
 }
 ```
-ICrud interface contains all CRUD interfaces if you need all set of methods:
-```csharp
-public interface ICrud<out TVm, in TKey, in TIm> :
-    ICreate<TVm, TIm>,
-    IRead<TVm, TKey>,
-    IUpdate<TVm, TKey, TIm>,
-    IDelete<TKey>
-    where TIm : class
-    where TVm : class
-{
-}
-```
 ```csharp
 public interface ICreateChild<out TViewModel, in TParrentKey, in TInputModel>
 {
@@ -306,6 +294,20 @@ public interface ICreateChild<out TViewModel, in TParrentKey, in TInputModel>
     TViewModel CreateChild(TParrentKey key, TInputModel im);
 }
 ```
+
+ICrud interface contains all CRUD interfaces if you need all set of methods:
+```csharp
+public interface ICrud<out TVm, in TKey, in TIm> :
+    ICreate<TVm, TIm>,
+    IRead<TVm, TKey>,
+    IUpdate<TVm, TKey, TIm>,
+    IDelete<TKey>
+    where TIm : class
+    where TVm : class
+{
+}
+```
+
 [Return][2]
 
 [1]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/BLL/README.md#entity
