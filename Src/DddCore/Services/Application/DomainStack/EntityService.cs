@@ -90,8 +90,11 @@ namespace DddCore.Services.Application.DomainStack
         {
             aggregateRoot.WalkAggregateRootGraph(entity =>
             {
-                entity.Events.Do(domainEvent => domainEventDispatcher.Raise(domainEvent));
-                entity.Events.Clear();
+                if (entity.Events.Any())
+                {
+                    entity.Events.Do(domainEvent => domainEventDispatcher.Raise(domainEvent));
+                    entity.Events.Clear();
+                }
             });
         }
 

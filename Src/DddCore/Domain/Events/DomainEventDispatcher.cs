@@ -1,4 +1,5 @@
-﻿using DddCore.Contracts.Domain.Events;
+﻿using System.Reflection;
+using DddCore.Contracts.Domain.Events;
 
 namespace DddCore.Domain.Events
 {
@@ -18,6 +19,21 @@ namespace DddCore.Domain.Events
         #region Public Methods
 
         public void Raise<T>(T args) where T : IDomainEvent
+        {
+            var methodType =
+                this
+                    .GetType()
+                    .GetMethod("SendMessage", BindingFlags.NonPublic | BindingFlags.Instance)
+                    .MakeGenericMethod(args.GetType());
+
+            methodType.Invoke(this, new object[] { args });
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private void SendMessage<T>(T args) where T : IDomainEvent
         {
             var handlers = domainEventHandlerFactory.GetHandlers<T>();
 
