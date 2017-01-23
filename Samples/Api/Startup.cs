@@ -11,7 +11,6 @@ using DddCore.Crosscutting.DependencyInjection;
 using DddCore.Crosscutting.ObjectMapper;
 using DddCore.Crosscutting.ObjectMapper.AutoMapper;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 
 namespace Api

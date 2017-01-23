@@ -44,7 +44,7 @@ namespace Api.Cars.SL
             return vms;
         }
 
-        public CarVm Update(Guid key, CarIm im)
+        public CarVm CreateOrUpdate(Guid key, CarIm im)
         {
             var car = carsRepository.ReadAggregateRoot(key);
 

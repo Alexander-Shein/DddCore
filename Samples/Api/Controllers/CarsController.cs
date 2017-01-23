@@ -45,7 +45,7 @@ namespace Api.Controllers
         {
             try
             {
-                var vm = carsWorkflowService.Update(id, value);
+                var vm = carsWorkflowService.CreateOrUpdate(id, value);
                 return vm;
             }
             catch (Exception e)
