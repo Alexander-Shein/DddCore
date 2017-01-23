@@ -1,6 +1,6 @@
 ﻿namespace DddCore.Contracts.Services.Application.DomainStack.Crud
 {
-    public interface IUpdate<out TViewModel, in TKey, in TInputModel>
+    public interface ICreateOrUpdate<out TViewModel, in TKey, in TInputModel>
     {
         /// <summary>
         /// PUT /cars/{carId}/ HTTP/1.1.
