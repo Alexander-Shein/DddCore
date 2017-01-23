@@ -118,11 +118,11 @@ public class CarsWorkflowService : ICarsWorkflowService
 
 # Query Repository
 
-## Dependency injection
-Services marked as IQueryRepository are auto registered with PerWebRequest lifestyle.
+## Technologies/Dependencies
+[Dapper][1]
 
-## Overview
-[Dapper][1] is used for query repository
+## Dependency injection
+Services marked as IQueryRepository are auto registered with Scoped lifestyle.
 
 Query repository example:
 ```csharp
@@ -154,6 +154,7 @@ public class CarsQueryRepository : QueryRepositoryBase, ICarsQueryRepository
     }
 }
 ```
+QueryRepositoryBase has helper methods that can be used to implement your custom methods. Or dapper can be used directly. To access SqlConnection use protected SqlConnection GetDbConnection().
 
 # Entity Mapping
 
