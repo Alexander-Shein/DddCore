@@ -4,7 +4,7 @@
 For each Aggregate Root the generic implementation of IEntityService<> is auto registered and can be injected via generic interface. Lifestyle is Scoped.
 
 ## Overview
-When business logic requires interaction with diffrent layers or it needs to use services but we can't inject it to entity this logic goes to entity services. For example if we need to interact with a repository this implementation goes to entity services.
+When business logic requires interaction with different layers or it needs to use services but we can't inject it to entity this logic goes to entity services. For example if we need to interact with a repository this implementation goes to entity services.
 
 Generic Entity Service:
 ```csharp
