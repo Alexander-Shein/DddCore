@@ -220,16 +220,23 @@ public class PaggedResult<T>
 
 DddCore has a set of predefined interfaces for crud operations. It could be helpful to build your contracts. It has a async and sync versions.
 
-## Note:
+### Note:
 Input models don't contain Id property. Because in the Create(POST) operation we don't know an id. It will be generated on the server in the call. And for the Update(PUT) operation we don't need id property because the id is provided in the URL.
 Exampe: PUT /cars/{id}. The id is provided in URL and in the body we have a InputModel without id.
+
+### Note: 
+When you need to create an item in child collection you can use ICreateChild interface. But we don't need IUpdateChild/IDeleteChild/IReadChild because we already have an id and can use next short urls without /cars/{carId} prefix: GET/DELETE/PUT /wheels/55.
+
+### Note:
+DddCore has async equvalents for CRUD interfaces. They have an Async prefix: ICreateAsync, IReadAsync, IUpdateAsync, IDeleteAsync, ICrudAsync and ICreateChildAsync. If you need async version just add Async prefix to examples below.
 
 Sync CRUD version:
 ```csharp
 public interface ICreate<out TViewModel, in TInputModel>
 {
     /// <summary>
-    /// Use for POST http operation in order to create new entities.
+    /// Example: POST /cars/ HTTP/1.1.
+    /// Creates a new entity by InputModel.
     /// </summary>
     /// <param name="im">InputModel has no Id property because when we send request to create new object we don't know id.</param>
     /// <returns>ViewModel contains generated Id property.</returns>
@@ -240,10 +247,11 @@ public interface ICreate<out TViewModel, in TInputModel>
 public interface IRead<out TViewModel, in TKey>
 {
     /// <summary>
-    /// Read ViewModel by key. Includes can contain additional information that we need to return.
+    /// GET /cars/{carId} HTTP/1.1.
+    /// Reads entity by key.
     /// </summary>
     /// <param name="key"></param>
-    /// <param name="includes"></param>
+    /// <param name="includes">Includes can contain additional information that we need to return.</param>
     /// <returns></returns>
     TViewModel Read(TKey key, string[] includes = null);
 }
@@ -252,21 +260,27 @@ public interface IRead<out TViewModel, in TKey>
 public interface IUpdate<out TViewModel, in TKey, in TInputModel>
 {
     /// <summary>
-    /// Updates by key and returns ViewModel. InputModel contains no Id field, ViewMmodel does
+    /// PUT /cars/{carId}/ HTTP/1.1.
+    /// Updates by key or creates new entity with specified id and returns ViewModel.
     /// </summary>
-    /// <param name="key"></param>
-    /// <param name="model"></param>
-    /// <returns></returns>
-    TViewModel Update(TKey key, TInputModel model);
+    /// <param name="key">Id of entity that will be updated.</param>
+    /// <param name="im">InputModel has no Id property because when we send request to update new object we pass id to url.</param>
+    /// <returns>ViewModel contains Id property.</returns>
+    TViewModel CreateOrUpdate(TKey key, TInputModel im);
 }
 ```
 ```csharp
 public interface IDelete<in TKey>
 {
+    /// <summary>
+    /// DELETE /cars/{carId} HTTP/1.1.
+    /// Deletes entity by key.
+    /// </summary>
+    /// <param name="key"></param>
     void Delete(TKey key);
 }
 ```
-ICrud interface just contains all CRUD interfaces:
+ICrud interface contains all CRUD interfaces if you need all set of methods:
 ```csharp
 public interface ICrud<out TVm, in TKey, in TIm> :
     ICreate<TVm, TIm>,
@@ -282,19 +296,16 @@ public interface ICrud<out TVm, in TKey, in TIm> :
 public interface ICreateChild<out TViewModel, in TParrentKey, in TInputModel>
 {
     /// <summary>
-    /// It's for creating a child item in the dependent collection.
-    /// For example: POST /cars/34/wheel. For this case we can use ICreateChild.
-    /// But we don't need UpdateChild/DeleteChild/ReadChild because we already have an id and can use next urls: GET/DELETE/PUT /wheels/55
-    /// TInputModel contains no Id field, TViewModel does
+    /// Example: POST /cars/{carId}/wheels HTTP/1.1.
+    /// When you need to create an item in child collection you can use this interface.
+    /// But we don't need UpdateChild/DeleteChild/ReadChild because we already have an id and can use next short urls without /cars/{carId} prefix: GET/DELETE/PUT /wheels/55.
     /// </summary>
     /// <param name="key">This is a parrent item key</param>
-    /// <param name="im"></param>
-    /// <returns></returns>
+    /// <param name="im">InputModel has no Id property because when we send request to create new object we don't know id.</param>
+    /// <returns>ViewModel contains generated Id property.</returns>
     TViewModel CreateChild(TParrentKey key, TInputModel im);
 }
 ```
-And we have async equvalents for CRUD interfaces. They have a Async prefix: ICreateAsync, IReadAsync, IUpdateAsync, IDeleteAsync, ICrudAsync and ICreateChildAsync
-
 [Return][2]
 
 [1]: https://github.com/Alexander-Shein/DddCore/blob/net-core/Src/BLL/README.md#entity
