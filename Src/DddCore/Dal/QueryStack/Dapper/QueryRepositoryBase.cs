@@ -101,6 +101,10 @@ namespace DddCore.Dal.QueryStack.Dapper
             }
         }
 
+        /// <summary>
+        /// Gets ReadOnly connection string from injected IOptions<ConnectionStrings> option.
+        /// </summary>
+        /// <returns></returns>
         protected SqlConnection GetDbConnection()
         {
             var connection = new SqlConnection(ConnectionStrings.ReadOnly);

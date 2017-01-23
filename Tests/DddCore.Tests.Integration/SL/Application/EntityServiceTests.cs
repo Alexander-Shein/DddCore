@@ -10,7 +10,6 @@ using DddCore.Services.Application.DomainStack;
 using Microsoft.Extensions.Options;
 using Moq;
 using System;
-using System.Collections.Generic;
 using Api.Cars.BLL;
 using Xunit;
 
@@ -18,15 +17,19 @@ namespace DddCore.Tests.Integration.SL.Application
 {
     public class EntityServiceTests
     {
-        [Fact]
-        public async void Persist()
-        {
-            var connectonStrings = new ConnectionStrings
-            {
-                Oltp = "Data Source=(local); Initial Catalog=DddCore.Tests.Integration.Database; Integrated Security=SSPI;",
-                ReadOnly = "Data Source=(local); Initial Catalog=DddCore.Tests.Integration.Database; Integrated Security=SSPI;"
-            };
+        #region private Members
 
+        readonly ConnectionStrings connectonStrings = new ConnectionStrings
+        {
+            Oltp = @"Data Source=(local); Initial Catalog=DddCore.Samples; Integrated Security=SSPI;",
+            ReadOnly = @"Data Source=(local); Initial Catalog=DddCore.Samples; Integrated Security=SSPI;"
+        };
+
+        #endregion
+
+        [Fact]
+        public async void PersistAggregateRootAsynct()
+        {
             var optionsMock = new Mock<IOptions<ConnectionStrings>>();
             optionsMock.Setup(x => x.Value).Returns(connectonStrings);
 
@@ -37,13 +40,7 @@ namespace DddCore.Tests.Integration.SL.Application
             businessRulesValidatorFactoryMock.Setup(x => x.GetBusinessRulesValidator<Car>()).Returns(new CarBusinessRulesValidator());
 
             var domainEventHandlerFactoryMock = new Mock<IDomainEventHandlerFactory>();
-            domainEventHandlerFactoryMock.Setup(x => x.GetHandlers<ColorChangedDomainEvent>()).Returns(new List<IDomainEventHandler<ColorChangedDomainEvent>> {
-                new UpdateColorHandler()
-            });
-
             var domainEventDispather = new DomainEventDispatcher(domainEventHandlerFactoryMock.Object);
-
-            var handlers = domainEventHandlerFactoryMock.Object.GetHandlers<ColorChangedDomainEvent>();
 
             var guard = new Guard(businessRulesValidatorFactoryMock.Object);
             var entityService = new EntityService<Car, Guid>(repository, guard, domainEventDispather);

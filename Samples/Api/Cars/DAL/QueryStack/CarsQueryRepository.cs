@@ -2,7 +2,6 @@
 using DddCore.Contracts.Dal;
 using DddCore.Dal.QueryStack.Dapper;
 using Microsoft.Extensions.Options;
-using System.Threading.Tasks;
 using Api.Cars.DAL.QueryStack.Contracts;
 using Api.Cars.DAL.QueryStack.Contracts.Dtos;
 

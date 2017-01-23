@@ -12,6 +12,12 @@ namespace DddCore.Dal.DomainStack.EntityFramework.Mapping
 
         readonly ModelBuilder modelBuilder;
 
+        private static class FieldName
+        {
+            public const string Id = "Id";
+            public const string CrudState = "CrudState";
+        }
+
         #endregion
 
         public DddCoreModelBuilder(ModelBuilder modelBuilder)
@@ -27,14 +33,14 @@ namespace DddCore.Dal.DomainStack.EntityFramework.Mapping
 
             var entityTypeBuilder = modelBuilder.Entity<TEntity>();
 
-            if (type.IsAssignableFromGenericType(typeof(IIdentity<>)))
+            if (typeof(IIdentity<>).IsAssignableFromGenericType(type))
             {
-                entityTypeBuilder.HasKey("Id");
+                entityTypeBuilder.HasKey(FieldName.Id);
             }
 
-            if (type.IsAssignableFrom(typeof(ICrudState)))
+            if (typeof(ICrudState).IsAssignableFrom(type))
             {
-                entityTypeBuilder.Ignore("CrudState");
+                entityTypeBuilder.Ignore(FieldName.CrudState);
             }
 
             return entityTypeBuilder;

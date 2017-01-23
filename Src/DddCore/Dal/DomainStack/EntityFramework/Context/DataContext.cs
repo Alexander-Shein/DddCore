@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using DddCore.Contracts.Dal;
 using DddCore.Contracts.Domain.Entities.Model;
 using DddCore.Crosscutting;

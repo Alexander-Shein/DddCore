@@ -35,6 +35,7 @@ namespace Api.Cars.SL
             var vms = dtos.Select(x => new CarVm
             {
                 Color = x.Color,
+                Id = x.Id,
                 Wheels = x.Wheels?.Select(c => new WheelVm
                 {
                     Id = c.Id
@@ -65,16 +66,17 @@ namespace Api.Cars.SL
         {
             var car = new Car();
 
-            car.ChangeColor(im.Color);
+            car.Color = im.Color;
             car.CrudState = CrudState.Added;
-
+            car.Id = Guid.NewGuid();
+                  
             carsEntityService.PersistAggregateRoot(car);
             unitOfWork.Save();
 
             return new CarVm
             {
                 Id = car.Id,
-                Color = car.Color
+                Color = car.Color + car.CrudState
             };
         }
     }

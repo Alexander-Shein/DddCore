@@ -3,7 +3,6 @@ using System.Linq;
 using System.Reflection;
 using DddCore.Contracts.Crosscutting.DependencyInjection.Base;
 using DddCore.Contracts.Crosscutting.UserContext;
-using DddCore.Contracts.Dal;
 using DddCore.Contracts.Dal.DomainStack;
 using DddCore.Contracts.Dal.QueryStack;
 using DddCore.Contracts.Domain.Entities;
@@ -138,8 +137,6 @@ namespace DddCore.Services
                     var genericType = serviceType.MakeGenericType(closedContractType.GetGenericArguments());
 
                     serviceCollection.AddScoped(closedContractType, genericType);
-
-                    continue;
                 }
                 else
                 {
