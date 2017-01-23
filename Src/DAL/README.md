@@ -118,11 +118,11 @@ public class CarsWorkflowService : ICarsWorkflowService
 
 # Query Repository
 
-## Dependency injection
-Services marked as IQueryRepository are auto registered with PerWebRequest lifestyle.
+## Technologies/Dependencies
+[Dapper][1]
 
-## Overview
-[Dapper][1] is used for query repository
+## Dependency injection
+Services marked as IQueryRepository are auto registered with Scoped lifestyle.
 
 Query repository example:
 ```csharp
@@ -154,6 +154,7 @@ public class CarsQueryRepository : QueryRepositoryBase, ICarsQueryRepository
     }
 }
 ```
+QueryRepositoryBase has helper methods that can be used to implement your custom methods. Or dapper can be used directly. To access SqlConnection use protected SqlConnection GetDbConnection().
 
 # Entity Mapping
 
@@ -163,7 +164,6 @@ Framework automatically loads all intances of IMappingModule interface and passe
 Automaticcaly registered entity properties:
 * Id - registered as .HasKey(x => x.Id)
 * CrudState - ignored as .Ignore(x => x.CrudState)
-* Ts - If entity is marked as IVersion the Ts field is regitered as .Property(x => x.Ts).IsRowVersion();
 
 Id property is auto registered as 
 
@@ -188,10 +188,14 @@ public class CarsMappingModule : IMappingModule
 To add connection strings just put next section to appsetting.json file:
 
 ```javascript
-"ConnectionStrings": {
+"connectionStrings": {
     "Oltp": "Data Source=(local); Initial Catalog=DddCore.Tests.Integration.Database; Integrated Security=SSPI;",
     "ReadOnly": "Data Source=(local); Initial Catalog=DddCore.Tests.Integration.Database; Integrated Security=SSPI;"
 }
+```
+And add configuration to container:
+```csharp
+services.Configure<ConnectionStrings>(Configuration.GetSection("connectionStrings"));
 ```
 ConnectionStrings class will be injected to repository constructor via IOptions<>:
 

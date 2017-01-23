@@ -1,8 +1,7 @@
 # Dependency injection
 
 ## Bootstrap
-
-To register all framework components and custom components that are implements framework interfaces or inherited from framework base classes use .AddDddCore() method;
+To register all framework components and custom components use .AddDddCore() method. Example:
 
   ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -14,7 +13,7 @@ public void ConfigureServices(IServiceCollection services)
 ```
 
 ## Modules
-Bootstrap method scans all assemblies for IDiModule implementation and passes IServiceCollection to Install method. If you need to register something to container just create a module and it be installed:
+Bootstrap method scans all assemblies for IDiModule implementation and passes IServiceCollection to Install method. If you need to register something to container just create a module and it will be installed:
 ```csharp
 public class DddCoreDiModule : IDiModule
 {
@@ -26,33 +25,23 @@ public class DddCoreDiModule : IDiModule
     }
 }
 ```
-Or use ConfigureServices(IServiceCollection services) method
-
-## Inject container
-If you want a container instance you can use IServiceProvider interface to inject it:
-```csharp
-public class BusinessRulesValidatorFactory : IBusinessRulesValidatorFactory
-{
-    public BusinessRulesValidatorFactory(IServiceProvider serviceProvider)
-    {
-    }
-}
-```
+Or use ConfigureServices(IServiceCollection services) method.
 
 # Object mapper
-
 ## Bootstrap
 
-Bootstrap methos scans all assemblies for IObjectMapperModule and executes Install method. If you need to add mappings use IObjectMapperModule. Bootstrap method:
+Bootstrap methos scans all assemblies for IObjectMapperModule and executes Install method. If you need to add mappings use IObjectMapperModule. Bootstrap oblect mapper example:
 
 ```csharp
-var objectMapper = new ObjectMapperBootstrapper()
-    .AddAutoMapperConfig()
-    .Bootstrap();
+  var objectMapper = new ObjectMapperBootstrapper()
+      .AddAutoMapperConfig()
+      .Bootstrap();
+
+  services.AddSingleton(objectMapper);
 ```
 
 ## Modules
-
+Bootstrap method scans all assemblies for IObjectMapperModule implementation and invokes install method. In the module you can setup mapping. Example:
 ```csharp
 public class ObjectMapperModule : IObjectMapperModule
 {
@@ -71,6 +60,21 @@ public class ObjectMapperModule : IObjectMapperModule
     #endregion
 }
 ```
+##IObjectMapper
+Use IObjectMapper instance to map object:
+```csharp
+public interface IObjectMapper
+{
+    /// <summary>
+    /// Maps object from passed to new object with generic type.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="from"></param>
+    /// <returns></returns>
+    T Map<T>(object from);
+}
+```
+
 # User Context
 
 DddCore has a wrapper for current IIdentity:
