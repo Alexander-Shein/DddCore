@@ -3,13 +3,13 @@ The goal of this framework is do not implement ddd patterns for every project fr
 
 * DddCore framework implements common DDD patterns like repository and query repository, unit of work, aggregate roots, domain events, entity services and others.
 
-* Different ORMs: functional EntityFramework for CRUD operations (repository) and fast Dapper for read operations (query repository). It's in place because of performance and to avoid redundant entity relationships that are added in order to create a linq query to return data to UI. As a result better domain model structure.
+* Different ORMs: functional EntityFramework for CRUD operations (repository) and fast Dapper for read operations (query repository). It's in place because of performance and to avoid redundant entity relationships that are added in order to create a LINQ query to return data to UI. As a result better domain model structure.
 
-* Layed arhitecture: Crosscutting, Business Logic Layer, Data Access Layer, Services Layer and Presentation Layer.
+* Layered architecture: Crosscutting, Business Logic Layer, Data Access Layer, Services Layer and Presentation Layer.
 
-* DddCore is automatted as much as possible. All components are auto registered to dependency injection container. Generic implementations are provided for components like repository and entity services. Common entity fields are auto mapped for Entity Framework.
+* DddCore is automated as much as possible. All components are auto registered to dependency injection container. Generic implementations are provided for components like repository and entity service. Common entity fields are auto mapped for Entity Framework.
 
-* DddCore has async and sync imlementations for all methods.
+* DddCore has async and sync implementations for all methods.
 
 * DddCore framework uses next libraries: [FluentAssertion][-4], [EntityFramework][-3], [Dapper][-5], [Microsoft Dependency Injection][-2], [AutoMapper][-1](can be switched)
 
