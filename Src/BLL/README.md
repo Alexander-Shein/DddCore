@@ -119,7 +119,7 @@ public class UpdateColorHandler : IDomainEventHandler<ColorChangedDomainEvent>
 
 ## Domain event dispatcher
 
-If you want to invoke handlers mannualy you can inject and use IDomainEventDispatcher.Raise:
+If you want to raise events mannualy you can inject and use IDomainEventDispatcher.Raise:
 ```csharp
 public interface IDomainEventDispatcher
 {
