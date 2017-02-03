@@ -14,7 +14,7 @@ public void ConfigureServices(IServiceCollection services)
 This method scans assemplies and looking for IDiModule modules.
 
 ## Modules
-Bootstrap method scans all assemblies for IDiModule modules and passes IServiceCollection to Install method. If you need to register something to container just create a module and register components in the Install method:
+services.AddDddCore() method scans all assemblies for IDiModule modules and passes IServiceCollection to Install method. If you need to register something to container just create a module and register components in the Install method:
 ### Note:
 IDiModule shoud have parameterless constructor.
 
