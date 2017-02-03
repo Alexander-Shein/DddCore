@@ -11,7 +11,7 @@ The goal of this framework is to implement ddd patterns and have well documented
 
 * DddCore has async and sync implementations for all methods.
 
-* DddCore framework uses next libraries: [FluentAssertion][-4], [EntityFramework][-3], [Dapper][-5], [Microsoft Dependency Injection][-2], [AutoMapper][-1](can be switched)
+* DddCore framework uses next libraries: [FluentValidation][-4], [EntityFramework][-3], [Dapper][-5], [Microsoft Dependency Injection][-2], [AutoMapper][-1](can be switched)
 
 Try a tutorial(under construction) or have a look to the [sample][0] app.
 
