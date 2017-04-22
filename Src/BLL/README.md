@@ -65,14 +65,16 @@ public class CarBusinessRulesValidator : BusinessRulesValidatorBase<Car>
 }
 ```
 
-Note: For more validation examples see [FluentValidation][1]
+### Note:
+For more validation examples see [FluentValidation][1]
 
-Note: When aggregate root is persisted via IEntityService.PersistEntityGraph the related BusinessRulesValidator is invoked against aggregate root entity and validation is performed.
+### Note:
+When aggregate root is persisted via IEntityService.PersistEntityGraph the related BusinessRulesValidator is invoked against aggregate root entity and validation is performed.
 
 # Domain events and handlers
 
 ## Dependency injection
-Handlers marked with IDomainEventHandler<> interface are auto registered with PerWebRequest lifestyle.
+Handlers marked with IDomainEventHandler<> interface are auto registered with Scoped lifestyle.
 
 ## Overview
 All domain events should implement IDomainEvent interface:
@@ -117,7 +119,7 @@ public class UpdateColorHandler : IDomainEventHandler<ColorChangedDomainEvent>
 
 ## Domain event dispatcher
 
-If you want to invoke handlers mannualy you can inject and use IDomainEventDispatcher.Raise:
+If you want to raise events mannualy you can inject and use IDomainEventDispatcher.Raise:
 ```csharp
 public interface IDomainEventDispatcher
 {
@@ -130,7 +132,8 @@ public interface IDomainEventDispatcher
 }
 ```
 
-Note: When aggregate root is persisted via IEntityService.PersistEntityGraph the events from all aggregate root graph entities are raised and passed to related event handlers.
+### Note:
+When aggregate root is persisted via IEntityService.PersistEntityGraph the events from all aggregate root graph entities are raised and passed to related event handlers.
 
 # Value Object
 

@@ -3,7 +3,7 @@
 [EntityFramework][0]
 
 ## Dependency injection
-For each custom aggregate root the generic implementation of IRepository<> is auto registered and can be injected via IRepository<> contract. When custom repository for aggregate root is created then generic implementation of repository is overritten. Lifestyle is PerWebRequest.
+For each custom aggregate root the generic implementation of IRepository<> is auto registered and can be injected via IRepository<> contract. When custom repository for aggregate root is created then generic implementation of repository is overwritten. Lifestyle is Scoped.
 
 ## Overview
 ### Generic repository

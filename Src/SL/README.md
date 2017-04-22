@@ -81,7 +81,7 @@ public class CarsWorkflowService : ICarsWorkflowService
 Services marked as IWorkflowService are auto registered with scoped lifestyle.
 
 ## Overview
-The responsibily of those services is a workflow and transaction control. Those services contain NOT reusable logic because each workflow should have only one enter point. IUnitOfWork should be injected only into workflow service.
+The responsibility of those services is a workflow and transaction control. Those services contain NOT reusable logic because each workflow should have only one enter point. IUnitOfWork should be injected only into workflow service.
 
 Example:
 ```csharp
@@ -124,7 +124,7 @@ Note: Workflow control
 Services marked as IInfrastructureService are auto registered with scoped lifestyle.
 
 ## Overview
-It's a place for reusable logic that is not part of business logic and workflow logic. Because business logic goes to [entities][1] and entity services. Workflow logic goes to workflow services. Transactions (using IUnitOfWork) is not allowed because those services contain reusable logic that can be used in many places and it's possible to have multiple transactions per one requiest. 
+It's a place for reusable logic that is not part of business logic and workflow logic. Because business logic goes to [entities][1] and entity services. Workflow logic goes to workflow services. Transactions (using IUnitOfWork) is not allowed because those services contain reusable logic that can be used in many places and it's possible to have multiple transactions per one request. 
 
 Usage examples:
 * Facades for third party APIs

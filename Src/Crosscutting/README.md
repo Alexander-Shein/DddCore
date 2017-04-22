@@ -11,9 +11,13 @@ public void ConfigureServices(IServiceCollection services)
     services.AddDddCore();
 }
 ```
+This method scans assemplies and looking for IDiModule modules.
 
 ## Modules
-Bootstrap method scans all assemblies for IDiModule implementation and passes IServiceCollection to Install method. If you need to register something to container just create a module and it will be installed:
+services.AddDddCore() method scans all assemblies for IDiModule modules and passes IServiceCollection to Install method. If you need to register something to container just create a module and register components in the Install method:
+### Note:
+IDiModule shoud have parameterless constructor.
+
 ```csharp
 public class DddCoreDiModule : IDiModule
 {
@@ -25,12 +29,12 @@ public class DddCoreDiModule : IDiModule
     }
 }
 ```
-Or use ConfigureServices(IServiceCollection services) method.
+Or use ```csharp public void ConfigureServices(IServiceCollection services) ``` method. 
 
 # Object mapper
 ## Bootstrap
 
-Bootstrap methos scans all assemblies for IObjectMapperModule and executes Install method. If you need to add mappings use IObjectMapperModule. Bootstrap oblect mapper example:
+To setup object mapper use bootstrap method from ObjectMapperBootstrapper class which scans all assemblies for IObjectMapperModule and executes Install method. If you need to add mappings use IObjectMapperModule. Example:
 
 ```csharp
   var objectMapper = new ObjectMapperBootstrapper()
@@ -60,8 +64,8 @@ public class ObjectMapperModule : IObjectMapperModule
     #endregion
 }
 ```
-##IObjectMapper
-Use IObjectMapper instance to map object:
+##IObjectMapper usage
+Inject IObjectMapper instance and use map method for mapping objects:
 ```csharp
 public interface IObjectMapper
 {
