@@ -3,7 +3,8 @@
     public interface IObjectMapper
     {
         /// <summary>
-        /// Maps object from passed to new object with generic type.
+        /// Maps object to new object with generic type.
+        /// Wrapper for object mappers.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="from"></param>

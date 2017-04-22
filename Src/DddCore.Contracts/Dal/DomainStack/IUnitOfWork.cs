@@ -5,7 +5,7 @@ namespace DddCore.Contracts.Dal.DomainStack
     public interface IUnitOfWork
     {
         /// <summary>
-        /// Save changes to DataBase in single transaction async
+        /// Save changes to DataBase in single transaction
         /// </summary>
         /// <returns></returns>
         Task SaveAsync();

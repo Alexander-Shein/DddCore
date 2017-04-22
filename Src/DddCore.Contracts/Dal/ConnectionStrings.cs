@@ -3,7 +3,7 @@ namespace DddCore.Contracts.Dal
     public class ConnectionStrings
     {
         /// <summary>
-        /// Connection string to DataBase for write operations
+        ///  DataBase connection string for write operations
         /// </summary>
         public string Oltp { get; set; }
 

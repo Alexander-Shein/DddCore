@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using DddCore.Contracts.Domain.Entities;
-using DddCore.Contracts.Domain.Entities.BusinessRules;
+using DddCore.Contracts.Domain.Errors;
 using DddCore.Contracts.Services.Infrastructure;
 
 namespace DddCore.Contracts.Services.Application.DomainStack
@@ -21,15 +21,15 @@ namespace DddCore.Contracts.Services.Application.DomainStack
         /// <typeparam name="TKey"></typeparam>
         /// <param name="aggregateRoot"></param>
         /// <returns>Business rules validation result</returns>
-        BusinessRulesValidationResult ValidateBusinessRules<T, TKey>(T aggregateRoot) where T : IAggregateRootEntity<TKey>;
+        OperationResult ValidateBusinessRules<T, TKey>(T aggregateRoot) where T : IAggregateRootEntity<TKey>;
 
         /// <summary>
-        /// Async version of ValidateBusinessRules
+        /// Retrives business rules validator and validates business rules for aggregateRoot.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="TKey"></typeparam>
         /// <param name="aggregateRoot"></param>
         /// <returns></returns>
-        Task<BusinessRulesValidationResult> ValidateBusinessRulesAsync<T, TKey>(T aggregateRoot) where T : IAggregateRootEntity<TKey>;
+        Task<OperationResult> ValidateBusinessRulesAsync<T, TKey>(T aggregateRoot) where T : IAggregateRootEntity<TKey>;
     }
 }

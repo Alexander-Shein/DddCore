@@ -1,8 +1,6 @@
 ﻿using System;
-using Api.Cars.SL;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Api.Cars.SL.Contracts;
 using Api.Cars.SL.Contracts.Models;
 
@@ -43,18 +41,8 @@ namespace Api.Controllers
         [HttpPut("{id}")]
         public CarVm Put(Guid id, [FromBody]CarIm value)
         {
-            try
-            {
-                var vm = carsWorkflowService.CreateOrUpdate(id, value);
-                return vm;
-            }
-            catch (Exception e)
-            {
-                return new CarVm
-                {
-                    Color = e.Message
-                };
-            }
+            var vm = carsWorkflowService.CreateOrUpdate(id, value);
+            return vm;
         }
 
         // DELETE api/values/5

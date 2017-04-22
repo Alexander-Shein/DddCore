@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using DddCore.Contracts.Domain.Entities;
-using DddCore.Contracts.Domain.Entities.BusinessRules;
+using DddCore.Contracts.Domain.Errors;
 
 namespace DddCore.Contracts.Services.Application.DomainStack
 {
@@ -12,27 +12,27 @@ namespace DddCore.Contracts.Services.Application.DomainStack
         /// </summary>
         /// <param name="aggregateRoot"></param>
         /// <returns></returns>
-        void PersistAggregateRoot(T aggregateRoot);
+        //void PersistAggregateRoot(T aggregateRoot);
 
         /// <summary>
         /// Async version of PersistAggregateRoot.
         /// </summary>
         /// <param name="aggregateRoot"></param>
         /// <returns></returns>
-        Task PersistAggregateRootAsync(T aggregateRoot);
+        //Task PersistAggregateRootAsync(T aggregateRoot);
 
         /// <summary>
         /// Validate business rules, raise events and persist aggregate root graph.
         /// </summary>
         /// <param name="aggregateRoot"></param>
-        /// <returns>if BusinessRulesValidationResult.IsValid then aggregate root is persisted. If not BusinessRulesValidationResult.BrokenBusinessRules is populated.</returns>
-        BusinessRulesValidationResult TryPersistAggregateRoot(T aggregateRoot);
+        /// <returns>if OperationResult.IsValid then aggregate root is persisted. If not BusinessRulesValidationResult.BrokenBusinessRules is populated.</returns>
+        OperationResult ValidateAndPersist(T aggregateRoot);
 
         /// <summary>
         /// Async version of TryPersistAggregateRoot.
         /// </summary>
         /// <param name="aggregateRoot"></param>
         /// <returns></returns>
-        Task<BusinessRulesValidationResult> TryPersistAggregateRootAsync(T aggregateRoot);
+        Task<OperationResult> ValidateAndPersistAsync(T aggregateRoot);
     }
 }

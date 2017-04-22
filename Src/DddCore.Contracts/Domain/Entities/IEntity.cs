@@ -2,7 +2,7 @@
 
 namespace DddCore.Contracts.Domain.Entities
 {
-    public interface IEntity<TKey> : ICrudState, IIdentity<TKey>, IEvents
+    public interface IEntity<TKey> : ICrudState, IIdentity<TKey>, IDomainEvents
     {
     }
 }
