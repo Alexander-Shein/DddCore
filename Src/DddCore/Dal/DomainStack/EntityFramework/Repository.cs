@@ -1,18 +1,18 @@
 ﻿using System;
-using System.Threading.Tasks;
-using DddCore.Contracts.Crosscutting.UserContext;
-using DddCore.Contracts.Dal.DomainStack;
-using DddCore.Contracts.Domain.Entities;
-using DddCore.Contracts.Domain.Entities.Audit.At;
-using DddCore.Contracts.Domain.Entities.Audit.By;
-using DddCore.Contracts.Domain.Entities.Model;
-using DddCore.Dal.DomainStack.EntityFramework.Context;
-using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Collections.Generic;
+using System.Threading.Tasks;
+using DddCore.Contracts.BLL.Domain.Entities;
+using DddCore.Contracts.BLL.Domain.Entities.Audit.At;
+using DddCore.Contracts.BLL.Domain.Entities.Audit.By;
+using DddCore.Contracts.BLL.Domain.Entities.Model;
+using DddCore.Contracts.Crosscutting.UserContext;
+using DddCore.Contracts.DAL.DomainStack;
+using DddCore.DAL.DomainStack.EntityFramework.Context;
+using Microsoft.EntityFrameworkCore;
 
-namespace DddCore.Dal.DomainStack.EntityFramework
+namespace DddCore.DAL.DomainStack.EntityFramework
 {
     public class Repository<T, TKey> : IRepository<T, TKey> where T : class, IAggregateRootEntity<TKey>
     {

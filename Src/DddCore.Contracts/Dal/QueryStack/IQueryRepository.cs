@@ -1,5 +1,5 @@
 ﻿
-namespace DddCore.Contracts.Dal.QueryStack
+namespace DddCore.Contracts.DAL.QueryStack
 {
     public interface IQueryRepository
     {

@@ -1,5 +1,4 @@
-﻿using DddCore.Contracts.Dal;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace DddCore.Tests.Integration.DAL.QueryStack
 {
@@ -7,13 +6,13 @@ namespace DddCore.Tests.Integration.DAL.QueryStack
     public class QueryRepositoriesTests
     {
         [Test]
-        public async void Read()
+        public void Read()
         {
-            var connectonStrings = new ConnectionStrings
-            {
-                Oltp = "Data Source=(local); Initial Catalog=DddCore.Tests.Integration.Database; Integrated Security=SSPI;",
-                ReadOnly = "Data Source=(local); Initial Catalog=DddCore.Tests.Integration.Database; Integrated Security=SSPI;"
-            };
+            //var connectonStrings = new ConnectionStrings
+            //{
+            //    Oltp = "Data Source=(local); Initial Catalog=DddCore.Tests.Integration.Database; Integrated Security=SSPI;",
+            //    ReadOnly = "Data Source=(local); Initial Catalog=DddCore.Tests.Integration.Database; Integrated Security=SSPI;"
+            //};
 
             //var optionsMock = new Mock<IOptions<ConnectionStrings>>();
             //optionsMock.Setup(x => x.Value).Returns(connectonStrings);

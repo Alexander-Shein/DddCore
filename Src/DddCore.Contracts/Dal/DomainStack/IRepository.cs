@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using DddCore.Contracts.Domain.Entities;
+using DddCore.Contracts.BLL.Domain.Entities;
 
-namespace DddCore.Contracts.Dal.DomainStack
+namespace DddCore.Contracts.DAL.DomainStack
 {
     public interface IRepository<T, in TKey> where T : class, IAggregateRootEntity<TKey>
     {

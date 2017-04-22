@@ -1,14 +1,14 @@
-﻿using System.Threading.Tasks;
-using DddCore.Contracts.Dal;
-using DddCore.Contracts.Domain.Entities.Model;
+﻿using System.Linq;
+using System.Threading.Tasks;
+using DddCore.Contracts.BLL.Domain.Entities.Model;
+using DddCore.Contracts.DAL;
+using DddCore.Contracts.DAL.DomainStack;
 using DddCore.Crosscutting;
-using DddCore.Dal.DomainStack.EntityFramework.Mapping;
+using DddCore.DAL.DomainStack.EntityFramework.Mapping;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using DddCore.Contracts.Dal.DomainStack;
-using System.Linq;
 
-namespace DddCore.Dal.DomainStack.EntityFramework.Context
+namespace DddCore.DAL.DomainStack.EntityFramework.Context
 {
     public class DataContext : DbContext, IDataContext, IUnitOfWork
     {

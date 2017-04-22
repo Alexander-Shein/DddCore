@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace DddCore.Dal.DomainStack.EntityFramework.Mapping
+namespace DddCore.DAL.DomainStack.EntityFramework.Mapping
 {
     public interface IModelBuilder
     {

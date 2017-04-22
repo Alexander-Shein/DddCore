@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace DddCore.Contracts.Dal.DomainStack
+namespace DddCore.Contracts.DAL.DomainStack
 {
     public interface IUnitOfWork
     {

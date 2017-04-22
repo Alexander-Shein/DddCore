@@ -1,10 +1,10 @@
 ﻿using System.Reflection;
-using DddCore.Contracts.Domain.Entities.Model;
+using DddCore.Contracts.BLL.Domain.Entities.Model;
 using DddCore.Crosscutting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace DddCore.Dal.DomainStack.EntityFramework.Mapping
+namespace DddCore.DAL.DomainStack.EntityFramework.Mapping
 {
     public class DddCoreModelBuilder : IModelBuilder
     {

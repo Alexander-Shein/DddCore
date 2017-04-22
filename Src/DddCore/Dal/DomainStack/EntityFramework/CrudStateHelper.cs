@@ -1,8 +1,8 @@
 ﻿using System;
-using DddCore.Contracts.Domain.Entities.Model;
+using DddCore.Contracts.BLL.Domain.Entities.Model;
 using Microsoft.EntityFrameworkCore;
 
-namespace DddCore.Dal.DomainStack.EntityFramework
+namespace DddCore.DAL.DomainStack.EntityFramework
 {
     public class CrudStateHelper
     {

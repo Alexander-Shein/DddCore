@@ -1,4 +1,4 @@
-namespace DddCore.Contracts.Dal
+namespace DddCore.Contracts.DAL
 {
     public class ConnectionStrings
     {

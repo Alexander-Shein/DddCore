@@ -17,10 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DddCore", "Src\DddCore\DddC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DddCore.Crosscutting.ObjectMapper.AutoMapper", "Src\Crosscutting\DddCore.Crosscutting.ObjectMapper.AutoMapper\DddCore.Crosscutting.ObjectMapper.AutoMapper.csproj", "{675C578A-7081-4239-AD0D-ACBC216CDE52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DddCore.Tests.Unit", "Tests\DddCore.Tests.Unit\DddCore.Tests.Unit.csproj", "{58C987A0-D9E0-4FB9-8010-550DC4016D83}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DddCore.Tests.Integration", "Tests\DddCore.Tests.Integration\DddCore.Tests.Integration.csproj", "{97799CB8-8ECC-400C-9497-6EF5C2DCC3C1}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,14 +35,6 @@ Global
 		{675C578A-7081-4239-AD0D-ACBC216CDE52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{675C578A-7081-4239-AD0D-ACBC216CDE52}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{675C578A-7081-4239-AD0D-ACBC216CDE52}.Release|Any CPU.Build.0 = Release|Any CPU
-		{58C987A0-D9E0-4FB9-8010-550DC4016D83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{58C987A0-D9E0-4FB9-8010-550DC4016D83}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{58C987A0-D9E0-4FB9-8010-550DC4016D83}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{58C987A0-D9E0-4FB9-8010-550DC4016D83}.Release|Any CPU.Build.0 = Release|Any CPU
-		{97799CB8-8ECC-400C-9497-6EF5C2DCC3C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{97799CB8-8ECC-400C-9497-6EF5C2DCC3C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{97799CB8-8ECC-400C-9497-6EF5C2DCC3C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{97799CB8-8ECC-400C-9497-6EF5C2DCC3C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -56,7 +44,5 @@ Global
 		{CA0D1CCA-4CA7-40CD-B0F7-A3AFD3558315} = {155C9F39-7EDB-48A1-8692-29B024C96355}
 		{9FAFA615-A46E-49F5-92FD-BACF09D6DEE6} = {155C9F39-7EDB-48A1-8692-29B024C96355}
 		{675C578A-7081-4239-AD0D-ACBC216CDE52} = {4D9192C3-595B-4EE6-90FD-660036FEC5C4}
-		{58C987A0-D9E0-4FB9-8010-550DC4016D83} = {15382D42-37EB-4E96-8B53-CC07838D8CBB}
-		{97799CB8-8ECC-400C-9497-6EF5C2DCC3C1} = {15382D42-37EB-4E96-8B53-CC07838D8CBB}
 	EndGlobalSection
 EndGlobal

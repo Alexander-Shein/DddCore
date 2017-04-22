@@ -5,11 +5,11 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
-using DddCore.Contracts.Dal;
-using DddCore.Contracts.Dal.QueryStack;
+using DddCore.Contracts.DAL;
+using DddCore.Contracts.DAL.QueryStack;
 using Microsoft.Extensions.Options;
 
-namespace DddCore.Dal.QueryStack.Dapper
+namespace DddCore.DAL.QueryStack.Dapper
 {
     public abstract class QueryRepositoryBase : IQueryRepository
     {
