@@ -5,14 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Crosscutting\ObjectMapper\**" />
+    <EmbeddedResource Remove="Crosscutting\ObjectMapper\**" />
+    <None Remove="Crosscutting\ObjectMapper\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="4.19.2" />
     <PackageReference Include="Moq" Version="4.7.8" />
     <PackageReference Include="NUnit" Version="3.6.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Src\Crosscutting\DddCore.Crosscutting.ObjectMapper.AutoMapper\DddCore.Crosscutting.ObjectMapper.AutoMapper.csproj" />
-    <ProjectReference Include="..\..\Src\DddCore.Contracts\DddCore.Contracts.csproj" />
     <ProjectReference Include="..\..\Src\DddCore\DddCore.csproj" />
   </ItemGroup>
 

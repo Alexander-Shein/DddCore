@@ -6,10 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="6.0.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\DddCore.Contracts\DddCore.Contracts.csproj" />
+    <PackageReference Include="DddCore.Contracts" Version="1.2.1" />
   </ItemGroup>
 
 </Project>

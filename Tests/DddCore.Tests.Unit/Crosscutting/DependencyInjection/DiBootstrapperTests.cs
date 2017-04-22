@@ -1,4 +1,3 @@
-using DddCore.Contracts.Crosscutting.DependencyInjection.Base;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DddCore.Tests.Unit.Crosscutting.DependencyInjection
