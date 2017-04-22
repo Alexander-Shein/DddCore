@@ -1,12 +1,14 @@
-﻿using DddCore.Contracts.Dal;
-using NUnit.Framework;
+﻿using Api.Cars.DAL.QueryStack;
+using DddCore.Contracts.Dal;
+using Microsoft.Extensions.Options;
+using Moq;
+using Xunit;
 
 namespace DddCore.Tests.Integration.DAL.QueryStack
 {
-    [TestFixture()]
     public class QueryRepositoriesTests
     {
-        [Test]
+        [Fact]
         public async void Read()
         {
             var connectonStrings = new ConnectionStrings
@@ -15,11 +17,11 @@ namespace DddCore.Tests.Integration.DAL.QueryStack
                 ReadOnly = "Data Source=(local); Initial Catalog=DddCore.Tests.Integration.Database; Integrated Security=SSPI;"
             };
 
-            //var optionsMock = new Mock<IOptions<ConnectionStrings>>();
-            //optionsMock.Setup(x => x.Value).Returns(connectonStrings);
-            //var queryRepository = new CarsQueryRepository(optionsMock.Object);
+            var optionsMock = new Mock<IOptions<ConnectionStrings>>();
+            optionsMock.Setup(x => x.Value).Returns(connectonStrings);
+            var queryRepository = new CarsQueryRepository(optionsMock.Object);
 
-            //var cars = queryRepository.GetAllCars();
+            var cars = queryRepository.GetAllCars();
 
 
             //repository.PersistAggregateRoot(car);

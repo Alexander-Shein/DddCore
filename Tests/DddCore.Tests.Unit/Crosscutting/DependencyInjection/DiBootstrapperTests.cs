@@ -1,16 +1,11 @@
-using Xunit;
 using DddCore.Contracts.Crosscutting.DependencyInjection.Base;
-using DddCore.Contracts.Crosscutting.DependencyInjection;
-//using Moq;
-using DddCore.Crosscutting.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
-using FluentAssertions;
 
 namespace DddCore.Tests.Unit.Crosscutting.DependencyInjection
 {
     public class DiBootstrapperTests
     {
-        [Fact]
+        //[Fact]
         public void Bootstrap()
         {
             //var containerConfigMock = new Mock<IContainerConfig>();
@@ -28,17 +23,17 @@ namespace DddCore.Tests.Unit.Crosscutting.DependencyInjection
         }
     }
 
-    public class DiModule : IDiModule
+    public class DiModule : IDiModuleInstaller
     {
         public void Install(IServiceCollection serviceCollection)
         {
-            serviceCollection.AddTransient<IDiModule, DiModule>();
+            serviceCollection.AddTransient<IDiModuleInstaller, DiModule>();
         }
     }
 
     public class MicrosoftDiBootstrapper
     {
-        [Fact]
+        //[Fact]
         public void Bootstrap()
         {
             //var containerConfigMock = new Mock<IContainerConfig>();

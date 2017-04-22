@@ -4,14 +4,15 @@ using System.Linq;
 using DddCore.Domain.Entities;
 using DddCore.Domain.Entities.GuidEntities;
 using FluentAssertions;
-using Xunit;
+using NUnit.Framework;
 
 namespace DddCore.Tests.Unit.DDD
 {
 
+    [TestFixture]
     public class EntityTests
     {
-        [Fact]
+        [Test]
         public void GetPropertiesWithEntities_ShouldReturnCollectionAndSimpleProperties_Test()
         {
             // Act
@@ -22,7 +23,7 @@ namespace DddCore.Tests.Unit.DDD
             actual.Count().Should().Be(2);
         }
 
-        [Fact]
+        [Test]
         public void GetPropertiesWithEntities_WhenPropertiesAreNull_Test()
         {
             // Arrange
@@ -48,7 +49,7 @@ namespace DddCore.Tests.Unit.DDD
             }
         }
 
-        [Fact]
+        [Test]
         public void GetPropertiesWithEntities_WhenPropertiesAreNotNull_Test()
         {
             // Arrange
@@ -73,10 +74,9 @@ namespace DddCore.Tests.Unit.DDD
 
             properties.Should().NotBeNull();
         }
-
-        [Theory]
-        [InlineData(true, 0)]
-        [InlineData(false, 2)]
+        
+        [TestCase(true, 0)]
+        [TestCase(false, 2)]
         public void GetPropertiesWithEntities_ExcludeAggregateRoots_Test(bool excludeAggregateRoots, int propertiesCount)
         {
             // Act

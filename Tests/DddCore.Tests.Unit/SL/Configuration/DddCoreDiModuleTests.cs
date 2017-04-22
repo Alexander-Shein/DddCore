@@ -17,24 +17,25 @@ using FluentAssertions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using Xunit;
+using NUnit.Framework;
 
 namespace DddCore.Tests.Unit.SL.Configuration
 {
+    [TestFixture]
     public class DddCoreDiModuleTests
     {
-        [Fact]
+        [Test]
         public void RegisterDddCoreComponents()
         {
             var serviceCollection = new ServiceCollection();
-            var module = new DddCoreDiModule();
+            var module = new DddCoreDiModuleInstaller();
 
             module.Install(serviceCollection);
 
             serviceCollection.Count.Should().Be(18);
         }
 
-        [Fact]
+        [Test]
         public void RegisterRepositories()
         {
             // Act
@@ -48,7 +49,7 @@ namespace DddCore.Tests.Unit.SL.Configuration
             CheckInContainer<IRepository<AggregateRootTwo, Guid>>(container, typeof(Repository<AggregateRootTwo, Guid>));
         }
 
-        [Fact]
+        [Test]
         public void RegisterEntityServices()
         {
             // Act
@@ -62,7 +63,7 @@ namespace DddCore.Tests.Unit.SL.Configuration
             CheckInContainer<IEntityService<AggregateRootOne, Guid>>(container, typeof(EntityService<AggregateRootOne, Guid>));
         }
 
-        [Fact]
+        [Test]
         public void RegisterQueryRepositories()
         {
             // Act
@@ -74,7 +75,7 @@ namespace DddCore.Tests.Unit.SL.Configuration
             CheckInContainer<IAggregateRootTwoQueryRepository>(container, typeof(AggregateRootTwoQueryRepository));
         }
 
-        [Fact]
+        [Test]
         public void RegisterDomainEventHandlers()
         {
             // Act
@@ -99,7 +100,7 @@ namespace DddCore.Tests.Unit.SL.Configuration
 
         void InstallDddCoreDiModule(IServiceCollection serviceCollection)
         {
-            var module = new DddCoreDiModule();
+            var module = new DddCoreDiModuleInstaller();
             module.Install(serviceCollection);
         }
 
