@@ -5,11 +5,7 @@ VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Crosscutting", "Crosscutting", "{4D9192C3-595B-4EE6-90FD-660036FEC5C4}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{15382D42-37EB-4E96-8B53-CC07838D8CBB}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{155C9F39-7EDB-48A1-8692-29B024C96355}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{E2E03284-EF83-4A4B-9EF6-93813D9DF612}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DddCore.Contracts", "Src\DddCore.Contracts\DddCore.Contracts.csproj", "{CA0D1CCA-4CA7-40CD-B0F7-A3AFD3558315}"
 EndProject
