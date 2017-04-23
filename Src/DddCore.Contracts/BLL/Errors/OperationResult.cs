@@ -15,5 +15,20 @@ namespace DddCore.Contracts.BLL.Errors
         public bool IsNotSucceed => Errors.Any();
 
         public ICollection<Error> Errors { get; } = new List<Error>();
+
+        public static OperationResult FailedResult(int code, string description)
+        {
+            return new OperationResult
+            {
+                Errors =
+                {
+                    new Error
+                    {
+                        Code = code,
+                        Description = description
+                    }
+                }
+            };
+        }
     }
 }
