@@ -10,13 +10,13 @@ namespace DddCore.Contracts.BLL.Errors
     /// </summary>
     public class OperationResult
     {
-        public static OperationResult SucceedResult = new OperationResult();
-
         public bool IsSucceed => !IsNotSucceed;
 
         public bool IsNotSucceed => Errors.Any();
 
         public ICollection<Error> Errors { get; } = new List<Error>();
+
+        public static OperationResult SucceedResult = new OperationResult();
 
         public static OperationResult FailedResult(int code, string description)
         {
