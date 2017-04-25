@@ -17,7 +17,7 @@ namespace DddCore.Crosscutting.UserContext
             get
             {
                 var identity =
-                    HttpContextAccessor
+                    httpContextAccessor
                         .HttpContext
                         .User
                         .Identity;
@@ -53,11 +53,5 @@ namespace DddCore.Crosscutting.UserContext
         public string UserName => Identity.Name;
 
         public bool IsAuthenticated => Identity.IsAuthenticated;
-
-        public IHttpContextAccessor HttpContextAccessor => HttpContextAccessor2;
-
-        public IHttpContextAccessor HttpContextAccessor1 => HttpContextAccessor2;
-
-        public IHttpContextAccessor HttpContextAccessor2 => httpContextAccessor;
     }
 }
