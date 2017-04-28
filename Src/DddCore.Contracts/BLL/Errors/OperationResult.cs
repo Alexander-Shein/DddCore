@@ -16,9 +16,9 @@ namespace DddCore.Contracts.BLL.Errors
 
         public ICollection<Error> Errors { get; } = new List<Error>();
 
-        public static OperationResult SucceedResult = new OperationResult();
+        public static OperationResult Succeed = new OperationResult();
 
-        public static OperationResult FailedResult(int code, string description)
+        public static OperationResult Failed(int code, string description)
         {
             return new OperationResult
             {
