@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
+using DddCore.BLL.Domain.Entities;
 using DddCore.BLL.Domain.Entities.BusinessRules;
 using DddCore.BLL.Domain.Events;
 using DddCore.Contracts.BLL.Domain.Entities;
@@ -42,6 +43,7 @@ namespace DddCore.SL.Services
             serviceCollection.AddScoped<IBusinessRulesValidatorFactory, BusinessRulesValidatorFactory>();
             serviceCollection.AddScoped<IUserContext<Guid>, IdentityUserContext>();
             serviceCollection.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            serviceCollection.AddScoped<IDomainFactory, DomainFactory>();
         }
 
         #region Private Members

@@ -53,7 +53,7 @@ namespace DddCore.DAL.DomainStack.EntityFramework.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            var modules = AssemblyUtility.GetInstancesOf<IMappingModule>().ToArray();
+            var modules = AssemblyUtility.GetInstancesOf<IMappingModuleInstaller>().ToArray();
             if (!modules.Any()) return;
 
             var builder = new DddCoreModelBuilder(modelBuilder);
