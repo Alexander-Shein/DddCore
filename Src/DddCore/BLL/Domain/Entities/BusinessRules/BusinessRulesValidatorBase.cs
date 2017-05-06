@@ -30,6 +30,8 @@ namespace DddCore.BLL.Domain.Entities.BusinessRules
 
         OperationResult Map(ValidationResult validationResult)
         {
+            if (validationResult.IsValid) return OperationResult.Succeed;
+
             var result = new OperationResult();
 
             foreach (var validationFailure in validationResult.Errors)

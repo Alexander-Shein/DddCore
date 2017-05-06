@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using DddCore.Contracts.BLL.Domain.Entities;
+using DddCore.Contracts.BLL.Domain.Entities.Model;
+using DddCore.Contracts.BLL.Errors;
 using DddCore.Crosscutting;
 
 namespace DddCore.BLL.Domain.Entities
@@ -11,14 +14,57 @@ namespace DddCore.BLL.Domain.Entities
     {
         #region Public Methods
 
-        public void WalkEntireGraph(Action<IEntity<TKey>> action)
+        public void WalkGraph(Action<IEntity<TKey>> action, GraphDepth graphDepth = GraphDepth.AggregateRoot)
         {
-            Traverse(this).Do(action);
+            switch (graphDepth)
+            {
+                case GraphDepth.Itself:
+                {
+                    action(this);
+                    return;
+                }
+                case GraphDepth.AggregateRoot:
+                {
+                    Traverse(this, true).Do(action);
+                    return;
+                }
+                case GraphDepth.Entire:
+                {
+                    Traverse(this).Do(action);
+                        return;
+                }
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(graphDepth), graphDepth, null);
+            }
         }
 
-        public void WalkAggregateRootGraph(Action<IEntity<TKey>> action)
+        public void RaiseEvents(GraphDepth graphDepth = GraphDepth.AggregateRoot)
         {
-            Traverse(this, true).Do(action);
+            WalkGraph(entity => entity.RaiseEvents(), graphDepth);
+        }
+
+        public Task<OperationResult> ValidateAsync(GraphDepth graphDepth = GraphDepth.AggregateRoot)
+        {
+            return Task.FromResult(Validate(graphDepth));
+        }
+
+        public OperationResult Validate(GraphDepth graphDepth = GraphDepth.AggregateRoot)
+        {
+            var result = new OperationResult();
+
+            WalkGraph(entity =>
+            {
+                var nodeResult = entity.Validate();
+
+                if (!nodeResult.IsNotSucceed) return;
+
+                foreach (var error in nodeResult.Errors)
+                {
+                    result.Errors.Add(error);
+                }
+            }, graphDepth);
+
+            return result;
         }
 
         #endregion

@@ -37,7 +37,7 @@ namespace DddCore.DAL.DomainStack.EntityFramework
         {
             now = DateTime.UtcNow;
 
-            entity.WalkAggregateRootGraph(node =>
+            entity.WalkGraph(node =>
             {
                 UpdateAuditableInfo(node);
                 DataContext.SyncEntityState(node);

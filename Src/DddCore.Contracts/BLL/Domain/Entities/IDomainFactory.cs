@@ -2,6 +2,6 @@
 {
     public interface IDomainFactory
     {
-        T Create<T, TKey>() where T : IEntity<TKey>;
+        T Create<T, TKey>() where T : IEntity<TKey>, new();
     }
 }

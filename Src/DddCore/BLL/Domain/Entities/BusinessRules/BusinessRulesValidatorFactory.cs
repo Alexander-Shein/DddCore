@@ -25,6 +25,11 @@ namespace DddCore.BLL.Domain.Entities.BusinessRules
             return serviceProvider.GetService<IBusinessRulesValidator<T>>();
         }
 
+        public IBusinessRulesValidator<T> GetBusinessRulesValidator<T>(T instance) where T : ICrudState
+        {
+            return GetBusinessRulesValidator<T>();
+        }
+
         #endregion
     }
 }
