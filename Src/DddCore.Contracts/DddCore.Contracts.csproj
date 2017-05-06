@@ -3,13 +3,16 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
     <PackageId>DddCore.Contracts</PackageId>
-    <PackageVersion>1.2.3</PackageVersion>
-    <Authors></Authors>
+    <PackageVersion>1.2.4</PackageVersion>
+    <Authors>DddCore</Authors>
     <Description></Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageReleaseNotes></PackageReleaseNotes>
     <Copyright></Copyright>
     <PackageTags></PackageTags>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Version>1.2.4</Version>
+    <Company>DddCore</Company>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

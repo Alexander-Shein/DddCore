@@ -2,7 +2,7 @@
 
 namespace DddCore.Contracts.BLL.Domain.Entities
 {
-    public interface IEntity<TKey> : ICrudState, IIdentity<TKey>, IDomainEvents
+    public interface IEntity<TKey> : ICrudState, IIdentity<TKey>, IDomainEvents, IBusinessRules
     {
     }
 }
