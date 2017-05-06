@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Security.Claims;
-using System.Security.Principal;
 
 namespace DddCore.Crosscutting.UserContext
 {
@@ -12,17 +11,16 @@ namespace DddCore.Crosscutting.UserContext
 
         readonly IHttpContextAccessor httpContextAccessor;
 
-        IIdentity Identity
+        ClaimsPrincipal User
         {
             get
             {
-                var identity =
+                var user =
                     httpContextAccessor
                         .HttpContext
-                        .User
-                        .Identity;
+                        .User;
 
-                return identity;
+                return user;
             }
         }
 
@@ -39,10 +37,13 @@ namespace DddCore.Crosscutting.UserContext
             {
                 if (!IsAuthenticated) throw new ArgumentException("User is not authenticated.");
 
-                var userIdString = ((ClaimsIdentity)Identity).FindFirst(ClaimTypes.NameIdentifier).Value;
-                Guid userId;
+                var userIdString = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                if (String.IsNullOrEmpty(userIdString))
+                {
+                    userIdString = User.FindFirst("sub")?.Value;
+                }
 
-                if (!Guid.TryParse(userIdString, out userId))
+                if (!Guid.TryParse(userIdString, out Guid userId))
                 {
                     userId = Guid.Empty;
                 }
@@ -50,8 +51,8 @@ namespace DddCore.Crosscutting.UserContext
             }
         }
 
-        public string UserName => Identity.Name;
+        public string UserName => User.Identity.Name;
 
-        public bool IsAuthenticated => Identity.IsAuthenticated;
+        public bool IsAuthenticated => User.Identity.IsAuthenticated;
     }
 }

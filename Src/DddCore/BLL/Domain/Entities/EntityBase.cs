@@ -32,6 +32,8 @@ namespace DddCore.BLL.Domain.Entities
         public async Task<OperationResult> ValidateAsync()
         {
             var businessRulesValidator = BusinessRulesValidatorFactory.GetBusinessRulesValidator(this);
+            if (businessRulesValidator == null) return OperationResult.Succeed;
+
             var validationResult = await businessRulesValidator.ValidateAsync(this);
 
             return validationResult;
@@ -40,6 +42,8 @@ namespace DddCore.BLL.Domain.Entities
         public OperationResult Validate()
         {
             var businessRulesValidator = BusinessRulesValidatorFactory.GetBusinessRulesValidator(this);
+            if (businessRulesValidator == null) return OperationResult.Succeed;
+
             var validationResult = businessRulesValidator.Validate(this);
 
             return validationResult;

@@ -3,14 +3,14 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
     <PackageId>DddCore</PackageId>
-    <PackageVersion>1.2.7</PackageVersion>
+    <PackageVersion>1.2.8</PackageVersion>
     <Authors></Authors>
     <Description></Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageReleaseNotes></PackageReleaseNotes>
     <Copyright></Copyright>
     <PackageTags></PackageTags>
-    <Version>1.2.7</Version>
+    <Version>1.2.8</Version>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
