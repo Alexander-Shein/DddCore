@@ -36,8 +36,9 @@ namespace DddCore.SL.Services
             SetupInfrastructureServices(serviceCollection);
             SetupDomainEventHandlers(serviceCollection);
 
-            serviceCollection.AddScoped<IUnitOfWork, DataContext>();
-            serviceCollection.AddScoped<IDataContext, DataContext>();
+            serviceCollection.AddScoped<DataContext, DataContext>();
+            serviceCollection.AddScoped<IUnitOfWork>(x => x.GetService<DataContext>());
+            serviceCollection.AddScoped<IDataContext>(x => x.GetService<DataContext>());
             serviceCollection.AddScoped<IDomainEventDispatcher, DomainEventDispatcher>();
             serviceCollection.AddScoped<IDomainEventHandlerFactory, DomainEventHandlerFactory>();
             serviceCollection.AddScoped<IBusinessRulesValidatorFactory, BusinessRulesValidatorFactory>();

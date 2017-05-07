@@ -43,7 +43,7 @@ namespace DddCore.DAL.QueryStack.Dapper
             {
                 await dbCon.OpenAsync();
 
-                var result = dbCon.QueryFirstAsync<T>(sql, parameters, commandType: commandType);
+                var result = dbCon.QueryFirstOrDefaultAsync<T>(sql, parameters, commandType: commandType);
                 return await result;
             }
         }
