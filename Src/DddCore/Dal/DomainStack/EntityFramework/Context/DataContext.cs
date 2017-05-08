@@ -28,10 +28,12 @@ namespace DddCore.DAL.DomainStack.EntityFramework.Context
 
         public void SyncEntityState<T>(T entity) where T : class, ICrudState
         {
-            if (!IsAttached(entity))
-            {
-                Entry(entity).State = CrudStateHelper.ConvertState(entity.CrudState);
-            }
+            Entry(entity).State = CrudStateHelper.ConvertState(entity.CrudState);
+
+            //if (!IsAttached(entity))
+            //{
+            //    Entry(entity).State = CrudStateHelper.ConvertState(entity.CrudState);
+            //}
         }
 
         public void Save()
