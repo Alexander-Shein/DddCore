@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using DddCore.Contracts.BLL.Domain.Entities;
 using DddCore.Contracts.BLL.Domain.Entities.Model;
 using DddCore.Crosscutting;
@@ -55,6 +56,13 @@ namespace DddCore.DAL.DomainStack.EntityFramework.Mapping
             }
 
             return entityTypeBuilder;
+        }
+
+        public EntityTypeBuilder<TEntity> Entity<TEntity>(Action<EntityTypeBuilder<TEntity>> buildAction) where TEntity : class
+        {
+            var builder = Entity<TEntity>();
+            buildAction(builder);
+            return builder;
         }
 
         public IModelBuilder Ignore<TEntity>() where TEntity : class
