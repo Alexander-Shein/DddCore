@@ -6,7 +6,7 @@ using System;
 
 namespace DddCore.Crosscutting
 {
-    internal static class AssemblyUtility
+    public static class AssemblyUtility
     {
         public static IEnumerable<T> GetInstancesOf<T>()
         {

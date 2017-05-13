@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Reflection;
+﻿using System.Reflection;
 using DddCore.Contracts.BLL.Domain.Events;
 
 namespace DddCore.BLL.Domain.Events

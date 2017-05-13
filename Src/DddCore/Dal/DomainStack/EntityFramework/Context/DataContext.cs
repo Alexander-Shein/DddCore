@@ -18,8 +18,7 @@ namespace DddCore.DAL.DomainStack.EntityFramework.Context
 
         #endregion
 
-        public DataContext(
-            IOptions<ConnectionStrings> connectionStrings)
+        public DataContext(IOptions<ConnectionStrings> connectionStrings)
         {
             this.connectionStrings = connectionStrings.Value;
         }
