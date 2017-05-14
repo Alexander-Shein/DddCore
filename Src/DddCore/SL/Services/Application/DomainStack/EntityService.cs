@@ -1,5 +1,7 @@
 ﻿using System.Threading.Tasks;
 using DddCore.Contracts.BLL.Domain.Entities;
+using DddCore.Contracts.BLL.Domain.Entities.BusinessRules;
+using DddCore.Contracts.BLL.Domain.Events;
 using DddCore.Contracts.BLL.Errors;
 using DddCore.Contracts.DAL.DomainStack;
 using DddCore.Contracts.SL.Services.Application.DomainStack;
@@ -12,15 +14,23 @@ namespace DddCore.SL.Services.Application.DomainStack
 
         readonly IRepository<T, TKey> repository;
         readonly IGuard guard;
+        readonly IBusinessRulesValidatorFactory businessRulesValidatorFactory;
+        readonly IDomainEventDispatcher domainEventDispatcher;
 
         #endregion
 
         #region ctor
 
-        public EntityService(IRepository<T, TKey> repository, IGuard guard)
+        public EntityService(
+            IRepository<T, TKey> repository,
+            IGuard guard,
+            IBusinessRulesValidatorFactory businessRulesValidatorFactory,
+            IDomainEventDispatcher domainEventDispatcher)
         {
             this.repository = repository;
             this.guard = guard;
+            this.businessRulesValidatorFactory = businessRulesValidatorFactory;
+            this.domainEventDispatcher = domainEventDispatcher;
         }
 
         #endregion
@@ -31,11 +41,11 @@ namespace DddCore.SL.Services.Application.DomainStack
         {
             guard.NotNull(aggregateRoot);
 
-            var validationResult = aggregateRoot.Validate();
+            var validationResult = aggregateRoot.Validate(businessRulesValidatorFactory);
 
             if (validationResult.IsNotSucceed) return validationResult;
 
-            aggregateRoot.RaiseEvents();
+            aggregateRoot.RaiseEvents(domainEventDispatcher);
             repository.Persist(aggregateRoot);
             return validationResult;
         }
@@ -44,11 +54,11 @@ namespace DddCore.SL.Services.Application.DomainStack
         {
             guard.NotNull(aggregateRoot);
 
-            var validationResult = await aggregateRoot.ValidateAsync();
+            var validationResult = await aggregateRoot.ValidateAsync(businessRulesValidatorFactory);
 
             if (validationResult.IsNotSucceed) return validationResult;
 
-            aggregateRoot.RaiseEvents();
+            aggregateRoot.RaiseEvents(domainEventDispatcher);
             repository.Persist(aggregateRoot);
             return validationResult;
         }

@@ -13,25 +13,24 @@ namespace DddCore.BLL.Domain.Entities
 {
     public abstract class EntityBase<TKey> : IEntity<TKey>
     {
-        public IDomainEventDispatcher DomainEventDispatcher { get; set; }
-        public IBusinessRulesValidatorFactory BusinessRulesValidatorFactory { get; set; }
-
         public TKey Id { get; set; }
         public CrudState CrudState { get; set; }
         public ICollection<IDomainEvent> Events { get; } = new List<IDomainEvent>();
 
-        public void RaiseEvents()
+        public void RaiseEvents(IDomainEventDispatcher domainEventDispatcher)
         {
             if (!Events.Any()) return;
-            if (DomainEventDispatcher == null) throw new ArgumentNullException(nameof(DomainEventDispatcher));
+            if (domainEventDispatcher == null) throw new ArgumentNullException(nameof(domainEventDispatcher));
 
-            Events.Do(domainEvent => DomainEventDispatcher.Raise(domainEvent));
+            Events.Do(domainEventDispatcher.Raise);
             Events.Clear();
         }
 
-        public async Task<OperationResult> ValidateAsync()
+        public async Task<OperationResult> ValidateAsync(IBusinessRulesValidatorFactory businessRulesValidatorFactory)
         {
-            var businessRulesValidator = BusinessRulesValidatorFactory.GetBusinessRulesValidator(this);
+            if (businessRulesValidatorFactory == null) throw new ArgumentNullException(nameof(businessRulesValidatorFactory));
+
+            var businessRulesValidator = businessRulesValidatorFactory.GetBusinessRulesValidator(this);
             if (businessRulesValidator == null) return OperationResult.Succeed;
 
             var validationResult = await businessRulesValidator.ValidateAsync(this);
@@ -39,9 +38,11 @@ namespace DddCore.BLL.Domain.Entities
             return validationResult;
         }
 
-        public OperationResult Validate()
+        public OperationResult Validate(IBusinessRulesValidatorFactory businessRulesValidatorFactory)
         {
-            var businessRulesValidator = BusinessRulesValidatorFactory.GetBusinessRulesValidator(this);
+            if (businessRulesValidatorFactory == null) throw new ArgumentNullException(nameof(businessRulesValidatorFactory));
+
+            var businessRulesValidator = businessRulesValidatorFactory.GetBusinessRulesValidator(this);
             if (businessRulesValidator == null) return OperationResult.Succeed;
 
             var validationResult = businessRulesValidator.Validate(this);

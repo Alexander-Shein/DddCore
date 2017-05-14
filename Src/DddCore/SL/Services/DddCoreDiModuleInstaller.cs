@@ -44,7 +44,6 @@ namespace DddCore.SL.Services
             serviceCollection.AddScoped<IBusinessRulesValidatorFactory, BusinessRulesValidatorFactory>();
             serviceCollection.AddScoped<IUserContext<Guid>, IdentityUserContext>();
             serviceCollection.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            serviceCollection.AddScoped<IDomainFactory, DomainFactory>();
             serviceCollection.AddScoped<IGuard, Guard>();
         }
 

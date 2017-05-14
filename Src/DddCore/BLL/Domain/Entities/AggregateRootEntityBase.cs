@@ -4,7 +4,9 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using DddCore.Contracts.BLL.Domain.Entities;
+using DddCore.Contracts.BLL.Domain.Entities.BusinessRules;
 using DddCore.Contracts.BLL.Domain.Entities.Model;
+using DddCore.Contracts.BLL.Domain.Events;
 using DddCore.Contracts.BLL.Errors;
 using DddCore.Crosscutting;
 
@@ -38,23 +40,23 @@ namespace DddCore.BLL.Domain.Entities
             }
         }
 
-        public void RaiseEvents(GraphDepth graphDepth = GraphDepth.AggregateRoot)
+        public void RaiseEvents(IDomainEventDispatcher domainEventDispatcher, GraphDepth graphDepth = GraphDepth.AggregateRoot)
         {
-            WalkGraph(entity => entity.RaiseEvents(), graphDepth);
+            WalkGraph(entity => entity.RaiseEvents(domainEventDispatcher), graphDepth);
         }
 
-        public Task<OperationResult> ValidateAsync(GraphDepth graphDepth = GraphDepth.AggregateRoot)
+        public Task<OperationResult> ValidateAsync(IBusinessRulesValidatorFactory factory, GraphDepth graphDepth = GraphDepth.AggregateRoot)
         {
-            return Task.FromResult(Validate(graphDepth));
+            return Task.FromResult(Validate(factory, graphDepth));
         }
 
-        public OperationResult Validate(GraphDepth graphDepth = GraphDepth.AggregateRoot)
+        public OperationResult Validate(IBusinessRulesValidatorFactory factory, GraphDepth graphDepth = GraphDepth.AggregateRoot)
         {
             var result = new OperationResult();
 
             WalkGraph(entity =>
             {
-                var nodeResult = entity.Validate();
+                var nodeResult = entity.Validate(factory);
 
                 if (!nodeResult.IsNotSucceed) return;
 

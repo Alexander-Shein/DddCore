@@ -3,20 +3,20 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
     <PackageId>DddCore</PackageId>
-    <PackageVersion>1.2.15</PackageVersion>
+    <PackageVersion>1.2.17</PackageVersion>
     <Authors></Authors>
     <Description></Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageReleaseNotes></PackageReleaseNotes>
     <Copyright></Copyright>
     <PackageTags></PackageTags>
-    <Version>1.2.15</Version>
+    <Version>1.2.17</Version>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="1.50.2" />
-    <PackageReference Include="DddCore.Contracts" Version="1.2.7" />
+    <PackageReference Include="DddCore.Contracts" Version="1.2.9" />
     <PackageReference Include="FluentValidation" Version="6.4.1" />
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="1.1.2" />
