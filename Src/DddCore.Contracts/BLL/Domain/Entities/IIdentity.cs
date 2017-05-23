@@ -1,4 +1,4 @@
-namespace DddCore.Contracts.BLL.Domain.Entities.Model
+namespace DddCore.Contracts.BLL.Domain.Entities
 {
     public interface IIdentity<TKey>
     {

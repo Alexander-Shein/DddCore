@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using DddCore.Contracts.BLL.Domain.Entities;
-using DddCore.Contracts.BLL.Domain.Entities.Model;
+using DddCore.Contracts.BLL.Domain.Entities.State;
 using DddCore.Crosscutting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -19,8 +19,6 @@ namespace DddCore.DAL.DomainStack.EntityFramework.Mapping
             public const string Id = "Id";
             public const string CrudState = "CrudState";
             public const string Events = "Events";
-            public const string DomainEventDispatcher = "DomainEventDispatcher";
-            public const string BusinessRulesValidatorFactory = "BusinessRulesValidatorFactory";
         }
 
         #endregion
@@ -51,8 +49,6 @@ namespace DddCore.DAL.DomainStack.EntityFramework.Mapping
             if (typeof(IEntity<>).IsAssignableFromGenericType(type))
             {
                 entityTypeBuilder.Ignore(FieldName.Events);
-                entityTypeBuilder.Ignore(FieldName.DomainEventDispatcher);
-                entityTypeBuilder.Ignore(FieldName.BusinessRulesValidatorFactory);
             }
 
             return entityTypeBuilder;

@@ -26,7 +26,7 @@ namespace DddCore.BLL.Domain.Entities
             }
 
             var result = new List<Expression<Func<T, object>>>();
-            var aggregateRootType = typeof(IAggregateRootEntity<TKey>);
+            var aggregateRootType = typeof(IAggregateRoot<TKey>);
             var entityType = typeof(IEntity<TKey>);
 
             foreach (var propertyInfo in currentType.GetProperties())

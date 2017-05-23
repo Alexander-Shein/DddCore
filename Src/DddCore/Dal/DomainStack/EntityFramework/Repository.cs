@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using DddCore.Contracts.BLL.Domain.Entities;
 using DddCore.Contracts.BLL.Domain.Entities.Audit.At;
 using DddCore.Contracts.BLL.Domain.Entities.Audit.By;
-using DddCore.Contracts.BLL.Domain.Entities.Model;
+using DddCore.Contracts.BLL.Domain.Entities.State;
 using DddCore.Contracts.Crosscutting.UserContext;
 using DddCore.Contracts.DAL.DomainStack;
 using DddCore.DAL.DomainStack.EntityFramework.Context;
@@ -14,7 +14,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DddCore.DAL.DomainStack.EntityFramework
 {
-    public class Repository<T, TKey> : IRepository<T, TKey> where T : class, IAggregateRootEntity<TKey>
+    public class Repository<T, TKey> : IRepository<T, TKey> where T : class, IAggregateRoot<TKey>
     {
         #region Private Members
 
@@ -45,7 +45,7 @@ namespace DddCore.DAL.DomainStack.EntityFramework
             });
         }
 
-        public virtual async Task<T> ReadByIdAsync(TKey key)
+        public virtual async Task<T> GetByIdAsync(TKey key)
         {
             var query = GetDbSet().AsQueryable();
 
@@ -57,7 +57,7 @@ namespace DddCore.DAL.DomainStack.EntityFramework
             return await query.FirstOrDefaultAsync(x => x.Id.Equals(key));
         }
 
-        public virtual T ReadById(TKey key)
+        public virtual T GetById(TKey key)
         {
             var query = GetDbSet().AsQueryable();
 
@@ -83,7 +83,7 @@ namespace DddCore.DAL.DomainStack.EntityFramework
         {
             var result = new List<string>();
             var entityType = typeof(IEntity<TKey>);
-            var aggregateRootType = typeof(IAggregateRootEntity<TKey>);
+            var aggregateRootType = typeof(IAggregateRoot<TKey>);
 
             foreach (var p in type.GetProperties())
             {

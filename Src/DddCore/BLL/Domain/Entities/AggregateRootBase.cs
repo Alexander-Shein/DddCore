@@ -5,14 +5,14 @@ using System.Reflection;
 using System.Threading.Tasks;
 using DddCore.Contracts.BLL.Domain.Entities;
 using DddCore.Contracts.BLL.Domain.Entities.BusinessRules;
-using DddCore.Contracts.BLL.Domain.Entities.Model;
+using DddCore.Contracts.BLL.Domain.Entities.Graph;
 using DddCore.Contracts.BLL.Domain.Events;
 using DddCore.Contracts.BLL.Errors;
 using DddCore.Crosscutting;
 
 namespace DddCore.BLL.Domain.Entities
 {
-    public abstract class AggregateRootEntityBase<TKey> : EntityBase<TKey>, IAggregateRootEntity<TKey>
+    public abstract class AggregateRootBase<TKey> : EntityBase<TKey>, IAggregateRoot<TKey>
     {
         #region Public Methods
 
@@ -107,7 +107,7 @@ namespace DddCore.BLL.Domain.Entities
 
         bool SkipAggregateRoot(bool aggregateRootOnly, IEntity<TKey> entity)
         {
-            return aggregateRootOnly && entity is IAggregateRootEntity<TKey>;
+            return aggregateRootOnly && entity is IAggregateRoot<TKey>;
         }
 
         #endregion

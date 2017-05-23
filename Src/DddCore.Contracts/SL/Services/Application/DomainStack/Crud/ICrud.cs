@@ -1,12 +1,12 @@
 ﻿namespace DddCore.Contracts.SL.Services.Application.DomainStack.Crud
 {
-    public interface ICrud<out TVm, in TKey, in TIm> :
-        ICreate<TVm, TIm>,
-        IRead<TVm, TKey>,
-        ICreateOrUpdate<TVm, TKey, TIm>,
+    public interface ICrud<TViewModel, in TKey, in TInputModel> :
+        ICreate<TViewModel, TInputModel>,
+        IRead<TViewModel, TKey>,
+        ICreateOrUpdate<TViewModel, TKey, TInputModel>,
         IDelete<TKey>
-        where TIm : class
-        where TVm : class
+        where TInputModel : class
+        where TViewModel : class
     {
     }
 }

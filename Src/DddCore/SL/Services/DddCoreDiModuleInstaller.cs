@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
-using DddCore.BLL.Domain.Entities;
 using DddCore.BLL.Domain.Entities.BusinessRules;
 using DddCore.BLL.Domain.Events;
 using DddCore.Contracts.BLL.Domain.Entities;
@@ -12,13 +11,11 @@ using DddCore.Contracts.Crosscutting.UserContext;
 using DddCore.Contracts.DAL.DomainStack;
 using DddCore.Contracts.DAL.QueryStack;
 using DddCore.Contracts.SL.Services.Application;
-using DddCore.Contracts.SL.Services.Application.DomainStack;
 using DddCore.Contracts.SL.Services.Infrastructure;
 using DddCore.Crosscutting;
 using DddCore.Crosscutting.UserContext;
 using DddCore.DAL.DomainStack.EntityFramework;
 using DddCore.DAL.DomainStack.EntityFramework.Context;
-using DddCore.SL.Services.Application.DomainStack;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -31,7 +28,6 @@ namespace DddCore.SL.Services
             SetupBusinessRulesValidators(serviceCollection);
             SetupRepositories(serviceCollection);
             SetupQueryRepositories(serviceCollection);
-            SetupEntityServices(serviceCollection);
             SetupWorkflowServices(serviceCollection);
             SetupInfrastructureServices(serviceCollection);
             SetupDomainEventHandlers(serviceCollection);
@@ -44,7 +40,6 @@ namespace DddCore.SL.Services
             serviceCollection.AddScoped<IBusinessRulesValidatorFactory, BusinessRulesValidatorFactory>();
             serviceCollection.AddScoped<IUserContext<Guid>, IdentityUserContext>();
             serviceCollection.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            serviceCollection.AddScoped<IGuard, Guard>();
         }
 
         #region Private Members
@@ -81,11 +76,6 @@ namespace DddCore.SL.Services
             SetupForContract(serviceCollection, typeof(IWorkflowService));
         }
 
-        void SetupEntityServices(IServiceCollection serviceCollection)
-        {
-            SetupForEachAggregateRoot(serviceCollection, typeof(IEntityService<,>), typeof(EntityService<,>));
-        }
-
         void SetupQueryRepositories(IServiceCollection serviceCollection)
         {
             SetupForContract(serviceCollection, typeof(IQueryRepository));
@@ -113,14 +103,14 @@ namespace DddCore.SL.Services
 
         void SetupForEachAggregateRoot(IServiceCollection serviceCollection, Type contractType, Type serviceType)
         {
+            var aggregateRootType = typeof(IAggregateRoot<>);
+
             var allAggregateRoots =
                 AssemblyUtility
-                    .GetTypes(typeof(IAggregateRootEntity<>))
+                    .GetTypes(aggregateRootType)
                     .ToList();
 
             if (!allAggregateRoots.Any()) return;
-
-            var aggregateRootType = typeof(IAggregateRootEntity<>);
 
             foreach (var d in allAggregateRoots)
             {

@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using DddCore.Contracts.BLL.Errors;
 
 namespace DddCore.Contracts.SL.Services.Application.DomainStack.Crud.Async
 {
@@ -9,6 +10,6 @@ namespace DddCore.Contracts.SL.Services.Application.DomainStack.Crud.Async
         /// Deletes entity by key.
         /// </summary>
         /// <param name="key"></param>
-        Task DeleteAsync(TKey key);
+        Task<OperationResult> DeleteAsync(TKey key);
     }
 }

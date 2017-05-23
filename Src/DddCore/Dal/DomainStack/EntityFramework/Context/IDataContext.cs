@@ -1,5 +1,5 @@
 ﻿using System;
-using DddCore.Contracts.BLL.Domain.Entities.Model;
+using DddCore.Contracts.BLL.Domain.Entities.State;
 using Microsoft.EntityFrameworkCore;
 
 namespace DddCore.DAL.DomainStack.EntityFramework.Context

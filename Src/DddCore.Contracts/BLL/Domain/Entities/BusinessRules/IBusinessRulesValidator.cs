@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using DddCore.Contracts.BLL.Domain.Entities.Model;
+using DddCore.Contracts.BLL.Domain.Entities.State;
 using DddCore.Contracts.BLL.Errors;
 
 namespace DddCore.Contracts.BLL.Domain.Entities.BusinessRules

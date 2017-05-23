@@ -1,4 +1,6 @@
-﻿namespace DddCore.Contracts.SL.Services.Application.DomainStack.Crud
+﻿using DddCore.Contracts.BLL.Errors;
+
+namespace DddCore.Contracts.SL.Services.Application.DomainStack.Crud
 {
     public interface IDelete<in TKey>
     {
@@ -7,6 +9,6 @@
         /// Deletes entity by key.
         /// </summary>
         /// <param name="key"></param>
-        void Delete(TKey key);
+        OperationResult Delete(TKey key);
     }
 }

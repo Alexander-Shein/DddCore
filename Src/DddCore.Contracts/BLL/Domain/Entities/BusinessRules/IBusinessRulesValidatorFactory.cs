@@ -1,4 +1,4 @@
-using DddCore.Contracts.BLL.Domain.Entities.Model;
+using DddCore.Contracts.BLL.Domain.Entities.State;
 
 namespace DddCore.Contracts.BLL.Domain.Entities.BusinessRules
 {

@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using DddCore.Contracts.BLL.Domain.Entities.BusinessRules;
-using DddCore.Contracts.BLL.Domain.Entities.Model;
+using DddCore.Contracts.BLL.Domain.Entities.State;
 using DddCore.Contracts.BLL.Errors;
 using FluentValidation;
 using FluentValidation.Results;

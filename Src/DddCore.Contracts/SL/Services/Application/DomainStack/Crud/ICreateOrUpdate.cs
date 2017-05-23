@@ -1,6 +1,8 @@
-﻿namespace DddCore.Contracts.SL.Services.Application.DomainStack.Crud
+﻿using DddCore.Contracts.BLL.Errors;
+
+namespace DddCore.Contracts.SL.Services.Application.DomainStack.Crud
 {
-    public interface ICreateOrUpdate<out TViewModel, in TKey, in TInputModel>
+    public interface ICreateOrUpdate<TViewModel, in TKey, in TInputModel>
     {
         /// <summary>
         /// PUT /cars/{carId}/ HTTP/1.1.
@@ -9,6 +11,6 @@
         /// <param name="key">Id of entity that will be updated.</param>
         /// <param name="im">InputModel has no Id property because when we send request to update new object we pass id to url.</param>
         /// <returns>ViewModel contains Id property.</returns>
-        TViewModel CreateOrUpdate(TKey key, TInputModel im);
+        (TViewModel Vm, OperationResult OperationResult) CreateOrUpdate(TKey key, TInputModel im);
     }
 }

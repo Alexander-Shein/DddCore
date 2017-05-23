@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DddCore.Contracts.BLL.Domain.Entities.Model
+namespace DddCore.Contracts.BLL.Domain.Entities.Graph
 {
     public interface IEntityGraph<TKey>
     {

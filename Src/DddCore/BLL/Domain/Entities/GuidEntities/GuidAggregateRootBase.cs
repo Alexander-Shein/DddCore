@@ -2,9 +2,9 @@
 
 namespace DddCore.BLL.Domain.Entities.GuidEntities
 {
-    public abstract class GuidAggregateRootEntityBase : AggregateRootEntityBase<Guid>
+    public abstract class GuidAggregateRootBase : AggregateRootBase<Guid>
     {
-        protected GuidAggregateRootEntityBase()
+        protected GuidAggregateRootBase()
         {
             Id = Guid.NewGuid();
         }

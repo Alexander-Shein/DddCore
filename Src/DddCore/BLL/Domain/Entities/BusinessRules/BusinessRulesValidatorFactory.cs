@@ -1,6 +1,6 @@
 using System;
 using DddCore.Contracts.BLL.Domain.Entities.BusinessRules;
-using DddCore.Contracts.BLL.Domain.Entities.Model;
+using DddCore.Contracts.BLL.Domain.Entities.State;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DddCore.BLL.Domain.Entities.BusinessRules
