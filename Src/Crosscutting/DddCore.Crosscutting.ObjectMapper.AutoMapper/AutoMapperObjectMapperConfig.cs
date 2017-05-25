@@ -20,6 +20,11 @@ namespace DddCore.Crosscutting.ObjectMapper.AutoMapper
             return Mapper.Map<T>(@from);
         }
 
+        public void Map<T>(object @from, T to)
+        {
+            Mapper.Map(@from, to);
+        }
+
         public void Bind<TFrom, TTo>(Action<IObjectMapperBindingConfig<TFrom, TTo>> config)
         {
             var mappingExpression = configuration.CreateMap<TFrom, TTo>();

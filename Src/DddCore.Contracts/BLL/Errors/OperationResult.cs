@@ -32,5 +32,17 @@ namespace DddCore.Contracts.BLL.Errors
                 }
             };
         }
+
+        public static OperationResult Failed(params Error[] errors)
+        {
+            var operationResult = new OperationResult();
+
+            foreach (var error in errors)
+            {
+                operationResult.Errors.Add(error);
+            }
+
+            return operationResult;
+        }
     }
 }

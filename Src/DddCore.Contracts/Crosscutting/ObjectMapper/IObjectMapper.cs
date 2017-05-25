@@ -10,5 +10,7 @@
         /// <param name="from"></param>
         /// <returns></returns>
         T Map<T>(object from);
+
+        void Map<T>(object from, T to);
     }
 }

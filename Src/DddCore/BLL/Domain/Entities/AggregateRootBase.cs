@@ -40,9 +40,23 @@ namespace DddCore.BLL.Domain.Entities
             }
         }
 
-        public void RaiseEvents(IDomainEventDispatcher domainEventDispatcher, GraphDepth graphDepth = GraphDepth.AggregateRoot)
+        public OperationResult RaiseEvents(IDomainEventDispatcher domainEventDispatcher, GraphDepth graphDepth = GraphDepth.AggregateRoot)
         {
-            WalkGraph(entity => entity.RaiseEvents(domainEventDispatcher), graphDepth);
+            var result = new OperationResult();
+
+            WalkGraph(entity =>
+            {
+                var nodeResult = entity.RaiseEvents(domainEventDispatcher);
+
+                if (nodeResult.IsSucceed) return;
+
+                foreach (var error in nodeResult.Errors)
+                {
+                    result.Errors.Add(error);
+                }
+            }, graphDepth);
+
+            return result;
         }
 
         public Task<OperationResult> ValidateAsync(IBusinessRulesValidatorFactory factory, GraphDepth graphDepth = GraphDepth.AggregateRoot)
@@ -58,7 +72,7 @@ namespace DddCore.BLL.Domain.Entities
             {
                 var nodeResult = entity.Validate(factory);
 
-                if (!nodeResult.IsNotSucceed) return;
+                if (nodeResult.IsSucceed) return;
 
                 foreach (var error in nodeResult.Errors)
                 {

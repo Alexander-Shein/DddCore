@@ -17,13 +17,19 @@ namespace DddCore.BLL.Domain.Entities
         public CrudState CrudState { get; set; }
         public ICollection<IDomainEvent> Events { get; } = new List<IDomainEvent>();
 
-        public void RaiseEvents(IDomainEventDispatcher domainEventDispatcher)
+        public OperationResult RaiseEvents(IDomainEventDispatcher domainEventDispatcher)
         {
-            if (!Events.Any()) return;
+            if (!Events.Any()) return OperationResult.Succeed;
             if (domainEventDispatcher == null) throw new ArgumentNullException(nameof(domainEventDispatcher));
 
-            Events.Do(domainEventDispatcher.Raise);
+            foreach (var domainEvent in Events)
+            {
+                var result = domainEventDispatcher.Raise(domainEvent);
+                if (result.IsNotSucceed) return result;
+            }
+
             Events.Clear();
+            return OperationResult.Succeed;
         }
 
         public async Task<OperationResult> ValidateAsync(IBusinessRulesValidatorFactory businessRulesValidatorFactory)

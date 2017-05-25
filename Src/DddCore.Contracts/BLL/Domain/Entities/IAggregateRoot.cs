@@ -8,7 +8,7 @@ namespace DddCore.Contracts.BLL.Domain.Entities
 {
     public interface IAggregateRoot<TKey> : IEntity<TKey>, IEntityGraph<TKey>
     {
-        void RaiseEvents(IDomainEventDispatcher domainEventDispatcher, GraphDepth graphDepth = GraphDepth.AggregateRoot);
+        OperationResult RaiseEvents(IDomainEventDispatcher domainEventDispatcher, GraphDepth graphDepth = GraphDepth.AggregateRoot);
 
         Task<OperationResult> ValidateAsync(IBusinessRulesValidatorFactory factory, GraphDepth graphDepth = GraphDepth.AggregateRoot);
         OperationResult Validate(IBusinessRulesValidatorFactory factory, GraphDepth graphDepth = GraphDepth.AggregateRoot);

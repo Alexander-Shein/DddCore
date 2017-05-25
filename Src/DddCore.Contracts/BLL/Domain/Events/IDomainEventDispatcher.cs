@@ -1,4 +1,6 @@
-﻿namespace DddCore.Contracts.BLL.Domain.Events
+﻿using DddCore.Contracts.BLL.Errors;
+
+namespace DddCore.Contracts.BLL.Domain.Events
 {
     public interface IDomainEventDispatcher
     {
@@ -7,6 +9,6 @@
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="domainEvent"></param>
-        void Raise<T>(T domainEvent) where T : IDomainEvent;
+        OperationResult Raise<T>(T domainEvent) where T : IDomainEvent;
     }
 }

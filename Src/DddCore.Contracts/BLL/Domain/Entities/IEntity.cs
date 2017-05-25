@@ -10,7 +10,7 @@ namespace DddCore.Contracts.BLL.Domain.Entities
     public interface IEntity<TKey> : ICrudState, IIdentity<TKey>
     {
         ICollection<IDomainEvent> Events { get; }
-        void RaiseEvents(IDomainEventDispatcher domainEventDispatcher);
+        OperationResult RaiseEvents(IDomainEventDispatcher domainEventDispatcher);
 
         Task<OperationResult> ValidateAsync(IBusinessRulesValidatorFactory factory);
         OperationResult Validate(IBusinessRulesValidatorFactory factory);
