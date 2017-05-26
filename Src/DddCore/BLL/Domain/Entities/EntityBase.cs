@@ -16,7 +16,7 @@ namespace DddCore.BLL.Domain.Entities
         public CrudState CrudState { get; set; }
         public ICollection<IDomainEvent> Events { get; } = new List<IDomainEvent>();
 
-        public OperationResult RaiseEvents(IDomainEventDispatcher eventDispatcher)
+        public virtual OperationResult RaiseEvents(IDomainEventDispatcher eventDispatcher)
         {
             Guard.ThrowIfNull(eventDispatcher, nameof(eventDispatcher));
 
@@ -32,7 +32,7 @@ namespace DddCore.BLL.Domain.Entities
             return OperationResult.Succeed;
         }
 
-        public async Task<OperationResult> ValidateAsync(IBusinessRulesValidatorFactory factory)
+        public virtual async Task<OperationResult> ValidateAsync(IBusinessRulesValidatorFactory factory)
         {
             dynamic obj = this;
             var validator = GetValidator(factory, obj);
@@ -41,7 +41,7 @@ namespace DddCore.BLL.Domain.Entities
             return result;
         }
 
-        public OperationResult Validate(IBusinessRulesValidatorFactory factory)
+        public virtual OperationResult Validate(IBusinessRulesValidatorFactory factory)
         {
             dynamic obj = this;
             var validator = GetValidator(factory, obj);

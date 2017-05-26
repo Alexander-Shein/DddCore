@@ -36,9 +36,14 @@ namespace DddCore.BLL.Domain.Entities.BusinessRules
 
             foreach (var validationFailure in validationResult.Errors)
             {
+                if (!Int32.TryParse(validationFailure.ErrorCode, out int errorCode))
+                {
+                    errorCode = -1;
+                }
+
                 result.Errors.Add(new Error
                 {
-                    Code = Int32.Parse(validationFailure.ErrorCode),
+                    Code = errorCode,
                     Description = validationFailure.ErrorMessage
                 });
             }

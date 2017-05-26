@@ -42,7 +42,7 @@ namespace DddCore.BLL.Domain.Entities
             }
         }
 
-        public OperationResult RaiseEvents(IDomainEventDispatcher eventDispatcher, GraphDepth graphDepth = GraphDepth.AggregateRoot)
+        public OperationResult RaiseEvents(IDomainEventDispatcher eventDispatcher, GraphDepth graphDepth)
         {
             Guard.ThrowIfNull(eventDispatcher, nameof(eventDispatcher));
 
@@ -63,12 +63,12 @@ namespace DddCore.BLL.Domain.Entities
             return result;
         }
 
-        public Task<OperationResult> ValidateAsync(IBusinessRulesValidatorFactory factory, GraphDepth graphDepth = GraphDepth.AggregateRoot)
+        public Task<OperationResult> ValidateAsync(IBusinessRulesValidatorFactory factory, GraphDepth graphDepth)
         {
             return Task.FromResult(Validate(factory, graphDepth));
         }
 
-        public OperationResult Validate(IBusinessRulesValidatorFactory factory, GraphDepth graphDepth = GraphDepth.AggregateRoot)
+        public OperationResult Validate(IBusinessRulesValidatorFactory factory, GraphDepth graphDepth)
         {
             Guard.ThrowIfNull(factory, nameof(factory));
 
@@ -87,6 +87,21 @@ namespace DddCore.BLL.Domain.Entities
             }, graphDepth);
 
             return result;
+        }
+
+        public override OperationResult RaiseEvents(IDomainEventDispatcher eventDispatcher)
+        {
+            return RaiseEvents(eventDispatcher, GraphDepth.AggregateRoot);
+        }
+
+        public async override Task<OperationResult> ValidateAsync(IBusinessRulesValidatorFactory factory)
+        {
+            return await ValidateAsync(factory, GraphDepth.AggregateRoot);
+        }
+
+        public override OperationResult Validate(IBusinessRulesValidatorFactory factory)
+        {
+            return Validate(factory, GraphDepth.AggregateRoot);
         }
 
         #endregion
