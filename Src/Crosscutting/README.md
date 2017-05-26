@@ -1,7 +1,7 @@
 # Dependency injection
 
 ## Bootstrap
-To register all framework components and custom components use .AddDddCore() method. Example:
+Use .AddDddCore extension method to add all framework components. Example:
 
   ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -11,10 +11,12 @@ public void ConfigureServices(IServiceCollection services)
     services.AddDddCore();
 }
 ```
-This method scans assemplies and looking for IDiModule modules.
+
+## Auto registration
+If class implements one of the framework interface such as IQueryRepository, IWorkflowService, IRepository... it is gonna be auto registered. Mannual registration is not needed.
 
 ## Modules
-services.AddDddCore() method scans all assemblies for IDiModule modules and passes IServiceCollection to Install method. If you need to register something to container just create a module and register components in the Install method:
+If mannual registration is needed IDiModuleInstaller can be used. services.AddDddCore() method scans all assemblies for IDiModuleInstaller modules and passes IServiceCollection to Install method. If you need to register something to container just create a module and register components in the Install method:
 ### Note:
 IDiModule shoud have parameterless constructor.
 
@@ -29,7 +31,7 @@ public class DddCoreDiModule : IDiModule
     }
 }
 ```
-Or use ```csharp public void ConfigureServices(IServiceCollection services) ``` method. 
+Or use standsrt ```csharp void ConfigureServices(IServiceCollection services) ``` method. 
 
 # Object mapper
 ## Bootstrap
