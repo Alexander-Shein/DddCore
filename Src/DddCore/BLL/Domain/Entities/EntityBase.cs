@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DddCore.Contracts.BLL.Domain.Entities;
@@ -17,14 +16,15 @@ namespace DddCore.BLL.Domain.Entities
         public CrudState CrudState { get; set; }
         public ICollection<IDomainEvent> Events { get; } = new List<IDomainEvent>();
 
-        public OperationResult RaiseEvents(IDomainEventDispatcher domainEventDispatcher)
+        public OperationResult RaiseEvents(IDomainEventDispatcher eventDispatcher)
         {
-            if (!Events.Any()) return OperationResult.Succeed;
-            if (domainEventDispatcher == null) throw new ArgumentNullException(nameof(domainEventDispatcher));
+            Guard.ThrowIfNull(eventDispatcher, nameof(eventDispatcher));
 
-            foreach (var domainEvent in Events)
+            if (!Events.Any()) return OperationResult.Succeed;
+
+            foreach (dynamic domainEvent in Events)
             {
-                var result = domainEventDispatcher.Raise(domainEvent);
+                var result = eventDispatcher.Raise(domainEvent);
                 if (result.IsNotSucceed) return result;
             }
 
@@ -32,28 +32,36 @@ namespace DddCore.BLL.Domain.Entities
             return OperationResult.Succeed;
         }
 
-        public async Task<OperationResult> ValidateAsync(IBusinessRulesValidatorFactory businessRulesValidatorFactory)
+        public async Task<OperationResult> ValidateAsync(IBusinessRulesValidatorFactory factory)
         {
-            if (businessRulesValidatorFactory == null) throw new ArgumentNullException(nameof(businessRulesValidatorFactory));
+            dynamic obj = this;
+            var validator = GetValidator(factory, obj);
 
-            var businessRulesValidator = businessRulesValidatorFactory.GetBusinessRulesValidator(this);
-            if (businessRulesValidator == null) return OperationResult.Succeed;
-
-            var validationResult = await businessRulesValidator.ValidateAsync(this);
-
-            return validationResult;
+            var result = await validator.ValidateAsync(this);
+            return result;
         }
 
-        public OperationResult Validate(IBusinessRulesValidatorFactory businessRulesValidatorFactory)
+        public OperationResult Validate(IBusinessRulesValidatorFactory factory)
         {
-            if (businessRulesValidatorFactory == null) throw new ArgumentNullException(nameof(businessRulesValidatorFactory));
+            dynamic obj = this;
+            var validator = GetValidator(factory, obj);
 
-            var businessRulesValidator = businessRulesValidatorFactory.GetBusinessRulesValidator(this);
-            if (businessRulesValidator == null) return OperationResult.Succeed;
-
-            var validationResult = businessRulesValidator.Validate(this);
-
-            return validationResult;
+            var result = validator.Validate(this);
+            return result;
         }
+
+        #region Private Methods
+
+        private IBusinessRulesValidator<T> GetValidator<T>(IBusinessRulesValidatorFactory factory, T obj) where T : ICrudState
+        {
+            Guard.ThrowIfNull(factory, nameof(factory));
+            var validator = factory.GetBusinessRulesValidator(obj);
+
+            Guard.ThrowIfNull(validator, $"Cannot find business rules validator for '{GetType().Name}'.");
+
+            return validator;
+        }
+
+        #endregion
     }
 }

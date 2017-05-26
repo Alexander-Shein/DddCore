@@ -18,6 +18,8 @@ namespace DddCore.BLL.Domain.Entities
 
         public void WalkGraph(Action<IEntity<TKey>> action, GraphDepth graphDepth = GraphDepth.AggregateRoot)
         {
+            Guard.ThrowIfNull(action, nameof(action));
+
             switch (graphDepth)
             {
                 case GraphDepth.Itself:
@@ -40,13 +42,15 @@ namespace DddCore.BLL.Domain.Entities
             }
         }
 
-        public OperationResult RaiseEvents(IDomainEventDispatcher domainEventDispatcher, GraphDepth graphDepth = GraphDepth.AggregateRoot)
+        public OperationResult RaiseEvents(IDomainEventDispatcher eventDispatcher, GraphDepth graphDepth = GraphDepth.AggregateRoot)
         {
+            Guard.ThrowIfNull(eventDispatcher, nameof(eventDispatcher));
+
             var result = new OperationResult();
 
             WalkGraph(entity =>
             {
-                var nodeResult = entity.RaiseEvents(domainEventDispatcher);
+                var nodeResult = entity.RaiseEvents(eventDispatcher);
 
                 if (nodeResult.IsSucceed) return;
 
@@ -66,6 +70,8 @@ namespace DddCore.BLL.Domain.Entities
 
         public OperationResult Validate(IBusinessRulesValidatorFactory factory, GraphDepth graphDepth = GraphDepth.AggregateRoot)
         {
+            Guard.ThrowIfNull(factory, nameof(factory));
+
             var result = new OperationResult();
 
             WalkGraph(entity =>

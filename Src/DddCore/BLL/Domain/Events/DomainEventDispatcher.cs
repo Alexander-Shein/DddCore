@@ -1,6 +1,6 @@
-﻿using System.Reflection;
-using DddCore.Contracts.BLL.Domain.Events;
+﻿using DddCore.Contracts.BLL.Domain.Events;
 using DddCore.Contracts.BLL.Errors;
+using System.Linq;
 
 namespace DddCore.BLL.Domain.Events
 {
@@ -21,23 +21,8 @@ namespace DddCore.BLL.Domain.Events
 
         public OperationResult Raise<T>(T args) where T : IDomainEvent
         {
-            var methodType =
-                this
-                    .GetType()
-                    .GetMethod("SendMessage", BindingFlags.NonPublic | BindingFlags.Instance)
-                    .MakeGenericMethod(args.GetType());
-
-            OperationResult result = (OperationResult) methodType.Invoke(this, new object[] { args });
-            return result;
-        }
-
-        #endregion
-
-        #region Private Methods
-
-        private OperationResult SendMessage<T>(T args) where T : IDomainEvent
-        {
             var handlers = domainEventHandlerFactory.GetHandlers<T>();
+            if (!handlers.Any()) return OperationResult.Succeed;
 
             foreach (var handler in handlers)
             {
