@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Src\DddCore\DddCore.csproj" />
+    <ProjectReference Include="..\..\Src\Crosscutting\DddCore.Crosscutting.ObjectMapper.AutoMapper\DddCore.Crosscutting.ObjectMapper.AutoMapper.csproj" />
   </ItemGroup>
 
 </Project>

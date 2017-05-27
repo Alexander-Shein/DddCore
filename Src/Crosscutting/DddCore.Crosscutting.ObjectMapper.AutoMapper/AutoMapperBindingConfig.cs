@@ -30,9 +30,9 @@ namespace DddCore.Crosscutting.ObjectMapper.AutoMapper
             return this;
         }
 
-        public IObjectMapperBindingConfig<TFrom, TTo> Ignore(Expression<Func<TFrom, object>> expression)
+        public IObjectMapperBindingConfig<TFrom, TTo> Ignore(Expression<Func<TFrom, object>> source)
         {
-            mappingExpression.ForSourceMember(expression, opt => opt.Ignore());
+            mappingExpression.ForSourceMember(source, opt => opt.Ignore());
             return this;
         }
 

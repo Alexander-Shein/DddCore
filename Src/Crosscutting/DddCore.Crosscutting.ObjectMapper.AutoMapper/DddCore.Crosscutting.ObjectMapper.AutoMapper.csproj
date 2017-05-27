@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="6.0.2" />
+    <PackageReference Include="DddCore" Version="1.3.20" />
     <PackageReference Include="DddCore.Contracts" Version="1.3.20" />
   </ItemGroup>
 
