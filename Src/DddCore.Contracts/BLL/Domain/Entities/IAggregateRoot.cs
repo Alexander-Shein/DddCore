@@ -8,9 +8,9 @@ namespace DddCore.Contracts.BLL.Domain.Entities
 {
     public interface IAggregateRoot<TKey> : IEntity<TKey>, IEntityGraph<TKey>
     {
-        OperationResult RaiseEvents(IDomainEventDispatcher domainEventDispatcher, GraphDepth graphDepth = GraphDepth.AggregateRoot);
+        OperationResult RaiseGraphEvents(IDomainEventDispatcher domainEventDispatcher, GraphDepth graphDepth = GraphDepth.AggregateRoot);
 
-        Task<OperationResult> ValidateAsync(IBusinessRulesValidatorFactory factory, GraphDepth graphDepth = GraphDepth.AggregateRoot);
-        OperationResult Validate(IBusinessRulesValidatorFactory factory, GraphDepth graphDepth = GraphDepth.AggregateRoot);
+        Task<OperationResult> ValidateGraphAsync(IBusinessRulesValidatorFactory factory, GraphDepth graphDepth = GraphDepth.AggregateRoot);
+        OperationResult ValidateGraph(IBusinessRulesValidatorFactory factory, GraphDepth graphDepth = GraphDepth.AggregateRoot);
     }
 }

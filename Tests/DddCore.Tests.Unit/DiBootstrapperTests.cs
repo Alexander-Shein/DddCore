@@ -18,6 +18,7 @@ namespace DddCore.Tests.Unit
 
             // Act
             serviceCollection.AddDddCore();
+
             var container = serviceCollection.BuildServiceProvider();
 
             // Assert
