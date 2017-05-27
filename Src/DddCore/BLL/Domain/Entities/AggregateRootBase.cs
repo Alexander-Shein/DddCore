@@ -94,7 +94,7 @@ namespace DddCore.BLL.Domain.Entities
             return RaiseEvents(eventDispatcher, GraphDepth.AggregateRoot);
         }
 
-        public async override Task<OperationResult> ValidateAsync(IBusinessRulesValidatorFactory factory)
+        public override async Task<OperationResult> ValidateAsync(IBusinessRulesValidatorFactory factory)
         {
             return await ValidateAsync(factory, GraphDepth.AggregateRoot);
         }

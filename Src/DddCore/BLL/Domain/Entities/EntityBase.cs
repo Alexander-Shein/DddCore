@@ -34,34 +34,28 @@ namespace DddCore.BLL.Domain.Entities
 
         public virtual async Task<OperationResult> ValidateAsync(IBusinessRulesValidatorFactory factory)
         {
-            dynamic obj = this;
-            var validator = GetValidator(factory, obj);
+            Guard.ThrowIfNull(factory, nameof(factory));
 
-            var result = await validator.ValidateAsync(this);
+            dynamic obj = this;
+            var validator = factory.GetBusinessRulesValidator(obj);
+
+            if (validator == null) return OperationResult.Succeed;
+
+            var result = await validator.ValidateAsync(obj);
             return result;
         }
 
         public virtual OperationResult Validate(IBusinessRulesValidatorFactory factory)
         {
-            dynamic obj = this;
-            var validator = GetValidator(factory, obj);
-
-            var result = validator.Validate(this);
-            return result;
-        }
-
-        #region Private Methods
-
-        private IBusinessRulesValidator<T> GetValidator<T>(IBusinessRulesValidatorFactory factory, T obj) where T : ICrudState
-        {
             Guard.ThrowIfNull(factory, nameof(factory));
+
+            dynamic obj = this;
             var validator = factory.GetBusinessRulesValidator(obj);
 
-            Guard.ThrowIfNull(validator, $"Cannot find business rules validator for '{GetType().Name}'.");
+            if (validator == null) return OperationResult.Succeed;
 
-            return validator;
+            var result = validator.Validate(obj);
+            return result;
         }
-
-        #endregion
     }
 }
