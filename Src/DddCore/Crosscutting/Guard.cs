@@ -2,7 +2,7 @@
 
 namespace DddCore.Crosscutting
 {
-    internal static class Guard
+    public static class Guard
     {
         public static void ThrowIfNull(object instance, string message)
         {

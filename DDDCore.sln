@@ -17,7 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{74BEFB41
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DddCore.Tests.Unit", "Tests\DddCore.Tests.Unit\DddCore.Tests.Unit.csproj", "{DB45387A-0715-4672-8BFD-F3E1C368F3B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DddCore.Crosscutting.ObjectMapper.TinyMapper", "Src\Crosscutting\DddCore.Crosscutting.ObjectMapper.TinyMapper\DddCore.Crosscutting.ObjectMapper.TinyMapper.csproj", "{08F88B1D-CC0D-48FA-A1D0-A52F700CCC5A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DddCore.Crosscutting.ObjectMapper.ExpressMapper", "Src\Crosscutting\DddCore.Crosscutting.ObjectMapper.TinyMapper\DddCore.Crosscutting.ObjectMapper.ExpressMapper.csproj", "{08F88B1D-CC0D-48FA-A1D0-A52F700CCC5A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

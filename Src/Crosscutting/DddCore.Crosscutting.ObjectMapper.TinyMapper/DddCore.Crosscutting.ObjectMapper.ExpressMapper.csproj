@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <RootNamespace>DddCore.Crosscutting.ObjectMapper.ExpressMapper</RootNamespace>
+    <AssemblyName>DddCore.Crosscutting.ObjectMapper.ExpressMapper</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DddCore" Version="1.3.21" />
+  </ItemGroup>
+
+</Project>

@@ -24,15 +24,15 @@ namespace DddCore.Crosscutting.ObjectMapper.AutoMapper
 
         #region Public Methods
 
-        public IObjectMapperBindingConfig<TFrom, TTo> Bind(Expression<Func<TFrom, object>> source, Expression<Func<TTo, object>> target)
+        public IObjectMapperBindingConfig<TFrom, TTo> Bind(Expression<Func<TTo, object>> target, Expression<Func<TFrom, object>> source)
         {
             mappingExpression.ForMember(target, opt => opt.MapFrom(source));
             return this;
         }
 
-        public IObjectMapperBindingConfig<TFrom, TTo> Ignore(Expression<Func<TFrom, object>> source)
+        public IObjectMapperBindingConfig<TFrom, TTo> Ignore(Expression<Func<TTo, object>> target)
         {
-            mappingExpression.ForSourceMember(source, opt => opt.Ignore());
+            mappingExpression.ForMember(target, opt => opt.Ignore());
             return this;
         }
 

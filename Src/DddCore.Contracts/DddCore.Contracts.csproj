@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
     <PackageId>DddCore.Contracts</PackageId>
-    <PackageVersion>1.3.20</PackageVersion>
+    <PackageVersion>1.3.21</PackageVersion>
     <Authors>DddCore</Authors>
     <Description></Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
@@ -11,7 +11,7 @@
     <Copyright></Copyright>
     <PackageTags></PackageTags>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>1.3.20</Version>
+    <Version>1.3.21</Version>
     <Company>DddCore</Company>
   </PropertyGroup>
 

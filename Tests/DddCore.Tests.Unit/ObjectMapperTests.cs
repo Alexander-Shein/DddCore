@@ -54,7 +54,7 @@ namespace DddCore.Tests.Unit
         {
             Config.Bind<IdentityClaimIm, IdentityResourceClaim>(c =>
             {
-                c.Bind(x => x.Id, x => x.IdentityClaimId);
+                c.Bind(x => x.IdentityClaimId, x => x.Id);
                 c.Ignore(x => x.Id);
             });
         }
