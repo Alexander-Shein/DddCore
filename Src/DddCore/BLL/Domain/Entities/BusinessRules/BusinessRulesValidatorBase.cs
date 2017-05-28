@@ -5,6 +5,7 @@ using DddCore.Contracts.BLL.Domain.Entities.State;
 using DddCore.Contracts.BLL.Errors;
 using FluentValidation;
 using FluentValidation.Results;
+using Severity = FluentValidation.Severity;
 
 namespace DddCore.BLL.Domain.Entities.BusinessRules
 {
@@ -41,11 +42,37 @@ namespace DddCore.BLL.Domain.Entities.BusinessRules
                     errorCode = -1;
                 }
 
-                result.Errors.Add(new Error
+                var error = new Error
                 {
                     Code = errorCode,
                     Description = validationFailure.ErrorMessage
-                });
+                };
+
+                switch (validationFailure.Severity)
+                {
+                    case Severity.Error:
+                    {
+                        error.Severity = Contracts.BLL.Errors.Severity.Error;
+                        result.Errors.Add(error);
+                        break;
+                    }
+                    case Severity.Info:
+                    {
+                        error.Severity = Contracts.BLL.Errors.Severity.Info;
+                        result.Info.Add(error);
+                        break;
+                    }
+                    case Severity.Warning:
+                    {
+                        error.Severity = Contracts.BLL.Errors.Severity.Warning;
+                        result.Warnings.Add(error);
+                        break;
+                    }
+                    default:
+                    {
+                        throw new NotSupportedException(validationFailure.Severity.ToString("G"));
+                    }
+                }
             }
 
             return result;

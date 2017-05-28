@@ -10,11 +10,16 @@ namespace DddCore.Contracts.BLL.Errors
     /// </summary>
     public class OperationResult
     {
+        /// <summary>
+        /// False if has at least 1 Error. True if has warnings or info but no Errors.
+        /// </summary>
         public bool IsSucceed => !IsNotSucceed;
 
         public bool IsNotSucceed => Errors.Any();
 
         public ICollection<Error> Errors { get; } = new List<Error>();
+        public ICollection<Error> Warnings { get; } = new List<Error>();
+        public ICollection<Error> Info { get; } = new List<Error>();
 
         public static OperationResult Succeed = new OperationResult();
 
