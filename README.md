@@ -1,7 +1,6 @@
 # Domain Driven Design (DDD) arhitecture implementation for .net core
-The goal of this framework is to implement ddd patterns and have well documented, fully tested and easy to use components that you need for your new projects.
 
-* DddCore framework implements common DDD patterns like repository and query repository, unit of work, aggregate roots, domain events, entity services and others.
+* DddCore framework implements common DDD patterns like repository and query repository, unit of work, aggregate roots, domain events and others.
 
 * Different ORMs: functional EntityFramework for CRUD operations (repository) and fast Dapper for read operations (query repository). It's in place because of performance and to avoid redundant entity relationships that are added in order to create a LINQ query to return data to UI. As a result better domain model structure.
 
@@ -9,11 +8,13 @@ The goal of this framework is to implement ddd patterns and have well documented
 
 * DddCore is automated as much as possible. All components are auto registered to dependency injection container. Generic implementations are provided for components like repository and entity service. Common entity fields are auto mapped for Entity Framework.
 
-* DddCore has async and sync implementations for all methods.
+* Async and sync implementations.
 
-* DddCore framework uses next libraries: [FluentValidation][-4], [EntityFramework][-3], [Dapper][-5], [Microsoft Dependency Injection][-2], [AutoMapper][-1](can be switched)
+* Business rules with [FluentValidation][-4].
 
-Try a tutorial(under construction) or have a look to the [sample][0] app.
+* Fast query repositories with [dapper][-5].
+
+* DddCore framework uses next libraries: [EntityFramework][-3], [Microsoft Dependency Injection][-2], [AutoMapper][-1](can be switched)
 
 ## Features:
 
@@ -41,7 +42,6 @@ Try a tutorial(under construction) or have a look to the [sample][0] app.
 
 ### Services Layer (SL)
 
-- [Entity Service][13]
 - [Workflow Service][14]
 - [Infrastructure Service][15]
 - [Pagged Result][16]
