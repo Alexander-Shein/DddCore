@@ -10,20 +10,20 @@ namespace DddCore.BLL.Domain.Events
     {
         #region Private Members
 
-        readonly IServiceProvider serviceProvider;
+        private readonly IServiceProvider _serviceProvider;
 
         #endregion
 
         public DomainEventHandlerFactory(IServiceProvider serviceProvider)
         {
-            this.serviceProvider = serviceProvider;
+            _serviceProvider = serviceProvider;
         }
 
         #region Public Methods
 
         public IEnumerable<IDomainEventHandler<T>> GetHandlers<T>() where T : IDomainEvent
         {
-            return serviceProvider.GetService<IEnumerable<IDomainEventHandler<T>>>() ?? Enumerable.Empty<IDomainEventHandler<T>>();
+            return _serviceProvider.GetService<IEnumerable<IDomainEventHandler<T>>>() ?? Enumerable.Empty<IDomainEventHandler<T>>();
         }
 
         #endregion

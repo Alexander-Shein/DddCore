@@ -1,4 +1,4 @@
-﻿using DddCore.Contracts.BLL.Errors;
+﻿using DddCore.Contracts.BLL.Domain.Services;
 
 namespace DddCore.Contracts.BLL.Domain.Events
 {
@@ -9,6 +9,6 @@ namespace DddCore.Contracts.BLL.Domain.Events
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="domainEvent"></param>
-        OperationResult Raise<T>(T domainEvent) where T : IDomainEvent;
+        Result Raise<T>(T domainEvent) where T : IDomainEvent;
     }
 }

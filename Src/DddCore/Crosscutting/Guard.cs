@@ -4,7 +4,7 @@ namespace DddCore.Crosscutting
 {
     public static class Guard
     {
-        public static void ThrowIfNull(object instance, string message)
+        public static void NotNull(object instance, string message)
         {
             if (instance == null)
             {

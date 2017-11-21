@@ -1,23 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.6
+VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Crosscutting", "Crosscutting", "{4D9192C3-595B-4EE6-90FD-660036FEC5C4}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{155C9F39-7EDB-48A1-8692-29B024C96355}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DddCore.Contracts", "Src\DddCore.Contracts\DddCore.Contracts.csproj", "{CA0D1CCA-4CA7-40CD-B0F7-A3AFD3558315}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DddCore.Contracts", "Src\DddCore.Contracts\DddCore.Contracts.csproj", "{CA0D1CCA-4CA7-40CD-B0F7-A3AFD3558315}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DddCore", "Src\DddCore\DddCore.csproj", "{9FAFA615-A46E-49F5-92FD-BACF09D6DEE6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DddCore.Crosscutting.ObjectMapper.AutoMapper", "Src\Crosscutting\DddCore.Crosscutting.ObjectMapper.AutoMapper\DddCore.Crosscutting.ObjectMapper.AutoMapper.csproj", "{675C578A-7081-4239-AD0D-ACBC216CDE52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DddCore", "Src\DddCore\DddCore.csproj", "{9FAFA615-A46E-49F5-92FD-BACF09D6DEE6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{74BEFB41-F563-4829-8EFB-B65BE81B475F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DddCore.Tests.Unit", "Tests\DddCore.Tests.Unit\DddCore.Tests.Unit.csproj", "{DB45387A-0715-4672-8BFD-F3E1C368F3B3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DddCore.Crosscutting.ObjectMapper.ExpressMapper", "Src\Crosscutting\DddCore.Crosscutting.ObjectMapper.TinyMapper\DddCore.Crosscutting.ObjectMapper.ExpressMapper.csproj", "{08F88B1D-CC0D-48FA-A1D0-A52F700CCC5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DddCore.Tests.Unit", "Tests\DddCore.Tests.Unit\DddCore.Tests.Unit.csproj", "{DB45387A-0715-4672-8BFD-F3E1C368F3B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,28 +27,20 @@ Global
 		{9FAFA615-A46E-49F5-92FD-BACF09D6DEE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FAFA615-A46E-49F5-92FD-BACF09D6DEE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FAFA615-A46E-49F5-92FD-BACF09D6DEE6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{675C578A-7081-4239-AD0D-ACBC216CDE52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{675C578A-7081-4239-AD0D-ACBC216CDE52}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{675C578A-7081-4239-AD0D-ACBC216CDE52}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{675C578A-7081-4239-AD0D-ACBC216CDE52}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DB45387A-0715-4672-8BFD-F3E1C368F3B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DB45387A-0715-4672-8BFD-F3E1C368F3B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB45387A-0715-4672-8BFD-F3E1C368F3B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB45387A-0715-4672-8BFD-F3E1C368F3B3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{08F88B1D-CC0D-48FA-A1D0-A52F700CCC5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{08F88B1D-CC0D-48FA-A1D0-A52F700CCC5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{08F88B1D-CC0D-48FA-A1D0-A52F700CCC5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{08F88B1D-CC0D-48FA-A1D0-A52F700CCC5A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{4D9192C3-595B-4EE6-90FD-660036FEC5C4} = {155C9F39-7EDB-48A1-8692-29B024C96355}
 		{CA0D1CCA-4CA7-40CD-B0F7-A3AFD3558315} = {155C9F39-7EDB-48A1-8692-29B024C96355}
 		{9FAFA615-A46E-49F5-92FD-BACF09D6DEE6} = {155C9F39-7EDB-48A1-8692-29B024C96355}
-		{675C578A-7081-4239-AD0D-ACBC216CDE52} = {4D9192C3-595B-4EE6-90FD-660036FEC5C4}
 		{DB45387A-0715-4672-8BFD-F3E1C368F3B3} = {74BEFB41-F563-4829-8EFB-B65BE81B475F}
-		{08F88B1D-CC0D-48FA-A1D0-A52F700CCC5A} = {4D9192C3-595B-4EE6-90FD-660036FEC5C4}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {63246490-EBD5-421A-9699-9A3DC3E5CDAF}
 	EndGlobalSection
 EndGlobal

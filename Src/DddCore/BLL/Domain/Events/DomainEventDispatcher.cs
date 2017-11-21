@@ -1,6 +1,6 @@
 ﻿using DddCore.Contracts.BLL.Domain.Events;
-using DddCore.Contracts.BLL.Errors;
 using System.Linq;
+using DddCore.Contracts.BLL.Domain.Services;
 
 namespace DddCore.BLL.Domain.Events
 {
@@ -8,29 +8,29 @@ namespace DddCore.BLL.Domain.Events
     {
         #region Private Members
 
-        readonly IDomainEventHandlerFactory domainEventHandlerFactory;
+        private readonly IDomainEventHandlerFactory _domainEventHandlerFactory;
 
         #endregion
 
         public DomainEventDispatcher(IDomainEventHandlerFactory domainEventHandlerFactory)
         {
-            this.domainEventHandlerFactory = domainEventHandlerFactory;
+            _domainEventHandlerFactory = domainEventHandlerFactory;
         }
 
         #region Public Methods
 
-        public OperationResult Raise<T>(T args) where T : IDomainEvent
+        public Result Raise<T>(T args) where T : IDomainEvent
         {
-            var handlers = domainEventHandlerFactory.GetHandlers<T>();
-            if (!handlers.Any()) return OperationResult.Succeed;
+            var handlers = _domainEventHandlerFactory.GetHandlers<T>();
+            if (!handlers.Any()) return Result.Success;
 
             foreach (var handler in handlers)
             {
                 var result = handler.Handle(args);
-                if (result.IsNotSucceed) return result;
+                if (result.IsFailure) return result;
             }
 
-            return OperationResult.Succeed;
+            return Result.Success;
         }
 
         #endregion

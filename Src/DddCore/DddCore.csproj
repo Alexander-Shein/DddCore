@@ -1,35 +1,34 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.6</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>DddCore</PackageId>
-    <PackageVersion>1.3.22</PackageVersion>
+    <PackageVersion>1.3.24</PackageVersion>
     <Authors></Authors>
     <Description></Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageReleaseNotes></PackageReleaseNotes>
     <Copyright></Copyright>
     <PackageTags></PackageTags>
-    <Version>1.3.22</Version>
+    <Version>1.3.24</Version>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <ApplicationIcon />
+    <OutputType>Library</OutputType>
+    <StartupObject />
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dapper" Version="1.50.2" />
-    <PackageReference Include="DddCore.Contracts" Version="1.3.22" />
-    <PackageReference Include="FluentValidation" Version="7.0.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Http" Version="1.1.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="1.1.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="1.1.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.2" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="1.1.1" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="1.1.1" />
-    <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="1.1.2" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="1.1.2" />
+    <PackageReference Include="FluentValidation" Version="7.2.1" />
+    <PackageReference Include="libphonenumber-csharp" Version="8.8.5" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="SL\Services\Application\DomainStack\" />
+    <Folder Include="DAL\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DddCore.Contracts\DddCore.Contracts.csproj" />
   </ItemGroup>
 
 </Project>
