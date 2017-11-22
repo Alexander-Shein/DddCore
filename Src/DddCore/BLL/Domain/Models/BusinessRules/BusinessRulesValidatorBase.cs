@@ -32,7 +32,7 @@ namespace DddCore.BLL.Domain.Models.BusinessRules
             return Map(validationResult);
         }
 
-        public Result Validate(T instance, string ruleSet)
+        public Result Validate(T instance, string ruleSetName)
         {
             var validationResult = base.Validate(instance);
             return Map(validationResult);
@@ -49,8 +49,10 @@ namespace DddCore.BLL.Domain.Models.BusinessRules
 
             if (instance != null) return base.Validate(context);
 
+            var errors = BusinessErrorsWhenModelIsNull() ?? Enumerable.Empty<BusinessError>();
+
             var validationResult =
-                new ValidationResult(BusinessErrorsWhenModelIsNull().Select(x => new ValidationFailure(typeof(T).Name, x.Description)
+                new ValidationResult(errors.Select(x => new ValidationFailure(typeof(T).Name, x.Description)
                 {
                     ErrorCode = x.Code.ToString()
                 }));
@@ -58,7 +60,10 @@ namespace DddCore.BLL.Domain.Models.BusinessRules
             return validationResult;
         }
 
-        public abstract IEnumerable<BusinessError> BusinessErrorsWhenModelIsNull();
+        public virtual IEnumerable<BusinessError> BusinessErrorsWhenModelIsNull()
+        {
+            return Enumerable.Empty<BusinessError>();
+        }
 
         #endregion
 

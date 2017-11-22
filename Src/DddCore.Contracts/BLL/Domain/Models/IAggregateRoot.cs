@@ -3,9 +3,9 @@ using DddCore.Contracts.BLL.Domain.Services;
 
 namespace DddCore.Contracts.BLL.Domain.Models
 {
-    public interface IAggregateRoot<TKey> : IEntity<TKey>
+    public interface IAggregateRoot<out TKey, out TMemento> : IEntity<TKey> where TMemento: IMemento<TKey>
     {
-        IMemento<TKey> GetMemento();
+        TMemento GetMemento();
         Result RaiseEvents(IDomainEventDispatcher eventDispatcher);
     }
 }

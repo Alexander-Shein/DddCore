@@ -3,7 +3,7 @@ using DddCore.Contracts.BLL.Domain.Models;
 
 namespace DddCore.Contracts.DAL.DomainStack
 {
-    public interface IDomainRepository<T, in TKey> where T : class, IAggregateRoot<TKey>
+    public interface IDomainRepository<T, in TKey> where T : class, IAggregateRoot<TKey, TMemento>
     {
         /// <summary>
         /// Read aggregate root with all related entities but w/o other aggregate roots.

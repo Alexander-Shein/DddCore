@@ -4,14 +4,14 @@ using DddCore.Contracts.BLL.Domain.Events;
 using DddCore.Contracts.BLL.Domain.Models;
 using DddCore.Contracts.BLL.Domain.Services;
 using DddCore.Crosscutting;
-using DddCore.Contracts.BLL.Domain.BusinessRules;
 
 namespace DddCore.BLL.Domain.Models
 {
-    public abstract class AggregateRootBase<TKey> : IAggregateRoot<TKey>
+    public abstract class AggregateRootBase<TKey, TMemento> : IAggregateRoot<TKey, TMemento> where TMemento : IMemento<TKey>
     {
-        protected AggregateRootBase(IMemento<TKey> memento)
+        protected AggregateRootBase(TMemento memento)
         {
+            Guard.NotNull(memento, nameof(memento));
             State = memento;
         }
 
@@ -37,7 +37,7 @@ namespace DddCore.BLL.Domain.Models
             return Result.Success;
         }
 
-        public IMemento<TKey> GetMemento()
+        public virtual TMemento GetMemento()
         {
             return State;
         }
@@ -45,7 +45,9 @@ namespace DddCore.BLL.Domain.Models
         #endregion
 
         protected ICollection<IDomainEvent> Events { get; set; } = new List<IDomainEvent>();
-        protected IMemento<TKey> State { get; set; }
-        protected abstract IBusinessRulesValidator<AggregateRootBase<TKey>> Validator { get; }
+        protected TMemento State { get; set; }
+        //protected abstract IBusinessRulesValidator<T> Validator { get; } where T: AggregateRootBase<TKey, TMemento>
+
+        //private IDictionary<>
     }
 }
