@@ -1,6 +1,6 @@
 ﻿namespace DddCore.Contracts.BLL.Domain.Models
 {
-    public interface IMemento<TKey>
+    public interface IAggregateRootState<TKey>
     {
         TKey Id { get; set; }
     }

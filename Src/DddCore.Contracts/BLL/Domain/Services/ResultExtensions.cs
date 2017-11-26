@@ -62,7 +62,7 @@ namespace DddCore.Contracts.BLL.Domain.Services
             return func();
         }
 
-        public static Result<T> Ensure<T>(this Result<T> result, Func<T, bool> predicate, int errorCode, string errorMessage)
+        public static Result<T> Ensure<T>(this Result<T> result, Func<T, bool> predicate, string errorCode, string errorMessage)
         {
             if (result.IsFailure)
                 return Result.Fail<T>(result.Errors);
@@ -73,7 +73,7 @@ namespace DddCore.Contracts.BLL.Domain.Services
             return Result.Ok(result.Data);
         }
 
-        public static Result Ensure(this Result result, Func<bool> predicate, int errorCode, string errorMessage)
+        public static Result Ensure(this Result result, Func<bool> predicate, string errorCode, string errorMessage)
         {
             if (result.IsFailure)
                 return Result.Fail(result.Errors);

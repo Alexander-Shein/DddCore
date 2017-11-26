@@ -77,14 +77,9 @@ namespace DddCore.BLL.Domain.Models.BusinessRules
 
             foreach (var validationFailure in validationResult.Errors)
             {
-                if (!Int32.TryParse(validationFailure.ErrorCode, out int errorCode))
-                {
-                    errorCode = -1;
-                }
-
                 var error = new BusinessError
                 {
-                    Code = errorCode,
+                    Code = validationFailure.ErrorCode,
                     Description = validationFailure.ErrorMessage
                 };
 

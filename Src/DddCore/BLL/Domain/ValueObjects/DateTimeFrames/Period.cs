@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using DddCore.BLL.Domain.ValueObjects;
 
-namespace DddCore.BLL.Domain
+namespace DddCore.BLL.Domain.ValueObjects.DateTimeFrames
 {
     public class Period : ValueObjectBase<Period>
     {

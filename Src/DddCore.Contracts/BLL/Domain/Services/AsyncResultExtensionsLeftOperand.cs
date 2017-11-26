@@ -49,13 +49,13 @@ namespace DddCore.Contracts.BLL.Domain.Services
             return result.Then(func);
         }
 
-        public static async Task<Result<T>> Ensure<T>(this Task<Result<T>> resultTask, Func<T, bool> predicate, int errorCode, string errorMessage, bool continueOnCapturedContext = false)
+        public static async Task<Result<T>> Ensure<T>(this Task<Result<T>> resultTask, Func<T, bool> predicate, string errorCode, string errorMessage, bool continueOnCapturedContext = false)
         {
             Result<T> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
             return result.Ensure(predicate, errorCode, errorMessage);
         }
 
-        public static async Task<Result> Ensure(this Task<Result> resultTask, Func<bool> predicate, int errorCode, string errorMessage, bool continueOnCapturedContext = false)
+        public static async Task<Result> Ensure(this Task<Result> resultTask, Func<bool> predicate, string errorCode, string errorMessage, bool continueOnCapturedContext = false)
         {
             Result result = await resultTask.ConfigureAwait(continueOnCapturedContext);
             return result.Ensure(predicate, errorCode, errorMessage);

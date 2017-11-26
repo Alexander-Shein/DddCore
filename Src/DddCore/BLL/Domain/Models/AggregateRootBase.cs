@@ -7,12 +7,17 @@ using DddCore.Crosscutting;
 
 namespace DddCore.BLL.Domain.Models
 {
-    public abstract class AggregateRootBase<TKey, TMemento> : IAggregateRoot<TKey, TMemento> where TMemento : IMemento<TKey>
+    public abstract class AggregateRootBase<TKey, TState> : IAggregateRoot<TKey, TState> where TState : IAggregateRootState<TKey>, new()
     {
-        protected AggregateRootBase(TMemento memento)
+        protected AggregateRootBase()
         {
-            Guard.NotNull(memento, nameof(memento));
-            State = memento;
+            State = new TState();
+        }
+
+        protected AggregateRootBase(TState state)
+        {
+            Guard.NotNull(state, nameof(state));
+            State = state;
         }
 
         public TKey Id => State.Id;
@@ -37,7 +42,7 @@ namespace DddCore.BLL.Domain.Models
             return Result.Success;
         }
 
-        public virtual TMemento GetMemento()
+        public virtual TState GetState()
         {
             return State;
         }
@@ -45,7 +50,7 @@ namespace DddCore.BLL.Domain.Models
         #endregion
 
         protected ICollection<IDomainEvent> Events { get; set; } = new List<IDomainEvent>();
-        protected TMemento State { get; set; }
+        protected TState State { get; set; }
         //protected abstract IBusinessRulesValidator<T> Validator { get; } where T: AggregateRootBase<TKey, TMemento>
 
         //private IDictionary<>

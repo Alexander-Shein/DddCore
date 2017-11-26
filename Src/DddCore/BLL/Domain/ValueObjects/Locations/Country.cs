@@ -1,7 +1,7 @@
 ﻿// ReSharper disable InconsistentNaming
 
 
-namespace DddCore.BLL.Domain
+namespace DddCore.BLL.Domain.ValueObjects.Locations
 {
     public enum Country
     {

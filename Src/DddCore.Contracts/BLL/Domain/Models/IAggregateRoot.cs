@@ -3,9 +3,10 @@ using DddCore.Contracts.BLL.Domain.Services;
 
 namespace DddCore.Contracts.BLL.Domain.Models
 {
-    public interface IAggregateRoot<out TKey, out TMemento> : IEntity<TKey> where TMemento: IMemento<TKey>
+    public interface IAggregateRoot<out TKey, out TState> : IEntity<TKey> where TState : IAggregateRootState<TKey>
     {
-        TMemento GetMemento();
+        TState GetState();
+
         Result RaiseEvents(IDomainEventDispatcher eventDispatcher);
     }
 }

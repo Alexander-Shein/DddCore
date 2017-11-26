@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using DddCore.BLL.Domain.ValueObjects;
 
-namespace DddCore.BLL.Domain
+namespace DddCore.BLL.Domain.ValueObjects.Persons
 {
     public class FullName : ValueObjectBase<FullName>
     {

@@ -81,7 +81,7 @@ namespace DddCore.Contracts.BLL.Domain.Services
             return await func().ConfigureAwait(continueOnCapturedContext);
         }
 
-        public static async Task<Result<T>> Ensure<T>(this Task<Result<T>> resultTask, Func<T, Task<bool>> predicate, int errorCode, string errorMessage, bool continueOnCapturedContext = false)
+        public static async Task<Result<T>> Ensure<T>(this Task<Result<T>> resultTask, Func<T, Task<bool>> predicate, string errorCode, string errorMessage, bool continueOnCapturedContext = false)
         {
             Result<T> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
 
@@ -94,7 +94,7 @@ namespace DddCore.Contracts.BLL.Domain.Services
             return Result.Ok(result.Data);
         }
 
-        public static async Task<Result> Ensure(this Task<Result> resultTask, Func<Task<bool>> predicate, int errorCode, string errorMessage, bool continueOnCapturedContext = false)
+        public static async Task<Result> Ensure(this Task<Result> resultTask, Func<Task<bool>> predicate, string errorCode, string errorMessage, bool continueOnCapturedContext = false)
         {
             Result result = await resultTask.ConfigureAwait(continueOnCapturedContext);
 

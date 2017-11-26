@@ -1,29 +1,67 @@
 using System;
 using System.Collections.Generic;
-using DddCore.BLL.Domain.ValueObjects;
+using System.Text.RegularExpressions;
 using PhoneNumbers;
 
-namespace DddCore.BLL.Domain
+namespace DddCore.BLL.Domain.ValueObjects.Persons
 {
     public class PhoneNumber : ValueObjectBase<PhoneNumber>
     {
-        private PhoneNumberUtil _phoneNumberUtil = PhoneNumberUtil.GetInstance();
+        private const string Numbers = @"\D";
+        private const char Zero = '0';
+        private static readonly PhoneNumberUtil PhoneNumberUtil = PhoneNumberUtil.GetInstance();
 
-        private string _phone;
+        private readonly PhoneNumbers.PhoneNumber _phone;
 
         protected override IEnumerable<object> GetAllAttributesToBeUsedForEquality()
         {
-            yield return _phone;
+            yield return ToString();
         }
 
         public PhoneNumber(string phoneNumber)
         {
-            var ol = _phoneNumberUtil.Parse(phoneNumber, String.Empty);
+            _phone = PhoneNumberUtil.Parse(phoneNumber, String.Empty);
         }
 
-        public string E164
+        public static bool IsValidPhoneNumberString(string phoneNumber)
         {
-            get { return _phone; }
+            if (String.IsNullOrWhiteSpace(phoneNumber)) return false;
+            string phoneCorrect = Regex.Replace(phoneNumber, Numbers, string.Empty).TrimStart(Zero);
+
+            try
+            {
+                var numberLib = PhoneNumberUtil.Parse(phoneCorrect, string.Empty);
+                return PhoneNumberUtil.IsValidNumber(numberLib);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public bool TryCreate(string phoneNumber, out PhoneNumber phoneNumberInstance)
+        {
+            if (IsValidPhoneNumberString(phoneNumber))
+            {
+                phoneNumberInstance = new PhoneNumber(phoneNumber);
+                return true;
+            }
+
+            phoneNumberInstance = null;
+            return false;
+        }
+
+        public override string ToString()
+        {
+            return PhoneNumberUtil.Format(_phone, PhoneNumberFormat.INTERNATIONAL);
+        }
+
+        public string ToString(string format)
+        {
+            if (String.IsNullOrWhiteSpace(format)) return ToString();
+            if (!Enum.TryParse(format, out PhoneNumberFormat phoneNumberFormat)) return ToString();
+
+            return PhoneNumberUtil.Format(_phone, phoneNumberFormat);
         }
     }
 }

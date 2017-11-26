@@ -15,7 +15,6 @@ namespace DddCore.Contracts.BLL.Domain.Services
         /// False if has at least 1 Error. True if has warnings or info but no Errors.
         /// </summary>
         public bool IsSuccess => !IsFailure;
-
         public bool IsFailure => Errors.Any();
 
         public ICollection<BusinessError> Errors { get; set; } = new List<BusinessError>();
@@ -24,19 +23,9 @@ namespace DddCore.Contracts.BLL.Domain.Services
 
         public static Result Success = new Result();
 
-        public static Result Fail(int code, string description)
+        public static Result Fail(string code, string description)
         {
-            return new Result
-            {
-                Errors =
-                {
-                    new BusinessError
-                    {
-                        Code = code,
-                        Description = description
-                    }
-                }
-            };
+            return new Result {Errors = {BusinessError.Create(code, description)}};
         }
 
         public static Result Fail(params BusinessError[] errors)
@@ -53,17 +42,10 @@ namespace DddCore.Contracts.BLL.Domain.Services
 
         public static Result Fail(IEnumerable<BusinessError> errors)
         {
-            var operationResult = new Result();
-
-            foreach (var error in errors)
-            {
-                operationResult.Errors.Add(error);
-            }
-
-            return operationResult;
+            return Fail(errors.ToArray());
         }
 
-        public new static Result<T> Fail<T>(params BusinessError[] errors)
+        public static Result<T> Fail<T>(params BusinessError[] errors)
         {
             var operationResult = new Result<T>();
 
@@ -75,39 +57,19 @@ namespace DddCore.Contracts.BLL.Domain.Services
             return operationResult;
         }
 
-        public new static Result<T> Fail<T>(IEnumerable<BusinessError> errors)
+        public static Result<T> Fail<T>(IEnumerable<BusinessError> errors)
         {
-            var operationResult = new Result<T>();
-
-            foreach (var error in errors)
-            {
-                operationResult.Errors.Add(error);
-            }
-
-            return operationResult;
+            return Fail<T>(errors.ToArray());
         }
 
-        public new static Result<T> Fail<T>(int code, string description)
+        public static Result<T> Fail<T>(string code, string description)
         {
-            return new Result<T>
-            {
-                Errors =
-                {
-                    new BusinessError
-                    {
-                        Code = code,
-                        Description = description
-                    }
-                }
-            };
+            return new Result<T> {Errors = {BusinessError.Create(code, description)}};
         }
 
         public static Result<T> Ok<T>(T data)
         {
-            return new Result<T>
-            {
-                Data = data
-            };
+            return new Result<T> {Data = data};
         }
     }
 

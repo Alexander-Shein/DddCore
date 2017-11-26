@@ -3,12 +3,13 @@
 
 using System.Collections.Generic;
 
-namespace DddCore.BLL.Domain
+namespace DddCore.BLL.Domain.ValueObjects.Finances
 {
     public enum Currency
     {
         AED = 784,
-        AFN = 971
+        AFN = 971,
+        RUB = 643
     }
 
     public static class CurrencyExtensions
@@ -39,13 +40,15 @@ namespace DddCore.BLL.Domain
         private static readonly Dictionary<Currency, int> _numberOfDigitsAfterDecimalSeparatorMap = new Dictionary<Currency, int>
         {
             { Currency.AED, TwoDigits },
-            { Currency.AFN, TwoDigits }
+            { Currency.AFN, TwoDigits },
+            { Currency.RUB, TwoDigits }
         };
 
         private static readonly Dictionary<Currency, string> _symbolMap = new Dictionary<Currency, string>
         {
             { Currency.AED, "د.إ" },
-            { Currency.AFN, "؋" }
+            { Currency.AFN, "؋" },
+            { Currency.RUB, "₽" }
         };
     }
 }
